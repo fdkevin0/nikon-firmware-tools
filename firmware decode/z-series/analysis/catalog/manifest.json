@@ -1,0 +1,877 @@
+{
+  "collected_at_utc": "2026-10-04T17:10:48.369749+00:00",
+  "scope": "Every camera in Nikon's Z product catalog; publicly linked annual firmware records, 2018 onward",
+  "history_limit": "Official indexes omit delisted releases; this is not an exhaustive archive of every historical version",
+  "product_xml": "https://downloadcenter.nikonimglib.com/en/1/product_data.xml",
+  "models": [
+    {
+      "model": "Z 30",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/603/Z_30.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/556.html"
+      ]
+    },
+    {
+      "model": "Z 5",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/552/Z_5.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/562.html"
+      ]
+    },
+    {
+      "model": "Z 50",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/526/Z_50.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/555.html"
+      ]
+    },
+    {
+      "model": "Z 6",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/493/Z_6.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/557.html"
+      ]
+    },
+    {
+      "model": "Z 6II",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/556/Z_6II.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/560.html"
+      ]
+    },
+    {
+      "model": "Z 7",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/492/Z_7.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/558.html"
+      ]
+    },
+    {
+      "model": "Z 7II",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/558/Z_7II.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/561.html"
+      ]
+    },
+    {
+      "model": "Z 8",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/616/Z_8.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/606.html"
+      ]
+    },
+    {
+      "model": "Z 9",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/589/Z_9.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/585.html"
+      ]
+    },
+    {
+      "model": "Z f",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/624/Z_f.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/586.html"
+      ]
+    },
+    {
+      "model": "Z fc",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/574/Z_fc.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/593.html"
+      ]
+    },
+    {
+      "model": "Z50II",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/637/Z50II.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/605.html"
+      ]
+    },
+    {
+      "model": "Z5II",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/648/Z5II.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/601.html"
+      ]
+    },
+    {
+      "model": "Z6III",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/629/Z6III.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/571.html"
+      ]
+    },
+    {
+      "model": "ZR",
+      "product_url": "https://downloadcenter.nikonimglib.com/en/products/659/ZR.html",
+      "current_firmware_pages": [
+        "https://downloadcenter.nikonimglib.com/en/download/fw/584.html"
+      ]
+    }
+  ],
+  "firmware_pages": [
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/556.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/603/Z_30.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 30"
+      ],
+      "labels": [
+        "Z 30 Firmware Version 1.20"
+      ],
+      "filename": "Z_30_0120.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=asvmT65&R=SJJWT19&L=IyHNX07&O=NbQNS00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=1BwWe64&R=IA9Aq19&L=RKQqD07&O=e3ihK00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.10",
+        "1.11",
+        "1.20"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/0tErF003na2o07Cel9919YVUzB70/Z_30_0120.bin",
+        "content_length": 34496798,
+        "last_modified": "Wed, 07 May 2025 00:18:37 GMT",
+        "etag": "\"3d1f1cb57abe8ca031d814b6a5d43b18:1746577115.261657\"",
+        "status": "existing",
+        "size": 34496798,
+        "sha256": "1a5449ef505f1f347ed4e066a6a3f588ea542240680e83f4ebcae3b16da3434a"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/562.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/552/Z_5.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 5"
+      ],
+      "labels": [
+        "Z 5 Firmware Version 1.50"
+      ],
+      "filename": "Z_5_0150.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=INGYS56&R=GDI8X23&L=2B9rn07&O=q5JuY00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=HR5cT55&R=Xam6W23&L=eqqEn07&O=BjmpS00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.02",
+        "1.10",
+        "1.11",
+        "1.20",
+        "1.21",
+        "1.40",
+        "1.41",
+        "1.42",
+        "1.43",
+        "1.50"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/JBCIR00QBbGi07oajBS23HW7rE58/Z_5_0150.bin",
+        "content_length": 36011790,
+        "last_modified": "Tue, 10 Jun 2025 00:44:38 GMT",
+        "etag": "\"135cf00a7c5b7e4183287228c2c9301c:1749516276.067803\"",
+        "status": "existing",
+        "size": 36011790,
+        "sha256": "efc0ce70dcafdd96c64e95d8d50f6b7f0509fc0c2840b28d12b6f9e4877ee776"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/555.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/526/Z_50.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 50"
+      ],
+      "labels": [
+        "Z 50 Firmware Version 2.60"
+      ],
+      "filename": "Z_50_0260.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=yngXu63&R=8T6ub18&L=1jsiI07&O=Oot5N00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=Ldujw64&R=5ubNr18&L=4S8mH07&O=uLojx00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.10",
+        "1.11",
+        "2.00",
+        "2.01",
+        "2.02",
+        "2.03",
+        "2.10",
+        "2.11",
+        "2.20",
+        "2.30",
+        "2.40",
+        "2.50",
+        "2.51",
+        "2.60"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/7lhGs007FRpa07LBmsY183TvKr69/Z_50_0260.bin",
+        "content_length": 31972272,
+        "last_modified": "Wed, 23 Apr 2025 01:16:52 GMT",
+        "etag": "\"72ba08e9bf163a326d6bc6d72637cfcf:1745371009.804906\"",
+        "status": "existing",
+        "size": 31972272,
+        "sha256": "69745c9e8f3156e936918e62a4a1fad18e7078e9ea3b95d8b8e08144b1542e49"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/557.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/493/Z_6.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 6"
+      ],
+      "labels": [
+        "Z 6 Firmware Version 3.80"
+      ],
+      "filename": "Z_6_0380.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=NCOkh72&R=2G7fy19&L=CHzmA07&O=BBV1800",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=9oN1g71&R=cbZLH19&L=Uh23507&O=CiTB400"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "2.00",
+        "2.01",
+        "2.10",
+        "2.20",
+        "3.00",
+        "3.10",
+        "3.11",
+        "3.12",
+        "3.20",
+        "3.30",
+        "3.31",
+        "3.40",
+        "3.50",
+        "3.60",
+        "3.70",
+        "3.80"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/3wYNs00xVSiD07LB2RY19q7I3N76/Z_6_0380.bin",
+        "content_length": 34923366,
+        "last_modified": "Tue, 13 May 2025 00:15:27 GMT",
+        "etag": "\"9104296e8d1ba62bfd704ac41536dc08:1747095325.215212\"",
+        "status": "existing",
+        "size": 34923366,
+        "sha256": "ff978ffdf77c58c0b861a06e16d432d5886969f3cdd05d62f6c8e82e8a4cea54"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/560.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/556/Z_6II.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 6II"
+      ],
+      "labels": [
+        "Z 6II Firmware Version 1.70"
+      ],
+      "filename": "Z6_2_0170.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=JYsyI77&R=d1JXY20&L=oiPro07&O=NbiR200",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=OHhbb78&R=OtU5a20&L=TRLIS07&O=VEhdr00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.02",
+        "1.10",
+        "1.20",
+        "1.21",
+        "1.30",
+        "1.40",
+        "1.50",
+        "1.60",
+        "1.61",
+        "1.62",
+        "1.70"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/TA5Az00xnwoL07w7EnS20bcKMh85/Z6_2_0170.bin",
+        "content_length": 49002888,
+        "last_modified": "Tue, 03 Jun 2025 00:47:17 GMT",
+        "etag": "\"b3408857d4dd2c62282e6f50bf7a691b:1748911634.032286\"",
+        "status": "existing",
+        "size": 49002888,
+        "sha256": "5a9640b4c07abe1ecbf5a52655cbec6b893bba045bb2a1a1d21055b9f8f9d06d"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/558.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/492/Z_7.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 7"
+      ],
+      "labels": [
+        "Z 7 Firmware Version 3.80"
+      ],
+      "filename": "Z_7_0380.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=ikdq374&R=ycEng19&L=WiqXi07&O=8Z9TP00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=HJCg873&R=A1gR219&L=rfUbp07&O=zxSNB00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.02",
+        "1.03",
+        "2.00",
+        "2.01",
+        "2.10",
+        "2.20",
+        "3.00",
+        "3.10",
+        "3.11",
+        "3.12",
+        "3.20",
+        "3.30",
+        "3.31",
+        "3.40",
+        "3.50",
+        "3.60",
+        "3.70",
+        "3.80"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/Xcz6O00Bq5Y20724SD619Jy1Dx78/Z_7_0380.bin",
+        "content_length": 34472614,
+        "last_modified": "Tue, 13 May 2025 00:15:53 GMT",
+        "etag": "\"6e5fcd7e2864ae41e8a810fc7c26cba3:1747095350.840591\"",
+        "status": "existing",
+        "size": 34472614,
+        "sha256": "07cf19513ada5b770caec4cfc3531a6734c48aede28dcec037f0f8374ef441a2"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/561.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/558/Z_7II.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z 7II"
+      ],
+      "labels": [
+        "Z 7II Firmware Version 1.70"
+      ],
+      "filename": "Z7_2_0170.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=mWDJq82&R=FKqr820&L=U47qP07&O=fcbet00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=YHvFY81&R=Muhdf20&L=SgtHj07&O=9ef0d00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.10",
+        "1.20",
+        "1.21",
+        "1.30",
+        "1.31",
+        "1.40",
+        "1.50",
+        "1.60",
+        "1.61",
+        "1.62",
+        "1.70"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/G3fi900RGy4W07tdaO920cp0BB90/Z7_2_0170.bin",
+        "content_length": 48494024,
+        "last_modified": "Tue, 03 Jun 2025 00:50:30 GMT",
+        "etag": "\"99f22f4282cc5ee6c94046bac7a12eca:1748911827.756467\"",
+        "status": "existing",
+        "size": 48494024,
+        "sha256": "fc0e94f57500a1f0e287c6b9a036c81a5ffceccb8432a377d645b3fa35a19b6a"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/606.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/616/Z_8.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "Z 8"
+      ],
+      "labels": [
+        "Z 8 Firmware Version 3.11"
+      ],
+      "filename": "Z_8_0311.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=HCtsi43&R=sV6fE66&L=i2hxv07&O=9QcTd00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=mjCfn42&R=7NwQF66&L=PyUro07&O=43Sq400"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "2.00",
+        "2.01",
+        "2.10",
+        "3.00",
+        "3.01",
+        "3.10",
+        "3.11"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/wP5Vr003qbpC07ibhJ666rmRfF47/Z_8_0311.bin",
+        "content_length": 99051117,
+        "last_modified": "Wed, 16 Sep 2026 01:01:41 GMT",
+        "etag": "\"884afeef0fb5932510e2a7d7ae1687c7:1789520497.126657\"",
+        "status": "existing",
+        "size": 99051117,
+        "sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/585.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/589/Z_9.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "Z 9"
+      ],
+      "labels": [
+        "Z 9 Firmware Version 5.32"
+      ],
+      "filename": "Z_9_0532.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=fMPMr42&R=Yngo460&L=Xw0Cd07&O=JW6QR00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=JVLp443&R=mpZXJ60&L=oCbfe07&O=VPztC00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.10",
+        "1.11",
+        "2.00",
+        "2.10",
+        "2.11",
+        "3.00",
+        "3.01",
+        "3.10",
+        "4.00",
+        "4.01",
+        "4.10",
+        "5.00",
+        "5.10",
+        "5.20",
+        "5.30",
+        "5.31",
+        "5.32"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/vv4y200r0kz4077B75560VkLTu51/Z_9_0532.bin",
+        "content_length": 101846611,
+        "last_modified": "Tue, 31 Mar 2026 00:53:29 GMT",
+        "etag": "\"071d9155e18ef92b7a2fae07dcfde5c7:1774918404.976752\"",
+        "status": "existing",
+        "size": 101846611,
+        "sha256": "2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/586.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/624/Z_f.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "Z f"
+      ],
+      "labels": [
+        "Z f Firmware Version 3.01"
+      ],
+      "filename": "Z_f_0301.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=Zlmb848&R=m0Fga60&L=9tX8607&O=o4g6900",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=iXXBA47&R=KbPv160&L=uvzOT07&O=ud4eQ00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.10",
+        "1.20",
+        "1.21",
+        "2.00",
+        "2.01",
+        "2.02",
+        "3.00",
+        "3.01"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/5iAlW002osm707LL35I60VUlT357/Z_f_0301.bin",
+        "content_length": 107820261,
+        "last_modified": "Tue, 31 Mar 2026 00:54:43 GMT",
+        "etag": "\"bc5d93744d8251c102316dd10d30e8a7:1774918478.692312\"",
+        "status": "existing",
+        "size": 107820261,
+        "sha256": "bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/593.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/574/Z_fc.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "Z fc"
+      ],
+      "labels": [
+        "Z fc Firmware Version 1.81"
+      ],
+      "filename": "Z_fc_0181.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=Wg3kK34&R=GfERj63&L=Za3cW07&O=58PGe00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=P6d8U33&R=pTBTl63&L=fxGXz07&O=fjNDj00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.10",
+        "1.20",
+        "1.30",
+        "1.40",
+        "1.41",
+        "1.50",
+        "1.60",
+        "1.70",
+        "1.80",
+        "1.81"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/xgNaq00oxcTU07wVo7N63BO2DE40/Z_fc_0181.bin",
+        "content_length": 35578974,
+        "last_modified": "Tue, 02 Jun 2026 00:58:48 GMT",
+        "etag": "\"1a065786639ce338f0b8a6e44f274f30:1780361926.511581\"",
+        "status": "existing",
+        "size": 35578974,
+        "sha256": "e4cd838a215c113659416983b31dbdba8896591caacf7309170d4cc3c60bd1b6"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/605.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/637/Z50II.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "Z50II"
+      ],
+      "labels": [
+        "Z50II Firmware Version 1.11"
+      ],
+      "filename": "Z50_2_0111.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=3B7OG32&R=hZt3s65&L=Tz8KG07&O=XL0ls00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=4ppF231&R=k5UJs65&L=c7BBU07&O=vWvbl00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.02",
+        "1.03",
+        "1.04",
+        "1.10",
+        "1.11"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/I9bRr00iucvb07ctV2B6528fPo37/Z50_2_0111.bin",
+        "content_length": 107828357,
+        "last_modified": "Wed, 05 Aug 2026 01:11:21 GMT",
+        "etag": "\"658acf6a690ae0b143884d6f910f42b9:1785892276.468751\"",
+        "status": "existing",
+        "size": 107828357,
+        "sha256": "f1e92e1ae982a589000f1bc2bcd9e3e57613886b5b72398024ebc569bb8d7439"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/601.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/648/Z5II.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "Z5II"
+      ],
+      "labels": [
+        "Z5II Firmware Version 1.20"
+      ],
+      "filename": "Z5_2_0120.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=dZnWb57&R=Co1qU65&L=eqSLc07&O=TneLj00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=ndwsP58&R=nCjsU65&L=e2LMp07&O=ULdyZ00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.02",
+        "1.10",
+        "1.11",
+        "1.20"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/CTmO700YkVlM07U20PX654LYUb64/Z5_2_0120.bin",
+        "content_length": 108716229,
+        "last_modified": "Tue, 18 Aug 2026 01:20:24 GMT",
+        "etag": "\"1076e0f7a1b578252ec1d94ae2c042b8:1787016019.709075\"",
+        "status": "existing",
+        "size": 108716229,
+        "sha256": "96fa8c2d735864c4c612dee498818f2e3b6911458b13ad55befcfe9ffdf35af9"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/571.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/629/Z6III.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2025.html"
+      ],
+      "models": [
+        "Z6III"
+      ],
+      "labels": [
+        "Z6III Firmware Version 2.00"
+      ],
+      "filename": "Z6_3_0200.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=aZVO044&R=FJIFI33&L=sif0i07&O=o4Xc000",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=1Impj43&R=w5GMn33&L=CVHVK07&O=n0ehj00"
+      ],
+      "versions_named_in_changelog": [
+        "1.00",
+        "1.01",
+        "1.02",
+        "1.10",
+        "1.11",
+        "2.00"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/MDQOm00by7zE07sgu7633SCNfV49/Z6_3_0200.bin",
+        "content_length": 117641453,
+        "last_modified": "Wed, 27 Aug 2025 00:47:04 GMT",
+        "etag": "\"433fab354097f382b0b26f4fcfd3d538:1756255619.462671\"",
+        "status": "existing",
+        "size": 117641453,
+        "sha256": "b5c08335dc79d3d36d7bad0976434134db8ce160886d1c8c2935f3b185bcdbc9"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/584.html",
+      "sources": [
+        "https://downloadcenter.nikonimglib.com/en/products/659/ZR.html",
+        "https://downloadcenter.nikonimglib.com/en/update/index/2026.html"
+      ],
+      "models": [
+        "ZR"
+      ],
+      "labels": [
+        "ZR Firmware Version 1.11"
+      ],
+      "filename": "ZR__0111.bin",
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=FzGjf59&R=niICT57&L=f0IK807&O=DNt4U00",
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?P=4MXom60&R=Btd3857&L=alfdv07&O=mZUHu00"
+      ],
+      "versions_named_in_changelog": [
+        "1.01",
+        "1.10",
+        "1.11"
+      ],
+      "history_note": "Version mentions do not imply a current public download link",
+      "metadata_status": "ok",
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/JfprD00lCCSl07VmEJ257a2prc64/ZR__0111.bin",
+        "content_length": 117159984,
+        "last_modified": "Tue, 17 Mar 2026 00:44:14 GMT",
+        "etag": "\"af4749288ceb473b5e2ff6381a1a1525:1773708250.065142\"",
+        "status": "existing",
+        "size": 117159984,
+        "sha256": "de1eb5af56568e4921a0eb5e50942f06a6c00205f76dd9d2a4e42364d7476e93"
+      }
+    },
+    {
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/545.html",
+      "sources": [
+        "previous local investigation"
+      ],
+      "models": [
+        "Z f"
+      ],
+      "labels": [
+        "Z f Firmware Version 1.21"
+      ],
+      "metadata_status": "unavailable",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ],
+  "history_indexes": [
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2018.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2019.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2020.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2021.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2022.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2023.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2024.html",
+      "camera_firmware_links": []
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2025.html",
+      "camera_firmware_links": [
+        {
+          "label": "Z6III Firmware Version 2.00",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/571.html"
+        },
+        {
+          "label": "Z 5 Firmware Version 1.50",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/562.html"
+        },
+        {
+          "label": "Z 7II Firmware Version 1.70",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/561.html"
+        },
+        {
+          "label": "Z 6II Firmware Version 1.70",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/560.html"
+        },
+        {
+          "label": "Z 7 Firmware Version 3.80",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/558.html"
+        },
+        {
+          "label": "Z 6 Firmware Version 3.80",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/557.html"
+        },
+        {
+          "label": "Z 30 Firmware Version 1.20",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/556.html"
+        },
+        {
+          "label": "Z 50 Firmware Version 2.60",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/555.html"
+        }
+      ]
+    },
+    {
+      "url": "https://downloadcenter.nikonimglib.com/en/update/index/2026.html",
+      "camera_firmware_links": [
+        {
+          "label": "Z 8 Firmware Version 3.11",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/606.html"
+        },
+        {
+          "label": "Z5II Firmware Version 1.20",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/601.html"
+        },
+        {
+          "label": "Z50II Firmware Version 1.11",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/605.html"
+        },
+        {
+          "label": "Z fc Firmware Version 1.81",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/593.html"
+        },
+        {
+          "label": "Z f Firmware Version 3.01",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/586.html"
+        },
+        {
+          "label": "Z 9 Firmware Version 5.32",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/585.html"
+        },
+        {
+          "label": "ZR Firmware Version 1.11",
+          "url": "https://downloadcenter.nikonimglib.com/en/download/fw/584.html"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "retained_unlisted_samples": [
+    {
+      "filename": "Z_f_0121.bin",
+      "size": 90124933,
+      "sha256": "0c6ea7c59659bade5c8ca08d1275451e592b2b87e3482373008e63583ab9deda",
+      "status": "retained_local_sample"
+    }
+  ],
+  "history_coverage": {
+    "mentioned_model_versions": 164,
+    "statuses": {
+      "mentioned_no_download_link_discovered": 148,
+      "current_downloaded": 15,
+      "retained_local": 1
+    },
+    "artifact": "history_coverage.csv",
+    "limitation": "Factory/shipping versions may never have had a public BIN download"
+  }
+}

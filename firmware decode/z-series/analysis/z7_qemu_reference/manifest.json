@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-10",
+  "reference_repository": "/home/fdkevin/Workspaces/z7-qemu",
+  "reference_commit": "97abf0b81cd3211f8374a38987a0beaf4549b90f",
+  "reference_worktree_clean": true,
+  "reference_modified": false,
+  "sources_sha256": {
+    "README.zh-CN.md": "04ac30e53e932bd78db4e83bcb0eb2a9e5a32fefd26f4f95b07e4f83d9989653",
+    "docs/architecture.md": "8fb502c946056dc0a83be972783c6b58bff9f18fee4e7b908bcfc6572ddb69bd",
+    "docs/firmware.md": "0708830e11eb7d3d9238fd3f24c0a9d4cec511da047211a959c05fd3c41a0eb4",
+    "docs/testing.md": "cbd4338ccbf37c4c9dd442237d53ba4af24e06885a903c5077c86572ff90cf98",
+    "docs/research-notes.md": "59a0c5641879aaf0b01ce206cec78b06160bd5c20c859bdc88e4264213e8d36a",
+    "qemu/nikon-z7-lab.c": "a63fb79ed0d77b82b8091ab8bc5d71d59faccc87b09e600fe6146ed760a33dff",
+    "qemu/nikon-z7-gpu.h": "89d81d6242d9e250358f3289c837fa33a6e07a11305b49ded784ad2820d144a8",
+    "qemu/prepare_source.py": "8c76d713479f2566b8484911d7bfcbc72d85b2ac0f0835544501f49f4a68b71a",
+    "tools/build.py": "3a5fa6316ea6d0b58593f637c6e64863ec813952c2f9e56d21732d4b11cd5460",
+    "tools/interactive.py": "07f0aed308b6a30c0f5eac9ec206af87f29a603c081a051648383edbeb9470cc",
+    "tools/probe.py": "45397146248621b07272579ee16d3c7b38f2b5681978a5d61b164eba3eaf9971",
+    "tools/rsp.py": "616a175b0b0c68d32dcbe774c3ea54da4aaa8c94e2d3e376210cdecc60e202ed",
+    "tools/verify_ui.py": "9e25e66d36f3a613e944bbf3cec72901bab55764338eba2683ef429517d09432",
+    "tests/run.sh": "ecbc3a5d1dc6493bd564d4de8333da101bab1dba5a18b839759e758aab3130f3"
+  },
+  "z7_input": {
+    "module": "eg1610_038000.bi",
+    "with_crc_bytes": 33052090,
+    "with_crc_sha256": "7f59d8993080203a12692cf6927a0a8218786d3f72230c04174f1563c506a6f6",
+    "qemu_main_bytes": 33052088,
+    "qemu_main_sha256": "e6df1764323fb1c287159dd3ce1c84ac93c72b96ba6eb09c070295c093fecbff",
+    "remove_trailing_crc_bytes": 2,
+    "matches_reference_input": true
+  },
+  "z8_input": {
+    "module": "eg2070_0311b0.bi",
+    "with_crc_bytes": 81807711,
+    "sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+    "architecture": "AArch64",
+    "mapped_base": "0x40160000",
+    "initialized_ram": "0xa02808000",
+    "linux_dtb_cpu": "arm,cortex-a53 (cpu@3 only)",
+    "linux_dtb_interrupt_controller": "arm,gic-v3"
+  },
+  "local_tests": {
+    "python": {
+      "passed": 11,
+      "python": "/usr/bin/python3",
+      "dependencies": "NumPy 2.3.5, Pillow 12.1.1"
+    },
+    "renderer": {
+      "passed": 270,
+      "asan_ubsan": true
+    },
+    "isp": {
+      "passed": 398,
+      "asan_ubsan": true
+    },
+    "leak_sanitizer": "Not validated: detect_leaks=1 fails under the execution environment; rerun used detect_leaks=0",
+    "initial_test_runner": "System pkg-config had no GLib development metadata; native tests used installed Homebrew GLib 2.90.1 and /usr/bin/cc"
+  },
+  "qemu_binaries_in_path": {
+    "qemu-system-arm": null,
+    "qemu-system-aarch64": null
+  },
+  "scope": "Source comparison and firmware-free tests only. No QEMU guest boot, original menu screenshot, Z8 machine port, USB or camera flashing."
+}

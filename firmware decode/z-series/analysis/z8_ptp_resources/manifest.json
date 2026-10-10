@@ -1,0 +1,2673 @@
+{
+  "image_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "scope": "Offline inner dispatcher only; synthetic session flag; no full boot, USB transport, payload loading or camera access",
+  "outer_read_descriptor": {
+    "address": "0x44df28a0",
+    "raw_fields": [
+      "0x1000094ff",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x407fe160",
+      "0x407fe168",
+      "0x407fe12c"
+    ]
+  },
+  "inner_descriptors": [
+    {
+      "address": "0x440ec590",
+      "command": "0xf001",
+      "raw_fields": [
+        "0xf001",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe53c",
+        "0x407fe4f0"
+      ]
+    },
+    {
+      "address": "0x440ec5c0",
+      "command": "0xf002",
+      "raw_fields": [
+        "0xf002",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe734",
+        "0x407fe4f0"
+      ]
+    },
+    {
+      "address": "0x440ec5f0",
+      "command": "0xf003",
+      "raw_fields": [
+        "0x1f003",
+        "0x0",
+        "0x0",
+        "0x407fe860",
+        "0x407fe8bc",
+        "0x407fe85c"
+      ]
+    },
+    {
+      "address": "0x440ec620",
+      "command": "0xf004",
+      "raw_fields": [
+        "0xf004",
+        "0x0",
+        "0x407fe0f8",
+        "0x407fecfc",
+        "0x407fed60",
+        "0x407fecf8"
+      ]
+    },
+    {
+      "address": "0x440ec650",
+      "command": "0xf005",
+      "raw_fields": [
+        "0xf005",
+        "0x0",
+        "0x407fe0f8",
+        "0x407fef54",
+        "0x407fef5c",
+        "0x407fef50"
+      ]
+    },
+    {
+      "address": "0x440ec680",
+      "command": "0xf006",
+      "raw_fields": [
+        "0x1f006",
+        "0x0",
+        "0x0",
+        "0x407fefe8",
+        "0x407feff0",
+        "0x407fefe4"
+      ]
+    },
+    {
+      "address": "0x440ec6b0",
+      "command": "0xf007",
+      "raw_fields": [
+        "0xf007",
+        "0x0",
+        "0x0",
+        "0x407ff134",
+        "0x407ff198",
+        "0x407ff130"
+      ]
+    },
+    {
+      "address": "0x440ec6e0",
+      "command": "0xf008",
+      "raw_fields": [
+        "0x1f008",
+        "0x0",
+        "0x0",
+        "0x407ff078",
+        "0x407ff080",
+        "0x407ff074"
+      ]
+    },
+    {
+      "address": "0x440ec710",
+      "command": "0xf021",
+      "raw_fields": [
+        "0x1f021",
+        "0x0",
+        "0x0",
+        "0x407ff364",
+        "0x407ff3e8",
+        "0x407ff360"
+      ]
+    },
+    {
+      "address": "0x440ec740",
+      "command": "0xf022",
+      "raw_fields": [
+        "0xf022",
+        "0x0",
+        "0x407fe0f8",
+        "0x407ff4a4",
+        "0x407ff528",
+        "0x407ff360"
+      ]
+    },
+    {
+      "address": "0x440ec770",
+      "command": "0xf024",
+      "raw_fields": [
+        "0xf024",
+        "0x0",
+        "0x0",
+        "0x407ff744",
+        "0x407ff74c",
+        "0x407ff740"
+      ]
+    },
+    {
+      "address": "0x440ec7a0",
+      "command": "0xf025",
+      "raw_fields": [
+        "0x1f025",
+        "0x0",
+        "0x0",
+        "0x407ff930",
+        "0x407ff9b4",
+        "0x407ff92c"
+      ]
+    },
+    {
+      "address": "0x440ec7d0",
+      "command": "0xf026",
+      "raw_fields": [
+        "0xf026",
+        "0x0",
+        "0x407fe0f8",
+        "0x407ffa70",
+        "0x407ffaf4",
+        "0x407ff92c"
+      ]
+    },
+    {
+      "address": "0x440ec800",
+      "command": "0xf028",
+      "raw_fields": [
+        "0xf028",
+        "0x0",
+        "0x0",
+        "0x407ffbcc",
+        "0x407ffbd4",
+        "0x407ffbc8"
+      ]
+    },
+    {
+      "address": "0x440ec830",
+      "command": "0xf029",
+      "raw_fields": [
+        "0x1f029",
+        "0x0",
+        "0x0",
+        "0x407ffc6c",
+        "0x407ffd54",
+        "0x407ffc68"
+      ]
+    },
+    {
+      "address": "0x440ec860",
+      "command": "0xf02a",
+      "raw_fields": [
+        "0xf02a",
+        "0x0",
+        "0x407fe0f8",
+        "0x407ffe74",
+        "0x407fff5c",
+        "0x407ffc68"
+      ]
+    },
+    {
+      "address": "0x440ec890",
+      "command": "0xf02c",
+      "raw_fields": [
+        "0xf02c",
+        "0x0",
+        "0x0",
+        "0x4080006c",
+        "0x408000c8",
+        "0x40800068"
+      ]
+    },
+    {
+      "address": "0x440ec8c0",
+      "command": "0xf02d",
+      "raw_fields": [
+        "0x1f02d",
+        "0x0",
+        "0x0",
+        "0x40800220",
+        "0x408002a4",
+        "0x4080021c"
+      ]
+    },
+    {
+      "address": "0x440ec8f0",
+      "command": "0xf02e",
+      "raw_fields": [
+        "0xf02e",
+        "0x0",
+        "0x407fe0f8",
+        "0x40800360",
+        "0x408003e4",
+        "0x4080021c"
+      ]
+    },
+    {
+      "address": "0x440ec920",
+      "command": "0xf02f",
+      "raw_fields": [
+        "0xf02f",
+        "0x0",
+        "0x0",
+        "0x408004b0",
+        "0x40800508",
+        "0x408004ac"
+      ]
+    },
+    {
+      "address": "0x440ec950",
+      "command": "0xf030",
+      "raw_fields": [
+        "0xf030",
+        "0x0",
+        "0x0",
+        "0x408005ac",
+        "0x408005b4",
+        "0x408005a8"
+      ]
+    },
+    {
+      "address": "0x440ec980",
+      "command": "0xf031",
+      "raw_fields": [
+        "0xf031",
+        "0x0",
+        "0x0",
+        "0x40800618",
+        "0x40800670",
+        "0x40800614"
+      ]
+    },
+    {
+      "address": "0x440ec9b0",
+      "command": "0xf032",
+      "raw_fields": [
+        "0x1f032",
+        "0x0",
+        "0x0",
+        "0x408008a4",
+        "0x40800a08",
+        "0x408008a0"
+      ]
+    },
+    {
+      "address": "0x440ec9e0",
+      "command": "0xf033",
+      "raw_fields": [
+        "0xf033",
+        "0x0",
+        "0x40800c18",
+        "0x40800c6c",
+        "0x40800d00",
+        "0x408008a0"
+      ]
+    },
+    {
+      "address": "0x440eca10",
+      "command": "0xf038",
+      "raw_fields": [
+        "0xf038",
+        "0x0",
+        "0x0",
+        "0x40801458",
+        "0x408014b0",
+        "0x40801454"
+      ]
+    },
+    {
+      "address": "0x440eca40",
+      "command": "0xf039",
+      "raw_fields": [
+        "0xf039",
+        "0x0",
+        "0x0",
+        "0x40801528",
+        "0x40801580",
+        "0x40801524"
+      ]
+    },
+    {
+      "address": "0x440eca70",
+      "command": "0xf03a",
+      "raw_fields": [
+        "0x1f03a",
+        "0x0",
+        "0x0",
+        "0x4080160c",
+        "0x40801690",
+        "0x40801608"
+      ]
+    },
+    {
+      "address": "0x440ecaa0",
+      "command": "0xf03b",
+      "raw_fields": [
+        "0xf03b",
+        "0x0",
+        "0x407fe0f8",
+        "0x4080174c",
+        "0x408017d0",
+        "0x40801608"
+      ]
+    },
+    {
+      "address": "0x440ecad0",
+      "command": "0xf03c",
+      "raw_fields": [
+        "0xf03c",
+        "0x0",
+        "0x0",
+        "0x4080187c",
+        "0x40801884",
+        "0x40801878"
+      ]
+    },
+    {
+      "address": "0x440ecb00",
+      "command": "0xf03d",
+      "raw_fields": [
+        "0x1f03d",
+        "0x0",
+        "0x0",
+        "0x408018f0",
+        "0x40801974",
+        "0x408018ec"
+      ]
+    },
+    {
+      "address": "0x440ecb30",
+      "command": "0xf03e",
+      "raw_fields": [
+        "0xf03e",
+        "0x0",
+        "0x407fe0f8",
+        "0x40801a30",
+        "0x40801ab4",
+        "0x408018ec"
+      ]
+    },
+    {
+      "address": "0x440ecb60",
+      "command": "0xf03f",
+      "raw_fields": [
+        "0xf03f",
+        "0x0",
+        "0x0",
+        "0x40801b60",
+        "0x40801b68",
+        "0x40801b5c"
+      ]
+    },
+    {
+      "address": "0x440ecb90",
+      "command": "0xf040",
+      "raw_fields": [
+        "0x1f040",
+        "0x0",
+        "0x0",
+        "0x40801bd4",
+        "0x40801c28",
+        "0x40801bd0"
+      ]
+    },
+    {
+      "address": "0x440ecbc0",
+      "command": "0xf041",
+      "raw_fields": [
+        "0xf041",
+        "0x0",
+        "0x407fe0f8",
+        "0x40801d18",
+        "0x40801d6c",
+        "0x40801bd0"
+      ]
+    },
+    {
+      "address": "0x440ecbf0",
+      "command": "0xf044",
+      "raw_fields": [
+        "0x1f044",
+        "0x0",
+        "0x0",
+        "0x40801df0",
+        "0x40801e44",
+        "0x40801dec"
+      ]
+    },
+    {
+      "address": "0x440ecc20",
+      "command": "0xf045",
+      "raw_fields": [
+        "0xf045",
+        "0x0",
+        "0x407fe0f8",
+        "0x40801ff0",
+        "0x40802044",
+        "0x40801dec"
+      ]
+    },
+    {
+      "address": "0x440ecc50",
+      "command": "0xf046",
+      "raw_fields": [
+        "0x1f046",
+        "0x0",
+        "0x0",
+        "0x4080218c",
+        "0x408021e0",
+        "0x40802188"
+      ]
+    },
+    {
+      "address": "0x440ecc80",
+      "command": "0xf047",
+      "raw_fields": [
+        "0xf047",
+        "0x0",
+        "0x407fe0f8",
+        "0x4080235c",
+        "0x408023b0",
+        "0x40802188"
+      ]
+    },
+    {
+      "address": "0x440eccb0",
+      "command": "0xf048",
+      "raw_fields": [
+        "0xf048",
+        "0x0",
+        "0x407fe0f8",
+        "0x408024fc",
+        "0x40802550",
+        "0x408024f8"
+      ]
+    },
+    {
+      "address": "0x440ecce0",
+      "command": "0xf049",
+      "raw_fields": [
+        "0xf049",
+        "0x0",
+        "0x407fe0f8",
+        "0x40802658",
+        "0x408026ec",
+        "0x40802654"
+      ]
+    },
+    {
+      "address": "0x440ecd10",
+      "command": "0xf04a",
+      "raw_fields": [
+        "0x1f04a",
+        "0x0",
+        "0x0",
+        "0x40802818",
+        "0x40802820",
+        "0x40802814"
+      ]
+    },
+    {
+      "address": "0x440ecd40",
+      "command": "0xf04b",
+      "raw_fields": [
+        "0xf04b",
+        "0x0",
+        "0x0",
+        "0x40802900",
+        "0x40802908",
+        "0x408028fc"
+      ]
+    },
+    {
+      "address": "0x440ecd70",
+      "command": "0xf04c",
+      "raw_fields": [
+        "0x1f04c",
+        "0x0",
+        "0x0",
+        "0x40802a3c",
+        "0x40802a44",
+        "0x40802a38"
+      ]
+    },
+    {
+      "address": "0x440ecda0",
+      "command": "0xf04d",
+      "raw_fields": [
+        "0xf04d",
+        "0x0",
+        "0x0",
+        "0x40802b08",
+        "0x40802b10",
+        "0x40802b04"
+      ]
+    },
+    {
+      "address": "0x440ecdd0",
+      "command": "0xf04e",
+      "raw_fields": [
+        "0x1f04e",
+        "0x0",
+        "0x0",
+        "0x40800d78",
+        "0x40800dec",
+        "0x40800d74"
+      ]
+    },
+    {
+      "address": "0x440ece00",
+      "command": "0xf04f",
+      "raw_fields": [
+        "0xf04f",
+        "0x0",
+        "0x407fe0f8",
+        "0x40800f2c",
+        "0x40800f98",
+        "0x40800d74"
+      ]
+    },
+    {
+      "address": "0x440ece30",
+      "command": "0xf050",
+      "raw_fields": [
+        "0x1f050",
+        "0x0",
+        "0x0",
+        "0x4080c618",
+        "0x4080c620",
+        "0x4080c614"
+      ]
+    },
+    {
+      "address": "0x440ece60",
+      "command": "0xf051",
+      "raw_fields": [
+        "0x1f051",
+        "0x0",
+        "0x0",
+        "0x4080c85c",
+        "0x4080c864",
+        "0x4080c858"
+      ]
+    },
+    {
+      "address": "0x440ece90",
+      "command": "0xf052",
+      "raw_fields": [
+        "0x1f052",
+        "0x0",
+        "0x0",
+        "0x4080c9d4",
+        "0x4080c9dc",
+        "0x4080c9d0"
+      ]
+    },
+    {
+      "address": "0x440ecec0",
+      "command": "0xf059",
+      "raw_fields": [
+        "0xf059",
+        "0x0",
+        "0x407fe0f8",
+        "0x4080330c",
+        "0x40803360",
+        "0x40803308"
+      ]
+    },
+    {
+      "address": "0x440ecef0",
+      "command": "0xf05c",
+      "raw_fields": [
+        "0x1f05c",
+        "0x0",
+        "0x0",
+        "0x408033f8",
+        "0x4080347c",
+        "0x408033f4"
+      ]
+    },
+    {
+      "address": "0x440ecf20",
+      "command": "0xf05d",
+      "raw_fields": [
+        "0xf05d",
+        "0x0",
+        "0x407fe0f8",
+        "0x40803544",
+        "0x408035c8",
+        "0x40803540"
+      ]
+    },
+    {
+      "address": "0x440ecf50",
+      "command": "0xf05e",
+      "raw_fields": [
+        "0xf05e",
+        "0x0",
+        "0x0",
+        "0x4080367c",
+        "0x40803684",
+        "0x40803678"
+      ]
+    },
+    {
+      "address": "0x440ecf80",
+      "command": "0xf061",
+      "raw_fields": [
+        "0xf061",
+        "0x0",
+        "0x0",
+        "0x4080a2c0",
+        "0x4080a318",
+        "0x4080a2bc"
+      ]
+    },
+    {
+      "address": "0x440ecfb0",
+      "command": "0xf063",
+      "raw_fields": [
+        "0xf063",
+        "0x0",
+        "0x0",
+        "0x4080a398",
+        "0x4080a3f0",
+        "0x4080a394"
+      ]
+    },
+    {
+      "address": "0x440ecfe0",
+      "command": "0xf064",
+      "raw_fields": [
+        "0xf064",
+        "0x0",
+        "0x0",
+        "0x4080a440",
+        "0x4080a498",
+        "0x4080a43c"
+      ]
+    },
+    {
+      "address": "0x440ed010",
+      "command": "0xf065",
+      "raw_fields": [
+        "0xf065",
+        "0x0",
+        "0x0",
+        "0x4080a558",
+        "0x4080a5b0",
+        "0x4080a554"
+      ]
+    },
+    {
+      "address": "0x440ed040",
+      "command": "0xf066",
+      "raw_fields": [
+        "0xf066",
+        "0x0",
+        "0x0",
+        "0x4080a600",
+        "0x4080a658",
+        "0x4080a5fc"
+      ]
+    },
+    {
+      "address": "0x440ed070",
+      "command": "0xf067",
+      "raw_fields": [
+        "0xf067",
+        "0x0",
+        "0x0",
+        "0x4080a6a8",
+        "0x4080a700",
+        "0x4080a6a4"
+      ]
+    },
+    {
+      "address": "0x440ed0a0",
+      "command": "0xf068",
+      "raw_fields": [
+        "0x1f068",
+        "0x0",
+        "0x0",
+        "0x4080a848",
+        "0x4080a8c0",
+        "0x4080a844"
+      ]
+    },
+    {
+      "address": "0x440ed0d0",
+      "command": "0xf069",
+      "raw_fields": [
+        "0x1f069",
+        "0x0",
+        "0x0",
+        "0x4080aab8",
+        "0x4080ab4c",
+        "0x4080aab4"
+      ]
+    },
+    {
+      "address": "0x440ed100",
+      "command": "0xf06b",
+      "raw_fields": [
+        "0x1f06b",
+        "0x0",
+        "0x0",
+        "0x4080ac68",
+        "0x4080ac70",
+        "0x4080ac64"
+      ]
+    },
+    {
+      "address": "0x440ed130",
+      "command": "0xf06c",
+      "raw_fields": [
+        "0xf06c",
+        "0x0",
+        "0x0",
+        "0x4080ae20",
+        "0x4080aea4",
+        "0x4080ae1c"
+      ]
+    },
+    {
+      "address": "0x440ed160",
+      "command": "0xf072",
+      "raw_fields": [
+        "0xf072",
+        "0x0",
+        "0x0",
+        "0x4080a74c",
+        "0x4080a7a4",
+        "0x4080a748"
+      ]
+    },
+    {
+      "address": "0x440ed190",
+      "command": "0xf073",
+      "raw_fields": [
+        "0x1f073",
+        "0x0",
+        "0x0",
+        "0x4080b070",
+        "0x4080b0f0",
+        "0x4080b06c"
+      ]
+    },
+    {
+      "address": "0x440ed1c0",
+      "command": "0xf074",
+      "raw_fields": [
+        "0xf074",
+        "0x0",
+        "0x4080b1dc",
+        "0x4080b244",
+        "0x4080b298",
+        "0x4080b1d8"
+      ]
+    },
+    {
+      "address": "0x440ed1f0",
+      "command": "0xf075",
+      "raw_fields": [
+        "0xf075",
+        "0x0",
+        "0x0",
+        "0x4080b358",
+        "0x4080b3bc",
+        "0x4080b354"
+      ]
+    },
+    {
+      "address": "0x440ed220",
+      "command": "0xf076",
+      "raw_fields": [
+        "0xf076",
+        "0x0",
+        "0x0",
+        "0x4080b608",
+        "0x4080b660",
+        "0x4080b604"
+      ]
+    },
+    {
+      "address": "0x440ed250",
+      "command": "0xf077",
+      "raw_fields": [
+        "0x1f077",
+        "0x0",
+        "0x0",
+        "0x4080b6b0",
+        "0x4080b714",
+        "0x4080b6ac"
+      ]
+    },
+    {
+      "address": "0x440ed280",
+      "command": "0xf079",
+      "raw_fields": [
+        "0xf079",
+        "0x0",
+        "0x0",
+        "0x4080b450",
+        "0x4080b458",
+        "0x4080b44c"
+      ]
+    },
+    {
+      "address": "0x440ed2b0",
+      "command": "0xf091",
+      "raw_fields": [
+        "0xf091",
+        "0x0",
+        "0x0",
+        "0x40807060",
+        "0x40807068",
+        "0x4080705c"
+      ]
+    },
+    {
+      "address": "0x440ed2e0",
+      "command": "0xf092",
+      "raw_fields": [
+        "0xf092",
+        "0x0",
+        "0x0",
+        "0x408071d4",
+        "0x4080722c",
+        "0x408071d0"
+      ]
+    },
+    {
+      "address": "0x440ed310",
+      "command": "0xf093",
+      "raw_fields": [
+        "0xf093",
+        "0x0",
+        "0x0",
+        "0x408072b8",
+        "0x408072c0",
+        "0x408072b4"
+      ]
+    },
+    {
+      "address": "0x440ed340",
+      "command": "0xf094",
+      "raw_fields": [
+        "0xf094",
+        "0x0",
+        "0x0",
+        "0x40807590",
+        "0x408075f4",
+        "0x4080758c"
+      ]
+    },
+    {
+      "address": "0x440ed370",
+      "command": "0xf095",
+      "raw_fields": [
+        "0xf095",
+        "0x0",
+        "0x0",
+        "0x40807788",
+        "0x408077ec",
+        "0x40807784"
+      ]
+    },
+    {
+      "address": "0x440ed3a0",
+      "command": "0xf096",
+      "raw_fields": [
+        "0xf096",
+        "0x0",
+        "0x0",
+        "0x40804924",
+        "0x40804988",
+        "0x408048f8"
+      ]
+    },
+    {
+      "address": "0x440ed3d0",
+      "command": "0xf097",
+      "raw_fields": [
+        "0xf097",
+        "0x0",
+        "0x0",
+        "0x40804ad8",
+        "0x40804b40",
+        "0x40804ad4"
+      ]
+    },
+    {
+      "address": "0x440ed400",
+      "command": "0xf111",
+      "raw_fields": [
+        "0xf111",
+        "0x0",
+        "0x0",
+        "0x40808484",
+        "0x408084dc",
+        "0x40808480"
+      ]
+    },
+    {
+      "address": "0x440ed430",
+      "command": "0xf112",
+      "raw_fields": [
+        "0xf112",
+        "0x0",
+        "0x407fe0f8",
+        "0x40808598",
+        "0x408085a0",
+        "0x40808594"
+      ]
+    },
+    {
+      "address": "0x440ed460",
+      "command": "0xf113",
+      "raw_fields": [
+        "0x1f113",
+        "0x0",
+        "0x0",
+        "0x4080869c",
+        "0x408086a4",
+        "0x40808698"
+      ]
+    },
+    {
+      "address": "0x440ed490",
+      "command": "0xf114",
+      "raw_fields": [
+        "0x1f114",
+        "0x0",
+        "0x0",
+        "0x408087ac",
+        "0x408087b4",
+        "0x408087a8"
+      ]
+    },
+    {
+      "address": "0x440ed4c0",
+      "command": "0xf131",
+      "raw_fields": [
+        "0xf131",
+        "0x0",
+        "0x0",
+        "0x40807b04",
+        "0x40807b0c",
+        "0x40807b00"
+      ]
+    },
+    {
+      "address": "0x440ed4f0",
+      "command": "0xf132",
+      "raw_fields": [
+        "0xf132",
+        "0x0",
+        "0x0",
+        "0x40807b7c",
+        "0x40807b84",
+        "0x40807b78"
+      ]
+    },
+    {
+      "address": "0x440ed520",
+      "command": "0xf133",
+      "raw_fields": [
+        "0xf133",
+        "0x0",
+        "0x0",
+        "0x40807bf4",
+        "0x40807bfc",
+        "0x40807bf0"
+      ]
+    },
+    {
+      "address": "0x440ed550",
+      "command": "0xf134",
+      "raw_fields": [
+        "0xf134",
+        "0x0",
+        "0x0",
+        "0x40807c6c",
+        "0x40807c74",
+        "0x40807c68"
+      ]
+    },
+    {
+      "address": "0x440ed580",
+      "command": "0xf135",
+      "raw_fields": [
+        "0xf135",
+        "0x0",
+        "0x0",
+        "0x40807ce4",
+        "0x40807cec",
+        "0x40807ce0"
+      ]
+    },
+    {
+      "address": "0x440ed5b0",
+      "command": "0xf136",
+      "raw_fields": [
+        "0xf136",
+        "0x0",
+        "0x0",
+        "0x40807d58",
+        "0x40807d60",
+        "0x40807d54"
+      ]
+    },
+    {
+      "address": "0x440ed5e0",
+      "command": "0xf137",
+      "raw_fields": [
+        "0xf137",
+        "0x0",
+        "0x0",
+        "0x40807dd4",
+        "0x40807ddc",
+        "0x40807dd0"
+      ]
+    },
+    {
+      "address": "0x440ed610",
+      "command": "0xf138",
+      "raw_fields": [
+        "0xf138",
+        "0x0",
+        "0x0",
+        "0x40807e4c",
+        "0x40807e54",
+        "0x40807e48"
+      ]
+    },
+    {
+      "address": "0x440ed640",
+      "command": "0xf139",
+      "raw_fields": [
+        "0xf139",
+        "0x0",
+        "0x0",
+        "0x40807ec4",
+        "0x40807ecc",
+        "0x40807ec0"
+      ]
+    },
+    {
+      "address": "0x440ed670",
+      "command": "0xf13a",
+      "raw_fields": [
+        "0xf13a",
+        "0x0",
+        "0x0",
+        "0x40807f3c",
+        "0x40807f44",
+        "0x40807f38"
+      ]
+    },
+    {
+      "address": "0x440ed6a0",
+      "command": "0xf13b",
+      "raw_fields": [
+        "0xf13b",
+        "0x0",
+        "0x0",
+        "0x40807fb8",
+        "0x40807fc0",
+        "0x40807fb4"
+      ]
+    },
+    {
+      "address": "0x440ed6d0",
+      "command": "0xf13c",
+      "raw_fields": [
+        "0xf13c",
+        "0x0",
+        "0x0",
+        "0x40808030",
+        "0x40808038",
+        "0x4080802c"
+      ]
+    },
+    {
+      "address": "0x440ed700",
+      "command": "0xf13d",
+      "raw_fields": [
+        "0xf13d",
+        "0x0",
+        "0x0",
+        "0x40808120",
+        "0x40808128",
+        "0x4080811c"
+      ]
+    },
+    {
+      "address": "0x440ed730",
+      "command": "0xf13e",
+      "raw_fields": [
+        "0xf13e",
+        "0x0",
+        "0x0",
+        "0x40808198",
+        "0x408081a0",
+        "0x40808194"
+      ]
+    },
+    {
+      "address": "0x440ed760",
+      "command": "0xf13f",
+      "raw_fields": [
+        "0xf13f",
+        "0x0",
+        "0x0",
+        "0x40808214",
+        "0x4080821c",
+        "0x40808210"
+      ]
+    },
+    {
+      "address": "0x440ed790",
+      "command": "0xf140",
+      "raw_fields": [
+        "0x1f140",
+        "0x0",
+        "0x0",
+        "0x4080828c",
+        "0x40808294",
+        "0x40808288"
+      ]
+    },
+    {
+      "address": "0x440ed7c0",
+      "command": "0xf141",
+      "raw_fields": [
+        "0xf141",
+        "0x0",
+        "0x0",
+        "0x408083c8",
+        "0x40808420",
+        "0x408083c4"
+      ]
+    },
+    {
+      "address": "0x440ed7f0",
+      "command": "0xf162",
+      "raw_fields": [
+        "0x1f162",
+        "0x0",
+        "0x0",
+        "0x4080988c",
+        "0x40809894",
+        "0x40809888"
+      ]
+    },
+    {
+      "address": "0x440ed820",
+      "command": "0xf163",
+      "raw_fields": [
+        "0x1f163",
+        "0x0",
+        "0x0",
+        "0x408099c0",
+        "0x408099c8",
+        "0x408099bc"
+      ]
+    },
+    {
+      "address": "0x440ed850",
+      "command": "0xf164",
+      "raw_fields": [
+        "0xf164",
+        "0x0",
+        "0x0",
+        "0x40809ac8",
+        "0x40809ad0",
+        "0x40809ac4"
+      ]
+    },
+    {
+      "address": "0x440ed880",
+      "command": "0xf165",
+      "raw_fields": [
+        "0xf165",
+        "0x0",
+        "0x0",
+        "0x40809b44",
+        "0x40809b9c",
+        "0x40809b40"
+      ]
+    },
+    {
+      "address": "0x440ed8b0",
+      "command": "0xf166",
+      "raw_fields": [
+        "0xf166",
+        "0x0",
+        "0x407fe0f8",
+        "0x40809c1c",
+        "0x40809c24",
+        "0x40809c18"
+      ]
+    },
+    {
+      "address": "0x440ed8e0",
+      "command": "0xf181",
+      "raw_fields": [
+        "0xf181",
+        "0x0",
+        "0x0",
+        "0x40809e34",
+        "0x40809e8c",
+        "0x40809e30"
+      ]
+    },
+    {
+      "address": "0x440ed910",
+      "command": "0xf182",
+      "raw_fields": [
+        "0xf182",
+        "0x0",
+        "0x0",
+        "0x40809efc",
+        "0x40809f04",
+        "0x40809ef8"
+      ]
+    },
+    {
+      "address": "0x440ed940",
+      "command": "0xf183",
+      "raw_fields": [
+        "0xf183",
+        "0x0",
+        "0x0",
+        "0x40809f7c",
+        "0x4080a008",
+        "0x40809f78"
+      ]
+    },
+    {
+      "address": "0x440ed970",
+      "command": "0xf184",
+      "raw_fields": [
+        "0xf184",
+        "0x0",
+        "0x0",
+        "0x4080a0d8",
+        "0x4080a0e0",
+        "0x4080a0d4"
+      ]
+    },
+    {
+      "address": "0x440ed9a0",
+      "command": "0xf1a1",
+      "raw_fields": [
+        "0xf1a1",
+        "0x0",
+        "0x0",
+        "0x40804dac",
+        "0x40804db4",
+        "0x40804da8"
+      ]
+    },
+    {
+      "address": "0x440ed9d0",
+      "command": "0xf1a2",
+      "raw_fields": [
+        "0x1f1a2",
+        "0x0",
+        "0x0",
+        "0x40804e24",
+        "0x40804ea0",
+        "0x40804e20"
+      ]
+    },
+    {
+      "address": "0x440eda00",
+      "command": "0xf1a3",
+      "raw_fields": [
+        "0xf1a3",
+        "0x0",
+        "0x0",
+        "0x40804f5c",
+        "0x40804f64",
+        "0x40804f58"
+      ]
+    },
+    {
+      "address": "0x440eda30",
+      "command": "0xf1a4",
+      "raw_fields": [
+        "0x1f1a4",
+        "0x0",
+        "0x0",
+        "0x40804fd4",
+        "0x40805050",
+        "0x40804fd0"
+      ]
+    },
+    {
+      "address": "0x440eda60",
+      "command": "0xf1a5",
+      "raw_fields": [
+        "0xf1a5",
+        "0x0",
+        "0x0",
+        "0x40805128",
+        "0x40805130",
+        "0x40805124"
+      ]
+    },
+    {
+      "address": "0x440eda90",
+      "command": "0xf1a6",
+      "raw_fields": [
+        "0x1f1a6",
+        "0x0",
+        "0x0",
+        "0x408051a0",
+        "0x4080521c",
+        "0x4080519c"
+      ]
+    },
+    {
+      "address": "0x440edac0",
+      "command": "0xf1a7",
+      "raw_fields": [
+        "0xf1a7",
+        "0x0",
+        "0x0",
+        "0x408052f4",
+        "0x4080534c",
+        "0x408052f0"
+      ]
+    },
+    {
+      "address": "0x440edaf0",
+      "command": "0xf1a8",
+      "raw_fields": [
+        "0xf1a8",
+        "0x0",
+        "0x0",
+        "0x408053b0",
+        "0x40805408",
+        "0x408053ac"
+      ]
+    },
+    {
+      "address": "0x440edb20",
+      "command": "0xf1a9",
+      "raw_fields": [
+        "0xf1a9",
+        "0x0",
+        "0x0",
+        "0x40805480",
+        "0x408054d8",
+        "0x4080547c"
+      ]
+    },
+    {
+      "address": "0x440edb50",
+      "command": "0xf1aa",
+      "raw_fields": [
+        "0xf1aa",
+        "0x0",
+        "0x0",
+        "0x40805550",
+        "0x40805558",
+        "0x4080554c"
+      ]
+    },
+    {
+      "address": "0x440edb80",
+      "command": "0xf1ab",
+      "raw_fields": [
+        "0xf1ab",
+        "0x0",
+        "0x0",
+        "0x408055d4",
+        "0x408055dc",
+        "0x408055d0"
+      ]
+    },
+    {
+      "address": "0x440edbb0",
+      "command": "0xf1ac",
+      "raw_fields": [
+        "0xf1ac",
+        "0x0",
+        "0x0",
+        "0x40805658",
+        "0x40805660",
+        "0x40805654"
+      ]
+    },
+    {
+      "address": "0x440edbe0",
+      "command": "0xf1ad",
+      "raw_fields": [
+        "0x1f1ad",
+        "0x0",
+        "0x0",
+        "0x408056dc",
+        "0x40805758",
+        "0x408056d8"
+      ]
+    },
+    {
+      "address": "0x440edc10",
+      "command": "0xf1ae",
+      "raw_fields": [
+        "0xf1ae",
+        "0x0",
+        "0x0",
+        "0x408058c0",
+        "0x408058c8",
+        "0x408058bc"
+      ]
+    },
+    {
+      "address": "0x440edc40",
+      "command": "0xf1af",
+      "raw_fields": [
+        "0x1f1af",
+        "0x0",
+        "0x0",
+        "0x40805938",
+        "0x408059b4",
+        "0x40805934"
+      ]
+    },
+    {
+      "address": "0x440edc70",
+      "command": "0xf1b0",
+      "raw_fields": [
+        "0xf1b0",
+        "0x0",
+        "0x0",
+        "0x40805a74",
+        "0x40805a7c",
+        "0x40805a70"
+      ]
+    },
+    {
+      "address": "0x440edca0",
+      "command": "0xf1b1",
+      "raw_fields": [
+        "0x1f1b1",
+        "0x0",
+        "0x0",
+        "0x40805aec",
+        "0x40805b68",
+        "0x40805ae8"
+      ]
+    },
+    {
+      "address": "0x440edcd0",
+      "command": "0xf1b2",
+      "raw_fields": [
+        "0xf1b2",
+        "0x0",
+        "0x0",
+        "0x40805830",
+        "0x40805838",
+        "0x4080582c"
+      ]
+    },
+    {
+      "address": "0x440edd00",
+      "command": "0xf1b3",
+      "raw_fields": [
+        "0xf1b3",
+        "0x0",
+        "0x0",
+        "0x40805c28",
+        "0x40805c84",
+        "0x40805c24"
+      ]
+    },
+    {
+      "address": "0x440edd30",
+      "command": "0xf1f1",
+      "raw_fields": [
+        "0xf1f1",
+        "0x0",
+        "0x407fe0f8",
+        "0x40808e30",
+        "0x40808e90",
+        "0x40808e2c"
+      ]
+    },
+    {
+      "address": "0x440edd60",
+      "command": "0xf1f2",
+      "raw_fields": [
+        "0x1f1f2",
+        "0x0",
+        "0x0",
+        "0x4080909c",
+        "0x408090a4",
+        "0x40809098"
+      ]
+    },
+    {
+      "address": "0x440edd90",
+      "command": "0xf1f3",
+      "raw_fields": [
+        "0x1f1f3",
+        "0x0",
+        "0x0",
+        "0x4080918c",
+        "0x40809194",
+        "0x40809188"
+      ]
+    },
+    {
+      "address": "0x440eddc0",
+      "command": "0xf1f4",
+      "raw_fields": [
+        "0x1f1f4",
+        "0x0",
+        "0x0",
+        "0x4080927c",
+        "0x408092d4",
+        "0x40809278"
+      ]
+    },
+    {
+      "address": "0x440eddf0",
+      "command": "0xf1f5",
+      "raw_fields": [
+        "0xf1f5",
+        "0x0",
+        "0x407fe0f8",
+        "0x408093bc",
+        "0x40809410",
+        "0x408093b8"
+      ]
+    },
+    {
+      "address": "0x440ede20",
+      "command": "0xf1f8",
+      "raw_fields": [
+        "0xf1f8",
+        "0x0",
+        "0x407fe0f8",
+        "0x408094a4",
+        "0x408094fc",
+        "0x408094a0"
+      ]
+    },
+    {
+      "address": "0x440ede50",
+      "command": "0xf1f9",
+      "raw_fields": [
+        "0x1f1f9",
+        "0x0",
+        "0x0",
+        "0x408096e8",
+        "0x40809740",
+        "0x408096e4"
+      ]
+    },
+    {
+      "address": "0x440ede80",
+      "command": "0xf221",
+      "raw_fields": [
+        "0xf221",
+        "0x0",
+        "0x0",
+        "0x4080a12c",
+        "0x4080a184",
+        "0x4080a128"
+      ]
+    },
+    {
+      "address": "0x440edeb0",
+      "command": "0xf22a",
+      "raw_fields": [
+        "0xf22a",
+        "0x0",
+        "0x0",
+        "0x4080a20c",
+        "0x4080a214",
+        "0x4080a208"
+      ]
+    },
+    {
+      "address": "0x440edee0",
+      "command": "0xf251",
+      "raw_fields": [
+        "0x1f251",
+        "0x0",
+        "0x0",
+        "0x408088c4",
+        "0x408088cc",
+        "0x408088c0"
+      ]
+    },
+    {
+      "address": "0x440edf10",
+      "command": "0xf253",
+      "raw_fields": [
+        "0xf253",
+        "0x0",
+        "0x40808998",
+        "0x408089dc",
+        "0x408089e4",
+        "0x40808994"
+      ]
+    },
+    {
+      "address": "0x440edf40",
+      "command": "0xf254",
+      "raw_fields": [
+        "0x1f254",
+        "0x0",
+        "0x0",
+        "0x40808bb4",
+        "0x40808bbc",
+        "0x40808bb0"
+      ]
+    },
+    {
+      "address": "0x440edf70",
+      "command": "0xf255",
+      "raw_fields": [
+        "0xf255",
+        "0x0",
+        "0x0",
+        "0x40808cc0",
+        "0x40808d28",
+        "0x40808cbc"
+      ]
+    },
+    {
+      "address": "0x440edfa0",
+      "command": "0xf271",
+      "raw_fields": [
+        "0x1f271",
+        "0x0",
+        "0x0",
+        "0x40803800",
+        "0x40803858",
+        "0x408037fc"
+      ]
+    },
+    {
+      "address": "0x440edfd0",
+      "command": "0xf272",
+      "raw_fields": [
+        "0xf272",
+        "0x0",
+        "0x0",
+        "0x408039f0",
+        "0x408039f8",
+        "0x408039ec"
+      ]
+    },
+    {
+      "address": "0x440ee000",
+      "command": "0xf273",
+      "raw_fields": [
+        "0xf273",
+        "0x0",
+        "0x0",
+        "0x40803a44",
+        "0x40803a4c",
+        "0x40803a40"
+      ]
+    },
+    {
+      "address": "0x440ee030",
+      "command": "0xf274",
+      "raw_fields": [
+        "0xf274",
+        "0x0",
+        "0x0",
+        "0x40803a98",
+        "0x40803af0",
+        "0x40803a94"
+      ]
+    },
+    {
+      "address": "0x440ee060",
+      "command": "0xf275",
+      "raw_fields": [
+        "0xf275",
+        "0x0",
+        "0x0",
+        "0x40803b44",
+        "0x40803b9c",
+        "0x40803b40"
+      ]
+    },
+    {
+      "address": "0x440ee090",
+      "command": "0xf276",
+      "raw_fields": [
+        "0xf276",
+        "0x0",
+        "0x0",
+        "0x40803c00",
+        "0x40803c78",
+        "0x40803bfc"
+      ]
+    },
+    {
+      "address": "0x440ee0c0",
+      "command": "0xf278",
+      "raw_fields": [
+        "0xf278",
+        "0x0",
+        "0x0",
+        "0x40803e00",
+        "0x40803e78",
+        "0x40803dfc"
+      ]
+    },
+    {
+      "address": "0x440ee0f0",
+      "command": "0xf279",
+      "raw_fields": [
+        "0x1f279",
+        "0x0",
+        "0x0",
+        "0x40803f9c",
+        "0x40803fa4",
+        "0x40803f98"
+      ]
+    },
+    {
+      "address": "0x440ee120",
+      "command": "0xf27a",
+      "raw_fields": [
+        "0xf27a",
+        "0x0",
+        "0x0",
+        "0x408045a8",
+        "0x408045b0",
+        "0x408045a4"
+      ]
+    },
+    {
+      "address": "0x440ee150",
+      "command": "0xf27b",
+      "raw_fields": [
+        "0xf27b",
+        "0x0",
+        "0x0",
+        "0x4080463c",
+        "0x40804644",
+        "0x40804638"
+      ]
+    },
+    {
+      "address": "0x440ee180",
+      "command": "0xf27c",
+      "raw_fields": [
+        "0xf27c",
+        "0x0",
+        "0x0",
+        "0x40804730",
+        "0x40804738",
+        "0x4080472c"
+      ]
+    },
+    {
+      "address": "0x440ee1b0",
+      "command": "0xf27d",
+      "raw_fields": [
+        "0xf27d",
+        "0x0",
+        "0x0",
+        "0x40804800",
+        "0x40804868",
+        "0x408047fc"
+      ]
+    },
+    {
+      "address": "0x440ee1e0",
+      "command": "0xf2b1",
+      "raw_fields": [
+        "0xf2b1",
+        "0x0",
+        "0x40805ce8",
+        "0x40805d34",
+        "0x40805dc0",
+        "0x40805ce4"
+      ]
+    },
+    {
+      "address": "0x440ee210",
+      "command": "0xf2b3",
+      "raw_fields": [
+        "0xf2b3",
+        "0x0",
+        "0x0",
+        "0x408060f0",
+        "0x4080614c",
+        "0x408060ec"
+      ]
+    },
+    {
+      "address": "0x440ee240",
+      "command": "0xf2b4",
+      "raw_fields": [
+        "0xf2b4",
+        "0x0",
+        "0x40806368",
+        "0x408063b4",
+        "0x40806440",
+        "0x40806364"
+      ]
+    },
+    {
+      "address": "0x440ee270",
+      "command": "0xf2b5",
+      "raw_fields": [
+        "0xf2b5",
+        "0x0",
+        "0x0",
+        "0x40806668",
+        "0x40806670",
+        "0x40806664"
+      ]
+    },
+    {
+      "address": "0x440ee2a0",
+      "command": "0xf2b6",
+      "raw_fields": [
+        "0xf2b6",
+        "0x0",
+        "0x0",
+        "0x40806754",
+        "0x4080675c",
+        "0x40806750"
+      ]
+    },
+    {
+      "address": "0x440ee2d0",
+      "command": "0xf2b8",
+      "raw_fields": [
+        "0xf2b8",
+        "0x0",
+        "0x0",
+        "0x40806854",
+        "0x4080685c",
+        "0x40806850"
+      ]
+    },
+    {
+      "address": "0x440ee300",
+      "command": "0xf2b9",
+      "raw_fields": [
+        "0x1f2b9",
+        "0x0",
+        "0x0",
+        "0x408068c0",
+        "0x408068c8",
+        "0x408068bc"
+      ]
+    },
+    {
+      "address": "0x440ee330",
+      "command": "0xf2ba",
+      "raw_fields": [
+        "0xf2ba",
+        "0x0",
+        "0x0",
+        "0x408069bc",
+        "0x40806a34",
+        "0x408069b8"
+      ]
+    },
+    {
+      "address": "0x440ee360",
+      "command": "0xf2bb",
+      "raw_fields": [
+        "0xf2bb",
+        "0x0",
+        "0x407fe0f8",
+        "0x40806bcc",
+        "0x40806bd4",
+        "0x40806bc8"
+      ]
+    },
+    {
+      "address": "0x440ee390",
+      "command": "0xf2bc",
+      "raw_fields": [
+        "0xf2bc",
+        "0x0",
+        "0x0",
+        "0x40806de4",
+        "0x40806dec",
+        "0x40806dd0"
+      ]
+    },
+    {
+      "address": "0x440ee3c0",
+      "command": "0xf2bd",
+      "raw_fields": [
+        "0x1f2bd",
+        "0x0",
+        "0x0",
+        "0x40806ed8",
+        "0x40806ee0",
+        "0x40806ed4"
+      ]
+    },
+    {
+      "address": "0x440ee3f0",
+      "command": "0xa001",
+      "raw_fields": [
+        "0x1a001",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080bd38",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee420",
+      "command": "0xa002",
+      "raw_fields": [
+        "0xa002",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080be64",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee450",
+      "command": "0xa003",
+      "raw_fields": [
+        "0xa003",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080bed8",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee480",
+      "command": "0xa004",
+      "raw_fields": [
+        "0xa004",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080bf44",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee4b0",
+      "command": "0xa005",
+      "raw_fields": [
+        "0xa005",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080c01c",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee4e0",
+      "command": "0xa006",
+      "raw_fields": [
+        "0xa006",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080c120",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee510",
+      "command": "0xa101",
+      "raw_fields": [
+        "0xa101",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080c228",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee540",
+      "command": "0xa102",
+      "raw_fields": [
+        "0x1a102",
+        "0x0",
+        "0x4080bc38",
+        "0x4080bc30",
+        "0x4080c290",
+        "0x4080bc24"
+      ]
+    },
+    {
+      "address": "0x440ee570",
+      "command": "0xb002",
+      "raw_fields": [
+        "0xb002",
+        "0x0",
+        "0x0",
+        "0x4080c338",
+        "0x4080c340",
+        "0x4080c334"
+      ]
+    },
+    {
+      "address": "0x440ee5a0",
+      "command": "0xb003",
+      "raw_fields": [
+        "0xb003",
+        "0x0",
+        "0x0",
+        "0x4080c460",
+        "0x4080c468",
+        "0x4080c45c"
+      ]
+    },
+    {
+      "address": "0x440ee5d0",
+      "command": "0xb004",
+      "raw_fields": [
+        "0xb004",
+        "0x0",
+        "0x0",
+        "0x4080c4c8",
+        "0x4080c524",
+        "0x4080c4c4"
+      ]
+    },
+    {
+      "address": "0x440ee600",
+      "command": "0xb006",
+      "raw_fields": [
+        "0xb006",
+        "0x0",
+        "0x407fe0f8",
+        "0x4080c598",
+        "0x4080c5a0",
+        "0x4080c594"
+      ]
+    },
+    {
+      "address": "0x440ee630",
+      "command": "0xf341",
+      "raw_fields": [
+        "0xf341",
+        "0x0",
+        "0x407fe0f8",
+        "0x4080cb7c",
+        "0x4080cbd0",
+        "0x4080cb78"
+      ]
+    },
+    {
+      "address": "0x440ee660",
+      "command": "0xf342",
+      "raw_fields": [
+        "0x1f342",
+        "0x0",
+        "0x0",
+        "0x4080cc2c",
+        "0x4080cc34",
+        "0x4080cc28"
+      ]
+    },
+    {
+      "address": "0x440ee690",
+      "command": "0xf343",
+      "raw_fields": [
+        "0xf343",
+        "0x0",
+        "0x0",
+        "0x4080cd08",
+        "0x4080cd10",
+        "0x4080cd04"
+      ]
+    },
+    {
+      "address": "0x440ee6c0",
+      "command": "0xf344",
+      "raw_fields": [
+        "0xf344",
+        "0x0",
+        "0x0",
+        "0x4080cd5c",
+        "0x4080cd64",
+        "0x4080cd58"
+      ]
+    },
+    {
+      "address": "0x440ee6f0",
+      "command": "0xc001",
+      "raw_fields": [
+        "0xc001",
+        "0x0",
+        "0x0",
+        "0x4080cdc4",
+        "0x4080cdcc",
+        "0x4080cdc0"
+      ]
+    },
+    {
+      "address": "0x440ee720",
+      "command": "0xc002",
+      "raw_fields": [
+        "0xc002",
+        "0x0",
+        "0x0",
+        "0x4080ce14",
+        "0x4080ce1c",
+        "0x4080ce10"
+      ]
+    },
+    {
+      "address": "0x440ee750",
+      "command": "0xc151",
+      "raw_fields": [
+        "0xc151",
+        "0x0",
+        "0x0",
+        "0x4080ce64",
+        "0x4080cf88",
+        "0x4080ce60"
+      ]
+    },
+    {
+      "address": "0x440ee780",
+      "command": "0xc152",
+      "raw_fields": [
+        "0xc152",
+        "0x0",
+        "0x0",
+        "0x4080cfdc",
+        "0x4080d040",
+        "0x4080cfd8"
+      ]
+    }
+  ],
+  "parameter_resource_before_pointer_assignment": {
+    "resource": "0x5c",
+    "ram": "0x0",
+    "mapped": "0x47e80000",
+    "relative": 0,
+    "length": 991232,
+    "allocation": 1048576
+  },
+  "parameter_resource_after_pointer_assignment": {
+    "resource": "0x5c",
+    "ram": "0xa155d78c0",
+    "mapped": "0x47e80000",
+    "relative": 0,
+    "length": 991232,
+    "allocation": 1048576
+  },
+  "closed_session": {
+    "command": "0xf029",
+    "arguments": [
+      0,
+      16,
+      0
+    ],
+    "session_flag": 0,
+    "admitted": 0,
+    "handler_result": null,
+    "events": [
+      {
+        "kind": "response_intercepted",
+        "response_code": "0xa004",
+        "parameter_count": 5,
+        "status_argument": 2,
+        "parameters": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "resource_read_selectors": [
+    {
+      "selector": 0,
+      "resource": "0x5c",
+      "branch_addresses": [
+        "0x407ffcb4",
+        "0x407ffd9c"
+      ]
+    },
+    {
+      "selector": 1,
+      "resource": "0x52",
+      "branch_addresses": [
+        "0x407ffcbc",
+        "0x407ffda4"
+      ]
+    },
+    {
+      "selector": 2,
+      "resource": "0x4d",
+      "branch_addresses": [
+        "0x407ffcc4",
+        "0x407ffdac"
+      ]
+    },
+    {
+      "selector": 3,
+      "resource": "0x5b",
+      "branch_addresses": [
+        "0x407ffccc",
+        "0x407ffdb4"
+      ]
+    },
+    {
+      "selector": 4,
+      "resource": "0xb",
+      "branch_addresses": [
+        "0x407ffcd4",
+        "0x407ffdbc"
+      ]
+    },
+    {
+      "selector": 5,
+      "resource": "0xc",
+      "branch_addresses": [
+        "0x407ffcdc",
+        "0x407ffdc4"
+      ]
+    },
+    {
+      "selector": 6,
+      "resource": "0x4a",
+      "branch_addresses": [
+        "0x407ffce4",
+        "0x407ffdcc"
+      ]
+    },
+    {
+      "selector": 7,
+      "resource": "0x5a",
+      "branch_addresses": [
+        "0x407ffcec",
+        "0x407ffdd4"
+      ]
+    }
+  ],
+  "target_read_probe": {
+    "command": "0xf029",
+    "arguments": [
+      0,
+      16,
+      0
+    ],
+    "session_flag": 1,
+    "admitted": 1,
+    "handler_result": 1,
+    "events": [
+      {
+        "kind": "send_intercepted",
+        "source": "0xa155d78c0",
+        "length": 16,
+        "timeout": 5000
+      },
+      {
+        "kind": "response_intercepted",
+        "response_code": "0x2001",
+        "parameter_count": 5,
+        "status_argument": 0,
+        "parameters": [
+          8193,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "resource_read_boundary_probes": [
+    {
+      "command": "0xf029",
+      "arguments": [
+        0,
+        0,
+        0
+      ],
+      "session_flag": 1,
+      "admitted": 0,
+      "handler_result": null,
+      "events": [
+        {
+          "kind": "response_intercepted",
+          "response_code": "0x2001",
+          "parameter_count": 5,
+          "status_argument": 2,
+          "parameters": [
+            8221,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "command": "0xf029",
+      "arguments": [
+        0,
+        991232,
+        0
+      ],
+      "session_flag": 1,
+      "admitted": 1,
+      "handler_result": 1,
+      "events": [
+        {
+          "kind": "send_intercepted",
+          "source": "0xa155d78c0",
+          "length": 991232,
+          "timeout": 5000
+        },
+        {
+          "kind": "response_intercepted",
+          "response_code": "0x2001",
+          "parameter_count": 5,
+          "status_argument": 0,
+          "parameters": [
+            8193,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "command": "0xf029",
+      "arguments": [
+        991231,
+        1,
+        0
+      ],
+      "session_flag": 1,
+      "admitted": 1,
+      "handler_result": 1,
+      "events": [
+        {
+          "kind": "send_intercepted",
+          "source": "0xa156c98bf",
+          "length": 1,
+          "timeout": 5000
+        },
+        {
+          "kind": "response_intercepted",
+          "response_code": "0x2001",
+          "parameter_count": 5,
+          "status_argument": 0,
+          "parameters": [
+            8193,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "command": "0xf029",
+      "arguments": [
+        991232,
+        1,
+        0
+      ],
+      "session_flag": 1,
+      "admitted": 0,
+      "handler_result": null,
+      "events": [
+        {
+          "kind": "response_intercepted",
+          "response_code": "0x2001",
+          "parameter_count": 5,
+          "status_argument": 2,
+          "parameters": [
+            8221,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "command": "0xf029",
+      "arguments": [
+        0,
+        1,
+        8
+      ],
+      "session_flag": 1,
+      "admitted": 0,
+      "handler_result": null,
+      "events": [
+        {
+          "kind": "response_intercepted",
+          "response_code": "0x2001",
+          "parameter_count": 5,
+          "status_argument": 2,
+          "parameters": [
+            8221,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "command": "0xf029",
+      "arguments": [
+        256,
+        64,
+        0
+      ],
+      "session_flag": 1,
+      "admitted": 1,
+      "handler_result": 1,
+      "events": [
+        {
+          "kind": "send_intercepted",
+          "source": "0xa155d79c0",
+          "length": 64,
+          "timeout": 5000
+        },
+        {
+          "kind": "response_intercepted",
+          "response_code": "0x2001",
+          "parameter_count": 5,
+          "status_argument": 0,
+          "parameters": [
+            8193,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  ],
+  "address_read_preflight_probes": [
+    {
+      "address": "0x47e80000",
+      "probe": {
+        "command": "0xf032",
+        "arguments": [
+          1206386688,
+          0,
+          16
+        ],
+        "session_flag": 1,
+        "admitted": 0,
+        "handler_result": null,
+        "events": [
+          {
+            "kind": "response_intercepted",
+            "response_code": "0x2001",
+            "parameter_count": 5,
+            "status_argument": 2,
+            "parameters": [
+              8221,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "address": "0x47f7fffc",
+      "probe": {
+        "command": "0xf032",
+        "arguments": [
+          1207435260,
+          0,
+          4
+        ],
+        "session_flag": 1,
+        "admitted": 0,
+        "handler_result": null,
+        "events": [
+          {
+            "kind": "response_intercepted",
+            "response_code": "0x2001",
+            "parameter_count": 5,
+            "status_argument": 2,
+            "parameters": [
+              8221,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "address": "0x40160000",
+      "probe": {
+        "command": "0xf032",
+        "arguments": [
+          1075183616,
+          0,
+          16
+        ],
+        "session_flag": 1,
+        "admitted": 0,
+        "handler_result": null,
+        "events": [
+          {
+            "kind": "response_intercepted",
+            "response_code": "0x2001",
+            "parameter_count": 5,
+            "status_argument": 2,
+            "parameters": [
+              8221,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "address": "0xa155d78c0",
+      "probe": {
+        "command": "0xf032",
+        "arguments": [
+          358447296,
+          10,
+          16
+        ],
+        "session_flag": 1,
+        "admitted": 1,
+        "handler_result": null,
+        "events": []
+      }
+    },
+    {
+      "address": "0xa155d78c0",
+      "probe": {
+        "command": "0xf032",
+        "arguments": [
+          358447296,
+          10,
+          1024
+        ],
+        "session_flag": 1,
+        "admitted": 1,
+        "handler_result": null,
+        "events": []
+      }
+    },
+    {
+      "address": "0xa155d78c0",
+      "probe": {
+        "command": "0xf032",
+        "arguments": [
+          358447296,
+          10,
+          1025
+        ],
+        "session_flag": 1,
+        "admitted": 0,
+        "handler_result": null,
+        "events": [
+          {
+            "kind": "response_intercepted",
+            "response_code": "0x2001",
+            "parameter_count": 5,
+            "status_argument": 2,
+            "parameters": [
+              8221,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "intercepted_functions": [
+    "0x407df2c4",
+    "0x407df0d4"
+  ],
+  "actual_parameter_bytes_recovered": 0,
+  "usb_commands_sent": 0
+}

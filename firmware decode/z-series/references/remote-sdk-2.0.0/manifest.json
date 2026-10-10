@@ -1,0 +1,1053 @@
+{
+  "source": "../../S-SDKZ-200BF-ALLIN.zip",
+  "source_sha256": "d8ff7b10061c3a69ba11c66e2d2cca058b88efd01de346d9152ff34b5202f3fb",
+  "source_size": 88048129,
+  "zip_entries": 94,
+  "extracted_files": 39,
+  "all_member_crcs_verified": true,
+  "pdf_count": 18,
+  "pdf_page_count": 8423,
+  "index_rows": {
+    "model_blocks.csv": 100,
+    "maid_capabilities.csv": 8373,
+    "ptp_property_mappings.csv": 12278,
+    "range_values.csv": 4767,
+    "protocol_code_locations.csv": 7313
+  },
+  "documents": [
+    {
+      "archive_path": "Command/English/Z 30UsbMtpE_02.pdf",
+      "model": "Z30",
+      "revision_on_cover": "2.00",
+      "pages": 495,
+      "pdf": "original/Command/English/Z 30UsbMtpE_02.pdf",
+      "text": "text/Command/English/Z 30UsbMtpE_02.txt",
+      "sha256": "0e8e303342b785274cc9cbd85a2394b0bfc104c1dd763cd7a329ae0f646079d5",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 50UsbMtpE_04.pdf",
+      "model": "Z50",
+      "revision_on_cover": "2.00",
+      "pages": 421,
+      "pdf": "original/Command/English/Z 50UsbMtpE_04.pdf",
+      "text": "text/Command/English/Z 50UsbMtpE_04.txt",
+      "sha256": "d66064d48aaca48459c22155d1a4c7b25953cb6875a746d50bdfba96a4d21146",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 50_2UsbMtpE_01.pdf",
+      "model": "Z50II",
+      "revision_on_cover": "1.00",
+      "pages": 634,
+      "pdf": "original/Command/English/Z 50_2UsbMtpE_01.pdf",
+      "text": "text/Command/English/Z 50_2UsbMtpE_01.txt",
+      "sha256": "6f428b95334fb066d6db0918c81cec5bbbe208eb467a82f87522994e06276171",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 5UsbMtpE_02.pdf",
+      "model": "Z5",
+      "revision_on_cover": "1.10",
+      "pages": 480,
+      "pdf": "original/Command/English/Z 5UsbMtpE_02.pdf",
+      "text": "text/Command/English/Z 5UsbMtpE_02.txt",
+      "sha256": "1822e2dfa6ca2b8775a83cd9f394e022cd995bfc93986f6ff928ed2a23dcffb0",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 6UsbMtpE_04.pdf",
+      "model": "Z6",
+      "revision_on_cover": "1.40",
+      "pages": 474,
+      "pdf": "original/Command/English/Z 6UsbMtpE_04.pdf",
+      "text": "text/Command/English/Z 6UsbMtpE_04.txt",
+      "sha256": "b42571501abd4d105f029fa92faf2547a036dc0afd8b158e22f84eddcee349ab",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 6_2UsbMtpE_02.pdf",
+      "model": "Z6II",
+      "revision_on_cover": "1.10",
+      "pages": 484,
+      "pdf": "original/Command/English/Z 6_2UsbMtpE_02.pdf",
+      "text": "text/Command/English/Z 6_2UsbMtpE_02.txt",
+      "sha256": "547679ce47fd7b645be2c2bee65974c0f0afdab7e9930d61673fef3c093a74c7",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 7UsbMtpE_04.pdf",
+      "model": "Z7",
+      "revision_on_cover": "1.40",
+      "pages": 474,
+      "pdf": "original/Command/English/Z 7UsbMtpE_04.pdf",
+      "text": "text/Command/English/Z 7UsbMtpE_04.txt",
+      "sha256": "d7761f3b548a3417d7df8ddabfa8471245475f0cb9b3efa4435550d207a30250",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 7_2UsbMtpE_01.pdf",
+      "model": "Z7II",
+      "revision_on_cover": "1.00",
+      "pages": 485,
+      "pdf": "original/Command/English/Z 7_2UsbMtpE_01.pdf",
+      "text": "text/Command/English/Z 7_2UsbMtpE_01.txt",
+      "sha256": "67b00d865df84957f6e1e2f03ca9024b216db7a426ea8f02cacb30e3867246fd",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 8UsbMtpE_02.pdf",
+      "model": "Z8",
+      "revision_on_cover": "2.00",
+      "pages": 610,
+      "pdf": "original/Command/English/Z 8UsbMtpE_02.pdf",
+      "text": "text/Command/English/Z 8UsbMtpE_02.txt",
+      "sha256": "3fba5ee9fc303ec11b28bb97b61146ff09fdad8a003d3ca007331e9ab1721b3d",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z 9UsbMtpE_06.pdf",
+      "model": "Z9",
+      "revision_on_cover": "6.00",
+      "pages": 658,
+      "pdf": "original/Command/English/Z 9UsbMtpE_06.pdf",
+      "text": "text/Command/English/Z 9UsbMtpE_06.txt",
+      "sha256": "3ea73a2c0944bf3a7da016dfb0ee93ca117b696d94e100edcb41d4a8b38fef97",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z fcUsbMtpE_180.pdf",
+      "model": "Z fc",
+      "revision_on_cover": "1.00",
+      "pages": 483,
+      "pdf": "original/Command/English/Z fcUsbMtpE_180.pdf",
+      "text": "text/Command/English/Z fcUsbMtpE_180.txt",
+      "sha256": "8a52307e4ded72604a9d11e5a610297a12c764ee814f081151fa97934bbf05bd",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z5_2UsbMtpE_01.pdf",
+      "model": "Z5II",
+      "revision_on_cover": "1.00",
+      "pages": 636,
+      "pdf": "original/Command/English/Z5_2UsbMtpE_01.pdf",
+      "text": "text/Command/English/Z5_2UsbMtpE_01.txt",
+      "sha256": "ef69a9d1985b2970dfd56ef4bff49620dac1874f9a77f0070f438c9e5cd88fa9",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/Z6IIIUsbMtpE_02.pdf",
+      "model": "Z6III",
+      "revision_on_cover": "2.00",
+      "pages": 632,
+      "pdf": "original/Command/English/Z6IIIUsbMtpE_02.pdf",
+      "text": "text/Command/English/Z6IIIUsbMtpE_02.txt",
+      "sha256": "3ee76d2da416b6704463e1c77f3dd3f0b79f940a940df36325300ab0fa7e837e",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/ZfUsbMtpE_02.pdf",
+      "model": "Z f",
+      "revision_on_cover": "2.00",
+      "pages": 607,
+      "pdf": "original/Command/English/ZfUsbMtpE_02.pdf",
+      "text": "text/Command/English/ZfUsbMtpE_02.txt",
+      "sha256": "ab91b5401c8f445bcc9fbfc8d3039f1aeed26f2b096528f783f13bda5ef3aea2",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Command/English/ZRUsbMtpE_100.pdf",
+      "model": "ZR",
+      "revision_on_cover": "1.00",
+      "pages": 650,
+      "pdf": "original/Command/English/ZRUsbMtpE_100.pdf",
+      "text": "text/Command/English/ZRUsbMtpE_100.txt",
+      "sha256": "a1a0272182e8ece4162beddc84d8fac3387fd526720fde3c6f454dd40fb1569d",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Module/Document/English/MAID3(E).pdf",
+      "model": "Common",
+      "revision_on_cover": "not stated",
+      "pages": 87,
+      "pdf": "original/Module/Document/English/MAID3(E).pdf",
+      "text": "text/Module/Document/English/MAID3(E).txt",
+      "sha256": "9b9827665f6139f86565e41ea22ae7323473cbf7f4c9cd09b69ef5deabbf41e2",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Module/Document/English/MAID3-COMMON(E).pdf",
+      "model": "Common",
+      "revision_on_cover": "not stated",
+      "pages": 99,
+      "pdf": "original/Module/Document/English/MAID3-COMMON(E).pdf",
+      "text": "text/Module/Document/English/MAID3-COMMON(E).txt",
+      "sha256": "0bff058e6b50d3f22ad4c58a31d86d208ec0b9dc89608ce76db451d4064328e0",
+      "conversion_stderr": ""
+    },
+    {
+      "archive_path": "Module/Document/English/Sample App Guide(E).pdf",
+      "model": "Common",
+      "revision_on_cover": "not stated",
+      "pages": 14,
+      "pdf": "original/Module/Document/English/Sample App Guide(E).pdf",
+      "text": "text/Module/Document/English/Sample App Guide(E).txt",
+      "sha256": "767272642034ba782257997f10f7d8732b4c7610b598d3676f83ae4710537c86",
+      "conversion_stderr": ""
+    }
+  ],
+  "archive_inventory": [
+    {
+      "path": "Command/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Command/English/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Command/English/Z 30UsbMtpE_02.pdf",
+      "size": 8005077,
+      "compressed_size": 4996094,
+      "directory": false,
+      "zip_crc32": "60362341",
+      "sha256": "0e8e303342b785274cc9cbd85a2394b0bfc104c1dd763cd7a329ae0f646079d5",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 50UsbMtpE_04.pdf",
+      "size": 7254172,
+      "compressed_size": 4701307,
+      "directory": false,
+      "zip_crc32": "3a5128b7",
+      "sha256": "d66064d48aaca48459c22155d1a4c7b25953cb6875a746d50bdfba96a4d21146",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 50_2UsbMtpE_01.pdf",
+      "size": 8628457,
+      "compressed_size": 5603786,
+      "directory": false,
+      "zip_crc32": "4e014310",
+      "sha256": "6f428b95334fb066d6db0918c81cec5bbbe208eb467a82f87522994e06276171",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 5UsbMtpE_02.pdf",
+      "size": 8269085,
+      "compressed_size": 5338818,
+      "directory": false,
+      "zip_crc32": "eac89921",
+      "sha256": "1822e2dfa6ca2b8775a83cd9f394e022cd995bfc93986f6ff928ed2a23dcffb0",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 6UsbMtpE_04.pdf",
+      "size": 8073846,
+      "compressed_size": 5190955,
+      "directory": false,
+      "zip_crc32": "1359b0ac",
+      "sha256": "b42571501abd4d105f029fa92faf2547a036dc0afd8b158e22f84eddcee349ab",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 6_2UsbMtpE_02.pdf",
+      "size": 8305141,
+      "compressed_size": 5380096,
+      "directory": false,
+      "zip_crc32": "f8630ae9",
+      "sha256": "547679ce47fd7b645be2c2bee65974c0f0afdab7e9930d61673fef3c093a74c7",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 7UsbMtpE_04.pdf",
+      "size": 8072518,
+      "compressed_size": 5191727,
+      "directory": false,
+      "zip_crc32": "fd66a59a",
+      "sha256": "d7761f3b548a3417d7df8ddabfa8471245475f0cb9b3efa4435550d207a30250",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 7_2UsbMtpE_01.pdf",
+      "size": 8305147,
+      "compressed_size": 5380060,
+      "directory": false,
+      "zip_crc32": "675512cf",
+      "sha256": "67b00d865df84957f6e1e2f03ca9024b216db7a426ea8f02cacb30e3867246fd",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 8UsbMtpE_02.pdf",
+      "size": 9984426,
+      "compressed_size": 6460751,
+      "directory": false,
+      "zip_crc32": "30a99154",
+      "sha256": "3fba5ee9fc303ec11b28bb97b61146ff09fdad8a003d3ca007331e9ab1721b3d",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z 9UsbMtpE_06.pdf",
+      "size": 10357437,
+      "compressed_size": 6698139,
+      "directory": false,
+      "zip_crc32": "966a525f",
+      "sha256": "3ea73a2c0944bf3a7da016dfb0ee93ca117b696d94e100edcb41d4a8b38fef97",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z fcUsbMtpE_180.pdf",
+      "size": 7958248,
+      "compressed_size": 4972064,
+      "directory": false,
+      "zip_crc32": "9e020cb4",
+      "sha256": "8a52307e4ded72604a9d11e5a610297a12c764ee814f081151fa97934bbf05bd",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z5_2UsbMtpE_01.pdf",
+      "size": 8720985,
+      "compressed_size": 5648034,
+      "directory": false,
+      "zip_crc32": "54ba9219",
+      "sha256": "ef69a9d1985b2970dfd56ef4bff49620dac1874f9a77f0070f438c9e5cd88fa9",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/Z6IIIUsbMtpE_02.pdf",
+      "size": 3709471,
+      "compressed_size": 3154129,
+      "directory": false,
+      "zip_crc32": "6a18e4cc",
+      "sha256": "3ee76d2da416b6704463e1c77f3dd3f0b79f940a940df36325300ab0fa7e837e",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/ZfUsbMtpE_02.pdf",
+      "size": 12449508,
+      "compressed_size": 9416408,
+      "directory": false,
+      "zip_crc32": "7fdd1190",
+      "sha256": "ab91b5401c8f445bcc9fbfc8d3039f1aeed26f2b096528f783f13bda5ef3aea2",
+      "extracted": true
+    },
+    {
+      "path": "Command/English/ZRUsbMtpE_100.pdf",
+      "size": 3411094,
+      "compressed_size": 2896664,
+      "directory": false,
+      "zip_crc32": "076c916d",
+      "sha256": "a1a0272182e8ece4162beddc84d8fac3387fd526720fde3c6f454dd40fb1569d",
+      "extracted": true
+    },
+    {
+      "path": "Module/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Document/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Document/English/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Document/English/MAID3(E).pdf",
+      "size": 791740,
+      "compressed_size": 758204,
+      "directory": false,
+      "zip_crc32": "1685079c",
+      "sha256": "9b9827665f6139f86565e41ea22ae7323473cbf7f4c9cd09b69ef5deabbf41e2",
+      "extracted": true
+    },
+    {
+      "path": "Module/Document/English/MAID3-COMMON(E).pdf",
+      "size": 650831,
+      "compressed_size": 592500,
+      "directory": false,
+      "zip_crc32": "887d7358",
+      "sha256": "0bff058e6b50d3f22ad4c58a31d86d208ec0b9dc89608ce76db451d4064328e0",
+      "extracted": true
+    },
+    {
+      "path": "Module/Document/English/Sample App Guide(E).pdf",
+      "size": 188641,
+      "compressed_size": 168226,
+      "directory": false,
+      "zip_crc32": "f1d20dfd",
+      "sha256": "767272642034ba782257997f10f7d8732b4c7610b598d3676f83ae4710537c86",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/BinaryFile/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/BinaryFile/TestApp.zip",
+      "size": 3490549,
+      "compressed_size": 3423845,
+      "directory": false,
+      "zip_crc32": "2b6018f7",
+      "sha256": "535122ecb78b15af824d551bfc50ea5e80857a2b3c0e6d57c4c39605ed753c35",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/HeaderFile/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/HeaderFile/CtrlSample.h",
+      "size": 5245,
+      "compressed_size": 1449,
+      "directory": false,
+      "zip_crc32": "e3b14ea4",
+      "sha256": "110014f61131935d886bdd66b931c7e43a619a0581e68f117e4c1259a9c8da46",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/HeaderFile/Maid3.h",
+      "size": 48970,
+      "compressed_size": 10160,
+      "directory": false,
+      "zip_crc32": "b663d427",
+      "sha256": "4cfd44db8b28558138ab58ce97b44b81498361f829b71cb56a025ed1953b31e8",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/HeaderFile/Maid3d1.h",
+      "size": 216865,
+      "compressed_size": 31151,
+      "directory": false,
+      "zip_crc32": "3c0dede9",
+      "sha256": "e05d992675499f09fea362b222798d75a59d573d01da0f86e6b0a8c2e84d3f1f",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/HeaderFile/NkEndian.h",
+      "size": 2466,
+      "compressed_size": 823,
+      "directory": false,
+      "zip_crc32": "85bd87cf",
+      "sha256": "fc41c43256baf5590264622daf33b89b8b40667a9b629ab0e07dc24395cbaeb6",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/HeaderFile/Nkstdint.h",
+      "size": 2109,
+      "compressed_size": 718,
+      "directory": false,
+      "zip_crc32": "df708f67",
+      "sha256": "6c784caa66b6c95170e10f255c8a921d073247c5f749cffb45b2797850bbf68b",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/HeaderFile/NkTypes.h",
+      "size": 5671,
+      "compressed_size": 1949,
+      "directory": false,
+      "zip_crc32": "58459227",
+      "sha256": "a513649f81317fdaa9c94f5376c6b3cc2e36369d7f9425929f349ce6e418f358",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/HeaderFile/NKWINMAC.H",
+      "size": 8080,
+      "compressed_size": 2235,
+      "directory": false,
+      "zip_crc32": "789cd252",
+      "sha256": "5f65774e4425a43fb7afa7205099051b2680e19dbdae0f17bfb5839cbd057fdf",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/SampleApp/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/CtrlSample.pch",
+      "size": 364,
+      "compressed_size": 141,
+      "directory": false,
+      "zip_crc32": "2f3ae084",
+      "sha256": "97a063ceb8c8422c89ac47281328dd9fe77957acdaf3358bda180d8265a04233",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/Function.cpp",
+      "size": 306434,
+      "compressed_size": 25319,
+      "directory": false,
+      "zip_crc32": "5e4b8ddf",
+      "sha256": "e1d1240cf67cab2c6e22538eb92f17c51e2dda105e083e0d7b42ab3206577394",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/SampleApp/info.plist",
+      "size": 308,
+      "compressed_size": 202,
+      "directory": false,
+      "zip_crc32": "005f49f9",
+      "sha256": "da6e54ffc9eb6699fb608c63c548d6d0f82be49d950404398eca732ae2087a55",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/main.cpp",
+      "size": 73128,
+      "compressed_size": 7018,
+      "directory": false,
+      "zip_crc32": "b8396250",
+      "sha256": "8ba6da63a15f629eac3b4fafecf381c6619a8bee58d563db89da1e71105ea429",
+      "extracted": true
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/.LSOverride",
+      "size": 30,
+      "compressed_size": 32,
+      "directory": false,
+      "zip_crc32": "8e3894f3",
+      "sha256": "65f4c4a6241169ebb7d0074fb9b38fafaf5db5672722b78ab20e2d7868151274",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.pbxproj",
+      "size": 12649,
+      "compressed_size": 2595,
+      "directory": false,
+      "zip_crc32": "1f45fde7",
+      "sha256": "60d5d38043c00de97a65d690073dcaf36b68b77889c34f6b47eaeedd325ab653",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+      "size": 277,
+      "compressed_size": 157,
+      "directory": false,
+      "zip_crc32": "dfacd4dc",
+      "sha256": "958df53d741106efc0501586fde5eeef484f9adb609264806bb5e20f752fa8b8",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcshareddata/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+      "size": 246,
+      "compressed_size": 196,
+      "directory": false,
+      "zip_crc32": "aaabe93e",
+      "sha256": "d557c2c32fc6258ec28981fa45dc847b76c9968beb90a2e26d13ef9c4ea45c30",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/configuration/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/akanksha_sahu.xcuserdatad/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/akanksha_sahu.xcuserdatad/UserInterfaceState.xcuserstate",
+      "size": 24979,
+      "compressed_size": 13031,
+      "directory": false,
+      "zip_crc32": "1c3ed751",
+      "sha256": "7b4c694ad74fd0df07a62114e1812b1c57a7bde9030c4fd38420d59b0ad8c872",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/shridhar.agrawal.xcuserdatad/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/shridhar.agrawal.xcuserdatad/UserInterfaceState.xcuserstate",
+      "size": 112177,
+      "compressed_size": 45760,
+      "directory": false,
+      "zip_crc32": "aed95cb2",
+      "sha256": "548f5ccff6e753672c73f0da6a10ab14dc94b612157b692adc00a747a8b2503e",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/sudhir.xcuserdatad/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/project.xcworkspace/xcuserdata/sudhir.xcuserdatad/UserInterfaceState.xcuserstate",
+      "size": 44968,
+      "compressed_size": 23697,
+      "directory": false,
+      "zip_crc32": "e7e78b3b",
+      "sha256": "3a172608d533d19c40628930a5acb06db49f24c36b7099d97af5d2cb8ad9b6bb",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcshareddata/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcshareddata/xcschemes/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcshareddata/xcschemes/TestApp.xcscheme",
+      "size": 2830,
+      "compressed_size": 674,
+      "directory": false,
+      "zip_crc32": "1b822331",
+      "sha256": "5266f0cfcd51be922a80748d78cfab3734749c0485475222fb479277b0d79c4d",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/shridhar.agrawal.xcuserdatad/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/shridhar.agrawal.xcuserdatad/xcdebugger/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/shridhar.agrawal.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
+      "size": 146,
+      "compressed_size": 124,
+      "directory": false,
+      "zip_crc32": "12975406",
+      "sha256": "e16166ddbf06fcc8d303647d4dd7a5e9cefb87cf16fe207cdcdb1a2012fac4ef",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/shridhar.agrawal.xcuserdatad/xcschemes/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/shridhar.agrawal.xcuserdatad/xcschemes/xcschememanagement.plist",
+      "size": 548,
+      "compressed_size": 305,
+      "directory": false,
+      "zip_crc32": "502aa105",
+      "sha256": "7e9c4007c691631a13387bc60ccc1ce64eb2ae3f50abb69acb306ce72ec5aa2f",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/sudhir.xcuserdatad/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/sudhir.xcuserdatad/xcdebugger/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/sudhir.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
+      "size": 3409,
+      "compressed_size": 716,
+      "directory": false,
+      "zip_crc32": "1b63482d",
+      "sha256": "841b6517d3851d246dc7c59c84432cbfb568a6ba72e799e41f78a001192b24d5",
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/sudhir.xcuserdatad/xcschemes/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Mac/SampleApp/TestApp.xcodeproj/xcuserdata/sudhir.xcuserdatad/xcschemes/xcschememanagement.plist",
+      "size": 367,
+      "compressed_size": 244,
+      "directory": false,
+      "zip_crc32": "899a2cf4",
+      "sha256": "da6f869632468035c4ea8926a790bacea701b34cfcefd65ea5ed2c0df7bea7d5",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/BinaryFile/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/BinaryFile/ControlServiceLayer.dll",
+      "size": 2647464,
+      "compressed_size": 791810,
+      "directory": false,
+      "zip_crc32": "bfabe9a4",
+      "sha256": "deeaa1706f6d99fbcc10fbe1b1e0e35c657179f067a14c0fc34c79164c0654e5",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/BinaryFile/DC_PTP_Config.config",
+      "size": 1079365,
+      "compressed_size": 46614,
+      "directory": false,
+      "zip_crc32": "89b6d9d9",
+      "sha256": "37bab2242a0b32e9dcfb894aaf522094c42a157b155c221f2424c10124c3b4ff",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/BinaryFile/dnssd.dll",
+      "size": 151464,
+      "compressed_size": 82097,
+      "directory": false,
+      "zip_crc32": "ba8b1286",
+      "sha256": "5dc105459153504d54d34c4b2da5ddf6178a17a418d99f96ab2d5465c9b93c6d",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/BinaryFile/MaidLayer.config",
+      "size": 16920973,
+      "compressed_size": 635445,
+      "directory": false,
+      "zip_crc32": "306c4821",
+      "sha256": "43263c2b83dd4a24586b4bcb5a6c3eef4eaa8eb69988b3a9c127663dd4ebf655",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/BinaryFile/NkdPTP.dll",
+      "size": 80296,
+      "compressed_size": 36694,
+      "directory": false,
+      "zip_crc32": "4d3cefaa",
+      "sha256": "87555e3a3bb2325372216e44b310101a0084aa5d9f8c1828e10511cc51f606b5",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/BinaryFile/NkRoyalmile.dll",
+      "size": 128424,
+      "compressed_size": 66668,
+      "directory": false,
+      "zip_crc32": "2b6e315a",
+      "sha256": "bb3c2190eb8b81837ab67c6b1e8ddefe1403d35ba3539095e6cfc3963e985590",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/BinaryFile/RangeValue.config",
+      "size": 1391237,
+      "compressed_size": 101525,
+      "directory": false,
+      "zip_crc32": "9952403a",
+      "sha256": "bbaff1d576bb9bde066604830f91c9f820e8b1c467225864bb319039b2214b33",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/BinaryFile/TestApp.exe",
+      "size": 130984,
+      "compressed_size": 45967,
+      "directory": false,
+      "zip_crc32": "035fb64b",
+      "sha256": "a2ba2a67c41fd1ef511491114f02f06fdb55020d2235cbf39becf62e7330b6ff",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/HeaderFile/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/HeaderFile/CtrlSample.h",
+      "size": 5070,
+      "compressed_size": 1443,
+      "directory": false,
+      "zip_crc32": "58e04e17",
+      "sha256": "8da93dead36230cc98d351db43c2addb695d283cc740590995048f97cddd9c71",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/HeaderFile/Maid3.h",
+      "size": 43484,
+      "compressed_size": 9958,
+      "directory": false,
+      "zip_crc32": "f90b4f45",
+      "sha256": "50e2add5f6604d315c8062fce540c0bb92a73a7cfa1fafe9cc670b3c661d2884",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/HeaderFile/Maid3d1.h",
+      "size": 216865,
+      "compressed_size": 31151,
+      "directory": false,
+      "zip_crc32": "3c0dede9",
+      "sha256": "e05d992675499f09fea362b222798d75a59d573d01da0f86e6b0a8c2e84d3f1f",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/HeaderFile/NkEndian.h",
+      "size": 2466,
+      "compressed_size": 823,
+      "directory": false,
+      "zip_crc32": "85bd87cf",
+      "sha256": "fc41c43256baf5590264622daf33b89b8b40667a9b629ab0e07dc24395cbaeb6",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/HeaderFile/Nkstdint.h",
+      "size": 2109,
+      "compressed_size": 718,
+      "directory": false,
+      "zip_crc32": "df708f67",
+      "sha256": "6c784caa66b6c95170e10f255c8a921d073247c5f749cffb45b2797850bbf68b",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/HeaderFile/NkTypes.h",
+      "size": 5672,
+      "compressed_size": 1952,
+      "directory": false,
+      "zip_crc32": "57779f45",
+      "sha256": "fb619c6b4cdefa1267d9f9f3b00159dc8b14bcb44c6cecf2f620e1056f13b700",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/SampleApp/",
+      "size": 0,
+      "compressed_size": 0,
+      "directory": true,
+      "zip_crc32": "00000000",
+      "sha256": null,
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/SampleApp/Function.cpp",
+      "size": 207499,
+      "compressed_size": 22224,
+      "directory": false,
+      "zip_crc32": "a65db67d",
+      "sha256": "4cf0747daa3f9cd40626399ab4c3fe5a5d6e47986ff1c3261937ef96c17e4df8",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/SampleApp/main.cpp",
+      "size": 53014,
+      "compressed_size": 6340,
+      "directory": false,
+      "zip_crc32": "19fee8de",
+      "sha256": "ad53dc161af437052cc26eddb2f0955e4332bd668d2c84cb42b7fd985ff8388d",
+      "extracted": true
+    },
+    {
+      "path": "Module/Win/SampleApp/resource.h",
+      "size": 396,
+      "compressed_size": 252,
+      "directory": false,
+      "zip_crc32": "68244234",
+      "sha256": "125dda56f2782872ca3ef8366f7fe5f286392957dac800c39aabf592e429df56",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/SampleApp/TestApp.rc",
+      "size": 4536,
+      "compressed_size": 850,
+      "directory": false,
+      "zip_crc32": "ce9a2135",
+      "sha256": "5f9a5347092b13f6a6a9ec207f311c641ee96146b741555f881c8b615dd734f7",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/SampleApp/TestApp.sln",
+      "size": 1427,
+      "compressed_size": 472,
+      "directory": false,
+      "zip_crc32": "807f494b",
+      "sha256": "56e123c4c7ab883c8d3f8a8e078c65aeb28f5418ec88d8f1b701942c28cfd61b",
+      "extracted": false
+    },
+    {
+      "path": "Module/Win/SampleApp/TestApp.vcxproj",
+      "size": 8517,
+      "compressed_size": 1295,
+      "directory": false,
+      "zip_crc32": "8dc0b079",
+      "sha256": "aaf0d0f628b71aef6bc7a42009f16b3060dcf70d8912696981b1dfafd5644823",
+      "extracted": false
+    },
+    {
+      "path": "ReadMe_En.txt",
+      "size": 3094,
+      "compressed_size": 992,
+      "directory": false,
+      "zip_crc32": "a41ca7e1",
+      "sha256": "c307eb2c687bd4a82bf95ce74a82e15e0186851ca33b75521c7f626a93900244",
+      "extracted": true
+    }
+  ],
+  "limits": [
+    "No SDK executable or library executed",
+    "No camera connected",
+    "Config scopes preserved; inheritance and runtime support not resolved",
+    "PDF code locations are matching explicit Code lines, not an exhaustive protocol parser"
+  ]
+}

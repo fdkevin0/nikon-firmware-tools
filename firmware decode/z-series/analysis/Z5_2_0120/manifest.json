@@ -1,0 +1,1614 @@
+{
+  "source": "Z5_2_0120.bin",
+  "status": "partial_reference_assisted_recovery",
+  "complete_container_decoded": false,
+  "section_count": null,
+  "crc_verified": false,
+  "main_cpu_architecture": null,
+  "embedded_elf_machine": 245,
+  "analyzer_sha256": "e2ae6b529f368215db54c0660ab3ce83c8b4271cecc56c4073419bbf4888393a",
+  "samples": {
+    "Z5_2_0120.bin": {
+      "size": 108716229,
+      "sha256": "96fa8c2d735864c4c612dee498818f2e3b6911458b13ad55befcfe9ffdf35af9"
+    },
+    "Z_f_0301.bin": {
+      "size": 107820261,
+      "sha256": "bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6"
+    },
+    "Z6_3_0200.bin": {
+      "size": 117641453,
+      "sha256": "b5c08335dc79d3d36d7bad0976434134db8ce160886d1c8c2935f3b185bcdbc9"
+    },
+    "ZR__0111.bin": {
+      "size": 117159984,
+      "sha256": "de1eb5af56568e4921a0eb5e50942f06a6c00205f76dd9d2a4e42364d7476e93"
+    }
+  },
+  "references": {
+    "z8_eg_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+    "second_elf_sha256": "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4",
+    "third_elf_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f"
+  },
+  "pairs": {
+    "Z_f_0301.bin": {
+      "aligned_comparison": {
+        "compared_bytes": 107820261,
+        "equal_bytes": 21503751,
+        "equal_fraction": 0.19944072478177363,
+        "uncompared_tail_bytes": [
+          895968,
+          0
+        ],
+        "minimum_run": 64,
+        "longest_equal_runs": [
+          {
+            "start": 18502240,
+            "end_exclusive": 22509404,
+            "size": 4007164
+          },
+          {
+            "start": 8397348,
+            "end_exclusive": 11723596,
+            "size": 3326248
+          },
+          {
+            "start": 767092,
+            "end_exclusive": 1237853,
+            "size": 470761
+          },
+          {
+            "start": 347060,
+            "end_exclusive": 525089,
+            "size": 178029
+          },
+          {
+            "start": 42478717,
+            "end_exclusive": 42612044,
+            "size": 133327
+          },
+          {
+            "start": 64509092,
+            "end_exclusive": 64638918,
+            "size": 129826
+          },
+          {
+            "start": 15470,
+            "end_exclusive": 132006,
+            "size": 116536
+          },
+          {
+            "start": 525106,
+            "end_exclusive": 615229,
+            "size": 90123
+          },
+          {
+            "start": 32630774,
+            "end_exclusive": 32695092,
+            "size": 64318
+          },
+          {
+            "start": 41882217,
+            "end_exclusive": 41935668,
+            "size": 53451
+          },
+          {
+            "start": 34608037,
+            "end_exclusive": 34661194,
+            "size": 53157
+          },
+          {
+            "start": 32584460,
+            "end_exclusive": 32630773,
+            "size": 46313
+          }
+        ]
+      },
+      "header_regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 255
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 30
+        }
+      ],
+      "xor_strings_min16": 16361,
+      "markers": {
+        "FirmwareChkLib.c": [],
+        "CFirmwareManagementService_Execute": [
+          42719236,
+          42719363
+        ],
+        "4.14.313-ts-aarch64": [
+          86389732,
+          86389788
+        ],
+        "\u007fELF": [
+          22739044,
+          23653972,
+          86262754
+        ]
+      }
+    },
+    "Z6_3_0200.bin": {
+      "aligned_comparison": {
+        "compared_bytes": 108716229,
+        "equal_bytes": 15013802,
+        "equal_fraction": 0.13810083497285397,
+        "uncompared_tail_bytes": [
+          0,
+          8925224
+        ],
+        "minimum_run": 64,
+        "longest_equal_runs": [
+          {
+            "start": 8637385,
+            "end_exclusive": 11723572,
+            "size": 3086187
+          },
+          {
+            "start": 800572,
+            "end_exclusive": 1237816,
+            "size": 437244
+          },
+          {
+            "start": 380536,
+            "end_exclusive": 525089,
+            "size": 144553
+          },
+          {
+            "start": 15470,
+            "end_exclusive": 132006,
+            "size": 116536
+          },
+          {
+            "start": 525106,
+            "end_exclusive": 582504,
+            "size": 57398
+          },
+          {
+            "start": 34608037,
+            "end_exclusive": 34661172,
+            "size": 53135
+          },
+          {
+            "start": 42493352,
+            "end_exclusive": 42525492,
+            "size": 32140
+          },
+          {
+            "start": 599713,
+            "end_exclusive": 615220,
+            "size": 15507
+          },
+          {
+            "start": 589196,
+            "end_exclusive": 598868,
+            "size": 9672
+          },
+          {
+            "start": 34455324,
+            "end_exclusive": 34464564,
+            "size": 9240
+          },
+          {
+            "start": 34982980,
+            "end_exclusive": 34988876,
+            "size": 5896
+          },
+          {
+            "start": 795800,
+            "end_exclusive": 799588,
+            "size": 3788
+          }
+        ]
+      },
+      "header_regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 255
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 29
+        }
+      ],
+      "xor_strings_min16": 24405,
+      "markers": {
+        "FirmwareChkLib.c": [],
+        "CFirmwareManagementService_Execute": [],
+        "4.14.313-ts-aarch64": [
+          86389732,
+          86389788
+        ],
+        "\u007fELF": [
+          22739044,
+          23430852,
+          23886868
+        ]
+      },
+      "candidate_elf_sha256": [
+        "6b89673f8596c4b3f57be3bbe39defe8de2388e624c344bb039a92dbc9f8fca6",
+        "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4"
+      ]
+    },
+    "ZR__0111.bin": {
+      "aligned_comparison": {
+        "compared_bytes": 108716229,
+        "equal_bytes": 12683627,
+        "equal_fraction": 0.1166672824900871,
+        "uncompared_tail_bytes": [
+          0,
+          8443755
+        ],
+        "minimum_run": 64,
+        "longest_equal_runs": [
+          {
+            "start": 10509256,
+            "end_exclusive": 11723572,
+            "size": 1214316
+          },
+          {
+            "start": 21609352,
+            "end_exclusive": 22213428,
+            "size": 604076
+          },
+          {
+            "start": 1004376,
+            "end_exclusive": 1237812,
+            "size": 233436
+          },
+          {
+            "start": 347060,
+            "end_exclusive": 525092,
+            "size": 178032
+          },
+          {
+            "start": 15470,
+            "end_exclusive": 132006,
+            "size": 116536
+          },
+          {
+            "start": 34935028,
+            "end_exclusive": 34988852,
+            "size": 53824
+          },
+          {
+            "start": 970896,
+            "end_exclusive": 1003344,
+            "size": 32448
+          },
+          {
+            "start": 802781,
+            "end_exclusive": 819024,
+            "size": 16243
+          },
+          {
+            "start": 598977,
+            "end_exclusive": 615220,
+            "size": 16243
+          },
+          {
+            "start": 767092,
+            "end_exclusive": 783168,
+            "size": 16076
+          },
+          {
+            "start": 34400567,
+            "end_exclusive": 34406232,
+            "size": 5665
+          },
+          {
+            "start": 794493,
+            "end_exclusive": 798544,
+            "size": 4051
+          }
+        ]
+      },
+      "header_regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 255
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 39
+        }
+      ],
+      "xor_strings_min16": 12085,
+      "markers": {
+        "FirmwareChkLib.c": [
+          80445767
+        ],
+        "CFirmwareManagementService_Execute": [],
+        "4.14.313-ts-aarch64": [],
+        "\u007fELF": [
+          22739044,
+          23430852,
+          23886868
+        ]
+      },
+      "candidate_elf_sha256": [
+        "6b89673f8596c4b3f57be3bbe39defe8de2388e624c344bb039a92dbc9f8fca6",
+        "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4"
+      ],
+      "firmwarechk_reference_match": {
+        "xor_start": 80444993,
+        "xor_end_exclusive": 80447428,
+        "size": 2435,
+        "z8_eg_offset": 77766929,
+        "sha256": "7b0d2c22b56057d92b46ed2ff6776d1a54196ef0f17703cd7376492ee5329269",
+        "attribution": "Pairwise XOR evidence; not independently assigned to either source"
+      }
+    }
+  },
+  "differential_candidates": [
+    {
+      "bits": 32,
+      "type": 2,
+      "machine": 245,
+      "entry": 0,
+      "file_extent": 691804,
+      "segments": [
+        {
+          "type": 1,
+          "offset": 512,
+          "vaddr": 0,
+          "paddr": 0,
+          "file_size": 768,
+          "memory_size": 768,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 1280,
+          "vaddr": 0,
+          "paddr": 0,
+          "file_size": 0,
+          "memory_size": 4,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 1280,
+          "vaddr": 16,
+          "paddr": 16,
+          "file_size": 0,
+          "memory_size": 30728,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 1280,
+          "vaddr": 768,
+          "paddr": 768,
+          "file_size": 25312,
+          "memory_size": 25312,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 26624,
+          "vaddr": 32768,
+          "paddr": 32768,
+          "file_size": 0,
+          "memory_size": 196608,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 26592,
+          "vaddr": 49152,
+          "paddr": 49152,
+          "file_size": 14912,
+          "memory_size": 14912,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 41504,
+          "vaddr": 229376,
+          "paddr": 229376,
+          "file_size": 14720,
+          "memory_size": 15584,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 56224,
+          "vaddr": 249856,
+          "paddr": 249856,
+          "file_size": 0,
+          "memory_size": 12272,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 56224,
+          "vaddr": 249856,
+          "paddr": 249856,
+          "file_size": 0,
+          "memory_size": 12288,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 56224,
+          "vaddr": 1099235328,
+          "paddr": 1099235328,
+          "file_size": 475552,
+          "memory_size": 475552,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 531776,
+          "vaddr": 1100152832,
+          "paddr": 1100152832,
+          "file_size": 0,
+          "memory_size": 524288,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 531776,
+          "vaddr": 1100677120,
+          "paddr": 1100677120,
+          "file_size": 4,
+          "memory_size": 4,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 531792,
+          "vaddr": 1100677136,
+          "paddr": 1100677136,
+          "file_size": 0,
+          "memory_size": 16384,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 531808,
+          "vaddr": 1100693536,
+          "paddr": 1100693536,
+          "file_size": 0,
+          "memory_size": 244100,
+          "flags": 6
+        }
+      ],
+      "sections": [
+        {
+          "type": 0,
+          "vaddr": 0,
+          "offset": 0,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": ""
+        },
+        {
+          "type": 1,
+          "vaddr": 0,
+          "offset": 512,
+          "size": 768,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".inttbl"
+        },
+        {
+          "type": 1,
+          "vaddr": 768,
+          "offset": 1280,
+          "size": 25312,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.fw.internal"
+        },
+        {
+          "type": 1,
+          "vaddr": 49152,
+          "offset": 26592,
+          "size": 14912,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.pursuit"
+        },
+        {
+          "type": 8,
+          "vaddr": 0,
+          "offset": 1280,
+          "size": 4,
+          "link": 0,
+          "entry_size": 0,
+          "name": "null_addr"
+        },
+        {
+          "type": 8,
+          "vaddr": 16,
+          "offset": 1280,
+          "size": 30728,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FREERTOS_MEMORY"
+        },
+        {
+          "type": 8,
+          "vaddr": 32768,
+          "offset": 26624,
+          "size": 196608,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FW_APP_WORKBUF"
+        },
+        {
+          "type": 1,
+          "vaddr": 229376,
+          "offset": 41504,
+          "size": 14720,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.internal"
+        },
+        {
+          "type": 8,
+          "vaddr": 244096,
+          "offset": 56224,
+          "size": 864,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".bss"
+        },
+        {
+          "type": 8,
+          "vaddr": 249856,
+          "offset": 56224,
+          "size": 12272,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__STACK_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 249856,
+          "offset": 56224,
+          "size": 12288,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.pursuit"
+        },
+        {
+          "type": 1,
+          "vaddr": 1099235328,
+          "offset": 56224,
+          "size": 156128,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.fw.external"
+        },
+        {
+          "type": 1,
+          "vaddr": 1099391456,
+          "offset": 212352,
+          "size": 319424,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text"
+        },
+        {
+          "type": 8,
+          "vaddr": 1100152832,
+          "offset": 531776,
+          "size": 524288,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FW_EXT_WORKBUF"
+        },
+        {
+          "type": 1,
+          "vaddr": 1100677120,
+          "offset": 531776,
+          "size": 4,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.external"
+        },
+        {
+          "type": 1,
+          "vaddr": 1100677124,
+          "offset": 531780,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__ARG_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 1100677136,
+          "offset": 531792,
+          "size": 16384,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__MALLOC_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 1100693536,
+          "offset": 531808,
+          "size": 244096,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.internal.clone"
+        },
+        {
+          "type": 8,
+          "vaddr": 1100937632,
+          "offset": 531808,
+          "size": 4,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.external.clone"
+        },
+        {
+          "type": 7,
+          "vaddr": 0,
+          "offset": 531780,
+          "size": 51472,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".note.CEVA-arch"
+        },
+        {
+          "type": 2,
+          "vaddr": 0,
+          "offset": 583252,
+          "size": 64944,
+          "link": 21,
+          "entry_size": 16,
+          "name": ".symtab"
+        },
+        {
+          "type": 3,
+          "vaddr": 0,
+          "offset": 648196,
+          "size": 42393,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".strtab"
+        },
+        {
+          "type": 3,
+          "vaddr": 0,
+          "offset": 690589,
+          "size": 292,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".shstrtab"
+        }
+      ],
+      "artifact": "ceva_015af864.elf",
+      "original_file_offset": 22739044,
+      "sha256": "6b89673f8596c4b3f57be3bbe39defe8de2388e624c344bb039a92dbc9f8fca6",
+      "provenance": {
+        "method": "Equal pairwise XOR results from Z5 II/ZR and Z5 II/Z6 III",
+        "z8_exact_reference_match": false,
+        "attribution": "Z5 II candidate under the shared XOR mask and zero-filled-peer interpretation"
+      },
+      "container_crc_verified": false,
+      "symbol_entries": 4059
+    },
+    {
+      "bits": 32,
+      "type": 2,
+      "machine": 245,
+      "entry": 0,
+      "file_extent": 456004,
+      "segments": [
+        {
+          "type": 1,
+          "offset": 416,
+          "vaddr": 0,
+          "paddr": 0,
+          "file_size": 768,
+          "memory_size": 768,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 1184,
+          "vaddr": 0,
+          "paddr": 0,
+          "file_size": 0,
+          "memory_size": 4,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 1184,
+          "vaddr": 16,
+          "paddr": 16,
+          "file_size": 0,
+          "memory_size": 30728,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 1184,
+          "vaddr": 768,
+          "paddr": 768,
+          "file_size": 24896,
+          "memory_size": 24896,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 26112,
+          "vaddr": 32768,
+          "paddr": 32768,
+          "file_size": 0,
+          "memory_size": 196608,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 26080,
+          "vaddr": 229376,
+          "paddr": 229376,
+          "file_size": 15232,
+          "memory_size": 15420,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 41312,
+          "vaddr": 249856,
+          "paddr": 249856,
+          "file_size": 0,
+          "memory_size": 12272,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 41312,
+          "vaddr": 249856,
+          "paddr": 249856,
+          "file_size": 0,
+          "memory_size": 12288,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 41312,
+          "vaddr": 1101660160,
+          "paddr": 1101660160,
+          "file_size": 285216,
+          "memory_size": 285216,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 326528,
+          "vaddr": 1102577664,
+          "paddr": 1102577664,
+          "file_size": 0,
+          "memory_size": 524288,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 326528,
+          "vaddr": 1103101952,
+          "paddr": 1103101952,
+          "file_size": 9888,
+          "memory_size": 280640,
+          "flags": 6
+        }
+      ],
+      "sections": [
+        {
+          "type": 0,
+          "vaddr": 0,
+          "offset": 0,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": ""
+        },
+        {
+          "type": 1,
+          "vaddr": 0,
+          "offset": 416,
+          "size": 768,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".inttbl"
+        },
+        {
+          "type": 1,
+          "vaddr": 768,
+          "offset": 1184,
+          "size": 24896,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.fw.internal"
+        },
+        {
+          "type": 1,
+          "vaddr": 49152,
+          "offset": 336416,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.pursuit"
+        },
+        {
+          "type": 8,
+          "vaddr": 0,
+          "offset": 1184,
+          "size": 4,
+          "link": 0,
+          "entry_size": 0,
+          "name": "null_addr"
+        },
+        {
+          "type": 8,
+          "vaddr": 16,
+          "offset": 1184,
+          "size": 30728,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FREERTOS_MEMORY"
+        },
+        {
+          "type": 8,
+          "vaddr": 32768,
+          "offset": 26112,
+          "size": 196608,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FW_APP_WORKBUF"
+        },
+        {
+          "type": 1,
+          "vaddr": 229376,
+          "offset": 26080,
+          "size": 15232,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.internal"
+        },
+        {
+          "type": 8,
+          "vaddr": 244608,
+          "offset": 41312,
+          "size": 188,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".bss"
+        },
+        {
+          "type": 8,
+          "vaddr": 249856,
+          "offset": 41312,
+          "size": 12272,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__STACK_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 249856,
+          "offset": 41312,
+          "size": 12288,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.pursuit"
+        },
+        {
+          "type": 1,
+          "vaddr": 1101660160,
+          "offset": 41312,
+          "size": 1952,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.fw.external"
+        },
+        {
+          "type": 1,
+          "vaddr": 1101662112,
+          "offset": 43264,
+          "size": 283264,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text"
+        },
+        {
+          "type": 8,
+          "vaddr": 1102577664,
+          "offset": 326528,
+          "size": 524288,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FW_EXT_WORKBUF"
+        },
+        {
+          "type": 1,
+          "vaddr": 1103101952,
+          "offset": 326528,
+          "size": 9760,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.external"
+        },
+        {
+          "type": 1,
+          "vaddr": 1103111712,
+          "offset": 336288,
+          "size": 128,
+          "link": 0,
+          "entry_size": 0,
+          "name": "KRAN_DEBUG_TIME_SECTION"
+        },
+        {
+          "type": 1,
+          "vaddr": 1103111840,
+          "offset": 336416,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__ARG_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 1103111840,
+          "offset": 336416,
+          "size": 16384,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__MALLOC_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 1103128224,
+          "offset": 336416,
+          "size": 244608,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.internal.clone"
+        },
+        {
+          "type": 8,
+          "vaddr": 1103372832,
+          "offset": 336416,
+          "size": 9760,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.external.clone"
+        },
+        {
+          "type": 7,
+          "vaddr": 0,
+          "offset": 336416,
+          "size": 51176,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".note.CEVA-arch"
+        },
+        {
+          "type": 2,
+          "vaddr": 0,
+          "offset": 387592,
+          "size": 43824,
+          "link": 22,
+          "entry_size": 16,
+          "name": ".symtab"
+        },
+        {
+          "type": 3,
+          "vaddr": 0,
+          "offset": 431416,
+          "size": 23312,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".strtab"
+        },
+        {
+          "type": 3,
+          "vaddr": 0,
+          "offset": 454728,
+          "size": 316,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".shstrtab"
+        }
+      ],
+      "artifact": "ceva_016586c4.elf",
+      "original_file_offset": 23430852,
+      "sha256": "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4",
+      "provenance": {
+        "method": "Equal pairwise XOR results from Z5 II/ZR and Z5 II/Z6 III",
+        "z8_exact_reference_match": true,
+        "attribution": "Z5 II candidate under the shared XOR mask and zero-filled-peer interpretation"
+      },
+      "container_crc_verified": false,
+      "symbol_entries": 2739
+    },
+    {
+      "bits": 32,
+      "type": 2,
+      "machine": 245,
+      "entry": 0,
+      "file_extent": 5750024,
+      "segments": [
+        {
+          "type": 1,
+          "offset": 416,
+          "vaddr": 0,
+          "paddr": 0,
+          "file_size": 768,
+          "memory_size": 768,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 1184,
+          "vaddr": 0,
+          "paddr": 0,
+          "file_size": 0,
+          "memory_size": 4,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 1184,
+          "vaddr": 16,
+          "paddr": 16,
+          "file_size": 0,
+          "memory_size": 16368,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 1184,
+          "vaddr": 768,
+          "paddr": 768,
+          "file_size": 14880,
+          "memory_size": 14880,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 16064,
+          "vaddr": 16384,
+          "paddr": 16384,
+          "file_size": 17097,
+          "memory_size": 17097,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 33216,
+          "vaddr": 36864,
+          "paddr": 36864,
+          "file_size": 0,
+          "memory_size": 225280,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 33184,
+          "vaddr": 1104084992,
+          "paddr": 1104084992,
+          "file_size": 4408448,
+          "memory_size": 4408448,
+          "flags": 5
+        },
+        {
+          "type": 1,
+          "offset": 4441664,
+          "vaddr": 1108803584,
+          "paddr": 1108803584,
+          "file_size": 0,
+          "memory_size": 524288,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 4441632,
+          "vaddr": 1109327872,
+          "paddr": 1109327872,
+          "file_size": 326072,
+          "memory_size": 326072,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 4767712,
+          "vaddr": 1109653952,
+          "paddr": 1109653952,
+          "file_size": 0,
+          "memory_size": 188,
+          "flags": 6
+        },
+        {
+          "type": 1,
+          "offset": 4767712,
+          "vaddr": 1109654144,
+          "paddr": 1109654144,
+          "file_size": 0,
+          "memory_size": 342456,
+          "flags": 6
+        }
+      ],
+      "sections": [
+        {
+          "type": 0,
+          "vaddr": 0,
+          "offset": 0,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": ""
+        },
+        {
+          "type": 1,
+          "vaddr": 0,
+          "offset": 416,
+          "size": 768,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".inttbl"
+        },
+        {
+          "type": 1,
+          "vaddr": 768,
+          "offset": 1184,
+          "size": 14880,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.fw.internal"
+        },
+        {
+          "type": 8,
+          "vaddr": 0,
+          "offset": 1184,
+          "size": 4,
+          "link": 0,
+          "entry_size": 0,
+          "name": "null_addr"
+        },
+        {
+          "type": 8,
+          "vaddr": 16,
+          "offset": 1184,
+          "size": 16368,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__STACK_SECT"
+        },
+        {
+          "type": 1,
+          "vaddr": 16384,
+          "offset": 16064,
+          "size": 17097,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.internal"
+        },
+        {
+          "type": 8,
+          "vaddr": 36864,
+          "offset": 33216,
+          "size": 65536,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FW_APP_WORKBUF"
+        },
+        {
+          "type": 8,
+          "vaddr": 102400,
+          "offset": 33216,
+          "size": 159744,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.internal.cdnn.memory"
+        },
+        {
+          "type": 1,
+          "vaddr": 1104084992,
+          "offset": 33184,
+          "size": 144992,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text.fw.external"
+        },
+        {
+          "type": 1,
+          "vaddr": 1104229984,
+          "offset": 178176,
+          "size": 4263456,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".text"
+        },
+        {
+          "type": 8,
+          "vaddr": 1108803584,
+          "offset": 4441664,
+          "size": 524288,
+          "link": 0,
+          "entry_size": 0,
+          "name": "FW_EXT_WORKBUF"
+        },
+        {
+          "type": 1,
+          "vaddr": 1109327872,
+          "offset": 4441632,
+          "size": 326072,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.external"
+        },
+        {
+          "type": 8,
+          "vaddr": 1109653952,
+          "offset": 4767712,
+          "size": 188,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".bss"
+        },
+        {
+          "type": 1,
+          "vaddr": 1109654140,
+          "offset": 4767704,
+          "size": 0,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__ARG_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 1109654144,
+          "offset": 4767712,
+          "size": 16384,
+          "link": 0,
+          "entry_size": 0,
+          "name": "__MALLOC_SECT"
+        },
+        {
+          "type": 8,
+          "vaddr": 1109670528,
+          "offset": 4767712,
+          "size": 326072,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".data.external.clone"
+        },
+        {
+          "type": 7,
+          "vaddr": 0,
+          "offset": 4767704,
+          "size": 92140,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".note.CEVA-arch"
+        },
+        {
+          "type": 2,
+          "vaddr": 0,
+          "offset": 4859844,
+          "size": 554848,
+          "link": 18,
+          "entry_size": 16,
+          "name": ".symtab"
+        },
+        {
+          "type": 3,
+          "vaddr": 0,
+          "offset": 5414692,
+          "size": 334276,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".strtab"
+        },
+        {
+          "type": 3,
+          "vaddr": 0,
+          "offset": 5748968,
+          "size": 254,
+          "link": 0,
+          "entry_size": 0,
+          "name": ".shstrtab"
+        }
+      ],
+      "artifact": "ceva_016c7c14.elf",
+      "original_file_offset": 23886868,
+      "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+      "provenance": {
+        "method": "Known Z8 reference placed at independently shifted offsets in four firmware images",
+        "z8_exact_reference_match": true,
+        "attribution": "Reference-assisted; do not count the injected reference bytes as an independent discovery"
+      },
+      "container_crc_verified": false,
+      "symbol_entries": 34678
+    }
+  ],
+  "independent_peer_elf_checks": [
+    {
+      "source": "Z6_3_0200.bin",
+      "offset": 24802628,
+      "size": 691804,
+      "sha256": "6b89673f8596c4b3f57be3bbe39defe8de2388e624c344bb039a92dbc9f8fca6",
+      "matches_z5ii_differential_candidate": true,
+      "candidate_used_to_construct_mask": false
+    },
+    {
+      "source": "Z6_3_0200.bin",
+      "offset": 25494436,
+      "size": 456004,
+      "sha256": "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4",
+      "matches_z5ii_differential_candidate": true,
+      "candidate_used_to_construct_mask": false
+    }
+  ],
+  "legacy_phase_probe": {
+    "phases_covered": 16777216,
+    "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+    "reserved_zero_matches": [],
+    "plausible_headers": []
+  },
+  "mask_recovery": {
+    "model": "C[file, offset] = P[file, offset] XOR K[offset]",
+    "start": 23886868,
+    "end_exclusive": 32150968,
+    "size": 8264100,
+    "sha256": "992fddc3d70a494cc928bceb4fb61a11496e1762bd70507f94f265b202d2a5ff",
+    "cribs": [
+      {
+        "source": "Z_f_0301.bin",
+        "offset": 24109988,
+        "size": 5750024,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f"
+      },
+      {
+        "source": "Z6_3_0200.bin",
+        "offset": 25950452,
+        "size": 5750024,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f"
+      },
+      {
+        "source": "ZR__0111.bin",
+        "offset": 26400944,
+        "size": 5750024,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f"
+      },
+      {
+        "source": "Z5_2_0120.bin",
+        "offset": 23886868,
+        "size": 5750024,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f"
+      }
+    ],
+    "overlaps": [
+      {
+        "span_indices": [
+          0,
+          1
+        ],
+        "start": 25950452,
+        "end_exclusive": 29860012,
+        "size": 3909560,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          0,
+          2
+        ],
+        "start": 26400944,
+        "end_exclusive": 29860012,
+        "size": 3459068,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          1,
+          2
+        ],
+        "start": 26400944,
+        "end_exclusive": 31700476,
+        "size": 5299532,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          0,
+          3
+        ],
+        "start": 24109988,
+        "end_exclusive": 29636892,
+        "size": 5526904,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          1,
+          3
+        ],
+        "start": 25950452,
+        "end_exclusive": 29636892,
+        "size": 3686440,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          2,
+          3
+        ],
+        "start": 26400944,
+        "end_exclusive": 29636892,
+        "size": 3235948,
+        "mismatches": 0
+      }
+    ],
+    "bytes_by_reference_count": {
+      "1": 673612,
+      "2": 3680928,
+      "3": 673612,
+      "4": 3235948
+    }
+  },
+  "z5ii_window": {
+    "start": 23886868,
+    "end_exclusive": 32150968,
+    "size": 8264100,
+    "sha256": "a00f4ff2a76663b0ace88d48c266493f02f8c83af1a3a88c8a81c8dd9ffbdcba",
+    "strings_min16": 6451,
+    "beyond_own_reference": {
+      "start": 29636892,
+      "size": 2514076,
+      "sha256": "8ea6e75806d2cc201bc77b37ba4afb3a1b69e5f454b56649de1f3f623a79c2b9",
+      "Darkent2Caffe_offsets": [
+        29636984,
+        30679848
+      ],
+      "independent_z8_prefix_match": {
+        "size": 2126137,
+        "z8_eg_offset": 29036072,
+        "end_exclusive": 31763029,
+        "sha256": "6023e3c7eb2eed395502d1a179df5845251cd7f23c2ec878e8a596001dff863a",
+        "used_to_construct_mask": false
+      }
+    }
+  },
+  "limitations": [
+    "The global keystream generator/key is unknown; only the recorded interval is recovered.",
+    "Reference placement and the shared XOR model are strongly overlap-validated, not authenticated by container CRC.",
+    "Bytes from a source's own reference placement are not independent plaintext validation.",
+    "Pairwise XOR strings can belong to either input; do not attribute them without additional evidence.",
+    "CEVA ELF headers describe embedded DSP modules, not the camera main CPU."
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "sample_sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96",
+  "analyzer_sha256": "81e0fb6273243e6b92cc8fe910de72f39e953e854a9c9ae93808bb72c1a747c9",
+  "nisi": {
+    "version": "0311b0",
+    "block_size": 2048,
+    "entries": [
+      {
+        "name": "Image",
+        "offset": 2048,
+        "size": 5963784,
+        "allocated_size": 5965824,
+        "reserved": 0,
+        "sha256": "6fe644e96fcffa1204968d656edf951098d31aae079d96a98791f91b99a2223e",
+        "padding_byte_counts": {
+          "0": 2040
+        }
+      },
+      {
+        "name": "rootfs.cpio.gz",
+        "offset": 5967872,
+        "size": 9846203,
+        "allocated_size": 9846784,
+        "reserved": 0,
+        "sha256": "679c827574f8711acbcb17199e8b707b43bd251690df1192aded142dbbdc9b00",
+        "padding_byte_counts": {
+          "0": 581
+        }
+      },
+      {
+        "name": "device_tree_0.dtb",
+        "offset": 15814656,
+        "size": 3141,
+        "allocated_size": 4096,
+        "reserved": 0,
+        "sha256": "132dc39913d198004d9cd34b34504e440f37f529944b4b16d34ce9ad956e9b03",
+        "padding_byte_counts": {
+          "0": 955
+        }
+      },
+      {
+        "name": "device_tree_1.dtb",
+        "offset": 15818752,
+        "size": 3168,
+        "allocated_size": 4096,
+        "reserved": 0,
+        "sha256": "bd0570964495d5609e47b05a9f7b7158a0cc6714714f539f75e8dd90afe8dce3",
+        "padding_byte_counts": {
+          "0": 928
+        }
+      }
+    ]
+  },
+  "linux": {
+    "banner": "Linux version 4.14.224-ts-aarch64 (n8410@n8410) (gcc version 6.5.0 (Timesys 20200228)) #1 SMP PREEMPT Mon Dec 23 10:24:17 JST 2024",
+    "image_header_text_offset": 0,
+    "image_header_memory_size": 6320128,
+    "cpio_size": 23337472,
+    "cpio_sha256": "4503d2c0f8fc944b2f74598cd8e7711058840264f23e43ac7c39df7c9ab6a738",
+    "inventory_counts": {
+      "directory": 105,
+      "symlink": 406,
+      "regular": 272,
+      "char_device": 37
+    },
+    "kernel_config_sha256": "3240988b9ed728b7ecf870834b5d8efc5aeb681c560e13cf7ea700ea7289c200",
+    "LaMainApp_sha256": "d9abc0aac413318fbf0076347b160414779e424987f9d68b26c1c8cb0ba61428"
+  },
+  "eg": {
+    "boot_base": 1075183616,
+    "main_entry": 1075220944,
+    "descriptor_offset": 32768,
+    "descriptor_qwords": [
+      1075220944,
+      43029696512,
+      65536,
+      43029762048,
+      43029766144,
+      65536,
+      43029831680,
+      43029831680,
+      65536,
+      43029897216,
+      43029901312,
+      65536,
+      43029966848,
+      43029966848,
+      65536,
+      43030032384,
+      43030036480,
+      65536,
+      43030102016,
+      32768,
+      21884900,
+      1075216384,
+      21917696,
+      56799968,
+      1097101312,
+      32768,
+      2805760,
+      42991648768,
+      3125248,
+      34136064,
+      42994741248,
+      0,
+      16384,
+      43028889600,
+      0,
+      786432,
+      43028905984,
+      1075183616,
+      3125248,
+      1072,
+      3,
+      78721024,
+      42991616000,
+      1096810496
+    ],
+    "initialized_data": {
+      "file_offset": 78721024,
+      "destination": 42991648768,
+      "size": 2805760
+    },
+    "bss": {
+      "destination": 42994741248,
+      "size": 34136064
+    },
+    "note": "Data copy follows descriptor use at EG offsets 0x138c-0x13a8; not a complete memory map"
+  },
+  "eg_markers": {
+    "Ver.03.11.b0": [
+      21932684,
+      80857967,
+      81807696
+    ],
+    "SOLID CS ENTRY.": [
+      81486976
+    ],
+    "toppers_fmp/fmp_1.4.0": [
+      81488232,
+      81488337,
+      81488474,
+      81488652,
+      81488756,
+      81489056,
+      81489170,
+      81489696,
+      81490017
+    ],
+    "FirmwareManagement_Device_Linux.c": [
+      66475285
+    ],
+    "FirmwareManagement_Device_Ai.c": [
+      66475447
+    ],
+    "NISI": [
+      42598910
+    ],
+    "MovieRecord": [
+      66529584,
+      66529620,
+      66529695,
+      80525420,
+      80528780
+    ],
+    "ProRes": [
+      43327875,
+      43327987,
+      43895178,
+      43895192,
+      67222042,
+      80527868,
+      80528804,
+      80528924
+    ],
+    "N-RAW": [
+      43895172
+    ],
+    "NikonTask_RTOS_TaskSwitchIn": [
+      22788539,
+      22806533,
+      23263567,
+      23275351
+    ]
+  },
+  "ex": {
+    "base": 134217728,
+    "initial_sp": 536873992,
+    "reset_vector_thumb": 134218421
+  },
+  "embedded_elf_count": 3,
+  "disassembly": "code_landmarks.asm"
+}

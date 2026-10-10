@@ -137,3 +137,10 @@ B Firmware
 file: b830nnna.bin  
 processor: FR BE  
 
+Z-series
+========
+
+- [Z6 3.80 report](../firmware%20decode/z-series/analysis/Z_6_0380/REPORT.md): ARM/Thumb, SMP T-Kernel, main image base `0x10020000`.
+- [Z8 3.11 report](../firmware%20decode/z-series/analysis/Z_8_0311/REPORT.md): AArch64, SOLID/TOPPERS, Linux 4.14.224, and CEVA ELF images.
+- [ZR 1.11 report](../firmware%20decode/z-series/analysis/ZR__0111/REPORT.md): revised prefix structure, legacy XOR phase search, and recovered Z8 prefix SHA-1 check; ZR payload remains undecoded.
+- [Tools and reproduction commands](../firmware%20decode/z-series/README.md).

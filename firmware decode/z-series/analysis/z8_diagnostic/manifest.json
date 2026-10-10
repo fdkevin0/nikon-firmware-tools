@@ -1,0 +1,278 @@
+{
+  "input_sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96",
+  "output_sha256": "b7a80c0ff0cd08eea7bda2c4647f70bb114f60909b53ef877c7deb4605d14e9c",
+  "input_eg_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "output_eg_sha256": "d4d6f68ff25813f72412dea295c39685615ae30f7fbbbe35cfffef37132f9c50",
+  "output_size": 99051117,
+  "module": "eg2070_0311b0.bi",
+  "edits": [
+    {
+      "address": "0x407fe27c",
+      "module_offset": "0x69e27c",
+      "expected_hex": "ff4301d1",
+      "replacement_hex": "e1932a14"
+    },
+    {
+      "address": "0x412a3200",
+      "module_offset": "0x1143200",
+      "expected_hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "replacement_hex": "080c4079a99f92521f01096be1030054080c40b9e91f9e521f01096b61030054080040b91f810071a1010054080840791f05007181010054082442290a2c43290801092a08010a2a08010b2ac800003521008452e301001005000014c100845202000014a1038452e3010010a200805204008052fe0f1ff897efd497fe0741f800008052c0035fd6ff4301d1fd6bd517012000004e4644470000010016080000110300000000000000000000000000000000000000000000"
+    }
+  ],
+  "module_crcs_valid": 5,
+  "package_crc_valid": true,
+  "header_sha1_valid": true,
+  "module_extents_unchanged": true,
+  "other_modules_unchanged": true,
+  "header_tail_unchanged": true,
+  "stock_round_trip_exact": true,
+  "patched_header_changed": true,
+  "scope": "Experimental offline build; no USB, flashing or full boot validation",
+  "placement": {
+    "address": "0x412a3200",
+    "reserved_bytes": 512,
+    "code_mapping": {
+      "file_offset": "0x8000",
+      "size": "0x14defe4",
+      "address": "0x40168000",
+      "flags": "0xf"
+    },
+    "preceding_function_return": "0x412a31f0",
+    "same_4k_page_as_stock_function": true,
+    "zero_padding_file_range": [
+      "0x11431f4",
+      "0x14a1000"
+    ],
+    "pc_relative_references": [],
+    "complete_mov_references": [],
+    "absolute_64bit_references": [],
+    "stock_subcommand_count": 182,
+    "limit": "Static placement evidence only; computed references and full boot were not verified."
+  },
+  "compilation": {
+    "tools": {
+      "clang": "clang version 21.0.0 (https://github.com/swiftlang/llvm-project.git 903b9faaae5c43ecc9b7e33f8db9c94c7429374a)",
+      "ld.lld": "LLD 21.0.0 (https://github.com/swiftlang/llvm-project.git 903b9faaae5c43ecc9b7e33f8db9c94c7429374a) (compatible with GNU linkers)",
+      "llvm-objcopy": "llvm-objcopy, compatible with GNU objcopy"
+    },
+    "source_sha256": "b988ee708febd6279e55168db156b662a81714866a136914ec171f9c46bc5374",
+    "payload_sha256": "c3ad9f41b3b0e702810d717c1f8516d1bb52bba5dd751d615bff139f0fdf6762",
+    "payload_bytes": 184
+  },
+  "verification": {
+    "stock_subcommands_compared": 182,
+    "differential_cases": 1724,
+    "diagnostic_success_cases": 16,
+    "malformed_cases": 21,
+    "diagnostic_samples": [
+      {
+        "state": 0,
+        "callback_registered": false,
+        "response_hex": "200000000300012000000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 0
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": false,
+        "response_hex": "200000000300012001000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 1
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": false,
+        "response_hex": "200000000300012078563412012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 305419896
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": false,
+        "response_hex": "2000000003000120ffffffff012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 4294967295
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": true,
+        "response_hex": "200000000300012000000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 0
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": true,
+        "response_hex": "200000000300012001000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 1
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": true,
+        "response_hex": "200000000300012078563412012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 305419896
+        }
+      },
+      {
+        "state": 0,
+        "callback_registered": true,
+        "response_hex": "2000000003000120ffffffff012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 4294967295
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": false,
+        "response_hex": "200000000300012000000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 0
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": false,
+        "response_hex": "200000000300012001000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 1
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": false,
+        "response_hex": "200000000300012078563412012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 305419896
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": false,
+        "response_hex": "2000000003000120ffffffff012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 4294967295
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": true,
+        "response_hex": "200000000300012000000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 0
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": true,
+        "response_hex": "200000000300012001000000012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 1
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": true,
+        "response_hex": "200000000300012078563412012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 305419896
+        }
+      },
+      {
+        "state": 1,
+        "callback_registered": true,
+        "response_hex": "2000000003000120ffffffff012000004e464447000001001608000011030000",
+        "decoded": {
+          "identity": "NFDG",
+          "patch_version": "1.0.0",
+          "model_id": 2070,
+          "base_firmware": "0x0311",
+          "transaction_id": 4294967295
+        }
+      }
+    ],
+    "stock_rejection_code": "0x201d",
+    "request_and_private_state_unchanged": true,
+    "callee_saved_registers_preserved": true,
+    "diagnostic_writes_confined_to_stack_and_response": true,
+    "stock_response_serializer_executed": true,
+    "payload_address": "0x412a3200",
+    "payload_bytes": 184,
+    "intercepted": {
+      "0x407de308": "OS event helper",
+      "0x40857704": "transport callback",
+      "0x407df2c4": "empty data phase on stock 0x94ff error path",
+      "0x407fe0bc": "per-command precheck, only in stock differential cases"
+    },
+    "limits": "No full boot, full PTP dispatch loop, USB delivery, camera backends or flashing."
+  },
+  "output_file": "Z_8_0311_diagnostic_EXPERIMENTAL.bin",
+  "usb_commands_sent": 0
+}

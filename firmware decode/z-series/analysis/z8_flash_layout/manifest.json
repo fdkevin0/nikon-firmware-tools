@@ -1,0 +1,686 @@
+{
+  "image_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "scope": "Offline success-path address plan; hardware calls and all flash readback checks bypassed; synthetic source is unmapped; no camera access",
+  "groups": [
+    {
+      "index": 0,
+      "base": "0x40000000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1441792,
+        1441792,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 1441792,
+      "content_length": 1441792
+    },
+    {
+      "index": 1,
+      "base": "0x40000000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1441792,
+        1441792,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 1441792,
+      "content_length": 1441792
+    },
+    {
+      "index": 2,
+      "base": "0x40160000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        92405760,
+        92405760,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 92405760,
+      "content_length": 92405760
+    },
+    {
+      "index": 3,
+      "base": "0x45980000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        393216,
+        393216,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 393216,
+      "content_length": 393216
+    },
+    {
+      "index": 4,
+      "base": "0x45980000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 0,
+      "content_length": 0
+    },
+    {
+      "index": 5,
+      "base": "0x459e0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        1,
+        0,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 6,
+      "base": "0x45a00000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 7,
+      "base": "0x45a20000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131068,
+        1,
+        0,
+        65537,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131068
+    },
+    {
+      "index": 8,
+      "base": "0x45a40000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131068,
+        0,
+        0,
+        65536,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131068
+    },
+    {
+      "index": 9,
+      "base": "0x45a60000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 10,
+      "base": "0x45a80000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 11,
+      "base": "0x45aa0000",
+      "raw_remaining_u32": [
+        1172832256,
+        0,
+        2490368,
+        2392064,
+        1,
+        0,
+        16842752,
+        1
+      ],
+      "allocation_length": 2490368,
+      "content_length": 2392064
+    },
+    {
+      "index": 12,
+      "base": "0x45d00000",
+      "raw_remaining_u32": [
+        1175322624,
+        0,
+        655360,
+        384440,
+        1,
+        0,
+        16842752,
+        1
+      ],
+      "allocation_length": 655360,
+      "content_length": 384440
+    },
+    {
+      "index": 13,
+      "base": "0x45de0000",
+      "raw_remaining_u32": [
+        1176240128,
+        0,
+        131072,
+        131064,
+        1,
+        0,
+        16842753,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131064
+    },
+    {
+      "index": 14,
+      "base": "0x45e00000",
+      "raw_remaining_u32": [
+        1176371200,
+        0,
+        131072,
+        131064,
+        1,
+        0,
+        16842753,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131064
+    },
+    {
+      "index": 15,
+      "base": "0x45e20000",
+      "raw_remaining_u32": [
+        1176502272,
+        0,
+        262144,
+        262144,
+        0,
+        2,
+        16842753,
+        1
+      ],
+      "allocation_length": 262144,
+      "content_length": 262144
+    },
+    {
+      "index": 16,
+      "base": "0x45e60000",
+      "raw_remaining_u32": [
+        1176764416,
+        0,
+        131072,
+        131064,
+        0,
+        0,
+        16842753,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131064
+    },
+    {
+      "index": 17,
+      "base": "0x462a0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        262144,
+        262140,
+        0,
+        0,
+        65537,
+        1
+      ],
+      "allocation_length": 262144,
+      "content_length": 262140
+    },
+    {
+      "index": 18,
+      "base": "0x462e0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131068,
+        0,
+        0,
+        65536,
+        20
+      ],
+      "allocation_length": 131072,
+      "content_length": 131068
+    },
+    {
+      "index": 19,
+      "base": "0x46300000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        655360,
+        655356,
+        0,
+        0,
+        65536,
+        9
+      ],
+      "allocation_length": 655360,
+      "content_length": 655356
+    },
+    {
+      "index": 20,
+      "base": "0x463c0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        32768,
+        1,
+        0,
+        1,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 32768
+    },
+    {
+      "index": 21,
+      "base": "0x463e0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        1,
+        0,
+        1,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 22,
+      "base": "0x46400000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 23,
+      "base": "0x46420000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        77824,
+        1,
+        0,
+        65536,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 77824
+    },
+    {
+      "index": 24,
+      "base": "0x46460000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        60928,
+        1,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 60928
+    },
+    {
+      "index": 25,
+      "base": "0x464a0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        0,
+        1,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 26,
+      "base": "0x464c0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        131072,
+        131072,
+        0,
+        0,
+        1,
+        1
+      ],
+      "allocation_length": 131072,
+      "content_length": 131072
+    },
+    {
+      "index": 27,
+      "base": "0x464e0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        262144,
+        262144,
+        0,
+        0,
+        0,
+        1
+      ],
+      "allocation_length": 262144,
+      "content_length": 262144
+    },
+    {
+      "index": 28,
+      "base": "0x46ca0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        917504,
+        860160,
+        1,
+        0,
+        65536,
+        1
+      ],
+      "allocation_length": 917504,
+      "content_length": 860160
+    },
+    {
+      "index": 29,
+      "base": "0x46dc0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        9437184,
+        9437184,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 9437184,
+      "content_length": 9437184
+    },
+    {
+      "index": 30,
+      "base": "0x46dc0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1572864,
+        1572864,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 1572864,
+      "content_length": 1572864
+    },
+    {
+      "index": 31,
+      "base": "0x46f40000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1572864,
+        1572864,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 1572864,
+      "content_length": 1572864
+    },
+    {
+      "index": 32,
+      "base": "0x470c0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1572864,
+        1572864,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 1572864,
+      "content_length": 1572864
+    },
+    {
+      "index": 33,
+      "base": "0x47240000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1572864,
+        1572864,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 1572864,
+      "content_length": 1572864
+    },
+    {
+      "index": 34,
+      "base": "0x473c0000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1572864,
+        1572864,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 1572864,
+      "content_length": 1572864
+    },
+    {
+      "index": 35,
+      "base": "0x47540000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1572864,
+        1572864,
+        0,
+        3,
+        0,
+        1
+      ],
+      "allocation_length": 1572864,
+      "content_length": 1572864
+    },
+    {
+      "index": 36,
+      "base": "0x47700000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        5242880,
+        2052096,
+        1,
+        0,
+        65536,
+        1
+      ],
+      "allocation_length": 5242880,
+      "content_length": 2052096
+    },
+    {
+      "index": 37,
+      "base": "0x47e80000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        7340032,
+        3981312,
+        0,
+        0,
+        65536,
+        1
+      ],
+      "allocation_length": 7340032,
+      "content_length": 3981312
+    },
+    {
+      "index": 38,
+      "base": "0x47e80000",
+      "raw_remaining_u32": [
+        0,
+        0,
+        1048576,
+        991232,
+        1,
+        0,
+        65536,
+        1
+      ],
+      "allocation_length": 1048576,
+      "content_length": 991232
+    }
+  ],
+  "resource_info": {
+    "0x2": {
+      "ram_pointer": "0x0",
+      "mapped_base": "0x40160000",
+      "relative_offset": 0,
+      "content_length": 0,
+      "allocation_length": 92405760
+    },
+    "0x5b": {
+      "ram_pointer": "0x0",
+      "mapped_base": "0x47e80000",
+      "relative_offset": 0,
+      "content_length": 3981312,
+      "allocation_length": 7340032
+    },
+    "0x5c": {
+      "ram_pointer": "0x0",
+      "mapped_base": "0x47e80000",
+      "relative_offset": 0,
+      "content_length": 991232,
+      "allocation_length": 1048576
+    }
+  },
+  "eg_update": {
+    "range_start": "0x40160000",
+    "range_end_exclusive": "0x45980000",
+    "erase_calls": 705,
+    "program_calls": 705,
+    "block_bytes": 131072,
+    "first_block_programmed_last": true,
+    "synthetic_source": "0x60000000",
+    "return_with_stubs": 0,
+    "stubbed_functions": [
+      "0xa02ab30bc",
+      "0xa02ab3120",
+      "0xa02ab3730",
+      "0xa02ab4304",
+      "0xa02ab4388",
+      "0xa02ab43cc"
+    ],
+    "skipped_readback_excerpts": {
+      "0xa02ab4074": 704,
+      "0xa02ab40ac": 704,
+      "0xa02ab4158": 704,
+      "0xa02ab4000": 1
+    },
+    "overlap_with_sensor_parameter_allocation": false,
+    "gap_to_sensor_parameter_allocation": 38797312
+  },
+  "ai_named_device": {
+    "block_address": "0x46480000",
+    "block_bytes": 131072,
+    "scope": "Getter executed; updater statically inspected only"
+  },
+  "actual_flash_operations": 0,
+  "actual_parameter_bytes_recovered": 0
+}

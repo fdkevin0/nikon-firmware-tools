@@ -1,0 +1,575 @@
+{
+  "source": "Z_f_0301.bin",
+  "status": "not_decoded",
+  "section_count": null,
+  "architecture": null,
+  "crc_verified": false,
+  "analyzer_sha256": "3de29d0b7dfcf31ec064723f57052aa4947627e3c9efb6d8c3ab6d7aafc31a89",
+  "samples": {
+    "Z_f_0301.bin": {
+      "size": 107820261,
+      "sha256": "bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6",
+      "size_minus_0x280_mod16": 5,
+      "first32_hex": "420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3",
+      "reverse_copy_valid": true,
+      "space_marker_valid": true,
+      "u16_table": {
+        "count": 128,
+        "unique": 128,
+        "min": 153,
+        "max": 32757,
+        "all_below_0x8000": true
+      }
+    },
+    "Z_f_0121.bin": {
+      "size": 90124933,
+      "sha256": "0c6ea7c59659bade5c8ca08d1275451e592b2b87e3482373008e63583ab9deda",
+      "size_minus_0x280_mod16": 5,
+      "first32_hex": "420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3",
+      "reverse_copy_valid": true,
+      "space_marker_valid": true,
+      "u16_table": {
+        "count": 128,
+        "unique": 128,
+        "min": 153,
+        "max": 32757,
+        "all_below_0x8000": true
+      }
+    },
+    "Z6_3_0200.bin": {
+      "size": 117641453,
+      "sha256": "b5c08335dc79d3d36d7bad0976434134db8ce160886d1c8c2935f3b185bcdbc9",
+      "size_minus_0x280_mod16": 13,
+      "first32_hex": "420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3",
+      "reverse_copy_valid": true,
+      "space_marker_valid": true,
+      "u16_table": {
+        "count": 128,
+        "unique": 128,
+        "min": 153,
+        "max": 32757,
+        "all_below_0x8000": true
+      }
+    },
+    "Z5_2_0120.bin": {
+      "size": 108716229,
+      "sha256": "96fa8c2d735864c4c612dee498818f2e3b6911458b13ad55befcfe9ffdf35af9",
+      "size_minus_0x280_mod16": 5,
+      "first32_hex": "420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3",
+      "reverse_copy_valid": true,
+      "space_marker_valid": true,
+      "u16_table": {
+        "count": 128,
+        "unique": 128,
+        "min": 153,
+        "max": 32757,
+        "all_below_0x8000": true
+      }
+    },
+    "ZR__0111.bin": {
+      "size": 117159984,
+      "sha256": "de1eb5af56568e4921a0eb5e50942f06a6c00205f76dd9d2a4e42364d7476e93",
+      "size_minus_0x280_mod16": 0,
+      "first32_hex": "420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3",
+      "reverse_copy_valid": true,
+      "space_marker_valid": true,
+      "u16_table": {
+        "count": 128,
+        "unique": 128,
+        "min": 153,
+        "max": 32757,
+        "all_below_0x8000": true
+      }
+    }
+  },
+  "header_comparisons": {
+    "Z_f_0121.bin": {
+      "regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 255
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 20
+        }
+      ],
+      "directory_xor_rows": [
+        {
+          "offset": 640,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 656,
+          "xor_hex": "00000000000000000302005400000000"
+        },
+        {
+          "offset": 672,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 688,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 704,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 720,
+          "xor_hex": "00000000000000000202000000000000"
+        },
+        {
+          "offset": 736,
+          "xor_hex": "0000000000e356a00000000000000000"
+        },
+        {
+          "offset": 752,
+          "xor_hex": "00000000000000000000020000000000"
+        },
+        {
+          "offset": 768,
+          "xor_hex": "009d5260000000000000000000000000"
+        },
+        {
+          "offset": 784,
+          "xor_hex": "00000000000000000202000000000000"
+        },
+        {
+          "offset": 800,
+          "xor_hex": "00a7f260016b70000000000000000000"
+        }
+      ]
+    },
+    "Z6_3_0200.bin": {
+      "regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 256
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 28
+        }
+      ],
+      "directory_xor_rows": [
+        {
+          "offset": 640,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 656,
+          "xor_hex": "00000001000000000000000500000000"
+        },
+        {
+          "offset": 672,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 688,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 704,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 720,
+          "xor_hex": "00000001000000000100015901000000"
+        },
+        {
+          "offset": 736,
+          "xor_hex": "0000000001fcd4080000000000000000"
+        },
+        {
+          "offset": 752,
+          "xor_hex": "00000001000000000000020000000000"
+        },
+        {
+          "offset": 768,
+          "xor_hex": "0194d418000000000000000000000000"
+        },
+        {
+          "offset": 784,
+          "xor_hex": "00000001000000000100015901000000"
+        },
+        {
+          "offset": 800,
+          "xor_hex": "01ac4c08003e10000000000000000000"
+        }
+      ]
+    },
+    "Z5_2_0120.bin": {
+      "regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 255
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 30
+        }
+      ],
+      "directory_xor_rows": [
+        {
+          "offset": 640,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 656,
+          "xor_hex": "00000003060000000300005400000000"
+        },
+        {
+          "offset": 672,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 688,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 704,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 720,
+          "xor_hex": "00000003060000000202015900000000"
+        },
+        {
+          "offset": 736,
+          "xor_hex": "000000000074cce00000000000000000"
+        },
+        {
+          "offset": 752,
+          "xor_hex": "00000003060000000000020000000000"
+        },
+        {
+          "offset": 768,
+          "xor_hex": "000ccc20000000000000000000000000"
+        },
+        {
+          "offset": 784,
+          "xor_hex": "00000003060000000202015900000000"
+        },
+        {
+          "offset": 800,
+          "xor_hex": "00144420003e28000000000000000000"
+        }
+      ]
+    },
+    "ZR__0111.bin": {
+      "regions": [
+        {
+          "name": "fixed_first32",
+          "start": 0,
+          "end_exclusive": 32,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_256_bytes",
+          "start": 32,
+          "end_exclusive": 288,
+          "different_bytes": 256
+        },
+        {
+          "name": "fixed_128_u16",
+          "start": 288,
+          "end_exclusive": 544,
+          "different_bytes": 0
+        },
+        {
+          "name": "reversed_first32",
+          "start": 544,
+          "end_exclusive": 576,
+          "different_bytes": 0
+        },
+        {
+          "name": "variable_32_bytes",
+          "start": 576,
+          "end_exclusive": 608,
+          "different_bytes": 32
+        },
+        {
+          "name": "space_marker",
+          "start": 608,
+          "end_exclusive": 640,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_directory_header",
+          "start": 640,
+          "end_exclusive": 656,
+          "different_bytes": 0
+        },
+        {
+          "name": "candidate_five_directory_entries",
+          "start": 656,
+          "end_exclusive": 816,
+          "different_bytes": 41
+        }
+      ],
+      "directory_xor_rows": [
+        {
+          "offset": 640,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 656,
+          "xor_hex": "00000003000000000300015400000069"
+        },
+        {
+          "offset": 672,
+          "xor_hex": "00000000000000000000000000000000"
+        },
+        {
+          "offset": 688,
+          "xor_hex": "00000019000100010701000000000000"
+        },
+        {
+          "offset": 704,
+          "xor_hex": "0000003200031c000000000000000000"
+        },
+        {
+          "offset": 720,
+          "xor_hex": "00000003000000000201000000000069"
+        },
+        {
+          "offset": 736,
+          "xor_hex": "00031c2401f689300000000000000000"
+        },
+        {
+          "offset": 752,
+          "xor_hex": "00000003000000000000020000000069"
+        },
+        {
+          "offset": 768,
+          "xor_hex": "018dafcb000000000000000000000000"
+        },
+        {
+          "offset": 784,
+          "xor_hex": "00000003000000000201000000000069"
+        },
+        {
+          "offset": 800,
+          "xor_hex": "0194a7c3003e20000000000000000000"
+        }
+      ]
+    }
+  },
+  "same_model_aligned_comparison": {
+    "compared_bytes": 90124933,
+    "equal_bytes": 19306879,
+    "equal_fraction": 0.21422350460998402,
+    "uncompared_tail_bytes": [
+      17695328,
+      0
+    ],
+    "minimum_run": 64,
+    "longest_equal_runs": [
+      {
+        "start": 18434776,
+        "end_exclusive": 22515141,
+        "size": 4080365
+      },
+      {
+        "start": 8397348,
+        "end_exclusive": 11723596,
+        "size": 3326248
+      },
+      {
+        "start": 767026,
+        "end_exclusive": 1237854,
+        "size": 470828
+      },
+      {
+        "start": 335896,
+        "end_exclusive": 525089,
+        "size": 189193
+      },
+      {
+        "start": 15470,
+        "end_exclusive": 132008,
+        "size": 116538
+      },
+      {
+        "start": 525106,
+        "end_exclusive": 615229,
+        "size": 90123
+      },
+      {
+        "start": 32630774,
+        "end_exclusive": 32695092,
+        "size": 64318
+      },
+      {
+        "start": 42085501,
+        "end_exclusive": 42132276,
+        "size": 46775
+      },
+      {
+        "start": 32584460,
+        "end_exclusive": 32630773,
+        "size": 46313
+      },
+      {
+        "start": 41698913,
+        "end_exclusive": 41739060,
+        "size": 40147
+      },
+      {
+        "start": 1773601,
+        "end_exclusive": 1803990,
+        "size": 30389
+      },
+      {
+        "start": 22520438,
+        "end_exclusive": 22550388,
+        "size": 29950
+      }
+    ],
+    "sources": [
+      "Z_f_0301.bin",
+      "Z_f_0121.bin"
+    ]
+  },
+  "legacy_phase_probe": {
+    "phases_covered": 16777216,
+    "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+    "reserved_zero_matches": [],
+    "plausible_headers": []
+  },
+  "candidate_directory": {
+    "assumptions": "Unverified legacy schema: count=5, header_size=0xd0, reserved=0; XOR transform",
+    "encrypted_header_hex": "e14c9918cd6382668a35f65123f14e4f",
+    "assumed_plaintext_hex": "00000005000000d00000000000000000",
+    "conditional_mask_hex": "e14c991dcd6382b68a35f65123f14e4f",
+    "candidate_first_section_offset": 816,
+    "verified": false
+  },
+  "limitations": [
+    "Ciphertext equality does not establish plaintext equality without an encoding model.",
+    "The five-entry directory is a hypothesis; no section names or CRCs are recovered.",
+    "A common position-dependent XOR mask is consistent with the evidence but not proven.",
+    "File alignment alone cannot identify a cipher or exclude partially encrypted formats."
+  ]
+}

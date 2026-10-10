@@ -1,0 +1,7003 @@
+{
+  "image_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "resource_flow": {
+    "assigned_ram_pointer": "0xa155d78c0",
+    "missing_read": {
+      "address": "0x47f7fffc",
+      "size": 1,
+      "pc": "0x40d70468"
+    },
+    "synthetic_footer": {
+      "address": "0x47f7fffc",
+      "bytes": "ENDM"
+    },
+    "intercepted_copy": {
+      "destination": "0xa155d78c0",
+      "source": "0x47e80000",
+      "length": 991232
+    },
+    "loader_return_with_copy_stub": 1,
+    "getter_after_simulated_load": "0xa155d78c0",
+    "actual_parameter_bytes_loaded": 0
+  },
+  "capture_flow": {
+    "scope": "Context+0=1, FPS at context+0x394=6; other state zero except listed fields; DataID 0x230b zero; code excerpts composed by harness; direct bulk reads replace transaction reader",
+    "dataid_auxiliary": {
+      "id": "0x230b",
+      "record_address": "0x44019068",
+      "kind": 9,
+      "storage_address": "0xa03d7cb34"
+    },
+    "fps_dataid": {
+      "id": "0x2171",
+      "record_address": "0x44018198",
+      "kind": 9,
+      "storage_address": "0xa03d7c8d8"
+    },
+    "fps_probes": [
+      {
+        "enum": 0,
+        "fps_label": 120,
+        "snapshot_3a0": 0,
+        "packed_mode": "0x2040122400780000"
+      },
+      {
+        "enum": 1,
+        "fps_label": 100,
+        "snapshot_3a0": 1,
+        "packed_mode": "0x2040122400640000"
+      },
+      {
+        "enum": 2,
+        "fps_label": 60,
+        "snapshot_3a0": 2,
+        "packed_mode": "0x20401224003c0000"
+      },
+      {
+        "enum": 3,
+        "fps_label": 50,
+        "snapshot_3a0": 3,
+        "packed_mode": "0x2040122400320000"
+      },
+      {
+        "enum": 4,
+        "fps_label": 30,
+        "snapshot_3a0": 4,
+        "packed_mode": "0x20401224001e0000"
+      },
+      {
+        "enum": 5,
+        "fps_label": 25,
+        "snapshot_3a0": 5,
+        "packed_mode": "0x2040122400190000"
+      },
+      {
+        "enum": 6,
+        "fps_label": 24,
+        "snapshot_3a0": 6,
+        "packed_mode": "0x2040122400180000"
+      }
+    ],
+    "capture_builder_ids": [
+      "0x218c",
+      "0x2124",
+      "0x2167",
+      "0x400211e",
+      "0x4002120",
+      "0x2171",
+      "0x400211b",
+      "0x2312",
+      "0x2869",
+      "0x286a",
+      "0x286b"
+    ],
+    "capture_builder_records": [
+      {
+        "id": "0x218c",
+        "record_address": "0x44018420",
+        "kind": 9,
+        "storage_address": "0xa03d7c94c"
+      },
+      {
+        "id": "0x2124",
+        "record_address": "0x44017a60",
+        "kind": 9,
+        "storage_address": "0xa03d7c79c"
+      },
+      {
+        "id": "0x2167",
+        "record_address": "0x440180a8",
+        "kind": 9,
+        "storage_address": "0xa03d7c8b0"
+      },
+      {
+        "id": "0x400211e",
+        "record_address": "0x440179d0",
+        "kind": 9,
+        "storage_address": "0xa03d7c778"
+      },
+      {
+        "id": "0x4002120",
+        "record_address": "0x44017a00",
+        "kind": 9,
+        "storage_address": "0xa03d7c780"
+      },
+      {
+        "id": "0x2171",
+        "record_address": "0x44018198",
+        "kind": 9,
+        "storage_address": "0xa03d7c8d8"
+      },
+      {
+        "id": "0x400211b",
+        "record_address": "0x44017988",
+        "kind": 9,
+        "storage_address": "0xa03d7c76c"
+      },
+      {
+        "id": "0x2312",
+        "record_address": "0x44019110",
+        "kind": 9,
+        "storage_address": "0xa03d7cb50"
+      },
+      {
+        "id": "0x2869",
+        "record_address": "0x4401b660",
+        "kind": 9,
+        "storage_address": "0xa03d7d368"
+      },
+      {
+        "id": "0x286a",
+        "record_address": "0x4401b678",
+        "kind": 9,
+        "storage_address": "0xa03d7d36c"
+      },
+      {
+        "id": "0x286b",
+        "record_address": "0x4401b690",
+        "kind": 9,
+        "storage_address": "0xa03d7d370"
+      }
+    ],
+    "service_size_map": [
+      1,
+      2,
+      3,
+      2,
+      2,
+      3
+    ],
+    "service_kind_map": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      0,
+      8
+    ],
+    "probe_count": 1134,
+    "example_baseline": [
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 0,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 0,
+        "backend_mode": 0
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 1,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 1,
+        "backend_mode": 17
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 2,
+        "derived_selector": 4,
+        "request_kind": 5,
+        "request_submode": 2,
+        "backend_mode": 9
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 3,
+        "derived_selector": 4,
+        "request_kind": 5,
+        "request_submode": 3,
+        "backend_mode": 7
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 4,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 2,
+        "backend_mode": 15
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 5,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 2,
+        "backend_mode": 15
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 6,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 3,
+        "backend_mode": 15
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 7,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 0,
+        "backend_mode": 0
+      },
+      {
+        "context_3a0": 6,
+        "context_388": 4,
+        "context_390": 6,
+        "effective_size": 2147483647,
+        "derived_selector": 8,
+        "request_kind": 5,
+        "request_submode": 0,
+        "backend_mode": 0
+      }
+    ],
+    "listed_mode_flow": {
+      "scope": "SDK-listed inputs; snapshot 0x280c=1, 0x218c=1; internal status+4=1; other snapshot/status/global fields zero; callbacks explicitly sequenced and committed by harness",
+      "callback_order": [
+        "0x40f1ae50",
+        "0x40ee0070",
+        "0x40ee02bc",
+        "0x40ee1924"
+      ],
+      "count": 80,
+      "modes": [
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 2
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 3
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x07800438001e0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 4
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x0780043800190000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 5
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x0780043800180000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 6
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x07800438001e0128",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 1,
+          "extra": 40,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 4
+            },
+            {
+              "id": "0x07001204",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 0,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x0780043800190128",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 1,
+          "extra": 40,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 5
+            },
+            {
+              "id": "0x07001204",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 1,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 1,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H264_MP4",
+          "packed": "0x0780043800180132",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 1,
+          "extra": 50,
+          "sdk_writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 6
+            },
+            {
+              "id": "0x07001204",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 7,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2870",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 0,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 1,
+            "0x2869": 0,
+            "0x286a": 7,
+            "0x286b": 0
+          },
+          "context_3a0": 0,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x1e0010e0001e0000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 3
+            },
+            {
+              "id": "0x0700124c",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 3,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 3,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 3,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x1e0010e000190000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 3
+            },
+            {
+              "id": "0x0700124c",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 3,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 3,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 3,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x1e0010e000180000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 3
+            },
+            {
+              "id": "0x0700124c",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 3,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 3,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 3,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f00087000780000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f00087000640000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 1,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f000870001e0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f00087000190000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0f00087000180000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0780043800780000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0780043800640000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 1,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x07800438001e0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0780043800190000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_8bit",
+          "packed": "0x0780043800180000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 2,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 0
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x1e0010e0001e0000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 3
+            },
+            {
+              "id": "0x0700124e",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 3,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 3,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 3,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x1e0010e000190000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 3
+            },
+            {
+              "id": "0x0700124e",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 3,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 3,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 3,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x1e0010e000180000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 3
+            },
+            {
+              "id": "0x0700124e",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 3,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 3,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 3,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f00087000780000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f00087000640000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 1,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f000870001e0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f00087000190000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0f00087000180000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0780043800780000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0780043800640000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 1,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x07800438001e0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0780043800190000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "H265_10bit",
+          "packed": "0x0780043800180000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 3,
+            "0x2869": 1,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 1,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0f000870001e0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 4,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0f00087000190000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 5,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0f00087000180000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 6,
+          "effective_size": 2,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0780043800780000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 0,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0780043800640000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 1,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 2,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "ProRes422HQ",
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 2,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 1,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 0,
+            "0x2167": 0,
+            "0x400211e": 1,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 4,
+            "0x2869": 2,
+            "0x286a": 5,
+            "0x286b": 1
+          },
+          "context_3a0": 2,
+          "context_388": 0,
+          "context_390": 3,
+          "effective_size": 1,
+          "derived_selector": 11,
+          "request_kind": 5,
+          "request_submode": 1,
+          "backend_mode": 17
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x15100bd8001e0000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 5
+            },
+            {
+              "id": "0x0500125d",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 5,
+          "context_390": 4,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x15100bd800190000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 5
+            },
+            {
+              "id": "0x0500125d",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 5,
+          "context_390": 5,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x15100bd800180000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 5
+            },
+            {
+              "id": "0x0500125d",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 5,
+          "context_390": 6,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x10200912003c0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 4,
+          "context_390": 2,
+          "effective_size": 4,
+          "derived_selector": 8,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x1020091200320000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 4,
+          "context_390": 3,
+          "effective_size": 4,
+          "derived_selector": 8,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x10200912001e0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 4,
+          "context_390": 4,
+          "effective_size": 4,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 9
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x1020091200190000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 4,
+          "context_390": 5,
+          "effective_size": 4,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 9
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x1020091200180000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 4,
+          "context_390": 6,
+          "effective_size": 4,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 9
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 2
+            },
+            {
+              "id": "0x0500125d",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 7,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 7,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 7,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 7,
+          "context_390": 2,
+          "effective_size": 2,
+          "derived_selector": 6,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 16
+        },
+        {
+          "filetype": "ProResRAW",
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125b",
+              "value": 2
+            },
+            {
+              "id": "0x0500125d",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 5,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 7,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 7,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 7,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 5,
+            "0x2869": 3,
+            "0x286a": 5,
+            "0x286b": 3
+          },
+          "context_3a0": 3,
+          "context_388": 7,
+          "context_390": 3,
+          "effective_size": 2,
+          "derived_selector": 6,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 16
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x20401224003c0000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 6,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 6,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 2,
+          "effective_size": 6,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x2040122400320000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 6,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 6,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 3,
+          "effective_size": 6,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x20401224001e0000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 6,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 6,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 4,
+          "effective_size": 6,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x2040122400190000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 6,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 6,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 5,
+          "effective_size": 6,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x2040122400180000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 6,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 6,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 6,
+          "effective_size": 6,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 3,
+          "backend_mode": 7
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x15100bd8003c0000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 5,
+          "context_390": 2,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x15100bd800320000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 5,
+          "context_390": 3,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x15100bd8001e0000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 5,
+          "context_390": 4,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x15100bd800190000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 5,
+          "context_390": 5,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x15100bd800180000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 5,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 5,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 5,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 5,
+            "0x2167": 0,
+            "0x400211e": 5,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 5,
+          "context_390": 6,
+          "effective_size": 5,
+          "derived_selector": 5,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 13
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x1020091200780000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 0,
+          "effective_size": 4,
+          "derived_selector": 8,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x1020091200640000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 1,
+          "effective_size": 4,
+          "derived_selector": 8,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x10200912003c0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 2
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 2,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 2,
+            "0x2171": 2,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 2,
+          "effective_size": 4,
+          "derived_selector": 8,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x1020091200320000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 3
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 3,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 3,
+            "0x2171": 3,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 3,
+          "effective_size": 4,
+          "derived_selector": 8,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 15
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x10200912001e0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 4
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 4,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 4,
+            "0x2171": 4,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 4,
+          "effective_size": 4,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 9
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x1020091200190000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 5
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 5,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 5,
+            "0x2171": 5,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 5,
+          "effective_size": 4,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 9
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x1020091200180000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 6
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 4,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 6,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 4,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 4,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 4,
+            "0x2167": 0,
+            "0x400211e": 4,
+            "0x4002120": 6,
+            "0x2171": 6,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 4,
+          "context_390": 6,
+          "effective_size": 4,
+          "derived_selector": 4,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 9
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x0f00087000780000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 2
+            },
+            {
+              "id": "0x0500125c",
+              "value": 0
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x2124",
+              "value": 7,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 7,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 7,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 0,
+            "0x2171": 0,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 7,
+          "context_390": 0,
+          "effective_size": 2,
+          "derived_selector": 6,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 16
+        },
+        {
+          "filetype": "NRAW",
+          "packed": "0x0f00087000640000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "sdk_writes": [
+            {
+              "id": "0x0500125a",
+              "value": 2
+            },
+            {
+              "id": "0x0500125c",
+              "value": 1
+            }
+          ],
+          "derived_updates": [
+            {
+              "id": "0x2312",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2869",
+              "value": 4,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286a",
+              "value": 6,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x286b",
+              "value": 3,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x2871",
+              "value": 1,
+              "callback": "0x40f1ae50"
+            },
+            {
+              "id": "0x400211e",
+              "value": 2,
+              "callback": "0x40ee0070"
+            },
+            {
+              "id": "0x4002120",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2171",
+              "value": 1,
+              "callback": "0x40ee02bc"
+            },
+            {
+              "id": "0x2124",
+              "value": 7,
+              "callback": "0x40ee1924"
+            },
+            {
+              "id": "0x219f",
+              "value": 7,
+              "callback": "0x40ee1924"
+            }
+          ],
+          "builder_values": {
+            "0x218c": 1,
+            "0x2124": 7,
+            "0x2167": 0,
+            "0x400211e": 2,
+            "0x4002120": 1,
+            "0x2171": 1,
+            "0x400211b": 0,
+            "0x2312": 6,
+            "0x2869": 4,
+            "0x286a": 6,
+            "0x286b": 3
+          },
+          "context_3a0": 4,
+          "context_388": 7,
+          "context_390": 1,
+          "effective_size": 2,
+          "derived_selector": 6,
+          "request_kind": 5,
+          "request_submode": 2,
+          "backend_mode": 16
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "source": "ZR__0111.bin",
+  "input_size": 117159984,
+  "input_sha256": "de1eb5af56568e4921a0eb5e50942f06a6c00205f76dd9d2a4e42364d7476e93",
+  "analyzer_sha256": "b005eeaa6142df63ac9b7ef8a04b5fb4afb9147bae87bddf6f98ee14fd2c20b0",
+  "status": "not_decoded",
+  "section_count": null,
+  "architecture": null,
+  "crc_verified": false,
+  "input_entropy": 7.999998425902059,
+  "space_marker_offsets": [
+    608
+  ],
+  "prefix_size_candidate": 608,
+  "payload_start_candidate": 640,
+  "payload_size_candidate": 117159344,
+  "payload_size_mod_16": 0,
+  "prefix_first32_hex": "420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3",
+  "mirrored_prefix": {
+    "source_offset": 0,
+    "copy_offset": 544,
+    "size": 32,
+    "reversed_equal": true
+  },
+  "u16_region": {
+    "offset": 288,
+    "size": 256,
+    "endian": "little",
+    "count": 128,
+    "unique": 128,
+    "minimum": 153,
+    "maximum": 32757,
+    "all_below_0x8000": true
+  },
+  "legacy_origin_probes": [
+    {
+      "origin": 0,
+      "header_hex": "bd8d7ab555e517fcb78f4e034bef1f77",
+      "plausible": false
+    },
+    {
+      "origin": 32,
+      "header_hex": "00c1363be04d82ec445ff5b865b2391b",
+      "plausible": false
+    },
+    {
+      "origin": 64,
+      "header_hex": "d0c5abb87aa3f6e8c3309d81760a36c8",
+      "plausible": false
+    },
+    {
+      "origin": 96,
+      "header_hex": "840b9ddc85dafe977c8033421fd6ffbd",
+      "plausible": false
+    },
+    {
+      "origin": 256,
+      "header_hex": "f1c136f919a95bb0fbc3024f07a3533b",
+      "plausible": false
+    },
+    {
+      "origin": 512,
+      "header_hex": "88b84f8060d022c982ba7b367eda2a42",
+      "plausible": false
+    },
+    {
+      "origin": 576,
+      "header_hex": "e5f09e8d4f96c3ddf605a8b4433f03fd",
+      "plausible": false
+    },
+    {
+      "origin": 608,
+      "header_hex": "b13ea8e9b0efcba249b506772ae3ca88",
+      "plausible": false
+    },
+    {
+      "origin": 640,
+      "header_hex": "50eb86a2e9918786763f6bcf48658bfb",
+      "plausible": false
+    }
+  ],
+  "legacy_phase_probe": {
+    "phases_covered": 16777216,
+    "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+    "reserved_zero_matches": [],
+    "plausible_headers": []
+  },
+  "normalized_blocks": {
+    "start": 608,
+    "block_size": 256,
+    "blocks": 457653,
+    "unique_normalized_blocks": 457653,
+    "most_frequent_count": 1
+  },
+  "magic_hits": {
+    "ELF": [],
+    "NISI": [],
+    "FDT": [],
+    "gzip": [
+      13270545,
+      18329661,
+      44970551,
+      75504523,
+      85587554,
+      105343836,
+      115827093,
+      116863685
+    ]
+  },
+  "limits": [
+    "No ZR segment or executable has been recovered.",
+    "Entropy, alignment and lack of repetitions do not identify AES or RSA.",
+    "The two-zero-reserved-fields assumption comes from Z6/Z8.",
+    "The 15-bit values and reversed copy have no proven semantic meaning."
+  ],
+  "z8_reference": {
+    "source": "Z_8_0311.bin",
+    "input_sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96",
+    "eg_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+    "decoded_sha256": "da0b0843d2e790ed6267f8a7fbbb393f464de4ed1c217964df782bf0a2795b43",
+    "prefix_check": {
+      "algorithm": "SHA-1(decoded_package including trailer || derived 8-byte tail)",
+      "tail_hex": "6c12037e6fcec19a",
+      "stored": "61060072cc6f4032491ef95570e1e7e9e053b8fd",
+      "computed": "61060072cc6f4032491ef95570e1e7e9e053b8fd",
+      "valid": true,
+      "remaining_prefix_hex": "5866cd124269c27e621da226"
+    },
+    "xor_tables_eg_offset": 66469040,
+    "xor_table_constant_masks": [
+      64,
+      203,
+      139
+    ],
+    "code_ranges": [
+      {
+        "name": "Z8 legacy XOR decoder",
+        "eg_offset": 15485428,
+        "end_exclusive": 15485636,
+        "address": 1090669044
+      },
+      {
+        "name": "Z8 package check caller",
+        "eg_offset": 15497008,
+        "end_exclusive": 15497332,
+        "address": 1090680624
+      },
+      {
+        "name": "Z8 derived-tail transform",
+        "eg_offset": 16985052,
+        "end_exclusive": 16985276,
+        "address": 1092168668
+      },
+      {
+        "name": "Z8 checksum state and SHA-1 comparison",
+        "eg_offset": 16985572,
+        "end_exclusive": 16986340,
+        "address": 1092169188
+      }
+    ],
+    "legacy_phase_probe_control": {
+      "plausible_count": 256,
+      "known_phase_32_found": true,
+      "note": "Short headers have equivalent phases; full CRC validation remains necessary."
+    },
+    "normalized_blocks": {
+      "start": 32,
+      "block_size": 256,
+      "blocks": 386918,
+      "unique_normalized_blocks": 332889,
+      "most_frequent_count": 44541
+    },
+    "disassembly": "code_landmarks.asm (Z8 reference only)"
+  },
+  "gzip_probes": [
+    {
+      "offset": 13270545,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    },
+    {
+      "offset": 18329661,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    },
+    {
+      "offset": 44970551,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    },
+    {
+      "offset": 75504523,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    },
+    {
+      "offset": 85587554,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    },
+    {
+      "offset": 105343836,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: invalid stored block lengths"
+    },
+    {
+      "offset": 115827093,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    },
+    {
+      "offset": 116863685,
+      "status": "invalid",
+      "error": "Error -3 while decompressing data: unknown header flags set"
+    }
+  ]
+}

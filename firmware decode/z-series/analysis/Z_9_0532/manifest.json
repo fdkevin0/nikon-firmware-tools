@@ -1,0 +1,239 @@
+{
+  "xor_origin": 32,
+  "opaque_prefix_hex": "34fb1d958ffc08fb8cc780830780958e33dc2a1ab6247a09547b1d60cfcd1fb4",
+  "section_count": 6,
+  "header_size": 240,
+  "reserved": [
+    0,
+    0
+  ],
+  "sections": [
+    {
+      "name": "ex1990_051000.bi",
+      "container_offset": 240,
+      "original_file_offset": 272,
+      "size": 524290,
+      "payload_size": 524288,
+      "reserved": [
+        0,
+        0
+      ],
+      "crc16": {
+        "stored": 62936,
+        "computed": 62936,
+        "valid": true
+      },
+      "sha256": "e00fdf4ba68e1d8a7e7d51c921d9be2c55e55126fff75a864eebb1e5e22d6653",
+      "entropy": 3.939785415784044,
+      "head_hex": "080c0020b502000869030208a5000208b7000208c9000208db0002080000000000000000000000000000000051020208750302080000000041010208c9020208",
+      "ascii_strings_min6": 528,
+      "markers": {
+        "SMP T-Kernel": [],
+        "NIKON Z 6": [],
+        "NikonBVR": [],
+        "FirmwareManagement.c": [],
+        "FirmwareChkLib.c": [],
+        "MovieRecordApplicationService.c": [],
+        "PtpMemoryControl.c": [],
+        "A:\\HDMIRAW.KEY": [],
+        "Booted ARM926": [],
+        "LvRaw": [],
+        "NvmExpress.c": []
+      }
+    },
+    {
+      "name": "_tpj01_0210.bin",
+      "container_offset": 524530,
+      "original_file_offset": 524562,
+      "size": 57346,
+      "payload_size": 57344,
+      "reserved": [
+        0,
+        0
+      ],
+      "crc16": {
+        "stored": 36621,
+        "computed": 36621,
+        "valid": true
+      },
+      "sha256": "689f80feb0d271d73ac719e0c5872cfc0dac643097e528b6a1b156d4c55efe1a",
+      "entropy": 6.246823057855907,
+      "head_hex": "4800043c4800005e48000072480000864800009a480000ae480000c2480000d6480000ea480000fe48000112480001264800013a4800014e4800016248000176",
+      "ascii_strings_min6": 12,
+      "markers": {
+        "SMP T-Kernel": [],
+        "NIKON Z 6": [],
+        "NikonBVR": [],
+        "FirmwareManagement.c": [],
+        "FirmwareChkLib.c": [],
+        "MovieRecordApplicationService.c": [],
+        "PtpMemoryControl.c": [],
+        "A:\\HDMIRAW.KEY": [],
+        "Booted ARM926": [],
+        "LvRaw": [],
+        "NvmExpress.c": []
+      }
+    },
+    {
+      "name": "eg1990_053200.bi",
+      "container_offset": 581876,
+      "original_file_offset": 581908,
+      "size": 81823631,
+      "payload_size": 81823629,
+      "reserved": [
+        0,
+        0
+      ],
+      "crc16": {
+        "stored": 45696,
+        "computed": 45696,
+        "valid": true
+      },
+      "sha256": "979fc8c5a46b3be8a998d5defb8be916d766ef85428744ba0bc47a1cb0ba9a66",
+      "entropy": 5.714463762982233,
+      "head_hex": "df4f03d5a2000058420400d15f0000f1c1ffff54030000140100000000000000a00038d5000c40f2414238d521047e923f3000f1a00000543f2000f1200c0054",
+      "ascii_strings_min6": 89179,
+      "markers": {
+        "SMP T-Kernel": [],
+        "NIKON Z 6": [],
+        "NikonBVR": [],
+        "FirmwareManagement.c": [
+          53605251
+        ],
+        "FirmwareChkLib.c": [
+          63517367
+        ],
+        "MovieRecordApplicationService.c": [],
+        "PtpMemoryControl.c": [
+          53789656
+        ],
+        "A:\\HDMIRAW.KEY": [],
+        "Booted ARM926": [],
+        "LvRaw": [
+          80628704
+        ],
+        "NvmExpress.c": [
+          21702974
+        ]
+      }
+    },
+    {
+      "name": "vr1990_010200.bi",
+      "container_offset": 82405507,
+      "original_file_offset": 82405539,
+      "size": 838664,
+      "payload_size": 838662,
+      "reserved": [
+        0,
+        0
+      ],
+      "crc16": {
+        "stored": 35962,
+        "computed": 35962,
+        "valid": true
+      },
+      "sha256": "ad49236b258d7cac8bb6a8715251411e8cef5f9a3e7a1f9cc690e90fc6636a69",
+      "entropy": 2.166731988468995,
+      "head_hex": "040106000002010000004e696b6f6e42565200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "ascii_strings_min6": 714,
+      "markers": {
+        "SMP T-Kernel": [],
+        "NIKON Z 6": [],
+        "NikonBVR": [
+          10
+        ],
+        "FirmwareManagement.c": [],
+        "FirmwareChkLib.c": [],
+        "MovieRecordApplicationService.c": [],
+        "PtpMemoryControl.c": [],
+        "A:\\HDMIRAW.KEY": [],
+        "Booted ARM926": [],
+        "LvRaw": [],
+        "NvmExpress.c": []
+      }
+    },
+    {
+      "name": "_gst00_0017.bin",
+      "container_offset": 83244171,
+      "original_file_offset": 83244203,
+      "size": 661910,
+      "payload_size": 661908,
+      "reserved": [
+        0,
+        0
+      ],
+      "crc16": {
+        "stored": 63839,
+        "computed": 63839,
+        "valid": true
+      },
+      "sha256": "fe400f1e67c7ecbdbeaec9301965cdbb5df9aa69b64dde0d7e7fde19b61f502a",
+      "entropy": 7.297826554355329,
+      "head_hex": "474e53530000000020000000742e0000942e000000eb090000000000000000000000a0e100000fe1c010a0e3010080e100f02fe10010a0e3021981e2041041e2",
+      "ascii_strings_min6": 1686,
+      "markers": {
+        "SMP T-Kernel": [],
+        "NIKON Z 6": [],
+        "NikonBVR": [],
+        "FirmwareManagement.c": [],
+        "FirmwareChkLib.c": [],
+        "MovieRecordApplicationService.c": [],
+        "PtpMemoryControl.c": [],
+        "A:\\HDMIRAW.KEY": [],
+        "Booted ARM926": [],
+        "LvRaw": [],
+        "NvmExpress.c": []
+      }
+    },
+    {
+      "name": "li1990_053200.bi",
+      "container_offset": 83906081,
+      "original_file_offset": 83906113,
+      "size": 17940482,
+      "payload_size": 17940480,
+      "reserved": [
+        0,
+        0
+      ],
+      "crc16": {
+        "stored": 3147,
+        "computed": 3147,
+        "valid": true
+      },
+      "sha256": "46feac69ace6ed3e9be4b7628074df93a9f9008ee7cfdacf1ad949fa59126ca5",
+      "entropy": 7.669385516877595,
+      "head_hex": "4e4953490000000000000000000000000400000030353332303000000000000001000000e40b000008185f0000000000e50b00004f160000d073b20000000000",
+      "ascii_strings_min6": 32398,
+      "markers": {
+        "SMP T-Kernel": [],
+        "NIKON Z 6": [],
+        "NikonBVR": [],
+        "FirmwareManagement.c": [],
+        "FirmwareChkLib.c": [],
+        "MovieRecordApplicationService.c": [],
+        "PtpMemoryControl.c": [],
+        "A:\\HDMIRAW.KEY": [],
+        "Booted ARM926": [],
+        "LvRaw": [],
+        "NvmExpress.c": []
+      }
+    }
+  ],
+  "package_crc16": {
+    "stored": 4237,
+    "computed": 4237,
+    "valid": true
+  },
+  "trailer_offset": 101846563,
+  "trailer_hex": "108d0000000000000000000000000000",
+  "source": "Z_9_0532.bin",
+  "input_size": 101846611,
+  "input_sha256": "2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81",
+  "input_entropy": 7.999998724630545,
+  "decoded_sha256": "6311bfbddb36cd1e3c27b9e46a6bdd892fe96a0eeb414db01ab839cbf9b831e4",
+  "round_trip_exact": true,
+  "crc_parameters": "CRC-16/XMODEM poly=0x1021 init=0 refin=false refout=false xorout=0; stored big endian",
+  "decoded_header_convention": "First 32 space bytes preserved; XOR index starts at container offset 32",
+  "xor_table_sha256": "30041d28d598b2e168575b4326a50347e36e843d5e052278c474ef7e5c0a374b",
+  "analyzer_sha256": "f44c4090b9345e0d484b65697cfc0add26e2ece4239cbbbd49a01c6ec6d467f5"
+}

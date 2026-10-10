@@ -1,0 +1,2374 @@
+{
+  "image_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "runtime_base": "0x40160000",
+  "scope": "Offline function execution, settings services mocked; no sensor/encoder/USB execution",
+  "hooks": [
+    "0x40814800",
+    "0x408564ec",
+    "0x40856bcc",
+    "0x40856be8",
+    "0x41012c84",
+    "0x4127a900"
+  ],
+  "initialized_ram": {
+    "address": "0xa02808000",
+    "file_offset": "0x4b13000",
+    "size": "0x2ad000"
+  },
+  "landmarks": {
+    "sdk_size_setter": [
+      "0x408401ec",
+      "0x408403b4"
+    ],
+    "sdk_allowed_list": [
+      "0x40841c8c",
+      "0x40841d44"
+    ],
+    "sdk_enum_lookup": [
+      "0x40811c40",
+      "0x40811c70"
+    ],
+    "rate_setting_id": [
+      "0x408568d0",
+      "0x4085692c"
+    ],
+    "size_setting_id": [
+      "0x40856964",
+      "0x408569c0"
+    ],
+    "movie_width_height": [
+      "0x406d2ba4",
+      "0x406d2ca4"
+    ],
+    "effective_video_settings": [
+      "0x40ed0310",
+      "0x40ed0bd4"
+    ],
+    "effective_size_selection": [
+      "0x40ed8f74",
+      "0x40ed90d0"
+    ],
+    "geometry_builder": [
+      "0x41065194",
+      "0x4106669c"
+    ],
+    "geometry_caller_excerpt": [
+      "0x41057f64",
+      "0x41058030"
+    ]
+  },
+  "filetype_sdk_to_internal": [
+    [
+      2049,
+      1
+    ],
+    [
+      67584,
+      2
+    ],
+    [
+      68096,
+      3
+    ],
+    [
+      134146,
+      6
+    ],
+    [
+      1051136,
+      4
+    ],
+    [
+      1117184,
+      5
+    ]
+  ],
+  "size_mapping": [
+    {
+      "width": 8256,
+      "height": 4644,
+      "enum": 6
+    },
+    {
+      "width": 7680,
+      "height": 4320,
+      "enum": 3
+    },
+    {
+      "width": 5392,
+      "height": 3032,
+      "enum": 5
+    },
+    {
+      "width": 4128,
+      "height": 2322,
+      "enum": 4
+    },
+    {
+      "width": 3840,
+      "height": 2160,
+      "enum": 2
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "enum": 1
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "enum": 0
+    }
+  ],
+  "rate_mapping": [
+    [
+      120,
+      0
+    ],
+    [
+      100,
+      1
+    ],
+    [
+      60,
+      2
+    ],
+    [
+      50,
+      3
+    ],
+    [
+      30,
+      4
+    ],
+    [
+      25,
+      5
+    ],
+    [
+      24,
+      6
+    ]
+  ],
+  "filetypes": [
+    {
+      "name": "H264_MP4",
+      "internal": 1,
+      "count": 8,
+      "list_address": "0xa02992350",
+      "size_id": "0x7001202",
+      "rate_id": "0x7001203",
+      "modes": [
+        {
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 2
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 3
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438001e0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 4
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800190000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 5
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800180000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 6
+            },
+            {
+              "id": "0x07001204",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438001e0128",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 1,
+          "extra": 40,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 4
+            },
+            {
+              "id": "0x07001204",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800190128",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 1,
+          "extra": 40,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 5
+            },
+            {
+              "id": "0x07001204",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800180132",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 1,
+          "extra": 50,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x07001202",
+              "value": 1
+            },
+            {
+              "id": "0x07001203",
+              "value": 6
+            },
+            {
+              "id": "0x07001204",
+              "value": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "H265_8bit",
+      "internal": 2,
+      "count": 17,
+      "list_address": "0xa029922c8",
+      "size_id": "0x700124b",
+      "rate_id": "0x700124c",
+      "modes": [
+        {
+          "packed": "0x1e0010e0001e0000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 3
+            },
+            {
+              "id": "0x0700124c",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x1e0010e000190000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 3
+            },
+            {
+              "id": "0x0700124c",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x1e0010e000180000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 3
+            },
+            {
+              "id": "0x0700124c",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000780000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000640000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x0f000870001e0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000190000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000180000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 2
+            },
+            {
+              "id": "0x0700124c",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800780000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800640000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438001e0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800190000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800180000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124b",
+              "value": 1
+            },
+            {
+              "id": "0x0700124c",
+              "value": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "H265_10bit",
+      "internal": 3,
+      "count": 17,
+      "list_address": "0xa029922c8",
+      "size_id": "0x700124d",
+      "rate_id": "0x700124e",
+      "modes": [
+        {
+          "packed": "0x1e0010e0001e0000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 3
+            },
+            {
+              "id": "0x0700124e",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x1e0010e000190000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 3
+            },
+            {
+              "id": "0x0700124e",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x1e0010e000180000",
+          "width": 7680,
+          "height": 4320,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 3
+            },
+            {
+              "id": "0x0700124e",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000780000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000640000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x0f000870001e0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000190000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000180000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 2
+            },
+            {
+              "id": "0x0700124e",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800780000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800640000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438001e0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800190000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800180000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124d",
+              "value": 1
+            },
+            {
+              "id": "0x0700124e",
+              "value": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ProRes422HQ",
+      "internal": 4,
+      "count": 9,
+      "list_address": "0xa02992280",
+      "size_id": "0x700124f",
+      "rate_id": "0x7001250",
+      "modes": [
+        {
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x0f000870001e0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000190000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000180000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 2
+            },
+            {
+              "id": "0x07001250",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800780000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800640000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x07800438003c0000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0780043800320000",
+          "width": 1920,
+          "height": 1080,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0700124f",
+              "value": 1
+            },
+            {
+              "id": "0x07001250",
+              "value": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ProResRAW",
+      "internal": 5,
+      "count": 10,
+      "list_address": "0xa02992428",
+      "size_id": "0x500125b",
+      "rate_id": "0x500125d",
+      "modes": [
+        {
+          "packed": "0x15100bd8001e0000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 5
+            },
+            {
+              "id": "0x0500125d",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd800190000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 5
+            },
+            {
+              "id": "0x0500125d",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd800180000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 5
+            },
+            {
+              "id": "0x0500125d",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x10200912003c0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200320000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x10200912001e0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200190000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200180000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 4
+            },
+            {
+              "id": "0x0500125d",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0f000870003c0000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 2
+            },
+            {
+              "id": "0x0500125d",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000320000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125b",
+              "value": 2
+            },
+            {
+              "id": "0x0500125d",
+              "value": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NRAW",
+      "internal": 6,
+      "count": 19,
+      "list_address": "0xa02992390",
+      "size_id": "0x500125a",
+      "rate_id": "0x500125c",
+      "modes": [
+        {
+          "packed": "0x20401224003c0000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x2040122400320000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x20401224001e0000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x2040122400190000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x2040122400180000",
+          "width": 8256,
+          "height": 4644,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 6
+            },
+            {
+              "id": "0x0500125c",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd8003c0000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd800320000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd8001e0000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd800190000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x15100bd800180000",
+          "width": 5392,
+          "height": 3032,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 5
+            },
+            {
+              "id": "0x0500125c",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200780000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200640000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "packed": "0x10200912003c0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 60,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200320000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 50,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 3
+            }
+          ]
+        },
+        {
+          "packed": "0x10200912001e0000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 30,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 4
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200190000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 25,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 5
+            }
+          ]
+        },
+        {
+          "packed": "0x1020091200180000",
+          "width": 4128,
+          "height": 2322,
+          "fps": 24,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 4
+            },
+            {
+              "id": "0x0500125c",
+              "value": 6
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000780000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 120,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 2
+            },
+            {
+              "id": "0x0500125c",
+              "value": 0
+            }
+          ]
+        },
+        {
+          "packed": "0x0f00087000640000",
+          "width": 3840,
+          "height": 2160,
+          "fps": 100,
+          "scan_type": 0,
+          "special": 0,
+          "extra": 0,
+          "return": "0x2001",
+          "writes": [
+            {
+              "id": "0x0500125a",
+              "value": 2
+            },
+            {
+              "id": "0x0500125c",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rejected_3_2": [
+    {
+      "filetype": "H264_MP4",
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H264_MP4",
+      "packed": "0x2040158000190000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H264_MP4",
+      "packed": "0x20401580001e0000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H264_MP4",
+      "packed": "0x10200ac000180000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H264_MP4",
+      "packed": "0x10200ac000190000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H264_MP4",
+      "packed": "0x10200ac0001e0000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_8bit",
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_8bit",
+      "packed": "0x2040158000190000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_8bit",
+      "packed": "0x20401580001e0000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_8bit",
+      "packed": "0x10200ac000180000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_8bit",
+      "packed": "0x10200ac000190000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_8bit",
+      "packed": "0x10200ac0001e0000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_10bit",
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_10bit",
+      "packed": "0x2040158000190000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_10bit",
+      "packed": "0x20401580001e0000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_10bit",
+      "packed": "0x10200ac000180000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_10bit",
+      "packed": "0x10200ac000190000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "H265_10bit",
+      "packed": "0x10200ac0001e0000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProRes422HQ",
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProRes422HQ",
+      "packed": "0x2040158000190000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProRes422HQ",
+      "packed": "0x20401580001e0000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProRes422HQ",
+      "packed": "0x10200ac000180000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProRes422HQ",
+      "packed": "0x10200ac000190000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProRes422HQ",
+      "packed": "0x10200ac0001e0000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProResRAW",
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProResRAW",
+      "packed": "0x2040158000190000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProResRAW",
+      "packed": "0x20401580001e0000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProResRAW",
+      "packed": "0x10200ac000180000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProResRAW",
+      "packed": "0x10200ac000190000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "ProResRAW",
+      "packed": "0x10200ac0001e0000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "NRAW",
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "NRAW",
+      "packed": "0x2040158000190000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "NRAW",
+      "packed": "0x20401580001e0000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "NRAW",
+      "packed": "0x10200ac000180000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "NRAW",
+      "packed": "0x10200ac000190000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 25,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    },
+    {
+      "filetype": "NRAW",
+      "packed": "0x10200ac0001e0000",
+      "width": 4128,
+      "height": 2752,
+      "fps": 30,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x201c",
+      "writes": []
+    }
+  ],
+  "whitelist_only_experiment": [
+    {
+      "packed": "0x2040158000180000",
+      "width": 8256,
+      "height": 5504,
+      "fps": 24,
+      "scan_type": 0,
+      "special": 0,
+      "extra": 0,
+      "return": "0x2001",
+      "writes": [
+        {
+          "id": "0x0500125a",
+          "value": 2147483647
+        },
+        {
+          "id": "0x0500125c",
+          "value": 6
+        }
+      ]
+    }
+  ],
+  "movie_dimension_probes": [
+    {
+      "enum": 0,
+      "width": 1280,
+      "height": 720,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 1,
+      "width": 1920,
+      "height": 1080,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 2,
+      "width": 3840,
+      "height": 2160,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 3,
+      "width": 7680,
+      "height": 4320,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 4,
+      "width": 4128,
+      "height": 2322,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 5,
+      "width": 5392,
+      "height": 3032,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 6,
+      "width": 8256,
+      "height": 4644,
+      "width_return": 1,
+      "height_return": 1
+    },
+    {
+      "enum": 7,
+      "width": 42405,
+      "height": 42405,
+      "width_return": 0,
+      "height_return": 0
+    },
+    {
+      "enum": 2147483647,
+      "width": 42405,
+      "height": 42405,
+      "width_return": 0,
+      "height_return": 0
+    }
+  ],
+  "validation": {
+    "listed_modes": 80,
+    "rejected_3_2": 36,
+    "geometry_probes": 1932,
+    "checks_passed": true
+  }
+}

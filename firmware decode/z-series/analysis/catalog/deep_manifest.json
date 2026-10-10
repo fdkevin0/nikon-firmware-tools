@@ -1,0 +1,1963 @@
+{
+  "catalog_models": 15,
+  "sample_count": 16,
+  "completed": 16,
+  "format_counts": {
+    "legacy_xor": 10,
+    "extended_0x260": 6
+  },
+  "status_counts": {
+    "decoded_crc_and_roundtrip_verified": 10,
+    "not_fully_decoded": 6
+  },
+  "samples": [
+    {
+      "filename": "Z_30_0120.bin",
+      "models": [
+        "Z 30"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/556.html",
+      "expected_sha256": "1a5449ef505f1f347ed4e066a6a3f588ea542240680e83f4ebcae3b16da3434a",
+      "current": true,
+      "size": 34496798,
+      "sha256": "1a5449ef505f1f347ed4e066a6a3f588ea542240680e83f4ebcae3b16da3434a",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 3,
+      "package_crc16": {
+        "stored": 32096,
+        "computed": 32096,
+        "valid": true
+      },
+      "decoded_sha256": "303c2382d18efca38b24470c5503ca0a207c48fed4d90170be81f6a43f869ad4",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex2090_012000.bi",
+            "size": 524290,
+            "sha256": "733559b1fbfa0754cc166a479888128c811e12fe0263f3c99c1925f109698a26",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj04_v10a5.bin",
+            "size": 32802,
+            "sha256": "7a6b56050c06ca04ede95109ad724410209f05043ee458869e761d898d9b9627",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg2090_0120a0.bi",
+            "size": 33939514,
+            "sha256": "8a99ced2d8220729ba067587b0624bf30c81757abc5d728768134b1c7fd457fa",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208709
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                1799172,
+                1802892
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z_5_0150.bin",
+      "models": [
+        "Z 5"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/562.html",
+      "expected_sha256": "efc0ce70dcafdd96c64e95d8d50f6b7f0509fc0c2840b28d12b6f9e4877ee776",
+      "current": true,
+      "size": 36011790,
+      "sha256": "efc0ce70dcafdd96c64e95d8d50f6b7f0509fc0c2840b28d12b6f9e4877ee776",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 4,
+      "package_crc16": {
+        "stored": 27251,
+        "computed": 27251,
+        "valid": true
+      },
+      "decoded_sha256": "26b901e8c9967c2cce38458ab5cafb3b2e197c7cff39d94ae79c0df82ca4bab5",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1650_013000.bi",
+            "size": 524290,
+            "sha256": "cb5748c1e658d9bb2f780576a580b1150f67f2e2c8b78b52b9fb13ae927e6fce",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpt01_0010.bin",
+            "size": 45034,
+            "sha256": "1b76825be14fe2edf6d17eb22b8185076cb2da1ccd5967be21cfdecb8850a8d5",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1650_015001.bi",
+            "size": 34603578,
+            "sha256": "1d9742a951ea8a8ebe695fa9bb1f29a3be73e16dfe4a8372d997e903bbc58e98",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208709
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                1827188,
+                1830908
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr1650_010100.bi",
+            "size": 838664,
+            "sha256": "519fbaca7b4d4aa0def5cf54b1b73584855b42e224d801e93ae348e1b07d6326",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z_50_0260.bin",
+      "models": [
+        "Z 50"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/555.html",
+      "expected_sha256": "69745c9e8f3156e936918e62a4a1fad18e7078e9ea3b95d8b8e08144b1542e49",
+      "current": true,
+      "size": 31972272,
+      "sha256": "69745c9e8f3156e936918e62a4a1fad18e7078e9ea3b95d8b8e08144b1542e49",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 3,
+      "package_crc16": {
+        "stored": 9021,
+        "computed": 9021,
+        "valid": true
+      },
+      "decoded_sha256": "b04962eb8510e7849627f46dd1c9fafc95df1c3bb7be3590c867dd18c0d1144d",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1630_021000.bi",
+            "size": 524290,
+            "sha256": "f3fbb6b2c16e6c96194319114dd133b6d757426d3ee6728f30de72aa7e142973",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpt01_0091.bin",
+            "size": 43700,
+            "sha256": "3e5636be910e3659884fcf145880d068ad2d74817490698e4460880bb81be9b6",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1630_026000.bi",
+            "size": 31404090,
+            "sha256": "57e834fac8f921c18c99abe0b1469edbaca71cb1957794bb9f138bd223d30fc1",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208709
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                1706980,
+                1710700
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z_6_0380.bin",
+      "models": [
+        "Z 6"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/557.html",
+      "expected_sha256": "ff978ffdf77c58c0b861a06e16d432d5886969f3cdd05d62f6c8e82e8a4cea54",
+      "current": true,
+      "size": 34923366,
+      "sha256": "ff978ffdf77c58c0b861a06e16d432d5886969f3cdd05d62f6c8e82e8a4cea54",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 4,
+      "package_crc16": {
+        "stored": 13945,
+        "computed": 13945,
+        "valid": true
+      },
+      "decoded_sha256": "f08b1d1280c1264933748ceafb77f597df69c6077f6e508115f6420faf21c580",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1620_037000.bi",
+            "size": 524290,
+            "sha256": "72f1fb29e24b36b872eec697a486abeff8bcef77f6020fa89473fd014aa18131",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj01_v140.bin",
+            "size": 57346,
+            "sha256": "e60998537d46a15c430154aeeb589026aca015256d27e2d5990589d23a59c88e",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1620_038000.bi",
+            "size": 33502842,
+            "sha256": "1e6348d58750e67372d0a8e363932c57ee9c04d0eb8f62803bcd19812df0d25c",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208709
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                1715796,
+                1719516
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr1620_010200.bi",
+            "size": 838664,
+            "sha256": "48aaa4d82d709ff6a97b9618cfdbbb706304588642a7f1a73bfc4a525c22a37a",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z6_2_0170.bin",
+      "models": [
+        "Z 6II"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/560.html",
+      "expected_sha256": "5a9640b4c07abe1ecbf5a52655cbec6b893bba045bb2a1a1d21055b9f8f9d06d",
+      "current": true,
+      "size": 49002888,
+      "sha256": "5a9640b4c07abe1ecbf5a52655cbec6b893bba045bb2a1a1d21055b9f8f9d06d",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 5,
+      "package_crc16": {
+        "stored": 53146,
+        "computed": 53146,
+        "valid": true
+      },
+      "decoded_sha256": "2cc75cc4f909b69a680a8ba1486c44f6aec58f105f81c3c88625460ddc4cecf1",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1850_012000.bi",
+            "size": 524290,
+            "sha256": "9c65cad554ed02f83d37fbc825a8eb9efe79e3f32f98894dd5dd73edee416983",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj01_v140.bin",
+            "size": 57346,
+            "sha256": "e60998537d46a15c430154aeeb589026aca015256d27e2d5990589d23a59c88e",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1850_mas_01700",
+            "size": 38750138,
+            "sha256": "bb83613121f843d65101da936d942acdc513d86dbd3abc26259d0d870d03f5d4",
+            "os_strings": {
+              "SMP T-Kernel": [
+                1053781
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                3740960,
+                3744680
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr1850_010100.bi",
+            "size": 838664,
+            "sha256": "7e48c59adff7b917b41d2a2643ae692588c7b92b955d69f0000531885df274d9",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1850_sla_01700",
+            "size": 8832194,
+            "sha256": "3fd8c2cbdf57fadb03f6d69b596b58a8703efdd61ae82572d5afeea0241a9ed5",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208461
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z_7_0380.bin",
+      "models": [
+        "Z 7"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/558.html",
+      "expected_sha256": "07cf19513ada5b770caec4cfc3531a6734c48aede28dcec037f0f8374ef441a2",
+      "current": true,
+      "size": 34472614,
+      "sha256": "07cf19513ada5b770caec4cfc3531a6734c48aede28dcec037f0f8374ef441a2",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 4,
+      "package_crc16": {
+        "stored": 44991,
+        "computed": 44991,
+        "valid": true
+      },
+      "decoded_sha256": "2568f7c8be14919f4100b51ee316e15e0759053d40857c0e9e9054af740629be",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1610_037000.bi",
+            "size": 524290,
+            "sha256": "04891b0b9791416573381d8202299e628544f28ff52862579a81b02fbdfb733c",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj01_v140.bin",
+            "size": 57346,
+            "sha256": "e60998537d46a15c430154aeeb589026aca015256d27e2d5990589d23a59c88e",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1610_038000.bi",
+            "size": 33052090,
+            "sha256": "7f59d8993080203a12692cf6927a0a8218786d3f72230c04174f1563c506a6f6",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208709
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                1708264,
+                1711984
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr1610_010200.bi",
+            "size": 838664,
+            "sha256": "13c67b880e939a0a5d87f179d2d9c2628585b853bab459a2d61c875c340fa986",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z7_2_0170.bin",
+      "models": [
+        "Z 7II"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/561.html",
+      "expected_sha256": "fc0e94f57500a1f0e287c6b9a036c81a5ffceccb8432a377d645b3fa35a19b6a",
+      "current": true,
+      "size": 48494024,
+      "sha256": "fc0e94f57500a1f0e287c6b9a036c81a5ffceccb8432a377d645b3fa35a19b6a",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 5,
+      "package_crc16": {
+        "stored": 50974,
+        "computed": 50974,
+        "valid": true
+      },
+      "decoded_sha256": "f53ab7dd6eb417adaac98d617bbf95f89b09f9176ba93a48853e3d825a24fe17",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1840_013000.bi",
+            "size": 524290,
+            "sha256": "cb10af00b9485567453d448020892836ea48637bd638f4cf7cc1c9777a128a9a",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj01_v140.bin",
+            "size": 57346,
+            "sha256": "e60998537d46a15c430154aeeb589026aca015256d27e2d5990589d23a59c88e",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1840_mas_01700",
+            "size": 38239098,
+            "sha256": "478caf02dba41fa9144c0c4b6e1a051dc556d40e51a79a308bdd1169efb9dbbe",
+            "os_strings": {
+              "SMP T-Kernel": [
+                1053781
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                3731740,
+                3735460
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr1840_010100.bi",
+            "size": 838664,
+            "sha256": "fd7c1f7518e3af79d15e193c744d36c357b1dabbb5ab528f0054ebb79a5623b2",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1840_sla_01700",
+            "size": 8834370,
+            "sha256": "e0d2589cf036bbf8ce6e4c32f5f2bab61fe35e863660bf6a0ee8082d8a64e1bb",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208461
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z_8_0311.bin",
+      "models": [
+        "Z 8"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/606.html",
+      "expected_sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96",
+      "current": true,
+      "size": 99051117,
+      "sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 5,
+      "package_crc16": {
+        "stored": 51217,
+        "computed": 51217,
+        "valid": true
+      },
+      "decoded_sha256": "da0b0843d2e790ed6267f8a7fbbb393f464de4ed1c217964df782bf0a2795b43",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex2070_030000.bi",
+            "size": 524290,
+            "sha256": "4b7ea2ea40360717ceffd3d8db6fe48f5fae9d5c13b69632dc750bdc41b571c2",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj01_0210.bin",
+            "size": 57346,
+            "sha256": "689f80feb0d271d73ac719e0c5872cfc0dac643097e528b6a1b156d4c55efe1a",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg2070_0311b0.bi",
+            "size": 81807711,
+            "sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [
+                81486322,
+                81486412,
+                81486425,
+                81486976,
+                81497368
+              ],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                77767703
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [
+                {
+                  "offset": 22137504,
+                  "size": 692516,
+                  "sha256": "b3eebaa20c2afd3c3fffaba563d8b88e989fd3ab3cf920c6966c60f750281f97",
+                  "machine": 245,
+                  "bits": 32,
+                  "entry": 0,
+                  "section_count": 23,
+                  "symbol_entries": 4052,
+                  "artifact": "firmware decode/z-series/analysis/Z_8_0311/survey/embedded_elf/elf_0151caa0.elf"
+                },
+                {
+                  "offset": 22830032,
+                  "size": 456004,
+                  "sha256": "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4",
+                  "machine": 245,
+                  "bits": 32,
+                  "entry": 0,
+                  "section_count": 24,
+                  "symbol_entries": 2739,
+                  "artifact": "firmware decode/z-series/analysis/Z_8_0311/survey/embedded_elf/elf_015c5bd0.elf"
+                },
+                {
+                  "offset": 23286048,
+                  "size": 5750024,
+                  "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                  "machine": 245,
+                  "bits": 32,
+                  "entry": 0,
+                  "section_count": 20,
+                  "symbol_entries": 34678,
+                  "artifact": "firmware decode/z-series/analysis/Z_8_0311/survey/embedded_elf/elf_01635120.elf"
+                }
+              ],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr2070_010100.bi",
+            "size": 838664,
+            "sha256": "30e363077655f9936894fdc00104263eac4a33892e621199f84bf8f4cecea3bb",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "li2070_0311b0.bi",
+            "size": 15822850,
+            "sha256": "804a55508cd6b323336fbba14034810e4b22fcc5fd1030d3a7dc08d62767cc55",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "linux": {
+              "nisi_entries": [
+                {
+                  "name": "Image",
+                  "offset": 2048,
+                  "size": 5963784,
+                  "allocated_size": 5965824,
+                  "reserved": 0,
+                  "sha256": "6fe644e96fcffa1204968d656edf951098d31aae079d96a98791f91b99a2223e",
+                  "padding_byte_counts": {
+                    "0": 2040
+                  }
+                },
+                {
+                  "name": "rootfs.cpio.gz",
+                  "offset": 5967872,
+                  "size": 9846203,
+                  "allocated_size": 9846784,
+                  "reserved": 0,
+                  "sha256": "679c827574f8711acbcb17199e8b707b43bd251690df1192aded142dbbdc9b00",
+                  "padding_byte_counts": {
+                    "0": 581
+                  }
+                },
+                {
+                  "name": "device_tree_0.dtb",
+                  "offset": 15814656,
+                  "size": 3141,
+                  "allocated_size": 4096,
+                  "reserved": 0,
+                  "sha256": "132dc39913d198004d9cd34b34504e440f37f529944b4b16d34ce9ad956e9b03",
+                  "padding_byte_counts": {
+                    "0": 955
+                  }
+                },
+                {
+                  "name": "device_tree_1.dtb",
+                  "offset": 15818752,
+                  "size": 3168,
+                  "allocated_size": 4096,
+                  "reserved": 0,
+                  "sha256": "bd0570964495d5609e47b05a9f7b7158a0cc6714714f539f75e8dd90afe8dce3",
+                  "padding_byte_counts": {
+                    "0": 928
+                  }
+                }
+              ],
+              "version_strings": [
+                "Linux version 4.14.224-ts-aarch64 (n8410@n8410) (gcc version 6.5.0 (Timesys 20200228)) #1 SMP PREEMPT Mon Dec 23 10:24:17 JST 2024"
+              ],
+              "aarch64_image_magic": true,
+              "cpio_entry_count": 820,
+              "cpio_types": {
+                "directory": 105,
+                "symlink": 406,
+                "regular": 272,
+                "char_device": 37
+              },
+              "LaMainApp": {
+                "sha256": "d9abc0aac413318fbf0076347b160414779e424987f9d68b26c1c8cb0ba61428",
+                "machine": 183,
+                "bits": 64,
+                "entry": 4202956
+              },
+              "device_tree_roots": {
+                "device_tree_0.dtb": {
+                  "model": {
+                    "hex": "4e696b6f6e2058585800",
+                    "strings": [
+                      "Nikon XXX"
+                    ]
+                  },
+                  "compatible": {
+                    "hex": "6e696b6f6e2c78787800",
+                    "strings": [
+                      "nikon,xxx"
+                    ]
+                  },
+                  "#address-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  },
+                  "#size-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  }
+                },
+                "device_tree_1.dtb": {
+                  "model": {
+                    "hex": "4e696b6f6e2058585800",
+                    "strings": [
+                      "Nikon XXX"
+                    ]
+                  },
+                  "compatible": {
+                    "hex": "6e696b6f6e2c78787800",
+                    "strings": [
+                      "nikon,xxx"
+                    ]
+                  },
+                  "#address-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  },
+                  "#size-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "embedded_elf_count": 3
+      }
+    },
+    {
+      "filename": "Z_9_0532.bin",
+      "models": [
+        "Z 9"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/585.html",
+      "expected_sha256": "2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81",
+      "current": true,
+      "size": 101846611,
+      "sha256": "2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 6,
+      "package_crc16": {
+        "stored": 4237,
+        "computed": 4237,
+        "valid": true
+      },
+      "decoded_sha256": "6311bfbddb36cd1e3c27b9e46a6bdd892fe96a0eeb414db01ab839cbf9b831e4",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1990_051000.bi",
+            "size": 524290,
+            "sha256": "e00fdf4ba68e1d8a7e7d51c921d9be2c55e55126fff75a864eebb1e5e22d6653",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj01_0210.bin",
+            "size": 57346,
+            "sha256": "689f80feb0d271d73ac719e0c5872cfc0dac643097e528b6a1b156d4c55efe1a",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1990_053200.bi",
+            "size": 81823631,
+            "sha256": "979fc8c5a46b3be8a998d5defb8be916d766ef85428744ba0bc47a1cb0ba9a66",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [
+                81502642,
+                81502732,
+                81502745,
+                81503296,
+                81513688
+              ],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                63517367
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [
+                {
+                  "offset": 21850096,
+                  "size": 692516,
+                  "sha256": "b3eebaa20c2afd3c3fffaba563d8b88e989fd3ab3cf920c6966c60f750281f97",
+                  "machine": 245,
+                  "bits": 32,
+                  "entry": 0,
+                  "section_count": 23,
+                  "symbol_entries": 4052,
+                  "artifact": "firmware decode/z-series/analysis/Z_9_0532/survey/embedded_elf/elf_014d67f0.elf"
+                },
+                {
+                  "offset": 22542624,
+                  "size": 473348,
+                  "sha256": "dd2e0e44d1cf47fe4a8fd4b6bbafa7e087e7362712659f1a83eebc8165355da0",
+                  "machine": 245,
+                  "bits": 32,
+                  "entry": 0,
+                  "section_count": 24,
+                  "symbol_entries": 2794,
+                  "artifact": "firmware decode/z-series/analysis/Z_9_0532/survey/embedded_elf/elf_0157f920.elf"
+                },
+                {
+                  "offset": 23015984,
+                  "size": 5750024,
+                  "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                  "machine": 245,
+                  "bits": 32,
+                  "entry": 0,
+                  "section_count": 20,
+                  "symbol_entries": 34678,
+                  "artifact": "firmware decode/z-series/analysis/Z_9_0532/survey/embedded_elf/elf_015f3230.elf"
+                }
+              ],
+              "rejected_magic_hits": []
+            }
+          },
+          {
+            "name": "vr1990_010200.bi",
+            "size": 838664,
+            "sha256": "ad49236b258d7cac8bb6a8715251411e8cef5f9a3e7a1f9cc690e90fc6636a69",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_gst00_0017.bin",
+            "size": 661910,
+            "sha256": "fe400f1e67c7ecbdbeaec9301965cdbb5df9aa69b64dde0d7e7fde19b61f502a",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "li1990_053200.bi",
+            "size": 17940482,
+            "sha256": "46feac69ace6ed3e9be4b7628074df93a9f9008ee7cfdacf1ad949fa59126ca5",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "linux": {
+              "nisi_entries": [
+                {
+                  "name": "Image",
+                  "offset": 2048,
+                  "size": 6232072,
+                  "allocated_size": 6234112,
+                  "reserved": 0,
+                  "sha256": "a1189c8af8a592722d52f5a55ff090f1fc41b4226be6940d8f1452f4fbf61098",
+                  "padding_byte_counts": {
+                    "0": 2040
+                  }
+                },
+                {
+                  "name": "rootfs.cpio.gz",
+                  "offset": 6236160,
+                  "size": 11695056,
+                  "allocated_size": 11696128,
+                  "reserved": 0,
+                  "sha256": "6bd9f6882338d5681db0705726d9aac9b7152d6990067041a62c7b607e2990ac",
+                  "padding_byte_counts": {
+                    "0": 1072
+                  }
+                },
+                {
+                  "name": "device_tree_0.dtb",
+                  "offset": 17932288,
+                  "size": 3024,
+                  "allocated_size": 4096,
+                  "reserved": 0,
+                  "sha256": "a7b4517ce04ee29f658d21032b2003979ff83744813882327cb9410540757373",
+                  "padding_byte_counts": {
+                    "0": 1072
+                  }
+                },
+                {
+                  "name": "device_tree_1.dtb",
+                  "offset": 17936384,
+                  "size": 3051,
+                  "allocated_size": 4096,
+                  "reserved": 0,
+                  "sha256": "9b11426f242881dc9ea1475990e33c46e762302b8ffbf613853a1ed2ca9636a9",
+                  "padding_byte_counts": {
+                    "0": 1045
+                  }
+                }
+              ],
+              "version_strings": [
+                "Linux version 4.14.224-ts-aarch64 (n8410@n8410) (gcc version 6.5.0 (Timesys 20200228)) #1 SMP PREEMPT Wed Jul 16 15:23:50 JST 2025"
+              ],
+              "aarch64_image_magic": true,
+              "cpio_entry_count": 1505,
+              "cpio_types": {
+                "directory": 126,
+                "regular": 924,
+                "symlink": 418,
+                "char_device": 37
+              },
+              "LaMainApp": {
+                "sha256": "d9abc0aac413318fbf0076347b160414779e424987f9d68b26c1c8cb0ba61428",
+                "machine": 183,
+                "bits": 64,
+                "entry": 4202956
+              },
+              "device_tree_roots": {
+                "device_tree_0.dtb": {
+                  "model": {
+                    "hex": "4e696b6f6e2058585800",
+                    "strings": [
+                      "Nikon XXX"
+                    ]
+                  },
+                  "compatible": {
+                    "hex": "6e696b6f6e2c78787800",
+                    "strings": [
+                      "nikon,xxx"
+                    ]
+                  },
+                  "#address-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  },
+                  "#size-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  }
+                },
+                "device_tree_1.dtb": {
+                  "model": {
+                    "hex": "4e696b6f6e2058585800",
+                    "strings": [
+                      "Nikon XXX"
+                    ]
+                  },
+                  "compatible": {
+                    "hex": "6e696b6f6e2c78787800",
+                    "strings": [
+                      "nikon,xxx"
+                    ]
+                  },
+                  "#address-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  },
+                  "#size-cells": {
+                    "hex": "00000002",
+                    "cells": [
+                      2
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "embedded_elf_count": 3
+      }
+    },
+    {
+      "filename": "Z_f_0301.bin",
+      "models": [
+        "Z f"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/586.html",
+      "expected_sha256": "bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6",
+      "current": true,
+      "size": 107820261,
+      "sha256": "bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6",
+      "space_marker_offset": 608,
+      "format": "extended_0x260",
+      "status": "not_fully_decoded",
+      "inspection": {
+        "first32_equal_z5ii": true,
+        "u16_table_equal_z5ii": true,
+        "reversed_prefix_valid": true,
+        "candidate_directory_header_equal_z5ii": true,
+        "legacy_phase_probe": {
+          "phases_covered": 16777216,
+          "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+          "reserved_zero_matches": [],
+          "plausible_headers": []
+        },
+        "complete_decoding": false,
+        "crc_verified": false,
+        "window": {
+          "start": 23863484,
+          "end_exclusive": 32150968,
+          "size": 8287484,
+          "sha256": "35aab18b9c56cafb990244dcfb0ed53c000d56827a20a1bd3d5e5a1a67a35d34",
+          "mask_sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+          "strings_min16": 7507,
+          "elf": {
+            "validated_structures": [
+              {
+                "offset": 24109988,
+                "size": 5750024,
+                "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 20,
+                "symbol_entries": 34678,
+                "artifact": "firmware decode/z-series/analysis/Z_f_0301/survey/expanded_elf/elf_016fe3a4.elf"
+              }
+            ],
+            "rejected_magic_hits": []
+          },
+          "reference_placement": {
+            "source": "Z_f_0301.bin",
+            "start": 24109988,
+            "size": 5750024,
+            "matching_unique_64byte_anchors": 78,
+            "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+            "baseline_overlap_bytes": 5750024,
+            "baseline_overlap_mismatches": 0
+          },
+          "status": "reference_assisted_overlap_validated",
+          "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."
+        }
+      }
+    },
+    {
+      "filename": "Z_fc_0181.bin",
+      "models": [
+        "Z fc"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/593.html",
+      "expected_sha256": "e4cd838a215c113659416983b31dbdba8896591caacf7309170d4cc3c60bd1b6",
+      "current": true,
+      "size": 35578974,
+      "sha256": "e4cd838a215c113659416983b31dbdba8896591caacf7309170d4cc3c60bd1b6",
+      "space_marker_offset": 32,
+      "format": "legacy_xor",
+      "status": "decoded_crc_and_roundtrip_verified",
+      "section_count": 3,
+      "package_crc16": {
+        "stored": 49187,
+        "computed": 49187,
+        "valid": true
+      },
+      "decoded_sha256": "1732d7bb71494a42867e8fc187c2b8d787dc4663bfcd6e3c55d22b30936b0f8a",
+      "inspection": {
+        "sections": [
+          {
+            "name": "ex1985_014000.bi",
+            "size": 524290,
+            "sha256": "2e35643f3f11c7680d4821533cec09f3d4e95e464956b0315b43ed8fa6faf24c",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "_tpj04_v10a5.bin",
+            "size": 32802,
+            "sha256": "7a6b56050c06ca04ede95109ad724410209f05043ee458869e761d898d9b9627",
+            "os_strings": {
+              "SMP T-Kernel": [],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": []
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            }
+          },
+          {
+            "name": "eg1985_018100.bi",
+            "size": 35021690,
+            "sha256": "cd47efc126ce5e4ce98fe95bcfe30089a07e86d7f256a4eb0df2f6bc6e9233e3",
+            "os_strings": {
+              "SMP T-Kernel": [
+                208709
+              ],
+              "SOLID": [],
+              "TOPPERS": [],
+              "FirmwareChkLib.c": [
+                1792012,
+                1795732
+              ]
+            },
+            "new_format_constants": {
+              "first32": [],
+              "u16_table": []
+            },
+            "embedded_elf": {
+              "validated_structures": [],
+              "rejected_magic_hits": []
+            }
+          }
+        ],
+        "embedded_elf_count": 0
+      }
+    },
+    {
+      "filename": "Z50_2_0111.bin",
+      "models": [
+        "Z50II"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/605.html",
+      "expected_sha256": "f1e92e1ae982a589000f1bc2bcd9e3e57613886b5b72398024ebc569bb8d7439",
+      "current": true,
+      "size": 107828357,
+      "sha256": "f1e92e1ae982a589000f1bc2bcd9e3e57613886b5b72398024ebc569bb8d7439",
+      "space_marker_offset": 608,
+      "format": "extended_0x260",
+      "status": "not_fully_decoded",
+      "inspection": {
+        "first32_equal_z5ii": true,
+        "u16_table_equal_z5ii": true,
+        "reversed_prefix_valid": true,
+        "candidate_directory_header_equal_z5ii": false,
+        "legacy_phase_probe": {
+          "phases_covered": 16777216,
+          "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+          "reserved_zero_matches": [],
+          "plausible_headers": []
+        },
+        "complete_decoding": false,
+        "crc_verified": false,
+        "window": {
+          "start": 23863484,
+          "end_exclusive": 32150968,
+          "size": 8287484,
+          "sha256": "c80ed6d649cd203e1b662bef4b433970526b0e237203f57046ca16bf60e58673",
+          "mask_sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+          "strings_min16": 6462,
+          "elf": {
+            "validated_structures": [
+              {
+                "offset": 23863484,
+                "size": 5750024,
+                "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 20,
+                "symbol_entries": 34678,
+                "artifact": "firmware decode/z-series/analysis/Z50_2_0111/survey/expanded_elf/elf_016c20bc.elf"
+              }
+            ],
+            "rejected_magic_hits": []
+          },
+          "reference_placement": {
+            "source": "Z50_2_0111.bin",
+            "start": 23863484,
+            "size": 5750024,
+            "matching_unique_64byte_anchors": 75,
+            "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+            "baseline_overlap_bytes": 5726640,
+            "baseline_overlap_mismatches": 0
+          },
+          "status": "reference_assisted_overlap_validated",
+          "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."
+        }
+      }
+    },
+    {
+      "filename": "Z5_2_0120.bin",
+      "models": [
+        "Z5II"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/601.html",
+      "expected_sha256": "96fa8c2d735864c4c612dee498818f2e3b6911458b13ad55befcfe9ffdf35af9",
+      "current": true,
+      "size": 108716229,
+      "sha256": "96fa8c2d735864c4c612dee498818f2e3b6911458b13ad55befcfe9ffdf35af9",
+      "space_marker_offset": 608,
+      "format": "extended_0x260",
+      "status": "not_fully_decoded",
+      "inspection": {
+        "first32_equal_z5ii": true,
+        "u16_table_equal_z5ii": true,
+        "reversed_prefix_valid": true,
+        "candidate_directory_header_equal_z5ii": true,
+        "legacy_phase_probe": {
+          "phases_covered": 16777216,
+          "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+          "reserved_zero_matches": [],
+          "plausible_headers": []
+        },
+        "complete_decoding": false,
+        "crc_verified": false,
+        "window": {
+          "start": 23863484,
+          "end_exclusive": 32150968,
+          "size": 8287484,
+          "sha256": "cf76dca9af25e3f2a96bc35e8096ba2716e887c96c547f4a5979243a5cabfc12",
+          "mask_sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+          "strings_min16": 6863,
+          "elf": {
+            "validated_structures": [
+              {
+                "offset": 23886868,
+                "size": 5750024,
+                "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 20,
+                "symbol_entries": 34678,
+                "artifact": "firmware decode/z-series/analysis/Z5_2_0120/survey/expanded_elf/elf_016c7c14.elf"
+              }
+            ],
+            "rejected_magic_hits": []
+          },
+          "reference_placement": {
+            "source": "Z5_2_0120.bin",
+            "start": 23886868,
+            "size": 5750024,
+            "matching_unique_64byte_anchors": 76,
+            "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+            "baseline_overlap_bytes": 5750024,
+            "baseline_overlap_mismatches": 0
+          },
+          "status": "reference_assisted_overlap_validated",
+          "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."
+        }
+      }
+    },
+    {
+      "filename": "Z6_3_0200.bin",
+      "models": [
+        "Z6III"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/571.html",
+      "expected_sha256": "b5c08335dc79d3d36d7bad0976434134db8ce160886d1c8c2935f3b185bcdbc9",
+      "current": true,
+      "size": 117641453,
+      "sha256": "b5c08335dc79d3d36d7bad0976434134db8ce160886d1c8c2935f3b185bcdbc9",
+      "space_marker_offset": 608,
+      "format": "extended_0x260",
+      "status": "not_fully_decoded",
+      "inspection": {
+        "first32_equal_z5ii": true,
+        "u16_table_equal_z5ii": true,
+        "reversed_prefix_valid": true,
+        "candidate_directory_header_equal_z5ii": true,
+        "legacy_phase_probe": {
+          "phases_covered": 16777216,
+          "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+          "reserved_zero_matches": [],
+          "plausible_headers": []
+        },
+        "complete_decoding": false,
+        "crc_verified": false,
+        "window": {
+          "start": 23863484,
+          "end_exclusive": 32150968,
+          "size": 8287484,
+          "sha256": "caab41d28c6c8be26ffe78d9e73a05bf52ffc724b9ca6aa8b1955f22399266be",
+          "mask_sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+          "strings_min16": 9765,
+          "elf": {
+            "validated_structures": [
+              {
+                "offset": 24802628,
+                "size": 691804,
+                "sha256": "6b89673f8596c4b3f57be3bbe39defe8de2388e624c344bb039a92dbc9f8fca6",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 23,
+                "symbol_entries": 4059,
+                "artifact": "firmware decode/z-series/analysis/Z6_3_0200/survey/expanded_elf/elf_017a7544.elf"
+              },
+              {
+                "offset": 25494436,
+                "size": 456004,
+                "sha256": "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 24,
+                "symbol_entries": 2739,
+                "artifact": "firmware decode/z-series/analysis/Z6_3_0200/survey/expanded_elf/elf_018503a4.elf"
+              },
+              {
+                "offset": 25950452,
+                "size": 5750024,
+                "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 20,
+                "symbol_entries": 34678,
+                "artifact": "firmware decode/z-series/analysis/Z6_3_0200/survey/expanded_elf/elf_018bf8f4.elf"
+              }
+            ],
+            "rejected_magic_hits": []
+          },
+          "reference_placement": {
+            "source": "Z6_3_0200.bin",
+            "start": 25950452,
+            "size": 5750024,
+            "matching_unique_64byte_anchors": 77,
+            "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+            "baseline_overlap_bytes": 5750024,
+            "baseline_overlap_mismatches": 0
+          },
+          "status": "reference_assisted_overlap_validated",
+          "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."
+        }
+      }
+    },
+    {
+      "filename": "ZR__0111.bin",
+      "models": [
+        "ZR"
+      ],
+      "source_page": "https://downloadcenter.nikonimglib.com/en/download/fw/584.html",
+      "expected_sha256": "de1eb5af56568e4921a0eb5e50942f06a6c00205f76dd9d2a4e42364d7476e93",
+      "current": true,
+      "size": 117159984,
+      "sha256": "de1eb5af56568e4921a0eb5e50942f06a6c00205f76dd9d2a4e42364d7476e93",
+      "space_marker_offset": 608,
+      "format": "extended_0x260",
+      "status": "not_fully_decoded",
+      "inspection": {
+        "first32_equal_z5ii": true,
+        "u16_table_equal_z5ii": true,
+        "reversed_prefix_valid": true,
+        "candidate_directory_header_equal_z5ii": true,
+        "legacy_phase_probe": {
+          "phases_covered": 16777216,
+          "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+          "reserved_zero_matches": [],
+          "plausible_headers": []
+        },
+        "complete_decoding": false,
+        "crc_verified": false,
+        "window": {
+          "start": 23863484,
+          "end_exclusive": 32150968,
+          "size": 8287484,
+          "sha256": "b5f641d0f2bb50d428065513d1a6b8083b28daf59d12e352630ae535650adb17",
+          "mask_sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+          "strings_min16": 9859,
+          "elf": {
+            "validated_structures": [
+              {
+                "offset": 25048416,
+                "size": 896508,
+                "sha256": "195228548d5f5361a2409173e693620fb57b74ee6d3ae681b4eb46af0c8b0730",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 23,
+                "symbol_entries": 4703,
+                "artifact": "firmware decode/z-series/analysis/ZR__0111/survey/expanded_elf/elf_017e3560.elf"
+              },
+              {
+                "offset": 25944928,
+                "size": 456004,
+                "sha256": "de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 24,
+                "symbol_entries": 2739,
+                "artifact": "firmware decode/z-series/analysis/ZR__0111/survey/expanded_elf/elf_018be360.elf"
+              },
+              {
+                "offset": 26400944,
+                "size": 5750024,
+                "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 20,
+                "symbol_entries": 34678,
+                "artifact": "firmware decode/z-series/analysis/ZR__0111/survey/expanded_elf/elf_0192d8b0.elf"
+              }
+            ],
+            "rejected_magic_hits": []
+          },
+          "reference_placement": {
+            "source": "ZR__0111.bin",
+            "start": 26400944,
+            "size": 5750024,
+            "matching_unique_64byte_anchors": 77,
+            "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+            "baseline_overlap_bytes": 5750024,
+            "baseline_overlap_mismatches": 0
+          },
+          "status": "reference_assisted_overlap_validated",
+          "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."
+        }
+      }
+    },
+    {
+      "filename": "Z_f_0121.bin",
+      "models": [],
+      "expected_sha256": "0c6ea7c59659bade5c8ca08d1275451e592b2b87e3482373008e63583ab9deda",
+      "current": false,
+      "size": 90124933,
+      "sha256": "0c6ea7c59659bade5c8ca08d1275451e592b2b87e3482373008e63583ab9deda",
+      "space_marker_offset": 608,
+      "format": "extended_0x260",
+      "status": "not_fully_decoded",
+      "inspection": {
+        "first32_equal_z5ii": true,
+        "u16_table_equal_z5ii": true,
+        "reversed_prefix_valid": true,
+        "candidate_directory_header_equal_z5ii": true,
+        "legacy_phase_probe": {
+          "phases_covered": 16777216,
+          "assumption": "big-endian legacy count/header_size and two zero reserved u32s",
+          "reserved_zero_matches": [],
+          "plausible_headers": []
+        },
+        "complete_decoding": false,
+        "crc_verified": false,
+        "window": {
+          "start": 23863484,
+          "end_exclusive": 32150968,
+          "size": 8287484,
+          "sha256": "fb2bbce202c9cf406ea6c762ddf6debf52ef52aeaca81deb3361918b407ef2e0",
+          "mask_sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+          "strings_min16": 6844,
+          "elf": {
+            "validated_structures": [
+              {
+                "offset": 23886084,
+                "size": 5750024,
+                "sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+                "machine": 245,
+                "bits": 32,
+                "entry": 0,
+                "section_count": 20,
+                "symbol_entries": 34678,
+                "artifact": "firmware decode/z-series/analysis/Z_f_0121/survey/expanded_elf/elf_016c7904.elf"
+              }
+            ],
+            "rejected_magic_hits": []
+          },
+          "reference_placement": {
+            "source": "Z_f_0121.bin",
+            "start": 23886084,
+            "size": 5750024,
+            "matching_unique_64byte_anchors": 75,
+            "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+            "baseline_overlap_bytes": 5749240,
+            "baseline_overlap_mismatches": 0
+          },
+          "status": "reference_assisted_overlap_validated",
+          "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."
+        }
+      }
+    }
+  ],
+  "expanded_shared_mask": {
+    "start": 23863484,
+    "end_exclusive": 32150968,
+    "size": 8287484,
+    "sha256": "55b6c9f55f5c82e0dd7da9b8d4c23b3c096b9772172e23035b35de49aa7b092f",
+    "added_bytes": 23384,
+    "baseline_sha256": "992fddc3d70a494cc928bceb4fb61a11496e1762bd70507f94f265b202d2a5ff",
+    "placements": [
+      {
+        "source": "Z_f_0301.bin",
+        "start": 24109988,
+        "size": 5750024,
+        "matching_unique_64byte_anchors": 78,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+        "baseline_overlap_bytes": 5750024,
+        "baseline_overlap_mismatches": 0
+      },
+      {
+        "source": "Z50_2_0111.bin",
+        "start": 23863484,
+        "size": 5750024,
+        "matching_unique_64byte_anchors": 75,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+        "baseline_overlap_bytes": 5726640,
+        "baseline_overlap_mismatches": 0
+      },
+      {
+        "source": "Z5_2_0120.bin",
+        "start": 23886868,
+        "size": 5750024,
+        "matching_unique_64byte_anchors": 76,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+        "baseline_overlap_bytes": 5750024,
+        "baseline_overlap_mismatches": 0
+      },
+      {
+        "source": "Z6_3_0200.bin",
+        "start": 25950452,
+        "size": 5750024,
+        "matching_unique_64byte_anchors": 77,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+        "baseline_overlap_bytes": 5750024,
+        "baseline_overlap_mismatches": 0
+      },
+      {
+        "source": "ZR__0111.bin",
+        "start": 26400944,
+        "size": 5750024,
+        "matching_unique_64byte_anchors": 77,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+        "baseline_overlap_bytes": 5750024,
+        "baseline_overlap_mismatches": 0
+      },
+      {
+        "source": "Z_f_0121.bin",
+        "start": 23886084,
+        "size": 5750024,
+        "matching_unique_64byte_anchors": 75,
+        "reference_sha256": "c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f",
+        "baseline_overlap_bytes": 5749240,
+        "baseline_overlap_mismatches": 0
+      }
+    ],
+    "overlaps": [
+      {
+        "span_indices": [
+          0,
+          1
+        ],
+        "start": 24109988,
+        "end_exclusive": 29613508,
+        "size": 5503520,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          0,
+          2
+        ],
+        "start": 24109988,
+        "end_exclusive": 29636892,
+        "size": 5526904,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          1,
+          2
+        ],
+        "start": 23886868,
+        "end_exclusive": 29613508,
+        "size": 5726640,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          0,
+          3
+        ],
+        "start": 25950452,
+        "end_exclusive": 29860012,
+        "size": 3909560,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          1,
+          3
+        ],
+        "start": 25950452,
+        "end_exclusive": 29613508,
+        "size": 3663056,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          2,
+          3
+        ],
+        "start": 25950452,
+        "end_exclusive": 29636892,
+        "size": 3686440,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          0,
+          4
+        ],
+        "start": 26400944,
+        "end_exclusive": 29860012,
+        "size": 3459068,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          1,
+          4
+        ],
+        "start": 26400944,
+        "end_exclusive": 29613508,
+        "size": 3212564,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          2,
+          4
+        ],
+        "start": 26400944,
+        "end_exclusive": 29636892,
+        "size": 3235948,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          3,
+          4
+        ],
+        "start": 26400944,
+        "end_exclusive": 31700476,
+        "size": 5299532,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          0,
+          5
+        ],
+        "start": 24109988,
+        "end_exclusive": 29636108,
+        "size": 5526120,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          1,
+          5
+        ],
+        "start": 23886084,
+        "end_exclusive": 29613508,
+        "size": 5727424,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          2,
+          5
+        ],
+        "start": 23886868,
+        "end_exclusive": 29636108,
+        "size": 5749240,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          3,
+          5
+        ],
+        "start": 25950452,
+        "end_exclusive": 29636108,
+        "size": 3685656,
+        "mismatches": 0
+      },
+      {
+        "span_indices": [
+          4,
+          5
+        ],
+        "start": 26400944,
+        "end_exclusive": 29636108,
+        "size": 3235164,
+        "mismatches": 0
+      }
+    ],
+    "bytes_by_reference_count": {
+      "1": 473092,
+      "2": 1841248,
+      "3": 446240,
+      "4": 1841248,
+      "5": 473092,
+      "6": 3212564
+    }
+  },
+  "analysis_tool_sha256": "b5e83d7cf5b6087354d17522e989faca88ea28ae266c391c5cf93246034e4356"
+}

@@ -1,0 +1,48 @@
+{
+  "main": {
+    "name": "eg1620_038000.bi",
+    "base": 268566528,
+    "language_candidate": "ARM:LE:32:v7",
+    "entry_arm": 268566528,
+    "reset_arm": 268614792,
+    "vectors_arm": 268648768,
+    "evidence": "Relative entry branch and absolute VBAR/reset-vector references agree",
+    "runtime_copies": [
+      {
+        "source": 300502484,
+        "file_offset": 31935956,
+        "destination": 3246391296,
+        "size": 1053696
+      },
+      {
+        "source": 301556224,
+        "file_offset": 32989696,
+        "destination": 3265331200,
+        "size": 4088
+      }
+    ],
+    "zero_length_copy": {
+      "source": 301560320,
+      "destination": 3265335296,
+      "size": 0
+    }
+  },
+  "ex": {
+    "name": "ex1620_037000.bi",
+    "base": 134217728,
+    "initial_sp": 536873992,
+    "reset_vector_thumb": 134218181,
+    "architecture": "ARM M-profile Thumb; exact core not established",
+    "boot_copy": {
+      "source": 134217728,
+      "destination": 536870912,
+      "size": 452
+    }
+  },
+  "unresolved": [
+    "Opaque original 32-byte prefix",
+    "Exact SoC/core models",
+    "_tpj01 and vr instruction sets",
+    "Complete update authentication path"
+  ]
+}

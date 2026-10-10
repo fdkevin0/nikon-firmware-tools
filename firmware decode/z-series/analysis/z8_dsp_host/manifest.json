@@ -1,0 +1,4380 @@
+{
+  "scope": "Host-side resource loading, model lookup and initialization; no full DSP execution",
+  "tool_sha256": "bced66cac68dad9f4b12d5729797242b5ba2b42675fc1a6c467d5a954e711670",
+  "emulator_used": true,
+  "versions": [
+    {
+      "version": "1.01",
+      "input_filename": "Z_8_0101.bin",
+      "input_sha256": "a22e229f9dd1c71a55c8d50874c83d4c847682aca64d22ed747c313487b7d1f6",
+      "eg_name": "eg2070_010101.bi",
+      "eg_sha256": "dee0d7717a940cdd7e777edc30614a684271b3d96931d63088d2c2dc98c9377c",
+      "boot_base": 1075183616,
+      "code_scan_end": 17723392,
+      "loader": {
+        "start": 1084822880,
+        "end_exclusive": 1084823480,
+        "sha256": "9432862958995e9e80a15b7cf7eba6cc1d3b7d9ef8580ca1e0894421c26138bb",
+        "jump_table": 1093126584,
+        "case_targets": [
+          1084822928,
+          1084822972,
+          1084823020,
+          1084823072,
+          1084823184,
+          1084823296
+        ],
+        "intercepted_helpers": [
+          1084823480,
+          1084918816
+        ],
+        "callers": [
+          {
+            "offset": 9856524,
+            "target": 1084822880,
+            "kind": "bl"
+          },
+          {
+            "offset": 9856560,
+            "target": 1084822880,
+            "kind": "bl"
+          },
+          {
+            "offset": 9856604,
+            "target": 1084822880,
+            "kind": "bl"
+          },
+          {
+            "offset": 9856728,
+            "target": 1084822880,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1084823904,
+        "end_exclusive": 1084824152,
+        "sha256": "fd980cee36ac805838e54023b7e19a75729c091423c76a0be32020b306aba58a",
+        "global_arena_pointer": 42998027040,
+        "global_loaded_flags": 42998027048,
+        "callers": [
+          {
+            "offset": 12902808,
+            "target": 1084823904,
+            "kind": "bl"
+          },
+          {
+            "offset": 12902836,
+            "target": 1084823904,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1088086336,
+        "end_exclusive": 1088086612
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 28,
+        "CCdnnNetwork_Release": 29,
+        "CAnimalDetectionApi": 30,
+        "CVehicleDetectionApi": 31
+      },
+      "asset_references": [
+        {
+          "value": 1093126640,
+          "register": 0,
+          "instruction_offsets": [
+            9639328,
+            9639332,
+            9639340,
+            9639344
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1093771520,
+          "register": 0,
+          "instruction_offsets": [
+            9639372,
+            9639376,
+            9639384,
+            9639388
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1094209184,
+          "register": 0,
+          "instruction_offsets": [
+            9639420,
+            9639424,
+            9639432,
+            9639436
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1099959216,
+          "register": 1,
+          "instruction_offsets": [
+            9639548,
+            9639552,
+            9639556,
+            9639560
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1099959216,
+          "register": 1,
+          "instruction_offsets": [
+            9639660,
+            9639664,
+            9639668,
+            9639672
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1101002080,
+          "register": 1,
+          "instruction_offsets": [
+            9639772,
+            9639776,
+            9639780,
+            9639784
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 30,
+          "asset_id": 5,
+          "source_address": 1101002080,
+          "source_eg_offset": 25818464,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 30,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 30,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 31,
+          "asset_id": 4,
+          "source_address": 1099959216,
+          "source_eg_offset": 24775600,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1084823480,
+              "arguments": [
+                1093126640,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1084823480,
+              "arguments": [
+                1093771520,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1084823480,
+              "arguments": [
+                1094209184,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1084918816,
+              "arguments": [
+                42986307584,
+                1099959216,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1084918816,
+              "arguments": [
+                42987880448,
+                1099959216,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1084918816,
+              "arguments": [
+                42989453312,
+                1101002080,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "2.00",
+      "input_filename": "Z_8_0200.bin",
+      "input_sha256": "ab98e95fd9ffb32455229cfc80c29bfdb7364f584fcd766f59a3c15d1c35a97d",
+      "eg_name": "eg2070_0200j0.bi",
+      "eg_sha256": "e939f88520cf9b582e7fb2482447528466635aad3bd875ada61504d62eadf7e3",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086921416,
+        "end_exclusive": 1086922016,
+        "sha256": "ced5baf82d0d7923cff55c50234ac029b5a26b1b7abf87de278b95221e6dd701",
+        "jump_table": 1097320904,
+        "case_targets": [
+          1086921464,
+          1086921508,
+          1086921556,
+          1086921608,
+          1086921720,
+          1086921832
+        ],
+        "intercepted_helpers": [
+          1086922016,
+          1087017356
+        ],
+        "callers": [
+          {
+            "offset": 11955148,
+            "target": 1086921416,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955184,
+            "target": 1086921416,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955228,
+            "target": 1086921416,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955420,
+            "target": 1086921416,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086922440,
+        "end_exclusive": 1086922688,
+        "sha256": "d3bea5b24995d30a3a423b7a87aa4bdbad6baedce88a6eb57ac08507dcdc5d5b",
+        "global_arena_pointer": 42998223680,
+        "global_loaded_flags": 42998223688,
+        "callers": [
+          {
+            "offset": 15146588,
+            "target": 1086922440,
+            "kind": "bl"
+          },
+          {
+            "offset": 15146616,
+            "target": 1086922440,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090330116,
+        "end_exclusive": 1090330392
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097320960,
+          "register": 0,
+          "instruction_offsets": [
+            11737864,
+            11737868,
+            11737876,
+            11737880
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013488,
+          "register": 0,
+          "instruction_offsets": [
+            11737908,
+            11737912,
+            11737920,
+            11737924
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469504,
+          "register": 0,
+          "instruction_offsets": [
+            11737956,
+            11737960,
+            11737968,
+            11737972
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219536,
+          "register": 1,
+          "instruction_offsets": [
+            11738084,
+            11738088,
+            11738092,
+            11738096
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219536,
+          "register": 1,
+          "instruction_offsets": [
+            11738196,
+            11738200,
+            11738204,
+            11738208
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262400,
+          "register": 1,
+          "instruction_offsets": [
+            11738308,
+            11738312,
+            11738316,
+            11738320
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262400,
+          "source_eg_offset": 30078784,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219536,
+          "source_eg_offset": 29035920,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086922016,
+              "arguments": [
+                1097320960,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086922016,
+              "arguments": [
+                1098013488,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086922016,
+              "arguments": [
+                1098469504,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087017356,
+              "arguments": [
+                42986307584,
+                1104219536,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087017356,
+              "arguments": [
+                42987880448,
+                1104219536,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087017356,
+              "arguments": [
+                42989453312,
+                1105262400,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "2.01",
+      "input_filename": "Z_8_0201.bin",
+      "input_sha256": "e6c529847f2857c758bce870bbeca2d32139f27e93fbf9bf7d50bbe0e5f23235",
+      "eg_name": "eg2070_0201a0.bi",
+      "eg_sha256": "10bdb2b74cc7d7a16dce31b6a15d4b2dd2b6bbc7babb3a8d24dc384106467ff8",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086921524,
+        "end_exclusive": 1086922124,
+        "sha256": "16c4ce32646393b19d930f4c9a278b38a0583d1e577d6e2cb32d4cd2cdb615c6",
+        "jump_table": 1097320904,
+        "case_targets": [
+          1086921572,
+          1086921616,
+          1086921664,
+          1086921716,
+          1086921828,
+          1086921940
+        ],
+        "intercepted_helpers": [
+          1086922124,
+          1087017464
+        ],
+        "callers": [
+          {
+            "offset": 11955256,
+            "target": 1086921524,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955292,
+            "target": 1086921524,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955336,
+            "target": 1086921524,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955528,
+            "target": 1086921524,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086922548,
+        "end_exclusive": 1086922796,
+        "sha256": "9b4eb37055e4e8d1b3d92ba47de87f2d17a27c1f23353dc9a75a49e886de0045",
+        "global_arena_pointer": 42998227776,
+        "global_loaded_flags": 42998227784,
+        "callers": [
+          {
+            "offset": 15146692,
+            "target": 1086922548,
+            "kind": "bl"
+          },
+          {
+            "offset": 15146720,
+            "target": 1086922548,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090330220,
+        "end_exclusive": 1090330496
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097320960,
+          "register": 0,
+          "instruction_offsets": [
+            11737972,
+            11737976,
+            11737984,
+            11737988
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013488,
+          "register": 0,
+          "instruction_offsets": [
+            11738016,
+            11738020,
+            11738028,
+            11738032
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469504,
+          "register": 0,
+          "instruction_offsets": [
+            11738064,
+            11738068,
+            11738076,
+            11738080
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219536,
+          "register": 1,
+          "instruction_offsets": [
+            11738192,
+            11738196,
+            11738200,
+            11738204
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219536,
+          "register": 1,
+          "instruction_offsets": [
+            11738304,
+            11738308,
+            11738312,
+            11738316
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262400,
+          "register": 1,
+          "instruction_offsets": [
+            11738416,
+            11738420,
+            11738424,
+            11738428
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262400,
+          "source_eg_offset": 30078784,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219536,
+          "source_eg_offset": 29035920,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086922124,
+              "arguments": [
+                1097320960,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086922124,
+              "arguments": [
+                1098013488,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086922124,
+              "arguments": [
+                1098469504,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087017464,
+              "arguments": [
+                42986307584,
+                1104219536,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087017464,
+              "arguments": [
+                42987880448,
+                1104219536,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087017464,
+              "arguments": [
+                42989453312,
+                1105262400,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "2.10",
+      "input_filename": "Z_8_0210.bin",
+      "input_sha256": "73fcde0b7e57c989962127cd392e2dec1b1f16c5f814aeaef5124683d735fd19",
+      "eg_name": "eg2070_0210h0.bi",
+      "eg_sha256": "d173fa615d45e932c74445b40acdf1315f1d16c0ad3a4cb87d4a54adb005e172",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086921684,
+        "end_exclusive": 1086922284,
+        "sha256": "24fefd0b895901ce4e8777072b0935218347c2bc1771fe5a3870180aa7dc6a8e",
+        "jump_table": 1097320920,
+        "case_targets": [
+          1086921732,
+          1086921776,
+          1086921824,
+          1086921876,
+          1086921988,
+          1086922100
+        ],
+        "intercepted_helpers": [
+          1086922284,
+          1087017604
+        ],
+        "callers": [
+          {
+            "offset": 11955840,
+            "target": 1086921684,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955876,
+            "target": 1086921684,
+            "kind": "bl"
+          },
+          {
+            "offset": 11955920,
+            "target": 1086921684,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956112,
+            "target": 1086921684,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086922708,
+        "end_exclusive": 1086922956,
+        "sha256": "b295ea5a66f0098b6bdb00d5ca82303b78e495a446b4fb61b04c2865c119cd31",
+        "global_arena_pointer": 42998289216,
+        "global_loaded_flags": 42998289224,
+        "callers": [
+          {
+            "offset": 15169560,
+            "target": 1086922708,
+            "kind": "bl"
+          },
+          {
+            "offset": 15169588,
+            "target": 1086922708,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090353088,
+        "end_exclusive": 1090353364
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097320976,
+          "register": 0,
+          "instruction_offsets": [
+            11738132,
+            11738136,
+            11738144,
+            11738148
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013504,
+          "register": 0,
+          "instruction_offsets": [
+            11738176,
+            11738180,
+            11738188,
+            11738192
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469520,
+          "register": 0,
+          "instruction_offsets": [
+            11738224,
+            11738228,
+            11738236,
+            11738240
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219552,
+          "register": 1,
+          "instruction_offsets": [
+            11738352,
+            11738356,
+            11738360,
+            11738364
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219552,
+          "register": 1,
+          "instruction_offsets": [
+            11738464,
+            11738468,
+            11738472,
+            11738476
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262416,
+          "register": 1,
+          "instruction_offsets": [
+            11738576,
+            11738580,
+            11738584,
+            11738588
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262416,
+          "source_eg_offset": 30078800,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219552,
+          "source_eg_offset": 29035936,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086922284,
+              "arguments": [
+                1097320976,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086922284,
+              "arguments": [
+                1098013504,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086922284,
+              "arguments": [
+                1098469520,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087017604,
+              "arguments": [
+                42986307584,
+                1104219552,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087017604,
+              "arguments": [
+                42987880448,
+                1104219552,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087017604,
+              "arguments": [
+                42989453312,
+                1105262416,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "3.00",
+      "input_filename": "Z_8_0300.bin",
+      "input_sha256": "a2faa72d15f298f8df1b29e84baab425dd778c396347ebd86fe3e279aaace136",
+      "eg_name": "eg2070_0300i0.bi",
+      "eg_sha256": "a236aa9b0566b71991d265c2be4d9967a7d54cdd80ec1b5a2e4ec10016d8e046",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086922556,
+        "end_exclusive": 1086923156,
+        "sha256": "f21c72553ea673e3a532aff2ab7d45ef32d3c067f40f5bd949973fd08c1b951e",
+        "jump_table": 1097321064,
+        "case_targets": [
+          1086922604,
+          1086922648,
+          1086922696,
+          1086922748,
+          1086922860,
+          1086922972
+        ],
+        "intercepted_helpers": [
+          1086923156,
+          1087018492
+        ],
+        "callers": [
+          {
+            "offset": 11956728,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956764,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956808,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11957000,
+            "target": 1086922556,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086923580,
+        "end_exclusive": 1086923828,
+        "sha256": "7af40fe340e24616f85e09fca4e3fd09429fe67f93eb248a41ddd688ce13492f",
+        "global_arena_pointer": 42998432736,
+        "global_loaded_flags": 42998432744,
+        "callers": [
+          {
+            "offset": 15239124,
+            "target": 1086923580,
+            "kind": "bl"
+          },
+          {
+            "offset": 15239152,
+            "target": 1086923580,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090422652,
+        "end_exclusive": 1090422928
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097321120,
+          "register": 0,
+          "instruction_offsets": [
+            11739004,
+            11739008,
+            11739016,
+            11739020
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013648,
+          "register": 0,
+          "instruction_offsets": [
+            11739048,
+            11739052,
+            11739060,
+            11739064
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469664,
+          "register": 0,
+          "instruction_offsets": [
+            11739096,
+            11739100,
+            11739108,
+            11739112
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739224,
+            11739228,
+            11739232,
+            11739236
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739336,
+            11739340,
+            11739344,
+            11739348
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262560,
+          "register": 1,
+          "instruction_offsets": [
+            11739448,
+            11739452,
+            11739456,
+            11739460
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262560,
+          "source_eg_offset": 30078944,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219696,
+          "source_eg_offset": 29036080,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1097321120,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098013648,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098469664,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42986307584,
+                1104219696,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42987880448,
+                1104219696,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42989453312,
+                1105262560,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "3.01",
+      "input_filename": "Z_8_0301.bin",
+      "input_sha256": "1b3223023155491dd6acd3a4a055bb482fcb9c7f1471a7bcc20d284eaefee614",
+      "eg_name": "eg2070_030100.bi",
+      "eg_sha256": "793a30990535b5a117e4ffba3cdb35a5b7264d9af19c3f29ff66a15fb61c227f",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086922556,
+        "end_exclusive": 1086923156,
+        "sha256": "f21c72553ea673e3a532aff2ab7d45ef32d3c067f40f5bd949973fd08c1b951e",
+        "jump_table": 1097321064,
+        "case_targets": [
+          1086922604,
+          1086922648,
+          1086922696,
+          1086922748,
+          1086922860,
+          1086922972
+        ],
+        "intercepted_helpers": [
+          1086923156,
+          1087018492
+        ],
+        "callers": [
+          {
+            "offset": 11956728,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956764,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956808,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11957000,
+            "target": 1086922556,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086923580,
+        "end_exclusive": 1086923828,
+        "sha256": "7af40fe340e24616f85e09fca4e3fd09429fe67f93eb248a41ddd688ce13492f",
+        "global_arena_pointer": 42998432736,
+        "global_loaded_flags": 42998432744,
+        "callers": [
+          {
+            "offset": 15239124,
+            "target": 1086923580,
+            "kind": "bl"
+          },
+          {
+            "offset": 15239152,
+            "target": 1086923580,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090422652,
+        "end_exclusive": 1090422928
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097321120,
+          "register": 0,
+          "instruction_offsets": [
+            11739004,
+            11739008,
+            11739016,
+            11739020
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013648,
+          "register": 0,
+          "instruction_offsets": [
+            11739048,
+            11739052,
+            11739060,
+            11739064
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469664,
+          "register": 0,
+          "instruction_offsets": [
+            11739096,
+            11739100,
+            11739108,
+            11739112
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739224,
+            11739228,
+            11739232,
+            11739236
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739336,
+            11739340,
+            11739344,
+            11739348
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262560,
+          "register": 1,
+          "instruction_offsets": [
+            11739448,
+            11739452,
+            11739456,
+            11739460
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262560,
+          "source_eg_offset": 30078944,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219696,
+          "source_eg_offset": 29036080,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1097321120,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098013648,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098469664,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42986307584,
+                1104219696,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42987880448,
+                1104219696,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42989453312,
+                1105262560,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "3.10",
+      "input_filename": "Z_8_0310.bin",
+      "input_sha256": "34fc0317ede933884d0caa434f4b87af95916c967ceaea5b3f2f89d122e9d538",
+      "eg_name": "eg2070_031000.bi",
+      "eg_sha256": "e4902f0c915baeb3f68cc6dcbec65b96013a13df9fe1f2b3a60977efebe49493",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086922556,
+        "end_exclusive": 1086923156,
+        "sha256": "f21c72553ea673e3a532aff2ab7d45ef32d3c067f40f5bd949973fd08c1b951e",
+        "jump_table": 1097321064,
+        "case_targets": [
+          1086922604,
+          1086922648,
+          1086922696,
+          1086922748,
+          1086922860,
+          1086922972
+        ],
+        "intercepted_helpers": [
+          1086923156,
+          1087018492
+        ],
+        "callers": [
+          {
+            "offset": 11956728,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956764,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956808,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11957000,
+            "target": 1086922556,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086923580,
+        "end_exclusive": 1086923828,
+        "sha256": "7af40fe340e24616f85e09fca4e3fd09429fe67f93eb248a41ddd688ce13492f",
+        "global_arena_pointer": 42998432736,
+        "global_loaded_flags": 42998432744,
+        "callers": [
+          {
+            "offset": 15238684,
+            "target": 1086923580,
+            "kind": "bl"
+          },
+          {
+            "offset": 15238712,
+            "target": 1086923580,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090422212,
+        "end_exclusive": 1090422488
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097321120,
+          "register": 0,
+          "instruction_offsets": [
+            11739004,
+            11739008,
+            11739016,
+            11739020
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013648,
+          "register": 0,
+          "instruction_offsets": [
+            11739048,
+            11739052,
+            11739060,
+            11739064
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469664,
+          "register": 0,
+          "instruction_offsets": [
+            11739096,
+            11739100,
+            11739108,
+            11739112
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739224,
+            11739228,
+            11739232,
+            11739236
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739336,
+            11739340,
+            11739344,
+            11739348
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262560,
+          "register": 1,
+          "instruction_offsets": [
+            11739448,
+            11739452,
+            11739456,
+            11739460
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262560,
+          "source_eg_offset": 30078944,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219696,
+          "source_eg_offset": 29036080,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1097321120,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098013648,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098469664,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42986307584,
+                1104219696,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42987880448,
+                1104219696,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42989453312,
+                1105262560,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      }
+    },
+    {
+      "version": "3.11",
+      "input_filename": "Z_8_0311.bin",
+      "input_sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96",
+      "eg_name": "eg2070_0311b0.bi",
+      "eg_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+      "boot_base": 1075183616,
+      "code_scan_end": 21917696,
+      "loader": {
+        "start": 1086922556,
+        "end_exclusive": 1086923156,
+        "sha256": "f21c72553ea673e3a532aff2ab7d45ef32d3c067f40f5bd949973fd08c1b951e",
+        "jump_table": 1097321064,
+        "case_targets": [
+          1086922604,
+          1086922648,
+          1086922696,
+          1086922748,
+          1086922860,
+          1086922972
+        ],
+        "intercepted_helpers": [
+          1086923156,
+          1087018492
+        ],
+        "callers": [
+          {
+            "offset": 11956728,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956764,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11956808,
+            "target": 1086922556,
+            "kind": "bl"
+          },
+          {
+            "offset": 11957000,
+            "target": 1086922556,
+            "kind": "bl"
+          }
+        ]
+      },
+      "lookup": {
+        "start": 1086923580,
+        "end_exclusive": 1086923828,
+        "sha256": "7af40fe340e24616f85e09fca4e3fd09429fe67f93eb248a41ddd688ce13492f",
+        "global_arena_pointer": 42998432736,
+        "global_loaded_flags": 42998432744,
+        "callers": [
+          {
+            "offset": 15238716,
+            "target": 1086923580,
+            "kind": "bl"
+          },
+          {
+            "offset": 15238744,
+            "target": 1086923580,
+            "kind": "bl"
+          }
+        ]
+      },
+      "initializer": {
+        "start": 1090422244,
+        "end_exclusive": 1090422520
+      },
+      "dsp_api_slots": {
+        "CCdnnNetwork_Initialize": 29,
+        "CCdnnNetwork_Release": 30,
+        "CAnimalDetectionApi": 31,
+        "CVehicleDetectionApi": 32
+      },
+      "asset_references": [
+        {
+          "value": 1097321120,
+          "register": 0,
+          "instruction_offsets": [
+            11739004,
+            11739008,
+            11739016,
+            11739020
+          ],
+          "resource": "DSP_0"
+        },
+        {
+          "value": 1098013648,
+          "register": 0,
+          "instruction_offsets": [
+            11739048,
+            11739052,
+            11739060,
+            11739064
+          ],
+          "resource": "DSP_1"
+        },
+        {
+          "value": 1098469664,
+          "register": 0,
+          "instruction_offsets": [
+            11739096,
+            11739100,
+            11739108,
+            11739112
+          ],
+          "resource": "DSP_2"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739224,
+            11739228,
+            11739232,
+            11739236
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1104219696,
+          "register": 1,
+          "instruction_offsets": [
+            11739336,
+            11739340,
+            11739344,
+            11739348
+          ],
+          "resource": "N1"
+        },
+        {
+          "value": 1105262560,
+          "register": 1,
+          "instruction_offsets": [
+            11739448,
+            11739452,
+            11739456,
+            11739460
+          ],
+          "resource": "N2"
+        }
+      ],
+      "network_associations": [
+        {
+          "api_symbol": "CAnimalDetectionApi",
+          "slot": 31,
+          "asset_id": 5,
+          "source_address": 1105262560,
+          "source_eg_offset": 30078944,
+          "copy_size": 1083248,
+          "runtime_pointer_with_observed_arena": 42989453312,
+          "network_sha256": "418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541",
+          "loaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 26,
+            "calls": [],
+            "pointer": 42989453312,
+            "length": 1083248,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 31,
+            "skip_load_argument": null,
+            "steps": 17,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        },
+        {
+          "api_symbol": "CVehicleDetectionApi",
+          "slot": 32,
+          "asset_id": 4,
+          "source_address": 1104219696,
+          "source_eg_offset": 29036080,
+          "copy_size": 1042864,
+          "runtime_pointer_with_observed_arena": 42987880448,
+          "network_sha256": "1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76",
+          "loaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 24,
+            "calls": [],
+            "pointer": 42987880448,
+            "length": 1042864,
+            "loaded_flags": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "error_flag": 0
+          },
+          "unloaded_query": {
+            "input_id": 32,
+            "skip_load_argument": null,
+            "steps": 15,
+            "calls": [],
+            "pointer": 0,
+            "length": 0,
+            "loaded_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "error_flag": 0
+          },
+          "interpretation": "Host API/resource association; does not enumerate all model classes or prove live scheduling"
+        }
+      ],
+      "loader_execution": [
+        {
+          "input_id": 0,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1097321120,
+                42974838784,
+                42974904320
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 0,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 0,
+          "steps": 36,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098013648,
+                42977263616,
+                42977329152
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 1,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 0,
+          "steps": 35,
+          "calls": [
+            {
+              "target": 1086923156,
+              "arguments": [
+                1098469664,
+                42979688448,
+                42979753984
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 2,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42986307584,
+                1104219696,
+                0
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 3,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 0,
+          "steps": 52,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42987880448,
+                1104219696,
+                1042864
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 4,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 0,
+          "steps": 51,
+          "calls": [
+            {
+              "target": 1087018492,
+              "arguments": [
+                42989453312,
+                1105262560,
+                1083248
+              ]
+            }
+          ],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 5,
+          "skip_load_argument": 1,
+          "steps": 12,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "error_flag": 0
+        },
+        {
+          "input_id": 6,
+          "skip_load_argument": 0,
+          "steps": 8,
+          "calls": [],
+          "pointer": null,
+          "length": null,
+          "loaded_flags": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "error_flag": 0
+        }
+      ],
+      "invalid_query": {
+        "input_id": 65535,
+        "skip_load_argument": null,
+        "steps": 11,
+        "calls": [],
+        "pointer": 0,
+        "length": 0,
+        "loaded_flags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "error_flag": 0
+      },
+      "additional_manually_traced_ranges": [
+        {
+          "name": "initialize_resource_arena_pointer",
+          "start": 1086922504,
+          "end_exclusive": 1086922544,
+          "sha256": "0fb66144a42c3c02250a044acfbdda2ea437f9cb96cc4c8dffb5fae11158ae32"
+        },
+        {
+          "name": "load_elf_program_headers",
+          "start": 1086923156,
+          "end_exclusive": 1086923572,
+          "sha256": "7ecbf425566f0f7c38262861329430d077d6362e4ebdc326375eaea13abcbb13"
+        },
+        {
+          "name": "queue_dsp_request",
+          "start": 1086917032,
+          "end_exclusive": 1086917356,
+          "sha256": "de360d951322454cc6670d9cce05ec5910c9ae07f0b69e0edcedcc5abdb80632"
+        },
+        {
+          "name": "animal_submission_dsp_branch_excerpt",
+          "start": 1090417608,
+          "end_exclusive": 1090417936,
+          "sha256": "b1ee0541fee837806efcbce6e670578b374f6ed9dd3a3969ff975a55349fa8be"
+        },
+        {
+          "name": "vehicle_submission_dsp_branch_excerpt",
+          "start": 1090419588,
+          "end_exclusive": 1090419908,
+          "sha256": "402b57f804e4ff4f69e4f720318112de075cccc01bc7a26f0a6e3680a3798f29"
+        },
+        {
+          "name": "cdnn_completion_callback",
+          "start": 1090422520,
+          "end_exclusive": 1090422684,
+          "sha256": "93d53e1ed9af98000fb990b65c9360b0fece01f8e335c4295846224b164b1e3a"
+        },
+        {
+          "name": "address_alias_conversion",
+          "start": 1092118400,
+          "end_exclusive": 1092118452,
+          "sha256": "539987a5e2d4d1ee71408537de5f08a9b729dcb9587a333c83ed6356de8fb0cd"
+        }
+      ]
+    }
+  ],
+  "unicorn_version": "2.1.4",
+  "dsp_named_constants": [
+    {
+      "symbol": "_ZZL47CAnimalDetectionPostProcess_DetectBoundingBoxesP36tagAnimalDetectionPostprocess_BufferE43cAnimalDetectionPostprocess_OutmapSet_Table",
+      "dsp_address": 1109333896,
+      "elf_file_offset": 4447656,
+      "size": 12,
+      "hex": "1800100002000c0008000200",
+      "u16_le_view": [
+        24,
+        16,
+        2,
+        12,
+        8,
+        2
+      ],
+      "unresolved": "Element types, fixed-point scale, class-index meaning and runtime overrides"
+    },
+    {
+      "symbol": "_ZZL48CVehicleDetectionPostProcess_DetectBoundingBoxesP37tagVehicleDetectionPostprocess_BufferE44cVehicleDetectionPostprocess_OutmapSet_Table",
+      "dsp_address": 1109510140,
+      "elf_file_offset": 4623900,
+      "size": 12,
+      "hex": "1800100002000c0008000200",
+      "u16_le_view": [
+        24,
+        16,
+        2,
+        12,
+        8,
+        2
+      ],
+      "unresolved": "Element types, fixed-point scale, class-index meaning and runtime overrides"
+    },
+    {
+      "symbol": "cAnimalDetectionPostprocess_ClassEffectiveTh_Table",
+      "dsp_address": 1109333928,
+      "elf_file_offset": 4447688,
+      "size": 20,
+      "hex": "ad03ad032103210321032103ad03ad0321032103",
+      "u16_le_view": [
+        941,
+        941,
+        801,
+        801,
+        801,
+        801,
+        941,
+        941,
+        801,
+        801
+      ],
+      "unresolved": "Element types, fixed-point scale, class-index meaning and runtime overrides"
+    },
+    {
+      "symbol": "cVehicleDetectionPostprocess_ClassEffectiveTh_Table",
+      "dsp_address": 1109382024,
+      "elf_file_offset": 4495784,
+      "size": 16,
+      "hex": "d503d503d503d503d503d503d503d503",
+      "u16_le_view": [
+        981,
+        981,
+        981,
+        981,
+        981,
+        981,
+        981,
+        981
+      ],
+      "unresolved": "Element types, fixed-point scale, class-index meaning and runtime overrides"
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "collected_at_utc": "2026-10-04T19:04:26.948675+00:00",
+  "versions": [
+    {
+      "version": "1.00",
+      "page_url": null,
+      "filename": "Z_8_0100.bin",
+      "release_date": "2023-05-25",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v1.00.html"
+      ],
+      "download_links": [],
+      "status": "factory_version_no_public_binary_found",
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "notes": "Factory release confirmed by Nikon OSS index and update histories; no original public BIN/EXE download located. Do not substitute GPL source archive for firmware.",
+      "download": {
+        "status": "no_verified_link"
+      }
+    },
+    {
+      "version": "1.01",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/495.html",
+      "filename": "Z_8_0101.bin",
+      "release_date": "2023-08-23",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://www.touslesdrivers.com/index.php?v_code=75989&v_langue=en&v_page=23",
+        "https://www.touslesdrivers.com/php/constructeurs/redirection.php?v_code=75989",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v1.01.html"
+      ],
+      "download_links": [
+        "https://download.nikonimglib.com/archive6/K5wUs009R5Fh06tpTET156eIlD62/F-Z8-V101W.exe"
+      ],
+      "status": "official_cdn_found_via_third_party_archive",
+      "final_cdn_url": "https://download.nikonimglib.com/archive6/K5wUs009R5Fh06tpTET156eIlD62/F-Z8-V101W.exe",
+      "wrapper_filename": "F-Z8-V101W.exe",
+      "download_format": "exe_wrapper",
+      "head_verification": {
+        "status": 200,
+        "content_length": "70578888",
+        "last_modified": "Wed, 23 Aug 2023 00:04:25 GMT",
+        "final_url": "https://download.nikonimglib.com/archive6/K5wUs009R5Fh06tpTET156eIlD62/F-Z8-V101W.exe"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "status": "downloaded",
+        "url": "https://download.nikonimglib.com/archive6/K5wUs009R5Fh06tpTET156eIlD62/F-Z8-V101W.exe",
+        "size": 86319173,
+        "sha256": "a22e229f9dd1c71a55c8d50874c83d4c847682aca64d22ed747c313487b7d1f6",
+        "wrapper": {
+          "url": "https://download.nikonimglib.com/archive6/K5wUs009R5Fh06tpTET156eIlD62/F-Z8-V101W.exe",
+          "content_length": 70578888,
+          "last_modified": "Wed, 23 Aug 2023 00:04:25 GMT",
+          "sha256": "048ec31cfa81b9026ddf013f9bbf3d69898942f7b76b056fc0fdd7edcf880f2e"
+        },
+        "archive_member": "Z8Update/Z_8_0101.bin",
+        "archive_crc32": "AE4E54EE",
+        "extraction": "libarchive RAR3 reader (7-Zip RAR codec unavailable); executable never launched"
+      }
+    },
+    {
+      "version": "2.00",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/514.html",
+      "filename": "Z_8_0200.bin",
+      "release_date": "2024-02-07",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://www.touslesdrivers.com/index.php?v_code=77461&v_langue=en&v_page=23",
+        "https://www.touslesdrivers.com/php/constructeurs/redirection.php?v_code=77461",
+        "https://downloadcenter.nikonimglib.com/de/download/fw/514.html",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v2.00.html"
+      ],
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?L=Kmeo806&O=4nECX00&P=gWRau52&R=SzF2b38",
+        "https://download.nikonimglib.com/archive6/lumyu001EhU306F0o0738g1IIj55/Z_8_0200.bin"
+      ],
+      "status": "official_cached_download_found",
+      "final_cdn_url": "https://download.nikonimglib.com/archive6/nAw07006uaoL06zvSCg38iqdVt56/Z_8_0200.bin",
+      "official_crossgate_url": "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?L=Kmeo806&O=4nECX00&P=gWRau52&R=SzF2b38",
+      "head_verification": {
+        "status": 200,
+        "content_length": "96221253",
+        "last_modified": "Wed, 07 Feb 2024 00:58:37 GMT",
+        "final_url": "https://download.nikonimglib.com/archive6/lumyu001EhU306F0o0738g1IIj55/Z_8_0200.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "alternate_cdn_urls": [
+        "https://download.nikonimglib.com/archive6/lumyu001EhU306F0o0738g1IIj55/Z_8_0200.bin"
+      ],
+      "official_crossgate_verification": {
+        "status": 200,
+        "content_length": "96221253",
+        "final_url": "https://download.nikonimglib.com/archive6/nAw07006uaoL06zvSCg38iqdVt56/Z_8_0200.bin"
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive6/nAw07006uaoL06zvSCg38iqdVt56/Z_8_0200.bin",
+        "content_length": 96221253,
+        "last_modified": "Wed, 07 Feb 2024 00:58:54 GMT",
+        "etag": "\"4c9a360c553ec089323b9f8345e5db2c:1707267529.773502\"",
+        "status": "existing",
+        "size": 96221253,
+        "sha256": "ab98e95fd9ffb32455229cfc80c29bfdb7364f584fcd766f59a3c15d1c35a97d"
+      }
+    },
+    {
+      "version": "2.01",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/527.html",
+      "filename": "Z_8_0201.bin",
+      "release_date": "2024-04-23",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://www.touslesdrivers.com/index.php?v_code=78161&v_langue=en&v_page=23",
+        "https://www.touslesdrivers.com/php/constructeurs/redirection.php?v_code=78161",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v2.01.html"
+      ],
+      "download_links": [
+        "https://download.nikonimglib.com/archive6/PfgBE008SOjN06KgRkV51CswoO24/Z_8_0201.bin"
+      ],
+      "status": "official_cdn_found_via_third_party_archive",
+      "final_cdn_url": "https://download.nikonimglib.com/archive6/PfgBE008SOjN06KgRkV51CswoO24/Z_8_0201.bin",
+      "head_verification": {
+        "status": 200,
+        "content_length": "96225349",
+        "last_modified": "Tue, 23 Apr 2024 00:58:09 GMT",
+        "final_url": "https://download.nikonimglib.com/archive6/PfgBE008SOjN06KgRkV51CswoO24/Z_8_0201.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive6/PfgBE008SOjN06KgRkV51CswoO24/Z_8_0201.bin",
+        "content_length": 96225349,
+        "last_modified": "Tue, 23 Apr 2024 00:58:09 GMT",
+        "etag": "\"bfb00ee8c3b11f50c948de551a466151:1713833884.87102\"",
+        "status": "existing",
+        "size": 96225349,
+        "sha256": "e6c529847f2857c758bce870bbeca2d32139f27e93fbf9bf7d50bbe0e5f23235"
+      }
+    },
+    {
+      "version": "2.10",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/550.html",
+      "filename": "Z_8_0210.bin",
+      "release_date": "2025-02-26",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://downloadcenter-origin.nikonimglib.com/en/download/fw/550.html",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v2.10.html"
+      ],
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?L=NzRYN07&O=CeVEU00&P=Xkkvm85&R=QrMxT00"
+      ],
+      "status": "official_cached_download_found",
+      "final_cdn_url": "https://download.nikonimglib.com/archive7/N4LVm007uyXE07kH9hg00m9htz95/Z_8_0210.bin",
+      "head_verification": {
+        "status": 200,
+        "content_length": "96524357",
+        "last_modified": "Wed, 26 Feb 2025 00:07:09 GMT",
+        "final_url": "https://download.nikonimglib.com/archive7/N4LVm007uyXE07kH9hg00m9htz95/Z_8_0210.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/N4LVm007uyXE07kH9hg00m9htz95/Z_8_0210.bin",
+        "content_length": 96524357,
+        "last_modified": "Wed, 26 Feb 2025 00:07:09 GMT",
+        "etag": "\"bae1be6cd50eb68f7b6a8c276226f63d:1740528424.143221\"",
+        "status": "existing",
+        "size": 96524357,
+        "sha256": "73fcde0b7e57c989962127cd392e2dec1b1f16c5f814aeaef5124683d735fd19"
+      }
+    },
+    {
+      "version": "3.00",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/563.html",
+      "filename": "Z_8_0300.bin",
+      "release_date": "2025-07-01",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://www.touslesdrivers.com/index.php?v_code=82296&v_langue=en&v_page=23",
+        "https://www.touslesdrivers.com/php/constructeurs/redirection.php?v_code=82296",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v3.00.html"
+      ],
+      "download_links": [
+        "https://download.nikonimglib.com/archive7/9r1LM00QTFkw07nZfqG26FMTZa99/Z_8_0300.bin"
+      ],
+      "status": "official_cdn_found_via_third_party_archive",
+      "final_cdn_url": "https://download.nikonimglib.com/archive7/9r1LM00QTFkw07nZfqG26FMTZa99/Z_8_0300.bin",
+      "head_verification": {
+        "status": 200,
+        "content_length": "99051117",
+        "last_modified": "Tue, 01 Jul 2025 00:18:08 GMT",
+        "final_url": "https://download.nikonimglib.com/archive7/9r1LM00QTFkw07nZfqG26FMTZa99/Z_8_0300.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/9r1LM00QTFkw07nZfqG26FMTZa99/Z_8_0300.bin",
+        "content_length": 99051117,
+        "last_modified": "Tue, 01 Jul 2025 00:18:08 GMT",
+        "etag": "\"faa46150882942b7f18a564532446597:1751329084.212375\"",
+        "status": "existing",
+        "size": 99051117,
+        "sha256": "a2faa72d15f298f8df1b29e84baab425dd778c396347ebd86fe3e279aaace136"
+      }
+    },
+    {
+      "version": "3.01",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/570.html",
+      "filename": "Z_8_0301.bin",
+      "release_date": "2025-07-16",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://www.touslesdrivers.com/index.php?v_code=82493&v_langue=en&v_page=23",
+        "https://www.touslesdrivers.com/php/constructeurs/redirection.php?v_code=82493",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v3.01.html"
+      ],
+      "download_links": [
+        "https://download.nikonimglib.com/archive7/3eg5G00HkcGK07XnlMZ279huk309/Z_8_0301.bin"
+      ],
+      "status": "official_cdn_found_via_third_party_archive",
+      "final_cdn_url": "https://download.nikonimglib.com/archive7/3eg5G00HkcGK07XnlMZ279huk309/Z_8_0301.bin",
+      "head_verification": {
+        "status": 200,
+        "content_length": "99051117",
+        "last_modified": "Wed, 16 Jul 2025 00:20:35 GMT",
+        "final_url": "https://download.nikonimglib.com/archive7/3eg5G00HkcGK07XnlMZ279huk309/Z_8_0301.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/3eg5G00HkcGK07XnlMZ279huk309/Z_8_0301.bin",
+        "content_length": 99051117,
+        "last_modified": "Wed, 16 Jul 2025 00:20:35 GMT",
+        "etag": "\"3e8c7e0c23036026509cab236e9f4602:1752625230.970178\"",
+        "status": "existing",
+        "size": 99051117,
+        "sha256": "1b3223023155491dd6acd3a4a055bb482fcb9c7f1471a7bcc20d284eaefee614"
+      }
+    },
+    {
+      "version": "3.10",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/573.html",
+      "filename": "Z_8_0310.bin",
+      "release_date": "2025-09-17",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://www.touslesdrivers.com/index.php?v_code=83078&v_langue=en&v_page=23",
+        "https://www.touslesdrivers.com/php/constructeurs/redirection.php?v_code=83078",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v3.10.html"
+      ],
+      "download_links": [
+        "https://download.nikonimglib.com/archive7/Hij1g00TJmvi07pPtcJ38Yk9EH03/Z_8_0310.bin"
+      ],
+      "status": "official_cdn_found_via_third_party_archive",
+      "final_cdn_url": "https://download.nikonimglib.com/archive7/Hij1g00TJmvi07pPtcJ38Yk9EH03/Z_8_0310.bin",
+      "head_verification": {
+        "status": 200,
+        "content_length": "99051117",
+        "last_modified": "Wed, 17 Sep 2025 01:10:37 GMT",
+        "final_url": "https://download.nikonimglib.com/archive7/Hij1g00TJmvi07pPtcJ38Yk9EH03/Z_8_0310.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive7/Hij1g00TJmvi07pPtcJ38Yk9EH03/Z_8_0310.bin",
+        "content_length": 99051117,
+        "last_modified": "Wed, 17 Sep 2025 01:10:37 GMT",
+        "etag": "\"235de6415d57e06643b4685932de3aa3:1758071433.549941\"",
+        "status": "existing",
+        "size": 99051117,
+        "sha256": "34fc0317ede933884d0caa434f4b87af95916c967ceaea5b3f2f89d122e9d538"
+      }
+    },
+    {
+      "version": "3.11",
+      "page_url": "https://downloadcenter.nikonimglib.com/en/download/fw/606.html",
+      "filename": "Z_8_0311.bin",
+      "release_date": "2026-09-16",
+      "sources": [
+        "https://imaging.nikon.com/imaging/oss/en/",
+        "https://imaging.nikon.com/imaging/oss/en/download/Z8_v3.11.html"
+      ],
+      "download_links": [
+        "https://crossgate.nikonimglib.com/dsd_redirect/redirect.do?L=i2hxv07&O=9QcTd00&P=HCtsi43&R=sV6fE66"
+      ],
+      "status": "official_download_found",
+      "final_cdn_url": "https://download.nikonimglib.com/archive8/wP5Vr003qbpC07ibhJ666rmRfF47/Z_8_0311.bin",
+      "head_verification": {
+        "status": 200,
+        "content_length": "99051117",
+        "last_modified": "Wed, 16 Sep 2026 01:01:41 GMT",
+        "final_url": "https://download.nikonimglib.com/archive8/wP5Vr003qbpC07ibhJ666rmRfF47/Z_8_0311.bin"
+      },
+      "release_date_provenance": {
+        "source": "https://imaging.nikon.com/imaging/oss/en/",
+        "type": "official_oss_release_index",
+        "caveat": "Index date is OSS release date; for all 8 public upgrades the official binary CDN Last-Modified date independently matches."
+      },
+      "download": {
+        "url": "https://download.nikonimglib.com/archive8/wP5Vr003qbpC07ibhJ666rmRfF47/Z_8_0311.bin",
+        "content_length": 99051117,
+        "last_modified": "Wed, 16 Sep 2026 01:01:41 GMT",
+        "etag": "\"884afeef0fb5932510e2a7d7ae1687c7:1789520497.126657\"",
+        "status": "existing",
+        "size": 99051117,
+        "sha256": "d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96"
+      }
+    }
+  ]
+}

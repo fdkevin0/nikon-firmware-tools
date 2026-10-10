@@ -1,0 +1,87 @@
+{
+  "image_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "scope": "Synthetic backend version; actual getter and leading-zero display helper; font/drawing intercepted; no camera",
+  "hook": "0x405ab454",
+  "probe_payload": "0x412a3800",
+  "original_hook": "560af917",
+  "assembly": ".text\n.global ui_version\nui_version:\n stp x19, x30, [sp, #-16]!\n mov x19, x1\n bl stock_version\n movz x8, #0x2e33\n movk x8, #0x3131, lsl #16\n movk x8, #0x5020, lsl #32\n str x8, [x19]\n ldp x19, x30, [sp], #16\n ret\n",
+  "payload_hex": "f37bbfa9f30301aa6929c59768c685d22826a6f20804caf2680200f9f37bc1a8c0035fd6",
+  "cases": [
+    {
+      "patched": false,
+      "backend_status": 0,
+      "return": 0,
+      "getter_bytes": "30332e31310000000000",
+      "label": "C",
+      "submitted_text": [
+        " 3.11"
+      ],
+      "callee_saved_preserved": true,
+      "stack_preserved": true,
+      "guard_preserved": true,
+      "backend_calls": [
+        {
+          "kind": 13,
+          "capacity_request": 10
+        }
+      ]
+    },
+    {
+      "patched": true,
+      "backend_status": 0,
+      "return": 0,
+      "getter_bytes": "332e3131205000000000",
+      "label": "C",
+      "submitted_text": [
+        "3.11 P"
+      ],
+      "callee_saved_preserved": true,
+      "stack_preserved": true,
+      "guard_preserved": true,
+      "backend_calls": [
+        {
+          "kind": 13,
+          "capacity_request": 10
+        }
+      ]
+    },
+    {
+      "patched": true,
+      "backend_status": 2,
+      "return": 2,
+      "getter_bytes": "332e3131205000000000",
+      "label": "C",
+      "submitted_text": [
+        "3.11 P"
+      ],
+      "callee_saved_preserved": true,
+      "stack_preserved": true,
+      "guard_preserved": true,
+      "backend_calls": [
+        {
+          "kind": 13,
+          "capacity_request": 10
+        }
+      ]
+    },
+    {
+      "patched": true,
+      "backend_status": 4,
+      "return": 4,
+      "getter_bytes": "332e3131205000000000",
+      "label": "C",
+      "submitted_text": [
+        "3.11 P"
+      ],
+      "callee_saved_preserved": true,
+      "stack_preserved": true,
+      "guard_preserved": true,
+      "backend_calls": [
+        {
+          "kind": 13,
+          "capacity_request": 10
+        }
+      ]
+    }
+  ]
+}

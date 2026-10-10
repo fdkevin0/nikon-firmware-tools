@@ -1,0 +1,176 @@
+{
+  "image_sha256": "f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c",
+  "scope": "Extract Z8 3.11 private session commands and probe admission offline.\n\nNo USB or camera access. The F001 handler runs only with an already-open\nsynthetic session, which returns before camera initialization. F002 and the\nF001 opening path are disassembled, never executed.",
+  "outer_descriptors": [
+    {
+      "address": "0x44df2820",
+      "opcode": "0x94fd",
+      "raw_fields": [
+        "0x94fd",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe130",
+        "0x407fe138",
+        "0x407fe12c"
+      ]
+    },
+    {
+      "address": "0x44df2860",
+      "opcode": "0x94fe",
+      "raw_fields": [
+        "0x2000094fe",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe140",
+        "0x407fe150",
+        "0x407fe158",
+        "0x407fe12c"
+      ]
+    },
+    {
+      "address": "0x44df28a0",
+      "opcode": "0x94ff",
+      "raw_fields": [
+        "0x1000094ff",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe160",
+        "0x407fe168",
+        "0x407fe12c"
+      ]
+    }
+  ],
+  "inner_descriptors": [
+    {
+      "address": "0x440ec590",
+      "command": "0xf001",
+      "raw_fields": [
+        "0xf001",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe53c",
+        "0x407fe4f0"
+      ]
+    },
+    {
+      "address": "0x440ec5c0",
+      "command": "0xf002",
+      "raw_fields": [
+        "0xf002",
+        "0x0",
+        "0x0",
+        "0x0",
+        "0x407fe734",
+        "0x407fe4f0"
+      ]
+    }
+  ],
+  "probes": [
+    {
+      "outer_opcode": "0x94fd",
+      "command": "0xf001",
+      "session_flag": 0,
+      "parameter_count": 5,
+      "packet_hex": "200000000100fd940100000001f0000000000000000000000000000000000000",
+      "admitted": 1,
+      "handler_result": null,
+      "responses": []
+    },
+    {
+      "outer_opcode": "0x94fd",
+      "command": "0xf002",
+      "session_flag": 0,
+      "parameter_count": 5,
+      "packet_hex": "200000000100fd940100000002f0000000000000000000000000000000000000",
+      "admitted": 0,
+      "handler_result": null,
+      "responses": [
+        {
+          "code": "0xa004",
+          "parameters": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "status_argument": 0
+        }
+      ]
+    },
+    {
+      "outer_opcode": "0x94fd",
+      "command": "0xf029",
+      "session_flag": 0,
+      "parameter_count": 5,
+      "packet_hex": "200000000100fd940100000029f0000000000000000000000000000000000000",
+      "admitted": 0,
+      "handler_result": null,
+      "responses": [
+        {
+          "code": "0xa004",
+          "parameters": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "status_argument": 0
+        }
+      ]
+    },
+    {
+      "outer_opcode": "0x94fd",
+      "command": "0xf001",
+      "session_flag": 0,
+      "parameter_count": 1,
+      "packet_hex": "100000000100fd940100000001f00000",
+      "admitted": 0,
+      "handler_result": null,
+      "responses": [
+        {
+          "code": "0x2006",
+          "parameters": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "status_argument": 0
+        }
+      ]
+    },
+    {
+      "outer_opcode": "0x94fd",
+      "command": "0xf001",
+      "session_flag": 1,
+      "parameter_count": 5,
+      "packet_hex": "200000000100fd940100000001f0000000000000000000000000000000000000",
+      "admitted": 1,
+      "handler_result": 0,
+      "responses": [
+        {
+          "code": "0x2001",
+          "parameters": [
+            8222,
+            0,
+            0,
+            0,
+            0
+          ],
+          "status_argument": 0
+        }
+      ]
+    }
+  ],
+  "usb_commands_sent": 0,
+  "opening_backend_executed": false
+}
