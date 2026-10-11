@@ -30,11 +30,31 @@ Z8 已进入函数级分析：[主 CPU／DSP 装载与调用接口](analysis/z8_
 [跨机型 AI 比较](analysis/ai_comparison/REPORT.md)、[Z f 最早新封装调查](analysis/catalog/ZF_PACKAGING_HISTORY.md)、
 [Z8 历史分析](analysis/z8_history/REPORT.md)。
 
+## 专题技术与报告全景索引
+
+本目录积累了 40 余份系统级逆向报告与参考资料，按研究领域分类如下：
+
+| 研究领域 | 核心主题 | 关键报告与入口 |
+| :--- | :--- | :--- |
+| **版本演进与全量对比** | 15 款机型、148 份固件跨版本比对与封装沿革 | - [全历史主要发现](analysis/all_history/FINDINGS.md)<br>- [全历史逐版比较总表](analysis/all_history/REPORT.md)<br>- [发布时间与封装对照](RELEASE_TIMELINE.md)<br>- [Z8 历史版本分析](analysis/z8_history/REPORT.md)<br>- [全机型目录调查](analysis/catalog/REPORT.md)<br>- [Z f 最早新封装调查](analysis/catalog/ZF_PACKAGING_HISTORY.md) |
+| **机型逆向 (旧三表 XOR)** | 完整解包、分段 CRC 验证与符号提取 | - [Z6 3.80 报告](analysis/Z_6_0380/REPORT.md) · [Z7 3.80 报告](analysis/Z_7_0380/REPORT.md)<br>- [Z8 3.11 报告](analysis/Z_8_0311/REPORT.md) · [Z9 5.32 报告](analysis/Z_9_0532/REPORT.md)<br>- [Z5 1.50 报告](analysis/Z_5_0150/REPORT.md) · [Z50 2.60 报告](analysis/Z_50_0260/REPORT.md)<br>- [Z30 1.20 报告](analysis/Z_30_0120/REPORT.md) · [Z fc 1.81 报告](analysis/Z_fc_0181/REPORT.md)<br>- [Z6II 1.70 报告](analysis/Z6_2_0170/REPORT.md) · [Z7II 1.70 报告](analysis/Z7_2_0170/REPORT.md) |
+| **机型逆向 (0x260 新封装)** | 差分匹配、已知明文参照与局部恢复 | - [Z f 3.01 差分报告](analysis/Z_f_0301/REPORT.md)<br>- [Z5 II 1.20 局部恢复报告](analysis/Z5_2_0120/REPORT.md)<br>- [Z50 II 1.11 逆向报告](analysis/Z50_2_0111/REPORT.md)<br>- [Z6 III 2.00 逆向报告](analysis/Z6_3_0200/REPORT.md)<br>- [ZR 1.11 容器分析报告](analysis/ZR__0111/REPORT.md) |
+| **AI、DSP 与视觉** | CEVA DSP ELF、网络数据比对、主体检测 | - [跨机型 AI 比较报告](analysis/ai_comparison/REPORT.md)<br>- [Z8 主 CPU／DSP 装载与调用接口](analysis/z8_dsp_host/REPORT.md)<br>- [主体检测属性到机内设置](analysis/z8_sdk_subject/REPORT.md) |
+| **视频与传感器数据流** | Open Gate 录制可行性、传感器命令与参数区 | - [Z8 Open Gate 可行性调查](analysis/z8_open_gate/REPORT.md)<br>- [N-RAW 尺寸到采集状态分析](analysis/z8_capture_state/REPORT.md)<br>- [CaptureSensor 后端模式与命令参数块](analysis/z8_sensor_backend/REPORT.md)<br>- [参数装载与采集尺寸转换](analysis/z8_sensor_inputs/REPORT.md)<br>- [EG 更新与传感器参数区](analysis/z8_flash_layout/REPORT.md) |
+| **协议、诊断注入与 UI** | 私有 PTP 指令读取、NFDG 诊断补丁与菜单 | - [私有 PTP 参数资源读取](analysis/z8_ptp_resources/REPORT.md)<br>- [私有 PTP f001 分支分析](analysis/z8_ptp_f001/REPORT.md)<br>- [Z8 3.11 NFDG 诊断入口实验](analysis/z8_diagnostic/REPORT.md)<br>- [Z8 3.11 P 诊断页实验与 UI 扩展](analysis/z8_diagnostic_ui/REPORT.md)<br>- [Z8 UI 版本展示分析](analysis/z8_ui_version/REPORT.md) |
+| **硬件仿真 (QEMU)** | AArch64 板级模拟、多核调度与固件引导 | - [Z8 QEMU 构建与运行指南](qemu/z8/README.md)<br>- [Z8 官方固件引导启动报告](analysis/z8_qemu_boot/REPORT.md)<br>- [z7-qemu 参考分析报告](analysis/z7_qemu_reference/REPORT.md) |
+| **外部规范与参考** | Remote SDK 2.0.0 协议文档与配置索引 | - [Remote SDK 2.0.0 参考资料主页](references/remote-sdk-2.0.0/README.md)<br>- [逐机型协议文档索引](references/remote-sdk-2.0.0/PROTOCOLS.md)<br>- [配置文件阅读指南](references/remote-sdk-2.0.0/CONFIGURATION.md)<br>- [主体检测对照](references/remote-sdk-2.0.0/SUBJECT_DETECTION.md) |
+
+## 快速复现命令
+
+> [!TIP]
+> **推荐使用 [`uv`](../../docs/PYTHON_UV_GUIDE.md) 运行时**：在仓库根目录执行 `uv sync` 可在数秒内自动配置隔离环境并补全 `capstone`、`pycryptodome` 与 `unicorn` 依赖。以下命令均可直接使用 `uv run python3 ...` 执行。
+
 ```sh
 cd "firmware decode/z-series"
-python3 tools/discover_z_history.py
-python3 tools/collect_all_z_history.py .
-python3 tools/compare_all_z_history.py .
+uv run python3 tools/discover_z_history.py
+uv run python3 tools/collect_all_z_history.py .
+uv run python3 tools/compare_all_z_history.py .
 ```
 
 仅获取当前官方目录的复现命令：

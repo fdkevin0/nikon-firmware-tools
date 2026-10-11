@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Check differential evidence at boundaries and unequal file lengths."""
 
 import unittest
@@ -13,9 +14,10 @@ class ZfComparisonTests(unittest.TestCase):
         self.assertEqual(result["equal_bytes"], 23)
         self.assertEqual(result["compared_bytes"], 25)
         self.assertEqual(result["uncompared_tail_bytes"], [5, 0])
-        self.assertEqual(result["longest_equal_runs"], [
-            {"start": 1, "end_exclusive": 18, "size": 17},
-            {"start": 19, "end_exclusive": 25, "size": 6}])
+        self.assertEqual(
+            result["longest_equal_runs"],
+            [{"start": 1, "end_exclusive": 18, "size": 17}, {"start": 19, "end_exclusive": 25, "size": 6}],
+        )
 
     def test_run_ending_at_chunk_boundary_is_not_joined_across_difference(self):
         result = equal_runs(bytes(12), bytes(4) + b"x" + bytes(7), minimum=1, chunk_size=4)

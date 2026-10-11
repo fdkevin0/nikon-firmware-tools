@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Never turn conflicting or missing keystream evidence into recovered bytes."""
 
 import unittest

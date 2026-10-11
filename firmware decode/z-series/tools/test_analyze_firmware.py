@@ -1,10 +1,11 @@
+#!/usr/bin/env python3
 """Check corrupt-container rejection and the XOR 16 MiB index wrap."""
 
 import binascii
 import struct
 import unittest
 
-from analyze_firmware import decode_container, transform, TABLES
+from analyze_firmware import TABLES, decode_container, transform
 
 
 def fixture():
@@ -45,11 +46,13 @@ class ContainerTests(unittest.TestCase):
             decode_container(transform(fixture())[:-20])
 
     def test_directory_bounds_and_filename(self):
-        for offset, replacement in [(32, struct.pack(">I", 0xFFFFFFFF)),
-                                    (64, struct.pack(">I", 0xFFFFFFFF)),
-                                    (48, b"../test.bin\0\0\0\0\0\0")]:
+        for offset, replacement in [
+            (32, struct.pack(">I", 0xFFFFFFFF)),
+            (64, struct.pack(">I", 0xFFFFFFFF)),
+            (48, b"../test.bin\0\0\0\0\0\0"),
+        ]:
             decoded = bytearray(fixture())
-            decoded[offset:offset + len(replacement)] = replacement
+            decoded[offset : offset + len(replacement)] = replacement
             with self.assertRaises(ValueError):
                 decode_container(transform(decoded))
 

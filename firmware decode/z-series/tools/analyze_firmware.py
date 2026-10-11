@@ -8,16 +8,15 @@ see nikon_xor_tables.json for attribution. Offsets in manifests are decimal inte
 
 import argparse
 import binascii
-from collections import Counter
 import csv
-from functools import lru_cache
 import hashlib
 import json
 import math
-from pathlib import Path
 import re
 import struct
-
+from collections import Counter
+from functools import lru_cache
+from pathlib import Path
 
 TABLE_PATH = Path(__file__).with_name("nikon_xor_tables.json")
 TABLES = [bytes.fromhex(t) for t in json.loads(TABLE_PATH.read_text())["tables"]]
@@ -33,8 +32,7 @@ def sha256(data):
 def entropy(data):
     if not data:
         return 0.0
-    return -sum((n / len(data)) * math.log2(n / len(data))
-                for n in Counter(data).values())
+    return -sum((n / len(data)) * math.log2(n / len(data)) for n in Counter(data).values())
 
 
 @lru_cache(maxsize=1)
@@ -58,8 +56,8 @@ def transform(data):
     while offset < len(data):
         phase = offset & 0xFFFFFF
         size = min(1024 * 1024, len(data) - offset, len(key) - phase)
-        value = int.from_bytes(data[offset:offset + size], "little")
-        mask = int.from_bytes(key[phase:phase + size], "little")
+        value = int.from_bytes(data[offset : offset + size], "little")
+        mask = int.from_bytes(key[phase : phase + size], "little")
         chunks.append((value ^ mask).to_bytes(size, "little"))
         offset += size
     return b"".join(chunks)
@@ -99,12 +97,20 @@ def decode_container(encoded):
         names.add(name)
         if start < header_len or size < 2 or start + size > len(decoded):
             raise ValueError(f"Out-of-bounds section: {name}")
-        crc = crc_result(decoded[start:start + size])
+        crc = crc_result(decoded[start : start + size])
         if not crc["valid"]:
             raise ValueError(f"Section CRC mismatch: {name}")
-        sections.append({"name": name, "container_offset": start,
-                         "original_file_offset": skip + start, "size": size,
-                         "payload_size": size - 2, "reserved": [r1, r2], "crc16": crc})
+        sections.append(
+            {
+                "name": name,
+                "container_offset": start,
+                "original_file_offset": skip + start,
+                "size": size,
+                "payload_size": size - 2,
+                "reserved": [r1, r2],
+                "crc16": crc,
+            }
+        )
 
     end = header_len
     for section in sorted(sections, key=lambda s: s["container_offset"]):
@@ -112,16 +118,22 @@ def decode_container(encoded):
             raise ValueError("Sections overlap or have an unexplained gap")
         end += section["size"]
     # This analyzer deliberately accepts only the trailer observed in this sample.
-    if len(decoded) - end != 16 or decoded[end + 2:] != bytes(14):
+    if len(decoded) - end != 16 or decoded[end + 2 :] != bytes(14):
         raise ValueError("Unsupported package trailer")
-    package_crc = crc_result(decoded[:end + 2])
+    package_crc = crc_result(decoded[: end + 2])
     if not package_crc["valid"]:
         raise ValueError("Package CRC mismatch")
-    return decoded, {"xor_origin": skip, "opaque_prefix_hex": encoded[:skip].hex(),
-                     "section_count": count, "header_size": header_len,
-                     "reserved": [reserved1, reserved2], "sections": sections,
-                     "package_crc16": package_crc, "trailer_offset": end,
-                     "trailer_hex": decoded[end:].hex()}
+    return decoded, {
+        "xor_origin": skip,
+        "opaque_prefix_hex": encoded[:skip].hex(),
+        "section_count": count,
+        "header_size": header_len,
+        "reserved": [reserved1, reserved2],
+        "sections": sections,
+        "package_crc16": package_crc,
+        "trailer_offset": end,
+        "trailer_hex": decoded[end:].hex(),
+    }
 
 
 def all_offsets(data, needle):
@@ -137,7 +149,7 @@ def all_offsets(data, needle):
 def analyze(source, output):
     encoded = source.read_bytes()
     decoded, manifest = decode_container(encoded)
-    if encoded[:manifest["xor_origin"]] + transform(decoded) != encoded:
+    if encoded[: manifest["xor_origin"]] + transform(decoded) != encoded:
         raise ValueError("Round-trip verification failed")
     # Do not let generated artifacts overwrite the input, even via a symlink.
     artifact_names = ["decoded_package.bin", "manifest.json", "entropy.csv"]
@@ -147,36 +159,61 @@ def analyze(source, output):
         raise ValueError("Output would overwrite the input firmware")
     output.mkdir(parents=True, exist_ok=True)
     (output / "decoded_package.bin").write_bytes(decoded)
-    manifest.update({"source": source.name, "input_size": len(encoded),
-                     "input_sha256": sha256(encoded), "input_entropy": entropy(encoded),
-                     "decoded_sha256": sha256(decoded), "round_trip_exact": True,
-                     "crc_parameters": "CRC-16/XMODEM poly=0x1021 init=0 refin=false refout=false xorout=0; stored big endian",
-                     "decoded_header_convention": "First 32 space bytes preserved; XOR index starts at container offset 32",
-                     "xor_table_sha256": sha256(TABLE_PATH.read_bytes()),
-                     "analyzer_sha256": sha256(Path(__file__).read_bytes())})
-    markers = [b"SMP T-Kernel", b"NIKON Z 6", b"NikonBVR", b"FirmwareManagement.c",
-               b"FirmwareChkLib.c", b"MovieRecordApplicationService.c", b"PtpMemoryControl.c",
-               b"A:\\HDMIRAW.KEY", b"Booted ARM926", b"LvRaw", b"NvmExpress.c"]
+    manifest.update(
+        {
+            "source": source.name,
+            "input_size": len(encoded),
+            "input_sha256": sha256(encoded),
+            "input_entropy": entropy(encoded),
+            "decoded_sha256": sha256(decoded),
+            "round_trip_exact": True,
+            "crc_parameters": "CRC-16/XMODEM poly=0x1021 init=0 refin=false refout=false xorout=0; stored big endian",
+            "decoded_header_convention": "First 32 space bytes preserved; XOR index starts at container offset 32",
+            "xor_table_sha256": sha256(TABLE_PATH.read_bytes()),
+            "analyzer_sha256": sha256(Path(__file__).read_bytes()),
+        }
+    )
+    markers = [
+        b"SMP T-Kernel",
+        b"NIKON Z 6",
+        b"NikonBVR",
+        b"FirmwareManagement.c",
+        b"FirmwareChkLib.c",
+        b"MovieRecordApplicationService.c",
+        b"PtpMemoryControl.c",
+        b"A:\\HDMIRAW.KEY",
+        b"Booted ARM926",
+        b"LvRaw",
+        b"NvmExpress.c",
+    ]
     for section in manifest["sections"]:
         start, size = section["container_offset"], section["size"]
-        data = decoded[start:start + size]
+        data = decoded[start : start + size]
         (output / section["name"]).write_bytes(data)
         string_count = 0
         with (output / (section["name"] + ".strings.txt")).open("w") as f:
             for match in re.finditer(rb"[ -~]{6,}", data):
                 f.write(f"{match.start():08x} {match.group().decode('ascii')}\n")
                 string_count += 1
-        section.update({"sha256": sha256(data), "entropy": entropy(data),
-                        "head_hex": data[:64].hex(), "ascii_strings_min6": string_count,
-                        "markers": {m.decode(): list(all_offsets(data, m)) for m in markers}})
+        section.update(
+            {
+                "sha256": sha256(data),
+                "entropy": entropy(data),
+                "head_hex": data[:64].hex(),
+                "ascii_strings_min6": string_count,
+                "markers": {m.decode(): list(all_offsets(data, m)) for m in markers},
+            }
+        )
     with (output / "entropy.csv").open("w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["region", "offset", "size", "entropy_bits_per_byte"])
-        regions = [("input", encoded)] + [(s["name"], decoded[s["container_offset"]:
-                   s["container_offset"] + s["size"]]) for s in manifest["sections"]]
+        regions = [("input", encoded)] + [
+            (s["name"], decoded[s["container_offset"] : s["container_offset"] + s["size"]])
+            for s in manifest["sections"]
+        ]
         for name, data in regions:
             for offset in range(0, len(data), 65536):
-                chunk = data[offset:offset + 65536]
+                chunk = data[offset : offset + 65536]
                 writer.writerow([name, offset, len(chunk), f"{entropy(chunk):.8f}"])
     (output / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     return manifest
@@ -194,8 +231,10 @@ def main():
     print(f"Input SHA-256: {result['input_sha256']}")
     print(f"XOR origin: 0x{result['xor_origin']:x}; package CRC and round trip: OK")
     for section in result["sections"]:
-        print(f"{section['name']:20} {section['size']:10} bytes  "
-              f"CRC={section['crc16']['stored']:04x} OK  H={section['entropy']:.6f}")
+        print(
+            f"{section['name']:20} {section['size']:10} bytes  "
+            f"CRC={section['crc16']['stored']:04x} OK  H={section['entropy']:.6f}"
+        )
 
 
 if __name__ == "__main__":

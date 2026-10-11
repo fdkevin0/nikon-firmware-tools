@@ -7,21 +7,20 @@ Existing files are retained; conflicting lengths cause an error.
 """
 
 import argparse
-from concurrent.futures import ThreadPoolExecutor
-from collections import Counter
 import csv
-from datetime import datetime, timezone
 import hashlib
-from html.parser import HTMLParser
 import json
 import os
-from pathlib import Path
 import re
 import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+from html.parser import HTMLParser
+from pathlib import Path
 
 BASE = "https://downloadcenter.nikonimglib.com"
 CAMERA = re.compile(r"Z(?:\s*\d+(?:II|III)?|\s*f[c]?|R)", re.I)
@@ -82,9 +81,11 @@ def get_page(url, cache):
 
 
 def product_list(xml):
-    return [{"model": product.attrib["name"], "product_url": BASE + product.attrib["href"]}
-            for product in ET.fromstring(xml).iter("product")
-            if CAMERA.fullmatch(product.get("name", ""))]
+    return [
+        {"model": product.attrib["name"], "product_url": BASE + product.attrib["href"]}
+        for product in ET.fromstring(xml).iter("product")
+        if CAMERA.fullmatch(product.get("name", ""))
+    ]
 
 
 def firmware_details(html):
@@ -95,10 +96,13 @@ def firmware_details(html):
     if len(names) != 1 or not links:
         raise ValueError(f"Expected one BIN filename and download links; found {names}, {len(links)} links")
     changes = re.findall(r"Firmware Version\s+(\d+\.\d+)\s+to\s+(\d+\.\d+)", text)
-    versions = sorted({version for pair in changes for version in pair}, key=lambda v: tuple(map(int, v.split('.'))))
-    return {"filename": names[0], "download_links": links,
-            "versions_named_in_changelog": versions,
-            "history_note": "Version mentions do not imply a current public download link"}
+    versions = sorted({version for pair in changes for version in pair}, key=lambda v: tuple(map(int, v.split("."))))
+    return {
+        "filename": names[0],
+        "download_links": links,
+        "versions_named_in_changelog": versions,
+        "history_note": "Version mentions do not imply a current public download link",
+    }
 
 
 def download(row, root):
@@ -113,8 +117,12 @@ def download(row, root):
         if actual != name:
             raise ValueError(f"Expected {name}, redirected to {actual}")
         expected = int(response.headers["Content-Length"]) if response.headers.get("Content-Length") else None
-        result = {"url": response.url, "content_length": expected,
-                  "last_modified": response.headers.get("Last-Modified"), "etag": response.headers.get("ETag")}
+        result = {
+            "url": response.url,
+            "content_length": expected,
+            "last_modified": response.headers.get("Last-Modified"),
+            "etag": response.headers.get("ETag"),
+        }
         if destination.exists():
             if destination.is_symlink() or (expected is not None and destination.stat().st_size != expected):
                 raise ValueError(f"Existing firmware conflicts with remote length: {name}")
@@ -123,7 +131,10 @@ def download(row, root):
             digest, size = hashlib.sha256(), 0
             with partial.open("wb") as file:
                 while chunk := response.read(1024 * 1024):
-                    if size == 0 and (chunk.lstrip().startswith(b"<") or b"text/html" in response.headers.get("Content-Type", "").encode()):
+                    if size == 0 and (
+                        chunk.lstrip().startswith(b"<")
+                        or b"text/html" in response.headers.get("Content-Type", "").encode()
+                    ):
                         raise ValueError("Download is HTML, not firmware")
                     size += len(chunk)
                     file.write(chunk)
@@ -151,29 +162,45 @@ def write_history_coverage(root, catalog):
             major, minor = version.split(".")
             filename = f"{prefix}_{int(major):02d}{minor}.bin"
             exists = (root / filename).exists()
-            rows.append({"model": page["models"][0], "version": version,
-                         "status": "current_downloaded" if version == current and exists else
-                                   "retained_local" if exists else "mentioned_no_download_link_discovered",
-                         "filename": filename if exists else "", "source_page": page["page_url"]})
+            rows.append(
+                {
+                    "model": page["models"][0],
+                    "version": version,
+                    "status": "current_downloaded"
+                    if version == current and exists
+                    else "retained_local"
+                    if exists
+                    else "mentioned_no_download_link_discovered",
+                    "filename": filename if exists else "",
+                    "source_page": page["page_url"],
+                }
+            )
     with (root / "analysis/catalog/history_coverage.csv").open("w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=["model", "version", "status", "filename", "source_page"])
         writer.writeheader()
         writer.writerows(rows)
-    catalog["history_coverage"] = {"mentioned_model_versions": len(rows),
-                                    "statuses": dict(Counter(row["status"] for row in rows)),
-                                    "artifact": "history_coverage.csv",
-                                    "limitation": "Factory/shipping versions may never have had a public BIN download"}
+    catalog["history_coverage"] = {
+        "mentioned_model_versions": len(rows),
+        "statuses": dict(Counter(row["status"] for row in rows)),
+        "artifact": "history_coverage.csv",
+        "limitation": "Factory/shipping versions may never have had a public BIN download",
+    }
 
 
 def collect(root, through_year, fetch_binaries):
     out = root / "analysis/catalog"
     cache = out / "pages"
     cache.mkdir(parents=True, exist_ok=True)
-    catalog = {"collected_at_utc": datetime.now(timezone.utc).isoformat(),
-               "scope": "Every camera in Nikon's Z product catalog; publicly linked annual firmware records, 2018 onward",
-               "history_limit": "Official indexes omit delisted releases; this is not an exhaustive archive of every historical version",
-               "product_xml": BASE + "/en/1/product_data.xml", "models": [], "firmware_pages": [],
-               "history_indexes": [], "errors": []}
+    catalog = {
+        "collected_at_utc": datetime.now(timezone.utc).isoformat(),
+        "scope": "Every camera in Nikon's Z product catalog; publicly linked annual firmware records, 2018 onward",
+        "history_limit": "Official indexes omit delisted releases; this is not an exhaustive archive of every historical version",
+        "product_xml": BASE + "/en/1/product_data.xml",
+        "models": [],
+        "firmware_pages": [],
+        "history_indexes": [],
+        "errors": [],
+    }
     models = product_list(get_page(catalog["product_xml"], cache))
     catalog["models"] = models
     pages = {}
@@ -190,7 +217,13 @@ def collect(root, through_year, fetch_binaries):
     for model in models:
         try:
             page = Page(get_page(model["product_url"], cache))
-            urls = sorted({urllib.parse.urljoin(BASE, url) for url, _ in page.links if re.fullmatch(r"/en/download/fw/\d+\.html", url)})
+            urls = sorted(
+                {
+                    urllib.parse.urljoin(BASE, url)
+                    for url, _ in page.links
+                    if re.fullmatch(r"/en/download/fw/\d+\.html", url)
+                }
+            )
             model["current_firmware_pages"] = urls
             for url in urls:
                 remember(url, model["product_url"], model["model"])
@@ -246,8 +279,14 @@ def collect(root, through_year, fetch_binaries):
         if path.name not in listed:
             with path.open("rb") as file:
                 digest = hashlib.file_digest(file, "sha256").hexdigest()
-            catalog["retained_unlisted_samples"].append({"filename": path.name, "size": path.stat().st_size,
-                                                        "sha256": digest, "status": "retained_local_sample"})
+            catalog["retained_unlisted_samples"].append(
+                {
+                    "filename": path.name,
+                    "size": path.stat().st_size,
+                    "sha256": digest,
+                    "status": "retained_local_sample",
+                }
+            )
     write_history_coverage(root, catalog)
     (out / "manifest.json").write_text(json.dumps(catalog, indent=2) + "\n")
     print(f"Saved {len(models)} models, {len(pages)} linked firmware pages: {out / 'manifest.json'}", flush=True)

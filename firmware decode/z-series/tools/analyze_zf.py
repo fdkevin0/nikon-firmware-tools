@@ -9,12 +9,11 @@ import argparse
 import hashlib
 import heapq
 import json
-from pathlib import Path
 import re
 import struct
+from pathlib import Path
 
 from analyze_zr import legacy_phase_probe
-
 
 SAMPLES = {
     "Z_f_0301.bin": "bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6",
@@ -75,21 +74,30 @@ def equal_runs(a, b, minimum=64, limit=12, chunk_size=65536):
                 keep(start, stop)
     if pending is not None:
         keep(pending, length)
-    return {"compared_bytes": length, "equal_bytes": equal,
-            "equal_fraction": equal / length if length else None,
-            "uncompared_tail_bytes": [len(a) - length, len(b) - length],
-            "minimum_run": minimum,
-            "longest_equal_runs": [
-                {"start": start, "end_exclusive": end, "size": size}
-                for size, start, end in sorted(longest, reverse=True)]}
+    return {
+        "compared_bytes": length,
+        "equal_bytes": equal,
+        "equal_fraction": equal / length if length else None,
+        "uncompared_tail_bytes": [len(a) - length, len(b) - length],
+        "minimum_run": minimum,
+        "longest_equal_runs": [
+            {"start": start, "end_exclusive": end, "size": size} for size, start, end in sorted(longest, reverse=True)
+        ],
+    }
 
 
 def compare_headers(a, b):
     if min(len(a), len(b)) < 0x330:
         raise ValueError("Need bytes through the candidate directory")
-    return [{"name": name, "start": start, "end_exclusive": end,
-             "different_bytes": sum(x != y for x, y in zip(a[start:end], b[start:end]))}
-            for start, end, name in REGIONS]
+    return [
+        {
+            "name": name,
+            "start": start,
+            "end_exclusive": end,
+            "different_bytes": sum(x != y for x, y in zip(a[start:end], b[start:end])),
+        }
+        for start, end, name in REGIONS
+    ]
 
 
 def analyze(directory, output):
@@ -110,14 +118,19 @@ def analyze(directory, output):
         headers[name] = head
         words = struct.unpack_from("<128H", head, 0x120)
         summaries[name] = {
-            "size": path.stat().st_size, "sha256": digest,
+            "size": path.stat().st_size,
+            "sha256": digest,
             "size_minus_0x280_mod16": (path.stat().st_size - 0x280) % 16,
             "first32_hex": head[:32].hex(),
             "reverse_copy_valid": head[:32][::-1] == head[0x220:0x240],
             "space_marker_valid": head[0x260:0x280] == b" " * 32,
-            "u16_table": {"count": len(words), "unique": len(set(words)),
-                          "min": min(words), "max": max(words),
-                          "all_below_0x8000": all(v < 0x8000 for v in words)},
+            "u16_table": {
+                "count": len(words),
+                "unique": len(set(words)),
+                "min": min(words),
+                "max": max(words),
+                "all_below_0x8000": all(v < 0x8000 for v in words),
+            },
         }
     baseline = headers[source.name]
     differences = {}
@@ -127,9 +140,12 @@ def analyze(directory, output):
         differences[name] = {
             "regions": compare_headers(baseline, head),
             "directory_xor_rows": [
-                {"offset": offset,
-                 "xor_hex": xor_bytes(baseline[offset:offset + 16], head[offset:offset + 16]).hex()}
-                for offset in range(0x280, 0x330, 16)],
+                {
+                    "offset": offset,
+                    "xor_hex": xor_bytes(baseline[offset : offset + 16], head[offset : offset + 16]).hex(),
+                }
+                for offset in range(0x280, 0x330, 16)
+            ],
         }
     current = source.read_bytes()
     older = (directory / "Z_f_0121.bin").read_bytes()
@@ -138,10 +154,14 @@ def analyze(directory, output):
     # This is a crib, not an independently established plaintext header.
     crib = struct.pack(">4I", 5, 0xD0, 0, 0)
     result = {
-        "source": source.name, "status": "not_decoded", "section_count": None,
-        "architecture": None, "crc_verified": False,
+        "source": source.name,
+        "status": "not_decoded",
+        "section_count": None,
+        "architecture": None,
+        "crc_verified": False,
         "analyzer_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-        "samples": summaries, "header_comparisons": differences,
+        "samples": summaries,
+        "header_comparisons": differences,
         "same_model_aligned_comparison": comparison,
         "legacy_phase_probe": legacy_phase_probe(baseline[0x280:0x290], len(current) - 0x260),
         "candidate_directory": {

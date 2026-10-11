@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Validate the phase search and the boundaries of the recovered prefix check."""
 
 import hashlib

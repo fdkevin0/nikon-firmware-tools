@@ -6,14 +6,14 @@ An unavailable historical link is retained as a gap, never treated as a download
 """
 
 import argparse
-from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime, timezone
-import json
 import hashlib
+import json
 import os
-from pathlib import Path
 import subprocess
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
+from pathlib import Path
 
 from collect_z_series import download, open_url
 
@@ -97,8 +97,11 @@ def download_wrapper(row, root):
         if Path(urllib.parse.urlsplit(response.url).path).name != name:
             raise ValueError("Wrapper redirect filename mismatch")
         expected = int(response.headers["Content-Length"])
-        metadata = {"url": response.url, "content_length": expected,
-                    "last_modified": response.headers.get("Last-Modified")}
+        metadata = {
+            "url": response.url,
+            "content_length": expected,
+            "last_modified": response.headers.get("Last-Modified"),
+        }
         if not wrapper.exists():
             part = folder / (name + ".part")
             with part.open("wb") as file:
@@ -113,8 +116,11 @@ def download_wrapper(row, root):
     metadata["sha256"] = hashlib.sha256(wrapper.read_bytes()).hexdigest()
     listing = subprocess.run(["7z", "l", "-slt", str(wrapper)], capture_output=True, text=True, check=True).stdout
     (folder / (name + ".listing.txt")).write_text(listing)
-    members = [line.removeprefix("Path = ") for line in listing.splitlines()
-               if line.startswith("Path = ") and line.endswith(row["filename"])]
+    members = [
+        line.removeprefix("Path = ")
+        for line in listing.splitlines()
+        if line.startswith("Path = ") and line.endswith(row["filename"])
+    ]
     if len(members) != 1:
         raise ValueError("Expected exactly one target BIN in SFX")
     extracted = subprocess.run(["7z", "e", "-so", str(wrapper), members[0]], capture_output=True)
@@ -125,6 +131,7 @@ def download_wrapper(row, root):
     else:
         data = extracted.stdout
     import binascii
+
     crc = binascii.crc32(data)
     if f"CRC = {crc:08X}" not in listing:
         raise ValueError("Extracted BIN failed RAR CRC32 check")
@@ -140,10 +147,16 @@ def download_wrapper(row, root):
         part.write_bytes(data)
         os.link(part, dest)
         part.unlink()
-    return {"status": status, "url": metadata["url"], "size": len(data),
-            "sha256": hashlib.sha256(data).hexdigest(), "wrapper": metadata,
-            "archive_member": members[0], "archive_crc32": f"{crc:08X}",
-            "extraction": method + "; executable never launched"}
+    return {
+        "status": status,
+        "url": metadata["url"],
+        "size": len(data),
+        "sha256": hashlib.sha256(data).hexdigest(),
+        "wrapper": metadata,
+        "archive_member": members[0],
+        "archive_crc32": f"{crc:08X}",
+        "extraction": method + "; executable never launched",
+    }
 
 
 def collect(root):
@@ -171,8 +184,10 @@ def collect(root):
             rows.append(row)
             # Write completed evidence even if a later network operation fails.
             temporary = out / "downloads.json.tmp"
-            temporary.write_text(json.dumps({"collected_at_utc": datetime.now(timezone.utc).isoformat(),
-                                             "versions": rows}, indent=2) + "\n")
+            temporary.write_text(
+                json.dumps({"collected_at_utc": datetime.now(timezone.utc).isoformat(), "versions": rows}, indent=2)
+                + "\n"
+            )
             temporary.replace(prior_path)
 
 

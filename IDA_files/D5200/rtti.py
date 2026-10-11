@@ -1,4 +1,4 @@
-﻿from idautils import *
+from idautils import *
 from idc import *
 
 
@@ -49,7 +49,7 @@ class IntervalMap:
 
 	def showMap(self):
 		for p in self.vals:
-			print "0x%x-0x%x" %(p[0], p[1])
+			print("0x%x-0x%x" %(p[0], p[1]))
  
 
 def get_string(addr):
@@ -74,7 +74,7 @@ class RttiObj:
 		elif name[0].isdigit() and name[1].isdigit() and name[2].isalpha():
 			self.name = name[2:len(name)]
 		else:
-			print "** string name %s" % (name)
+			print("** string name %s" % (name))
 			self.name = name
 
 
@@ -86,33 +86,33 @@ def load_rtti_object(addr):
 	obj = rtti_objects.get(addr)
 	if not obj:
 		type = Dword(addr)
-		#print "rtti Addr: 0x%x value: 0x%x" % (addr, type)
+		#print("rtti Addr: 0x%x value: 0x%x" % (addr, type))
 		if type == 0x51458F20:
-			#print "leaf class"
+			#print("leaf class")
 			name_ref = Dword(addr + 4)
 			name = get_string(name_ref);
-			#print "Name Addr: 0x%x value: %s" % (name_ref, name)
+			#print("Name Addr: 0x%x value: %s" % (name_ref, name))
 			obj = RttiObj(addr, name, {})
 			rtti_objects[addr] = obj
 			rtti_obj_mem_map.insert(addr, addr + 8)
 			
 		elif type == 0x51458F30:
-			#print "simple class"
+			#print("simple class")
 			name_ref = Dword(addr + 4)
 			name = get_string(name_ref);
-			#print "Name Addr: 0x%x value: %s" % (name_ref, name)
+			#print("Name Addr: 0x%x value: %s" % (name_ref, name))
 			parent_addr = Dword(addr + 8)
-			#print "Parents Addr: 0x%x" % (parent_addr)
+			#print("Parents Addr: 0x%x" % (parent_addr))
 			parent = load_rtti_object(parent_addr)
 			obj = RttiObj(addr, name, {0x0:parent})
 			rtti_objects[addr] = obj
 			rtti_obj_mem_map.insert(addr, addr + 12)
 			
 		elif type == 0x51458F40:
-			#print "complex class"
+			#print("complex class")
 			name_ref = Dword(addr + 4)
 			name = get_string(name_ref);
-			#print "Name Addr: 0x%x value: %s" % (name_ref, name)
+			#print("Name Addr: 0x%x value: %s" % (name_ref, name))
 			subtype = Dword(addr + 8)
 
 			if subtype == 0 or subtype == 2:
@@ -121,15 +121,15 @@ def load_rtti_object(addr):
 				for i in range(0,subcount):
 					parent_addr = Dword( addr + 16 + (8*i))
 					parent_offset = Dword( addr + 16 + (8*i) + 4)
-					#print "Parents Addr: 0x%x Offset: 0x%x" % (parent_addr, parent_offset)
+					#print("Parents Addr: 0x%x Offset: 0x%x" % (parent_addr, parent_offset))
 					parents[parent_offset] = load_rtti_object(parent_addr)
 				obj = RttiObj(addr, name, parents)
 				rtti_objects[addr] = obj
 				rtti_obj_mem_map.insert(addr, addr + 16 + (8*subcount))
 			else:
-				print "** subtype unknown Addr: 0x%x subtype: 0x%x" % (addr, subtype)
+				print("** subtype unknown Addr: 0x%x subtype: 0x%x" % (addr, subtype))
 		else:
-			print "** type unknown Addr: 0x%x type: 0x%x" % (addr, type)
+			print("** type unknown Addr: 0x%x type: 0x%x" % (addr, type))
   
 	return obj
  
@@ -142,10 +142,10 @@ class VtableObj:
 
 def load_vtable(addr):
 	class_addr = Dword(addr)
-	print "vtable Addr: 0x%x" % (addr)
+	print("vtable Addr: 0x%x" % (addr))
 	
 	if class_addr == 0: 
-		print "Addr 0x%x not vtable" % (addr)
+		print("Addr 0x%x not vtable" % (addr))
 		return addr + 4
 
 	offset = 4
@@ -161,7 +161,7 @@ def load_vtable(addr):
 			rtti_vtab_mem_map.insert(addr, addr + offset + 4)
 			return addr + offset + 4
 		elif value > 0:
-			print " Addr 0x%x Offset %d Func [%d] 0x%x" % (addr, vtable_offset, func_idx, value)
+			print(" Addr 0x%x Offset %d Func [%d] 0x%x" % (addr, vtable_offset, func_idx, value))
 			func_idx += 1
 		else:
 			#TODO multi inheritance needs sorting out...
@@ -170,7 +170,7 @@ def load_vtable(addr):
 			sub_class_addr = idaapi.as_signed(Dword(addr + offset))
 			sub_vtable_class = load_rtti_object(sub_class_addr)
 			if sub_vtable_class.name != vtable_class.name:
-				print "** different sub class Addr 0x%x %s %s" % (addr, vtable_class.name, sub_vtable_class.name)
+				print("** different sub class Addr 0x%x %s %s" % (addr, vtable_class.name, sub_vtable_class.name))
 			func_idx = 0
 		offset += 4
 
@@ -195,12 +195,12 @@ def follow_rtti_names(start, end, srch):
 	last = 0
 	while ea != idc.BADADDR and ea != last:
 		last = ea;
-		#print " ea 0x%x" %ea
+		#print(" ea 0x%x" %ea)
 		real_ea = ea - 2
 		val = Dword(real_ea)
 		token = rtti_names.get(val)
 		if token:
-			#print "found 0x%x 0x%x %s" % (real_ea,val,rtti_names[val])
+			#print("found 0x%x 0x%x %s" % (real_ea,val,rtti_names[val]))
 			load_rtti_object(real_ea - 4)
 		ea = idc.FindBinary(ea + 4, srch_code, srch)
 
@@ -208,8 +208,8 @@ def follow_rtti_names(start, end, srch):
 
 
 
-print "[*]"
-print "[*] Attempting to decode rtti table"
+print("[*]")
+print("[*] Attempting to decode rtti table")
 start_addr = 0x50120000;
 
 #load_rtti_object(0x5141D6FC)
@@ -223,7 +223,7 @@ start_addr = 0x50120000;
 #follow_rtti_names(0x51424654, 0x51424731, "5142") #tiny set
 follow_rtti_names(0x51424654, 0x5142FCA2, "5142")
 
-print "object mem map:"
+print("object mem map:")
 rtti_obj_mem_map.showMap()
 
 for k,r in rtti_objects.items():
@@ -238,20 +238,20 @@ ea = idc.FindBinary(start_addr, srch_code, srch)
 last = 0
 while ea != idc.BADADDR and ea != last:
 	last = ea;
-	#print " ea 0x%x" %ea
+	#print(" ea 0x%x" %ea)
 	real_ea = ea
 	val = Dword(real_ea)
-	#print " ea: 0x%x val: 0x%x" %(real_ea, val)
+	#print(" ea: 0x%x val: 0x%x" %(real_ea, val))
 	if (real_ea & 3) == 0:	
 		obj_ref = rtti_objects.get(val)
 		if obj_ref and rtti_obj_mem_map.inMap(real_ea) == False:
-			#print "found 0x%x 0x%x %s" % (real_ea,val,rtti_objects[val])
+			#print("found 0x%x 0x%x %s" % (real_ea,val,rtti_objects[val]))
 			vtab_possibles.add(real_ea)
 	ea = idc.FindBinary(ea + 4, srch_code, srch)
 
 for v in sorted(vtab_possibles):
 	if rtti_vtab_mem_map.inMap(v) == False:
-		print "possible vtable 0x%x" % (v)
+		print("possible vtable 0x%x" % (v))
 		#load_vtable(v)
 
 

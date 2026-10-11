@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import struct
 import unittest
 
@@ -7,7 +8,7 @@ from compare_ai_modules import MAGIC, network_candidates
 class NetworkBoundaryTests(unittest.TestCase):
     def make_blob(self):
         data = bytearray(0x40 + 0x100 + 0x200)
-        data[:len(MAGIC)] = MAGIC
+        data[: len(MAGIC)] = MAGIC
         struct.pack_into("<II", data, 0x40, 0x100, 0x200)
         return bytes(data)
 
@@ -28,7 +29,7 @@ class NetworkBoundaryTests(unittest.TestCase):
     def test_false_magic_or_truncated_header_does_not_make_model(self):
         self.assertEqual(network_candidates(MAGIC), [])
         blob = bytearray(self.make_blob())
-        struct.pack_into("<II", blob, 0x40, 0xffffffff, 0xffffffff)
+        struct.pack_into("<II", blob, 0x40, 0xFFFFFFFF, 0xFFFFFFFF)
         self.assertEqual(network_candidates(blob), [])
 
 

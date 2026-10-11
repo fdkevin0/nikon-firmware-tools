@@ -7,18 +7,19 @@ Never executes firmware. Standard library only.
 """
 
 import argparse
-from collections import Counter
 import hashlib
 import json
-from pathlib import Path
 import re
 import struct
+from collections import Counter
+from pathlib import Path
 
-from analyze_firmware import analyze as analyze_legacy, all_offsets
-from analyze_zf import xor_bytes
-from analyze_z8 import elf_info, extract_regular_files, inflate, parse_cpio, parse_fdt, parse_nisi, write_elf_symbols
-from analyze_zr import legacy_phase_probe
+from analyze_firmware import all_offsets
+from analyze_firmware import analyze as analyze_legacy
 from analyze_z5ii import THIRD_SHA, merge_masks
+from analyze_z8 import elf_info, extract_regular_files, inflate, parse_cpio, parse_fdt, parse_nisi, write_elf_symbols
+from analyze_zf import xor_bytes
+from analyze_zr import legacy_phase_probe
 
 
 def sha(data):
@@ -37,14 +38,23 @@ def scan_elf(data, output, origin=0):
             info = elf_info(data[offset:])
             if info["machine"] not in (40, 183, 245):
                 raise ValueError("Unexpected ELF machine")
-            content = data[offset:offset + info["file_extent"]]
+            content = data[offset : offset + info["file_extent"]]
             name = f"elf_{origin + offset:08x}.elf"
             save(output / name, content)
             symbols = write_elf_symbols(output / (name + ".symbols.csv"), content, info)
-            found.append({"offset": origin + offset, "size": len(content), "sha256": sha(content),
-                          "machine": info["machine"], "bits": info["bits"], "entry": info["entry"],
-                          "section_count": len(info["sections"]), "symbol_entries": symbols,
-                          "artifact": str(output / name)})
+            found.append(
+                {
+                    "offset": origin + offset,
+                    "size": len(content),
+                    "sha256": sha(content),
+                    "machine": info["machine"],
+                    "bits": info["bits"],
+                    "entry": info["entry"],
+                    "section_count": len(info["sections"]),
+                    "symbol_entries": symbols,
+                    "artifact": str(output / name),
+                }
+            )
         except (ValueError, IndexError, UnicodeError, struct.error) as error:
             rejected.append({"offset": origin + offset, "reason": str(error)})
     return {"validated_structures": found, "rejected_magic_hits": rejected}
@@ -55,10 +65,12 @@ def inspect_linux(data, output):
     output.mkdir(parents=True, exist_ok=True)
     details = {"nisi_entries": entries}
     for entry in entries:
-        content = data[entry["offset"]:entry["offset"] + entry["size"]]
+        content = data[entry["offset"] : entry["offset"] + entry["size"]]
         save(output / entry["name"], content)
         if entry["name"] == "Image":
-            details["version_strings"] = [m.group().decode() for m in re.finditer(rb"Linux version [ -~]{1,200}", content)]
+            details["version_strings"] = [
+                m.group().decode() for m in re.finditer(rb"Linux version [ -~]{1,200}", content)
+            ]
             details["aarch64_image_magic"] = content[0x38:0x3C] == b"ARM\x64"
         elif entry["name"] == "rootfs.cpio.gz":
             archive, consumed = inflate(content)
@@ -73,8 +85,12 @@ def inspect_linux(data, output):
             app = output / "rootfs_files/usr/bin/LaMainApp"
             if app.exists():
                 info = elf_info(app.read_bytes())
-                details["LaMainApp"] = {"sha256": sha(app.read_bytes()), "machine": info["machine"],
-                                         "bits": info["bits"], "entry": info["entry"]}
+                details["LaMainApp"] = {
+                    "sha256": sha(app.read_bytes()),
+                    "machine": info["machine"],
+                    "bits": info["bits"],
+                    "entry": info["entry"],
+                }
         elif entry["name"].endswith(".dtb"):
             tree, dts = parse_fdt(content)
             (output / (entry["name"] + ".dts")).write_text(dts)
@@ -88,11 +104,19 @@ def inspect_legacy(directory, manifest, survey, new_magic, new_table):
         data = (directory / section["name"]).read_bytes()
         if sha(data) != section["sha256"]:
             raise ValueError("Extracted section hash mismatch")
-        row = {"name": section["name"], "size": len(data), "sha256": section["sha256"],
-               "os_strings": {marker.decode(): list(all_offsets(data, marker)) for marker in
-                              [b"SMP T-Kernel", b"SOLID", b"TOPPERS", b"FirmwareChkLib.c"]},
-               "new_format_constants": {"first32": list(all_offsets(data, new_magic)),
-                                        "u16_table": list(all_offsets(data, new_table))}}
+        row = {
+            "name": section["name"],
+            "size": len(data),
+            "sha256": section["sha256"],
+            "os_strings": {
+                marker.decode(): list(all_offsets(data, marker))
+                for marker in [b"SMP T-Kernel", b"SOLID", b"TOPPERS", b"FirmwareChkLib.c"]
+            },
+            "new_format_constants": {
+                "first32": list(all_offsets(data, new_magic)),
+                "u16_table": list(all_offsets(data, new_table)),
+            },
+        }
         if section["name"].startswith("eg"):
             row["embedded_elf"] = scan_elf(data, survey / "embedded_elf")
             result["embedded_elf_count"] += len(row["embedded_elf"]["validated_structures"])
@@ -108,11 +132,15 @@ def inspect_legacy(directory, manifest, survey, new_magic, new_table):
 def inspect_new(data, survey, reference_header, mask_info, mask):
     same_prefix = data[:32] == reference_header[:32]
     same_table = data[0x120:0x220] == reference_header[0x120:0x220]
-    result = {"first32_equal_z5ii": same_prefix, "u16_table_equal_z5ii": same_table,
-              "reversed_prefix_valid": data[0x220:0x240] == data[:32][::-1],
-              "candidate_directory_header_equal_z5ii": data[0x280:0x290] == reference_header[0x280:0x290],
-              "legacy_phase_probe": legacy_phase_probe(data[0x280:0x290], len(data) - 0x260),
-              "complete_decoding": False, "crc_verified": False}
+    result = {
+        "first32_equal_z5ii": same_prefix,
+        "u16_table_equal_z5ii": same_table,
+        "reversed_prefix_valid": data[0x220:0x240] == data[:32][::-1],
+        "candidate_directory_header_equal_z5ii": data[0x280:0x290] == reference_header[0x280:0x290],
+        "legacy_phase_probe": legacy_phase_probe(data[0x280:0x290], len(data) - 0x260),
+        "complete_decoding": False,
+        "crc_verified": False,
+    }
     if same_prefix and same_table and mask is not None:
         start, end = mask_info["start"], mask_info["end_exclusive"]
         if len(data) >= end:
@@ -122,12 +150,17 @@ def inspect_new(data, survey, reference_header, mask_info, mask):
             with (survey / "reference_assisted_window.strings.txt").open("w") as file:
                 for match in strings:
                     file.write(f"{start + match.start():08x} {match.group().decode()}\n")
-            result["window"] = {"start": start, "end_exclusive": end, "size": len(window),
-                                "sha256": sha(window), "mask_sha256": sha(mask),
-                                "strings_min16": len(strings),
-                                "elf": scan_elf(window, survey / "embedded_elf", start),
-                                "status": "reference_assisted_candidate",
-                                "limitation": "Shared prefix is not proof of the mask; inspect ELF/reference matches separately"}
+            result["window"] = {
+                "start": start,
+                "end_exclusive": end,
+                "size": len(window),
+                "sha256": sha(window),
+                "mask_sha256": sha(mask),
+                "strings_min16": len(strings),
+                "elf": scan_elf(window, survey / "embedded_elf", start),
+                "status": "reference_assisted_candidate",
+                "limitation": "Shared prefix is not proof of the mask; inspect ELF/reference matches separately",
+            }
     return result
 
 
@@ -159,7 +192,7 @@ def expand_mask(root, summary):
             window = xor_bytes(file.read(len(original)), original)
         votes = Counter()
         for off in range(0, len(reference) - 64, 65536):
-            needle = reference[off:off + 64]
+            needle = reference[off : off + 64]
             if len(set(needle)) < 12:
                 continue
             found = window.find(needle)
@@ -176,18 +209,26 @@ def expand_mask(root, summary):
         lo, hi = max(start, base), min(start + len(candidate), old_end)
         if hi - lo < len(reference) // 2:
             raise ValueError("Reference overlap too small for expansion")
-        if candidate[lo - start:hi - start] != original[lo - base:hi - base]:
+        if candidate[lo - start : hi - start] != original[lo - base : hi - base]:
             raise ValueError(f"Reference mask disagrees: {source.name}")
         spans.append((start, candidate))
-        placements.append({"source": source.name, "start": start, "size": len(candidate),
-                           "matching_unique_64byte_anchors": anchors, "reference_sha256": THIRD_SHA,
-                           "baseline_overlap_bytes": hi - lo, "baseline_overlap_mismatches": 0})
+        placements.append(
+            {
+                "source": source.name,
+                "start": start,
+                "size": len(candidate),
+                "matching_unique_64byte_anchors": anchors,
+                "reference_sha256": THIRD_SHA,
+                "baseline_overlap_bytes": hi - lo,
+                "baseline_overlap_mismatches": 0,
+            }
+        )
         rows.append(row)
     if not spans:
         return summary
     start, mask, coverage = merge_masks(spans)
     end = start + len(mask)
-    if start > base or end < old_end or mask[base - start:old_end - start] != original:
+    if start > base or end < old_end or mask[base - start : old_end - start] != original:
         raise ValueError("Expanded mask does not retain the full baseline")
     save(root / "analysis/catalog/shared_position_mask.bin", mask)
     for row, placement in zip(rows, placements):
@@ -202,18 +243,34 @@ def expand_mask(root, summary):
                 file.write(f"{start + match.start():08x} {match.group().decode()}\n")
                 count += 1
         row["inspection"]["window"] = {
-            "start": start, "end_exclusive": end, "size": len(window), "sha256": sha(window),
-            "mask_sha256": sha(mask), "strings_min16": count,
+            "start": start,
+            "end_exclusive": end,
+            "size": len(window),
+            "sha256": sha(window),
+            "mask_sha256": sha(mask),
+            "strings_min16": count,
             "elf": scan_elf(window, survey / "expanded_elf", start),
-            "reference_placement": placement, "status": "reference_assisted_overlap_validated",
-            "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC."}
+            "reference_placement": placement,
+            "status": "reference_assisted_overlap_validated",
+            "limitation": "Full overlapping masks agree; the reference itself is not independent recovered plaintext. No container CRC.",
+        }
         (survey / "manifest.json").write_text(json.dumps(row, indent=2) + "\n")
-    summary["expanded_shared_mask"] = {"start": start, "end_exclusive": end, "size": len(mask),
-                                        "sha256": sha(mask), "added_bytes": len(mask) - len(original),
-                                        "baseline_sha256": sha(original), "placements": placements, **coverage}
+    summary["expanded_shared_mask"] = {
+        "start": start,
+        "end_exclusive": end,
+        "size": len(mask),
+        "sha256": sha(mask),
+        "added_bytes": len(mask) - len(original),
+        "baseline_sha256": sha(original),
+        "placements": placements,
+        **coverage,
+    }
     summary["analysis_tool_sha256"] = sha(Path(__file__).read_bytes())
     (root / "analysis/catalog/deep_manifest.json").write_text(json.dumps(summary, indent=2) + "\n")
-    print(f"Expanded mask: {len(mask)} bytes, {len(placements)} samples, {len(mask) - len(original)} added bytes", flush=True)
+    print(
+        f"Expanded mask: {len(mask)} bytes, {len(placements)} samples, {len(mask) - len(original)} added bytes",
+        flush=True,
+    )
     return summary
 
 
@@ -230,8 +287,12 @@ def analyze(root):
     files = {}
     for page in catalog["firmware_pages"]:
         if page.get("download", {}).get("status") in ("existing", "downloaded"):
-            files[page["filename"]] = {"models": page["models"], "source_page": page["page_url"],
-                                       "expected_sha256": page["download"]["sha256"], "current": True}
+            files[page["filename"]] = {
+                "models": page["models"],
+                "source_page": page["page_url"],
+                "expected_sha256": page["download"]["sha256"],
+                "current": True,
+            }
     for retained in catalog.get("retained_unlisted_samples", []):
         files.setdefault(retained["filename"], {"models": [], "expected_sha256": retained["sha256"], "current": False})
     results = []
@@ -253,12 +314,20 @@ def analyze(root):
                 existing = output / "manifest.json"
                 manifest = json.loads(existing.read_text()) if existing.exists() else {}
                 decoded = output / "decoded_package.bin"
-                reusable = (manifest.get("input_sha256") == row["sha256"] and manifest.get("round_trip_exact")
-                            and decoded.exists() and sha(decoded.read_bytes()) == manifest.get("decoded_sha256"))
+                reusable = (
+                    manifest.get("input_sha256") == row["sha256"]
+                    and manifest.get("round_trip_exact")
+                    and decoded.exists()
+                    and sha(decoded.read_bytes()) == manifest.get("decoded_sha256")
+                )
                 if not reusable:
                     manifest = analyze_legacy(source, output)
-                row.update(status="decoded_crc_and_roundtrip_verified", section_count=manifest["section_count"],
-                           package_crc16=manifest["package_crc16"], decoded_sha256=manifest["decoded_sha256"])
+                row.update(
+                    status="decoded_crc_and_roundtrip_verified",
+                    section_count=manifest["section_count"],
+                    package_crc16=manifest["package_crc16"],
+                    decoded_sha256=manifest["decoded_sha256"],
+                )
                 row["inspection"] = inspect_legacy(output, manifest, survey, header[:32], header[0x120:0x220])
                 print(f"Verified: {filename}, {manifest['section_count']} sections", flush=True)
             elif marker == 0x260:
@@ -272,9 +341,14 @@ def analyze(root):
         (survey / "manifest.json").write_text(json.dumps(row, indent=2) + "\n")
         results.append(row)
         # Checkpoint after each package; a stopped run retains completed evidence.
-        summary = {"catalog_models": len(catalog["models"]), "sample_count": len(files),
-                   "completed": len(results), "format_counts": dict(Counter(r["format"] for r in results)),
-                   "status_counts": dict(Counter(r["status"] for r in results)), "samples": results}
+        summary = {
+            "catalog_models": len(catalog["models"]),
+            "sample_count": len(files),
+            "completed": len(results),
+            "format_counts": dict(Counter(r["format"] for r in results)),
+            "status_counts": dict(Counter(r["status"] for r in results)),
+            "samples": results,
+        }
         (root / "analysis/catalog/deep_manifest.json").write_text(json.dumps(summary, indent=2) + "\n")
     return expand_mask(root, summary) if mask is not None else summary
 
@@ -282,7 +356,11 @@ def analyze(root):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("directory", type=Path)
-    parser.add_argument("--expand-mask-only", action="store_true", help="Reuse the completed corpus survey and revalidate its mask expansion")
+    parser.add_argument(
+        "--expand-mask-only",
+        action="store_true",
+        help="Reuse the completed corpus survey and revalidate its mask expansion",
+    )
     args = parser.parse_args()
     if args.expand_mask_only:
         summary = json.loads((args.directory / "analysis/catalog/deep_manifest.json").read_text())

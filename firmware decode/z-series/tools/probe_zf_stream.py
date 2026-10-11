@@ -8,8 +8,8 @@ eight assumed reserved-zero bytes and therefore never constitute validation.
 import argparse
 import hashlib
 import json
-from pathlib import Path
 import struct
+from pathlib import Path
 
 from analyze_zf import SAMPLES
 
@@ -46,13 +46,19 @@ def probe(data):
                     matches += 1
             if matches:
                 table_hits.append({"step": step, "state_matches": matches})
-        lcg_results.append({"multiplier": multiplier, "increment": increment,
-                            "header_byte_state_matches": byte_hits, "table_stride_matches": table_hits})
+        lcg_results.append(
+            {
+                "multiplier": multiplier,
+                "increment": increment,
+                "header_byte_state_matches": byte_hits,
+                "table_stride_matches": table_hits,
+            }
+        )
     keys = set()
     for value in [data[:32], data[:32][::-1], data[0x120:0x220]]:
         keys.update([hashlib.sha256(value).digest(), hashlib.md5(value).digest()])
         for size in [16, 24, 32]:
-            keys.update(value[i:i + size] for i in range(0, len(value) - size + 1, 16))
+            keys.update(value[i : i + size] for i in range(0, len(value) - size + 1, 16))
     ivs = {bytes(16), data[:16], data[16:32], data[0x220:0x230], data[0x230:0x240]}
     for number in [1, 2, 0x20, 0x260, 0x280]:
         for endian in ["little", "big"]:
@@ -72,15 +78,24 @@ def probe(data):
                     continue
                 stream = cipher.new(key=key, nonce=nonce).encrypt(bytes(1024))
                 for offset in [0, 16, 32, 64, 0x260, 0x280]:
-                    if stream[offset + 8:offset + 16] == data[0x288:0x290]:
-                        hits.append({"algorithm": cipher.__name__, "key": key.hex(),
-                                     "nonce": nonce.hex(), "stream_offset": offset})
+                    if stream[offset + 8 : offset + 16] == data[0x288:0x290]:
+                        hits.append(
+                            {
+                                "algorithm": cipher.__name__,
+                                "key": key.hex(),
+                                "nonce": nonce.hex(),
+                                "stream_offset": offset,
+                            }
+                        )
                     count += 1
-    return {"assumption": "Plaintext bytes at 0x288:0x290 are eight zero reserved bytes; XOR encoding",
-            "lcg": lcg_results,
-            "lcg_scope": "32-bit LCG, output bits 16..23 for header or 16..30 for table; table strides 1..32",
-            "direct_key_probe_count": count, "direct_key_hits": hits,
-            "limitation": "Only listed derivations, counters, nonces, and offsets tested. No algorithm excluded generally."}
+    return {
+        "assumption": "Plaintext bytes at 0x288:0x290 are eight zero reserved bytes; XOR encoding",
+        "lcg": lcg_results,
+        "lcg_scope": "32-bit LCG, output bits 16..23 for header or 16..30 for table; table strides 1..32",
+        "direct_key_probe_count": count,
+        "direct_key_hits": hits,
+        "limitation": "Only listed derivations, counters, nonces, and offsets tested. No algorithm excluded generally.",
+    }
 
 
 def main():

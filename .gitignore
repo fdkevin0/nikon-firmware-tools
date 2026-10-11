@@ -12,3 +12,12 @@ Java/Emulator/batch_build/
 Java/Emulator/ant_build/
 Java/Emulator/.idea/
 .DS_Store
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.pytest_cache/
+.ruff_cache/
+

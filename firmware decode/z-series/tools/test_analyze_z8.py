@@ -1,12 +1,13 @@
+#!/usr/bin/env python3
 """Integrity checks for the nested formats used in the Z8 analysis."""
 
 import gzip
-from pathlib import Path
 import struct
 import tempfile
 import unittest
+from pathlib import Path
 
-from analyze_z8 import parse_nisi, parse_cpio, parse_fdt, extract_regular_files, inflate, elf_info
+from analyze_z8 import elf_info, extract_regular_files, inflate, parse_cpio, parse_fdt, parse_nisi
 
 
 def cpio_record(name, data=b"", mode=0o100644):
@@ -63,8 +64,9 @@ class NestedFormatTests(unittest.TestCase):
         structure += struct.pack(">3I", 3, 5, 0) + b"test\0" + bytes(3)
         structure += struct.pack(">2I", 2, 9)
         off_strings = 56 + len(structure)
-        header = struct.pack(">10I", 0xD00DFEED, off_strings + len(strings), 56,
-                             off_strings, 40, 17, 16, 0, len(strings), len(structure))
+        header = struct.pack(
+            ">10I", 0xD00DFEED, off_strings + len(strings), 56, off_strings, 40, 17, 16, 0, len(strings), len(structure)
+        )
         blob = header + bytes(16) + structure + strings
         parsed, rendered = parse_fdt(blob)
         self.assertEqual(parsed["nodes"]["/"]["model"]["strings"], ["test"])
