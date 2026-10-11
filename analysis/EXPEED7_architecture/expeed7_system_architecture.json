@@ -1,0 +1,2293 @@
+{
+  "ptp_vendor_gateway": {
+    "outer_opcode": "0x94FD",
+    "command_count": 182,
+    "commands": [
+      {
+        "index": 0,
+        "subcode": "0xf001",
+        "category": "session_security",
+        "handler_va": "0x407fe53c",
+        "admission_va": "0x407fe4f0"
+      },
+      {
+        "index": 1,
+        "subcode": "0xf002",
+        "category": "session_security",
+        "handler_va": "0x407fe734",
+        "admission_va": "0x407fe4f0"
+      },
+      {
+        "index": 2,
+        "subcode": "0xf003",
+        "category": "session_security",
+        "handler_va": "0x407fe8bc",
+        "admission_va": "0x407fe85c"
+      },
+      {
+        "index": 3,
+        "subcode": "0xf004",
+        "category": "session_security",
+        "handler_va": "0x407fed60",
+        "admission_va": "0x407fecf8"
+      },
+      {
+        "index": 4,
+        "subcode": "0xf005",
+        "category": "session_security",
+        "handler_va": "0x407fef5c",
+        "admission_va": "0x407fef50"
+      },
+      {
+        "index": 5,
+        "subcode": "0xf006",
+        "category": "session_security",
+        "handler_va": "0x407feff0",
+        "admission_va": "0x407fefe4"
+      },
+      {
+        "index": 6,
+        "subcode": "0xf007",
+        "category": "session_security",
+        "handler_va": "0x407ff198",
+        "admission_va": "0x407ff130"
+      },
+      {
+        "index": 7,
+        "subcode": "0xf008",
+        "category": "session_security",
+        "handler_va": "0x407ff080",
+        "admission_va": "0x407ff074"
+      },
+      {
+        "index": 8,
+        "subcode": "0xf021",
+        "category": "general",
+        "handler_va": "0x407ff3e8",
+        "admission_va": "0x407ff360"
+      },
+      {
+        "index": 9,
+        "subcode": "0xf022",
+        "category": "general",
+        "handler_va": "0x407ff528",
+        "admission_va": "0x407ff360"
+      },
+      {
+        "index": 10,
+        "subcode": "0xf024",
+        "category": "general",
+        "handler_va": "0x407ff74c",
+        "admission_va": "0x407ff740"
+      },
+      {
+        "index": 11,
+        "subcode": "0xf025",
+        "category": "general",
+        "handler_va": "0x407ff9b4",
+        "admission_va": "0x407ff92c"
+      },
+      {
+        "index": 12,
+        "subcode": "0xf026",
+        "category": "general",
+        "handler_va": "0x407ffaf4",
+        "admission_va": "0x407ff92c"
+      },
+      {
+        "index": 13,
+        "subcode": "0xf028",
+        "category": "general",
+        "handler_va": "0x407ffbd4",
+        "admission_va": "0x407ffbc8"
+      },
+      {
+        "index": 14,
+        "subcode": "0xf029",
+        "category": "general",
+        "handler_va": "0x407ffd54",
+        "admission_va": "0x407ffc68"
+      },
+      {
+        "index": 15,
+        "subcode": "0xf02a",
+        "category": "general",
+        "handler_va": "0x407fff5c",
+        "admission_va": "0x407ffc68"
+      },
+      {
+        "index": 16,
+        "subcode": "0xf02c",
+        "category": "general",
+        "handler_va": "0x408000c8",
+        "admission_va": "0x40800068"
+      },
+      {
+        "index": 17,
+        "subcode": "0xf02d",
+        "category": "general",
+        "handler_va": "0x408002a4",
+        "admission_va": "0x4080021c"
+      },
+      {
+        "index": 18,
+        "subcode": "0xf02e",
+        "category": "general",
+        "handler_va": "0x408003e4",
+        "admission_va": "0x4080021c"
+      },
+      {
+        "index": 19,
+        "subcode": "0xf02f",
+        "category": "general",
+        "handler_va": "0x40800508",
+        "admission_va": "0x408004ac"
+      },
+      {
+        "index": 20,
+        "subcode": "0xf030",
+        "category": "storage_filesystem",
+        "handler_va": "0x408005b4",
+        "admission_va": "0x408005a8"
+      },
+      {
+        "index": 21,
+        "subcode": "0xf031",
+        "category": "storage_filesystem",
+        "handler_va": "0x40800670",
+        "admission_va": "0x40800614"
+      },
+      {
+        "index": 22,
+        "subcode": "0xf032",
+        "category": "storage_filesystem",
+        "handler_va": "0x40800a08",
+        "admission_va": "0x408008a0"
+      },
+      {
+        "index": 23,
+        "subcode": "0xf033",
+        "category": "storage_filesystem",
+        "handler_va": "0x40800d00",
+        "admission_va": "0x408008a0"
+      },
+      {
+        "index": 24,
+        "subcode": "0xf038",
+        "category": "storage_filesystem",
+        "handler_va": "0x408014b0",
+        "admission_va": "0x40801454"
+      },
+      {
+        "index": 25,
+        "subcode": "0xf039",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801580",
+        "admission_va": "0x40801524"
+      },
+      {
+        "index": 26,
+        "subcode": "0xf03a",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801690",
+        "admission_va": "0x40801608"
+      },
+      {
+        "index": 27,
+        "subcode": "0xf03b",
+        "category": "storage_filesystem",
+        "handler_va": "0x408017d0",
+        "admission_va": "0x40801608"
+      },
+      {
+        "index": 28,
+        "subcode": "0xf03c",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801884",
+        "admission_va": "0x40801878"
+      },
+      {
+        "index": 29,
+        "subcode": "0xf03d",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801974",
+        "admission_va": "0x408018ec"
+      },
+      {
+        "index": 30,
+        "subcode": "0xf03e",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801ab4",
+        "admission_va": "0x408018ec"
+      },
+      {
+        "index": 31,
+        "subcode": "0xf03f",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801b68",
+        "admission_va": "0x40801b5c"
+      },
+      {
+        "index": 32,
+        "subcode": "0xf040",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801c28",
+        "admission_va": "0x40801bd0"
+      },
+      {
+        "index": 33,
+        "subcode": "0xf041",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801d6c",
+        "admission_va": "0x40801bd0"
+      },
+      {
+        "index": 34,
+        "subcode": "0xf044",
+        "category": "storage_filesystem",
+        "handler_va": "0x40801e44",
+        "admission_va": "0x40801dec"
+      },
+      {
+        "index": 35,
+        "subcode": "0xf045",
+        "category": "storage_filesystem",
+        "handler_va": "0x40802044",
+        "admission_va": "0x40801dec"
+      },
+      {
+        "index": 36,
+        "subcode": "0xf046",
+        "category": "storage_filesystem",
+        "handler_va": "0x408021e0",
+        "admission_va": "0x40802188"
+      },
+      {
+        "index": 37,
+        "subcode": "0xf047",
+        "category": "storage_filesystem",
+        "handler_va": "0x408023b0",
+        "admission_va": "0x40802188"
+      },
+      {
+        "index": 38,
+        "subcode": "0xf048",
+        "category": "storage_filesystem",
+        "handler_va": "0x40802550",
+        "admission_va": "0x408024f8"
+      },
+      {
+        "index": 39,
+        "subcode": "0xf049",
+        "category": "storage_filesystem",
+        "handler_va": "0x408026ec",
+        "admission_va": "0x40802654"
+      },
+      {
+        "index": 40,
+        "subcode": "0xf04a",
+        "category": "storage_filesystem",
+        "handler_va": "0x40802820",
+        "admission_va": "0x40802814"
+      },
+      {
+        "index": 41,
+        "subcode": "0xf04b",
+        "category": "storage_filesystem",
+        "handler_va": "0x40802908",
+        "admission_va": "0x408028fc"
+      },
+      {
+        "index": 42,
+        "subcode": "0xf04c",
+        "category": "storage_filesystem",
+        "handler_va": "0x40802a44",
+        "admission_va": "0x40802a38"
+      },
+      {
+        "index": 43,
+        "subcode": "0xf04d",
+        "category": "storage_filesystem",
+        "handler_va": "0x40802b10",
+        "admission_va": "0x40802b04"
+      },
+      {
+        "index": 44,
+        "subcode": "0xf04e",
+        "category": "storage_filesystem",
+        "handler_va": "0x40800dec",
+        "admission_va": "0x40800d74"
+      },
+      {
+        "index": 45,
+        "subcode": "0xf04f",
+        "category": "storage_filesystem",
+        "handler_va": "0x40800f98",
+        "admission_va": "0x40800d74"
+      },
+      {
+        "index": 46,
+        "subcode": "0xf050",
+        "category": "camera_settings",
+        "handler_va": "0x4080c620",
+        "admission_va": "0x4080c614"
+      },
+      {
+        "index": 47,
+        "subcode": "0xf051",
+        "category": "camera_settings",
+        "handler_va": "0x4080c864",
+        "admission_va": "0x4080c858"
+      },
+      {
+        "index": 48,
+        "subcode": "0xf052",
+        "category": "camera_settings",
+        "handler_va": "0x4080c9dc",
+        "admission_va": "0x4080c9d0"
+      },
+      {
+        "index": 49,
+        "subcode": "0xf059",
+        "category": "camera_settings",
+        "handler_va": "0x40803360",
+        "admission_va": "0x40803308"
+      },
+      {
+        "index": 50,
+        "subcode": "0xf05c",
+        "category": "camera_settings",
+        "handler_va": "0x4080347c",
+        "admission_va": "0x408033f4"
+      },
+      {
+        "index": 51,
+        "subcode": "0xf05d",
+        "category": "camera_settings",
+        "handler_va": "0x408035c8",
+        "admission_va": "0x40803540"
+      },
+      {
+        "index": 52,
+        "subcode": "0xf05e",
+        "category": "camera_settings",
+        "handler_va": "0x40803684",
+        "admission_va": "0x40803678"
+      },
+      {
+        "index": 53,
+        "subcode": "0xf061",
+        "category": "camera_settings",
+        "handler_va": "0x4080a318",
+        "admission_va": "0x4080a2bc"
+      },
+      {
+        "index": 54,
+        "subcode": "0xf063",
+        "category": "camera_settings",
+        "handler_va": "0x4080a3f0",
+        "admission_va": "0x4080a394"
+      },
+      {
+        "index": 55,
+        "subcode": "0xf064",
+        "category": "camera_settings",
+        "handler_va": "0x4080a498",
+        "admission_va": "0x4080a43c"
+      },
+      {
+        "index": 56,
+        "subcode": "0xf065",
+        "category": "camera_settings",
+        "handler_va": "0x4080a5b0",
+        "admission_va": "0x4080a554"
+      },
+      {
+        "index": 57,
+        "subcode": "0xf066",
+        "category": "camera_settings",
+        "handler_va": "0x4080a658",
+        "admission_va": "0x4080a5fc"
+      },
+      {
+        "index": 58,
+        "subcode": "0xf067",
+        "category": "camera_settings",
+        "handler_va": "0x4080a700",
+        "admission_va": "0x4080a6a4"
+      },
+      {
+        "index": 59,
+        "subcode": "0xf068",
+        "category": "camera_settings",
+        "handler_va": "0x4080a8c0",
+        "admission_va": "0x4080a844"
+      },
+      {
+        "index": 60,
+        "subcode": "0xf069",
+        "category": "camera_settings",
+        "handler_va": "0x4080ab4c",
+        "admission_va": "0x4080aab4"
+      },
+      {
+        "index": 61,
+        "subcode": "0xf06b",
+        "category": "camera_settings",
+        "handler_va": "0x4080ac70",
+        "admission_va": "0x4080ac64"
+      },
+      {
+        "index": 62,
+        "subcode": "0xf06c",
+        "category": "camera_settings",
+        "handler_va": "0x4080aea4",
+        "admission_va": "0x4080ae1c"
+      },
+      {
+        "index": 63,
+        "subcode": "0xf072",
+        "category": "camera_settings",
+        "handler_va": "0x4080a7a4",
+        "admission_va": "0x4080a748"
+      },
+      {
+        "index": 64,
+        "subcode": "0xf073",
+        "category": "camera_settings",
+        "handler_va": "0x4080b0f0",
+        "admission_va": "0x4080b06c"
+      },
+      {
+        "index": 65,
+        "subcode": "0xf074",
+        "category": "camera_settings",
+        "handler_va": "0x4080b298",
+        "admission_va": "0x4080b1d8"
+      },
+      {
+        "index": 66,
+        "subcode": "0xf075",
+        "category": "camera_settings",
+        "handler_va": "0x4080b3bc",
+        "admission_va": "0x4080b354"
+      },
+      {
+        "index": 67,
+        "subcode": "0xf076",
+        "category": "camera_settings",
+        "handler_va": "0x4080b660",
+        "admission_va": "0x4080b604"
+      },
+      {
+        "index": 68,
+        "subcode": "0xf077",
+        "category": "camera_settings",
+        "handler_va": "0x4080b714",
+        "admission_va": "0x4080b6ac"
+      },
+      {
+        "index": 69,
+        "subcode": "0xf079",
+        "category": "camera_settings",
+        "handler_va": "0x4080b458",
+        "admission_va": "0x4080b44c"
+      },
+      {
+        "index": 70,
+        "subcode": "0xf091",
+        "category": "live_view_stream",
+        "handler_va": "0x40807068",
+        "admission_va": "0x4080705c"
+      },
+      {
+        "index": 71,
+        "subcode": "0xf092",
+        "category": "live_view_stream",
+        "handler_va": "0x4080722c",
+        "admission_va": "0x408071d0"
+      },
+      {
+        "index": 72,
+        "subcode": "0xf093",
+        "category": "live_view_stream",
+        "handler_va": "0x408072c0",
+        "admission_va": "0x408072b4"
+      },
+      {
+        "index": 73,
+        "subcode": "0xf094",
+        "category": "live_view_stream",
+        "handler_va": "0x408075f4",
+        "admission_va": "0x4080758c"
+      },
+      {
+        "index": 74,
+        "subcode": "0xf095",
+        "category": "live_view_stream",
+        "handler_va": "0x408077ec",
+        "admission_va": "0x40807784"
+      },
+      {
+        "index": 75,
+        "subcode": "0xf096",
+        "category": "live_view_stream",
+        "handler_va": "0x40804988",
+        "admission_va": "0x408048f8"
+      },
+      {
+        "index": 76,
+        "subcode": "0xf097",
+        "category": "live_view_stream",
+        "handler_va": "0x40804b40",
+        "admission_va": "0x40804ad4"
+      },
+      {
+        "index": 77,
+        "subcode": "0xf111",
+        "category": "general",
+        "handler_va": "0x408084dc",
+        "admission_va": "0x40808480"
+      },
+      {
+        "index": 78,
+        "subcode": "0xf112",
+        "category": "general",
+        "handler_va": "0x408085a0",
+        "admission_va": "0x40808594"
+      },
+      {
+        "index": 79,
+        "subcode": "0xf113",
+        "category": "general",
+        "handler_va": "0x408086a4",
+        "admission_va": "0x40808698"
+      },
+      {
+        "index": 80,
+        "subcode": "0xf114",
+        "category": "general",
+        "handler_va": "0x408087b4",
+        "admission_va": "0x408087a8"
+      },
+      {
+        "index": 81,
+        "subcode": "0xf131",
+        "category": "general",
+        "handler_va": "0x40807b0c",
+        "admission_va": "0x40807b00"
+      },
+      {
+        "index": 82,
+        "subcode": "0xf132",
+        "category": "general",
+        "handler_va": "0x40807b84",
+        "admission_va": "0x40807b78"
+      },
+      {
+        "index": 83,
+        "subcode": "0xf133",
+        "category": "general",
+        "handler_va": "0x40807bfc",
+        "admission_va": "0x40807bf0"
+      },
+      {
+        "index": 84,
+        "subcode": "0xf134",
+        "category": "general",
+        "handler_va": "0x40807c74",
+        "admission_va": "0x40807c68"
+      },
+      {
+        "index": 85,
+        "subcode": "0xf135",
+        "category": "general",
+        "handler_va": "0x40807cec",
+        "admission_va": "0x40807ce0"
+      },
+      {
+        "index": 86,
+        "subcode": "0xf136",
+        "category": "general",
+        "handler_va": "0x40807d60",
+        "admission_va": "0x40807d54"
+      },
+      {
+        "index": 87,
+        "subcode": "0xf137",
+        "category": "general",
+        "handler_va": "0x40807ddc",
+        "admission_va": "0x40807dd0"
+      },
+      {
+        "index": 88,
+        "subcode": "0xf138",
+        "category": "general",
+        "handler_va": "0x40807e54",
+        "admission_va": "0x40807e48"
+      },
+      {
+        "index": 89,
+        "subcode": "0xf139",
+        "category": "general",
+        "handler_va": "0x40807ecc",
+        "admission_va": "0x40807ec0"
+      },
+      {
+        "index": 90,
+        "subcode": "0xf13a",
+        "category": "general",
+        "handler_va": "0x40807f44",
+        "admission_va": "0x40807f38"
+      },
+      {
+        "index": 91,
+        "subcode": "0xf13b",
+        "category": "general",
+        "handler_va": "0x40807fc0",
+        "admission_va": "0x40807fb4"
+      },
+      {
+        "index": 92,
+        "subcode": "0xf13c",
+        "category": "general",
+        "handler_va": "0x40808038",
+        "admission_va": "0x4080802c"
+      },
+      {
+        "index": 93,
+        "subcode": "0xf13d",
+        "category": "general",
+        "handler_va": "0x40808128",
+        "admission_va": "0x4080811c"
+      },
+      {
+        "index": 94,
+        "subcode": "0xf13e",
+        "category": "general",
+        "handler_va": "0x408081a0",
+        "admission_va": "0x40808194"
+      },
+      {
+        "index": 95,
+        "subcode": "0xf13f",
+        "category": "general",
+        "handler_va": "0x4080821c",
+        "admission_va": "0x40808210"
+      },
+      {
+        "index": 96,
+        "subcode": "0xf140",
+        "category": "general",
+        "handler_va": "0x40808294",
+        "admission_va": "0x40808288"
+      },
+      {
+        "index": 97,
+        "subcode": "0xf141",
+        "category": "general",
+        "handler_va": "0x40808420",
+        "admission_va": "0x408083c4"
+      },
+      {
+        "index": 98,
+        "subcode": "0xf162",
+        "category": "general",
+        "handler_va": "0x40809894",
+        "admission_va": "0x40809888"
+      },
+      {
+        "index": 99,
+        "subcode": "0xf163",
+        "category": "general",
+        "handler_va": "0x408099c8",
+        "admission_va": "0x408099bc"
+      },
+      {
+        "index": 100,
+        "subcode": "0xf164",
+        "category": "general",
+        "handler_va": "0x40809ad0",
+        "admission_va": "0x40809ac4"
+      },
+      {
+        "index": 101,
+        "subcode": "0xf165",
+        "category": "general",
+        "handler_va": "0x40809b9c",
+        "admission_va": "0x40809b40"
+      },
+      {
+        "index": 102,
+        "subcode": "0xf166",
+        "category": "general",
+        "handler_va": "0x40809c24",
+        "admission_va": "0x40809c18"
+      },
+      {
+        "index": 103,
+        "subcode": "0xf181",
+        "category": "general",
+        "handler_va": "0x40809e8c",
+        "admission_va": "0x40809e30"
+      },
+      {
+        "index": 104,
+        "subcode": "0xf182",
+        "category": "general",
+        "handler_va": "0x40809f04",
+        "admission_va": "0x40809ef8"
+      },
+      {
+        "index": 105,
+        "subcode": "0xf183",
+        "category": "general",
+        "handler_va": "0x4080a008",
+        "admission_va": "0x40809f78"
+      },
+      {
+        "index": 106,
+        "subcode": "0xf184",
+        "category": "general",
+        "handler_va": "0x4080a0e0",
+        "admission_va": "0x4080a0d4"
+      },
+      {
+        "index": 107,
+        "subcode": "0xf1a1",
+        "category": "capture_record_control",
+        "handler_va": "0x40804db4",
+        "admission_va": "0x40804da8"
+      },
+      {
+        "index": 108,
+        "subcode": "0xf1a2",
+        "category": "capture_record_control",
+        "handler_va": "0x40804ea0",
+        "admission_va": "0x40804e20"
+      },
+      {
+        "index": 109,
+        "subcode": "0xf1a3",
+        "category": "capture_record_control",
+        "handler_va": "0x40804f64",
+        "admission_va": "0x40804f58"
+      },
+      {
+        "index": 110,
+        "subcode": "0xf1a4",
+        "category": "capture_record_control",
+        "handler_va": "0x40805050",
+        "admission_va": "0x40804fd0"
+      },
+      {
+        "index": 111,
+        "subcode": "0xf1a5",
+        "category": "capture_record_control",
+        "handler_va": "0x40805130",
+        "admission_va": "0x40805124"
+      },
+      {
+        "index": 112,
+        "subcode": "0xf1a6",
+        "category": "capture_record_control",
+        "handler_va": "0x4080521c",
+        "admission_va": "0x4080519c"
+      },
+      {
+        "index": 113,
+        "subcode": "0xf1a7",
+        "category": "capture_record_control",
+        "handler_va": "0x4080534c",
+        "admission_va": "0x408052f0"
+      },
+      {
+        "index": 114,
+        "subcode": "0xf1a8",
+        "category": "capture_record_control",
+        "handler_va": "0x40805408",
+        "admission_va": "0x408053ac"
+      },
+      {
+        "index": 115,
+        "subcode": "0xf1a9",
+        "category": "capture_record_control",
+        "handler_va": "0x408054d8",
+        "admission_va": "0x4080547c"
+      },
+      {
+        "index": 116,
+        "subcode": "0xf1aa",
+        "category": "capture_record_control",
+        "handler_va": "0x40805558",
+        "admission_va": "0x4080554c"
+      },
+      {
+        "index": 117,
+        "subcode": "0xf1ab",
+        "category": "capture_record_control",
+        "handler_va": "0x408055dc",
+        "admission_va": "0x408055d0"
+      },
+      {
+        "index": 118,
+        "subcode": "0xf1ac",
+        "category": "capture_record_control",
+        "handler_va": "0x40805660",
+        "admission_va": "0x40805654"
+      },
+      {
+        "index": 119,
+        "subcode": "0xf1ad",
+        "category": "capture_record_control",
+        "handler_va": "0x40805758",
+        "admission_va": "0x408056d8"
+      },
+      {
+        "index": 120,
+        "subcode": "0xf1ae",
+        "category": "capture_record_control",
+        "handler_va": "0x408058c8",
+        "admission_va": "0x408058bc"
+      },
+      {
+        "index": 121,
+        "subcode": "0xf1af",
+        "category": "capture_record_control",
+        "handler_va": "0x408059b4",
+        "admission_va": "0x40805934"
+      },
+      {
+        "index": 122,
+        "subcode": "0xf1b0",
+        "category": "capture_record_control",
+        "handler_va": "0x40805a7c",
+        "admission_va": "0x40805a70"
+      },
+      {
+        "index": 123,
+        "subcode": "0xf1b1",
+        "category": "capture_record_control",
+        "handler_va": "0x40805b68",
+        "admission_va": "0x40805ae8"
+      },
+      {
+        "index": 124,
+        "subcode": "0xf1b2",
+        "category": "capture_record_control",
+        "handler_va": "0x40805838",
+        "admission_va": "0x4080582c"
+      },
+      {
+        "index": 125,
+        "subcode": "0xf1b3",
+        "category": "capture_record_control",
+        "handler_va": "0x40805c84",
+        "admission_va": "0x40805c24"
+      },
+      {
+        "index": 126,
+        "subcode": "0xf1f1",
+        "category": "general",
+        "handler_va": "0x40808e90",
+        "admission_va": "0x40808e2c"
+      },
+      {
+        "index": 127,
+        "subcode": "0xf1f2",
+        "category": "general",
+        "handler_va": "0x408090a4",
+        "admission_va": "0x40809098"
+      },
+      {
+        "index": 128,
+        "subcode": "0xf1f3",
+        "category": "general",
+        "handler_va": "0x40809194",
+        "admission_va": "0x40809188"
+      },
+      {
+        "index": 129,
+        "subcode": "0xf1f4",
+        "category": "general",
+        "handler_va": "0x408092d4",
+        "admission_va": "0x40809278"
+      },
+      {
+        "index": 130,
+        "subcode": "0xf1f5",
+        "category": "general",
+        "handler_va": "0x40809410",
+        "admission_va": "0x408093b8"
+      },
+      {
+        "index": 131,
+        "subcode": "0xf1f8",
+        "category": "general",
+        "handler_va": "0x408094fc",
+        "admission_va": "0x408094a0"
+      },
+      {
+        "index": 132,
+        "subcode": "0xf1f9",
+        "category": "general",
+        "handler_va": "0x40809740",
+        "admission_va": "0x408096e4"
+      },
+      {
+        "index": 133,
+        "subcode": "0xf221",
+        "category": "general",
+        "handler_va": "0x4080a184",
+        "admission_va": "0x4080a128"
+      },
+      {
+        "index": 134,
+        "subcode": "0xf22a",
+        "category": "general",
+        "handler_va": "0x4080a214",
+        "admission_va": "0x4080a208"
+      },
+      {
+        "index": 135,
+        "subcode": "0xf251",
+        "category": "general",
+        "handler_va": "0x408088cc",
+        "admission_va": "0x408088c0"
+      },
+      {
+        "index": 136,
+        "subcode": "0xf253",
+        "category": "general",
+        "handler_va": "0x408089e4",
+        "admission_va": "0x40808994"
+      },
+      {
+        "index": 137,
+        "subcode": "0xf254",
+        "category": "general",
+        "handler_va": "0x40808bbc",
+        "admission_va": "0x40808bb0"
+      },
+      {
+        "index": 138,
+        "subcode": "0xf255",
+        "category": "general",
+        "handler_va": "0x40808d28",
+        "admission_va": "0x40808cbc"
+      },
+      {
+        "index": 139,
+        "subcode": "0xf271",
+        "category": "firmware_update",
+        "handler_va": "0x40803858",
+        "admission_va": "0x408037fc"
+      },
+      {
+        "index": 140,
+        "subcode": "0xf272",
+        "category": "firmware_update",
+        "handler_va": "0x408039f8",
+        "admission_va": "0x408039ec"
+      },
+      {
+        "index": 141,
+        "subcode": "0xf273",
+        "category": "firmware_update",
+        "handler_va": "0x40803a4c",
+        "admission_va": "0x40803a40"
+      },
+      {
+        "index": 142,
+        "subcode": "0xf274",
+        "category": "firmware_update",
+        "handler_va": "0x40803af0",
+        "admission_va": "0x40803a94"
+      },
+      {
+        "index": 143,
+        "subcode": "0xf275",
+        "category": "firmware_update",
+        "handler_va": "0x40803b9c",
+        "admission_va": "0x40803b40"
+      },
+      {
+        "index": 144,
+        "subcode": "0xf276",
+        "category": "firmware_update",
+        "handler_va": "0x40803c78",
+        "admission_va": "0x40803bfc"
+      },
+      {
+        "index": 145,
+        "subcode": "0xf278",
+        "category": "firmware_update",
+        "handler_va": "0x40803e78",
+        "admission_va": "0x40803dfc"
+      },
+      {
+        "index": 146,
+        "subcode": "0xf279",
+        "category": "firmware_update",
+        "handler_va": "0x40803fa4",
+        "admission_va": "0x40803f98"
+      },
+      {
+        "index": 147,
+        "subcode": "0xf27a",
+        "category": "firmware_update",
+        "handler_va": "0x408045b0",
+        "admission_va": "0x408045a4"
+      },
+      {
+        "index": 148,
+        "subcode": "0xf27b",
+        "category": "firmware_update",
+        "handler_va": "0x40804644",
+        "admission_va": "0x40804638"
+      },
+      {
+        "index": 149,
+        "subcode": "0xf27c",
+        "category": "firmware_update",
+        "handler_va": "0x40804738",
+        "admission_va": "0x4080472c"
+      },
+      {
+        "index": 150,
+        "subcode": "0xf27d",
+        "category": "firmware_update",
+        "handler_va": "0x40804868",
+        "admission_va": "0x408047fc"
+      },
+      {
+        "index": 151,
+        "subcode": "0xf2b1",
+        "category": "general",
+        "handler_va": "0x40805dc0",
+        "admission_va": "0x40805ce4"
+      },
+      {
+        "index": 152,
+        "subcode": "0xf2b3",
+        "category": "general",
+        "handler_va": "0x4080614c",
+        "admission_va": "0x408060ec"
+      },
+      {
+        "index": 153,
+        "subcode": "0xf2b4",
+        "category": "general",
+        "handler_va": "0x40806440",
+        "admission_va": "0x40806364"
+      },
+      {
+        "index": 154,
+        "subcode": "0xf2b5",
+        "category": "general",
+        "handler_va": "0x40806670",
+        "admission_va": "0x40806664"
+      },
+      {
+        "index": 155,
+        "subcode": "0xf2b6",
+        "category": "general",
+        "handler_va": "0x4080675c",
+        "admission_va": "0x40806750"
+      },
+      {
+        "index": 156,
+        "subcode": "0xf2b8",
+        "category": "general",
+        "handler_va": "0x4080685c",
+        "admission_va": "0x40806850"
+      },
+      {
+        "index": 157,
+        "subcode": "0xf2b9",
+        "category": "general",
+        "handler_va": "0x408068c8",
+        "admission_va": "0x408068bc"
+      },
+      {
+        "index": 158,
+        "subcode": "0xf2ba",
+        "category": "general",
+        "handler_va": "0x40806a34",
+        "admission_va": "0x408069b8"
+      },
+      {
+        "index": 159,
+        "subcode": "0xf2bb",
+        "category": "general",
+        "handler_va": "0x40806bd4",
+        "admission_va": "0x40806bc8"
+      },
+      {
+        "index": 160,
+        "subcode": "0xf2bc",
+        "category": "general",
+        "handler_va": "0x40806dec",
+        "admission_va": "0x40806dd0"
+      },
+      {
+        "index": 161,
+        "subcode": "0xf2bd",
+        "category": "general",
+        "handler_va": "0x40806ee0",
+        "admission_va": "0x40806ed4"
+      },
+      {
+        "index": 162,
+        "subcode": "0xa001",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080bd38",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 163,
+        "subcode": "0xa002",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080be64",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 164,
+        "subcode": "0xa003",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080bed8",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 165,
+        "subcode": "0xa004",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080bf44",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 166,
+        "subcode": "0xa005",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080c01c",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 167,
+        "subcode": "0xa006",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080c120",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 168,
+        "subcode": "0xa101",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080c228",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 169,
+        "subcode": "0xa102",
+        "category": "diagnostic_memory_io",
+        "handler_va": "0x4080c290",
+        "admission_va": "0x4080bc24"
+      },
+      {
+        "index": 170,
+        "subcode": "0xb002",
+        "category": "hardware_registers",
+        "handler_va": "0x4080c340",
+        "admission_va": "0x4080c334"
+      },
+      {
+        "index": 171,
+        "subcode": "0xb003",
+        "category": "hardware_registers",
+        "handler_va": "0x4080c468",
+        "admission_va": "0x4080c45c"
+      },
+      {
+        "index": 172,
+        "subcode": "0xb004",
+        "category": "hardware_registers",
+        "handler_va": "0x4080c524",
+        "admission_va": "0x4080c4c4"
+      },
+      {
+        "index": 173,
+        "subcode": "0xb006",
+        "category": "hardware_registers",
+        "handler_va": "0x4080c5a0",
+        "admission_va": "0x4080c594"
+      },
+      {
+        "index": 174,
+        "subcode": "0xf341",
+        "category": "general",
+        "handler_va": "0x4080cbd0",
+        "admission_va": "0x4080cb78"
+      },
+      {
+        "index": 175,
+        "subcode": "0xf342",
+        "category": "general",
+        "handler_va": "0x4080cc34",
+        "admission_va": "0x4080cc28"
+      },
+      {
+        "index": 176,
+        "subcode": "0xf343",
+        "category": "general",
+        "handler_va": "0x4080cd10",
+        "admission_va": "0x4080cd04"
+      },
+      {
+        "index": 177,
+        "subcode": "0xf344",
+        "category": "general",
+        "handler_va": "0x4080cd64",
+        "admission_va": "0x4080cd58"
+      },
+      {
+        "index": 178,
+        "subcode": "0xc001",
+        "category": "general",
+        "handler_va": "0x4080cdcc",
+        "admission_va": "0x4080cdc0"
+      },
+      {
+        "index": 179,
+        "subcode": "0xc002",
+        "category": "general",
+        "handler_va": "0x4080ce1c",
+        "admission_va": "0x4080ce10"
+      },
+      {
+        "index": 180,
+        "subcode": "0xc151",
+        "category": "general",
+        "handler_va": "0x4080cf88",
+        "admission_va": "0x4080ce60"
+      },
+      {
+        "index": 181,
+        "subcode": "0xc152",
+        "category": "general",
+        "handler_va": "0x4080d040",
+        "admission_va": "0x4080cfd8"
+      }
+    ]
+  },
+  "camera_property_manager": {
+    "category_count": 124,
+    "total_properties": 4427,
+    "categories": [
+      {
+        "category_id": 0,
+        "category_hex": "0x00",
+        "enabled": 72,
+        "property_base_index": 0,
+        "property_count": 19
+      },
+      {
+        "category_id": 1,
+        "category_hex": "0x01",
+        "enabled": 168,
+        "property_base_index": 19,
+        "property_count": 44
+      },
+      {
+        "category_id": 2,
+        "category_hex": "0x02",
+        "enabled": 96,
+        "property_base_index": 63,
+        "property_count": 9
+      },
+      {
+        "category_id": 3,
+        "category_hex": "0x03",
+        "enabled": 72,
+        "property_base_index": 72,
+        "property_count": 18
+      },
+      {
+        "category_id": 4,
+        "category_hex": "0x04",
+        "enabled": 128,
+        "property_base_index": 90,
+        "property_count": 32
+      },
+      {
+        "category_id": 5,
+        "category_hex": "0x05",
+        "enabled": 832,
+        "property_base_index": 122,
+        "property_count": 111
+      },
+      {
+        "category_id": 6,
+        "category_hex": "0x06",
+        "enabled": 736,
+        "property_base_index": 233,
+        "property_count": 183
+      },
+      {
+        "category_id": 7,
+        "category_hex": "0x07",
+        "enabled": 24,
+        "property_base_index": 416,
+        "property_count": 6
+      },
+      {
+        "category_id": 8,
+        "category_hex": "0x08",
+        "enabled": 0,
+        "property_base_index": 0,
+        "property_count": 0
+      },
+      {
+        "category_id": 9,
+        "category_hex": "0x09",
+        "enabled": 576,
+        "property_base_index": 422,
+        "property_count": 69
+      },
+      {
+        "category_id": 10,
+        "category_hex": "0x0a",
+        "enabled": 32,
+        "property_base_index": 491,
+        "property_count": 1
+      },
+      {
+        "category_id": 11,
+        "category_hex": "0x0b",
+        "enabled": 80748,
+        "property_base_index": 492,
+        "property_count": 30
+      },
+      {
+        "category_id": 12,
+        "category_hex": "0x0c",
+        "enabled": 0,
+        "property_base_index": 0,
+        "property_count": 0
+      },
+      {
+        "category_id": 13,
+        "category_hex": "0x0d",
+        "enabled": 6072,
+        "property_base_index": 522,
+        "property_count": 30
+      },
+      {
+        "category_id": 14,
+        "category_hex": "0x0e",
+        "enabled": 6624,
+        "property_base_index": 552,
+        "property_count": 24
+      },
+      {
+        "category_id": 15,
+        "category_hex": "0x0f",
+        "enabled": 10464,
+        "property_base_index": 576,
+        "property_count": 24
+      },
+      {
+        "category_id": 16,
+        "category_hex": "0x10",
+        "enabled": 8,
+        "property_base_index": 600,
+        "property_count": 2
+      },
+      {
+        "category_id": 17,
+        "category_hex": "0x11",
+        "enabled": 384,
+        "property_base_index": 602,
+        "property_count": 31
+      },
+      {
+        "category_id": 18,
+        "category_hex": "0x12",
+        "enabled": 720,
+        "property_base_index": 633,
+        "property_count": 112
+      },
+      {
+        "category_id": 19,
+        "category_hex": "0x13",
+        "enabled": 80748,
+        "property_base_index": 745,
+        "property_count": 30
+      },
+      {
+        "category_id": 20,
+        "category_hex": "0x14",
+        "enabled": 6072,
+        "property_base_index": 775,
+        "property_count": 30
+      },
+      {
+        "category_id": 21,
+        "category_hex": "0x15",
+        "enabled": 6624,
+        "property_base_index": 805,
+        "property_count": 24
+      },
+      {
+        "category_id": 22,
+        "category_hex": "0x16",
+        "enabled": 176,
+        "property_base_index": 829,
+        "property_count": 24
+      },
+      {
+        "category_id": 23,
+        "category_hex": "0x17",
+        "enabled": 992,
+        "property_base_index": 853,
+        "property_count": 248
+      },
+      {
+        "category_id": 24,
+        "category_hex": "0x18",
+        "enabled": 4,
+        "property_base_index": 1101,
+        "property_count": 1
+      },
+      {
+        "category_id": 25,
+        "category_hex": "0x19",
+        "enabled": 40,
+        "property_base_index": 1102,
+        "property_count": 10
+      },
+      {
+        "category_id": 26,
+        "category_hex": "0x1a",
+        "enabled": 1016,
+        "property_base_index": 1112,
+        "property_count": 255
+      },
+      {
+        "category_id": 27,
+        "category_hex": "0x1b",
+        "enabled": 0,
+        "property_base_index": 0,
+        "property_count": 0
+      },
+      {
+        "category_id": 28,
+        "category_hex": "0x1c",
+        "enabled": 280,
+        "property_base_index": 1367,
+        "property_count": 70
+      },
+      {
+        "category_id": 29,
+        "category_hex": "0x1d",
+        "enabled": 5768,
+        "property_base_index": 1437,
+        "property_count": 255
+      },
+      {
+        "category_id": 30,
+        "category_hex": "0x1e",
+        "enabled": 12936,
+        "property_base_index": 1692,
+        "property_count": 174
+      },
+      {
+        "category_id": 31,
+        "category_hex": "0x1f",
+        "enabled": 744,
+        "property_base_index": 1866,
+        "property_count": 186
+      },
+      {
+        "category_id": 32,
+        "category_hex": "0x20",
+        "enabled": 720,
+        "property_base_index": 2052,
+        "property_count": 180
+      },
+      {
+        "category_id": 33,
+        "category_hex": "0x21",
+        "enabled": 1056,
+        "property_base_index": 2232,
+        "property_count": 252
+      },
+      {
+        "category_id": 34,
+        "category_hex": "0x22",
+        "enabled": 32,
+        "property_base_index": 2484,
+        "property_count": 8
+      },
+      {
+        "category_id": 35,
+        "category_hex": "0x23",
+        "enabled": 124,
+        "property_base_index": 2492,
+        "property_count": 31
+      },
+      {
+        "category_id": 36,
+        "category_hex": "0x24",
+        "enabled": 0,
+        "property_base_index": 0,
+        "property_count": 0
+      },
+      {
+        "category_id": 37,
+        "category_hex": "0x25",
+        "enabled": 916,
+        "property_base_index": 2523,
+        "property_count": 232
+      },
+      {
+        "category_id": 38,
+        "category_hex": "0x26",
+        "enabled": 352,
+        "property_base_index": 2755,
+        "property_count": 48
+      },
+      {
+        "category_id": 39,
+        "category_hex": "0x27",
+        "enabled": 0,
+        "property_base_index": 0,
+        "property_count": 0
+      },
+      {
+        "category_id": 40,
+        "category_hex": "0x28",
+        "enabled": 952,
+        "property_base_index": 2803,
+        "property_count": 145
+      },
+      {
+        "category_id": 41,
+        "category_hex": "0x29",
+        "enabled": 1416,
+        "property_base_index": 2948,
+        "property_count": 55
+      },
+      {
+        "category_id": 42,
+        "category_hex": "0x2a",
+        "enabled": 3472,
+        "property_base_index": 3003,
+        "property_count": 5
+      },
+      {
+        "category_id": 43,
+        "category_hex": "0x2b",
+        "enabled": 144,
+        "property_base_index": 3008,
+        "property_count": 39
+      },
+      {
+        "category_id": 44,
+        "category_hex": "0x2c",
+        "enabled": 336,
+        "property_base_index": 3047,
+        "property_count": 34
+      },
+      {
+        "category_id": 45,
+        "category_hex": "0x2d",
+        "enabled": 364,
+        "property_base_index": 3081,
+        "property_count": 59
+      },
+      {
+        "category_id": 46,
+        "category_hex": "0x2e",
+        "enabled": 392,
+        "property_base_index": 3140,
+        "property_count": 12
+      },
+      {
+        "category_id": 47,
+        "category_hex": "0x2f",
+        "enabled": 6976,
+        "property_base_index": 3152,
+        "property_count": 26
+      },
+      {
+        "category_id": 48,
+        "category_hex": "0x30",
+        "enabled": 28400,
+        "property_base_index": 3178,
+        "property_count": 61
+      },
+      {
+        "category_id": 49,
+        "category_hex": "0x31",
+        "enabled": 52656,
+        "property_base_index": 3239,
+        "property_count": 113
+      },
+      {
+        "category_id": 50,
+        "category_hex": "0x32",
+        "enabled": 24,
+        "property_base_index": 3352,
+        "property_count": 5
+      },
+      {
+        "category_id": 51,
+        "category_hex": "0x33",
+        "enabled": 24,
+        "property_base_index": 3357,
+        "property_count": 6
+      },
+      {
+        "category_id": 52,
+        "category_hex": "0x34",
+        "enabled": 8,
+        "property_base_index": 3363,
+        "property_count": 2
+      },
+      {
+        "category_id": 53,
+        "category_hex": "0x35",
+        "enabled": 132,
+        "property_base_index": 3365,
+        "property_count": 29
+      },
+      {
+        "category_id": 54,
+        "category_hex": "0x36",
+        "enabled": 152,
+        "property_base_index": 3394,
+        "property_count": 15
+      },
+      {
+        "category_id": 55,
+        "category_hex": "0x37",
+        "enabled": 72,
+        "property_base_index": 3409,
+        "property_count": 16
+      },
+      {
+        "category_id": 56,
+        "category_hex": "0x38",
+        "enabled": 72,
+        "property_base_index": 3425,
+        "property_count": 16
+      },
+      {
+        "category_id": 57,
+        "category_hex": "0x39",
+        "enabled": 32,
+        "property_base_index": 3441,
+        "property_count": 8
+      },
+      {
+        "category_id": 58,
+        "category_hex": "0x3a",
+        "enabled": 4,
+        "property_base_index": 3449,
+        "property_count": 1
+      },
+      {
+        "category_id": 59,
+        "category_hex": "0x3b",
+        "enabled": 3416,
+        "property_base_index": 3450,
+        "property_count": 16
+      },
+      {
+        "category_id": 60,
+        "category_hex": "0x3c",
+        "enabled": 28,
+        "property_base_index": 3466,
+        "property_count": 9
+      },
+      {
+        "category_id": 61,
+        "category_hex": "0x3d",
+        "enabled": 648,
+        "property_base_index": 3475,
+        "property_count": 50
+      },
+      {
+        "category_id": 62,
+        "category_hex": "0x3e",
+        "enabled": 32780,
+        "property_base_index": 3525,
+        "property_count": 1
+      },
+      {
+        "category_id": 63,
+        "category_hex": "0x3f",
+        "enabled": 0,
+        "property_base_index": 0,
+        "property_count": 0
+      },
+      {
+        "category_id": 64,
+        "category_hex": "0x40",
+        "enabled": 194612,
+        "property_base_index": 3526,
+        "property_count": 23
+      },
+      {
+        "category_id": 65,
+        "category_hex": "0x41",
+        "enabled": 8,
+        "property_base_index": 3549,
+        "property_count": 2
+      },
+      {
+        "category_id": 66,
+        "category_hex": "0x42",
+        "enabled": 4,
+        "property_base_index": 3551,
+        "property_count": 1
+      },
+      {
+        "category_id": 67,
+        "category_hex": "0x43",
+        "enabled": 4,
+        "property_base_index": 3552,
+        "property_count": 1
+      },
+      {
+        "category_id": 68,
+        "category_hex": "0x44",
+        "enabled": 8,
+        "property_base_index": 3553,
+        "property_count": 3
+      },
+      {
+        "category_id": 69,
+        "category_hex": "0x45",
+        "enabled": 48,
+        "property_base_index": 3556,
+        "property_count": 10
+      },
+      {
+        "category_id": 70,
+        "category_hex": "0x46",
+        "enabled": 100,
+        "property_base_index": 3566,
+        "property_count": 9
+      },
+      {
+        "category_id": 71,
+        "category_hex": "0x47",
+        "enabled": 40,
+        "property_base_index": 3575,
+        "property_count": 7
+      },
+      {
+        "category_id": 72,
+        "category_hex": "0x48",
+        "enabled": 12,
+        "property_base_index": 3582,
+        "property_count": 3
+      },
+      {
+        "category_id": 73,
+        "category_hex": "0x49",
+        "enabled": 264,
+        "property_base_index": 3585,
+        "property_count": 50
+      },
+      {
+        "category_id": 74,
+        "category_hex": "0x4a",
+        "enabled": 52,
+        "property_base_index": 3635,
+        "property_count": 16
+      },
+      {
+        "category_id": 75,
+        "category_hex": "0x4b",
+        "enabled": 4,
+        "property_base_index": 3651,
+        "property_count": 4
+      },
+      {
+        "category_id": 76,
+        "category_hex": "0x4c",
+        "enabled": 8,
+        "property_base_index": 3655,
+        "property_count": 2
+      },
+      {
+        "category_id": 77,
+        "category_hex": "0x4d",
+        "enabled": 8,
+        "property_base_index": 3657,
+        "property_count": 2
+      },
+      {
+        "category_id": 78,
+        "category_hex": "0x4e",
+        "enabled": 2864,
+        "property_base_index": 3659,
+        "property_count": 34
+      },
+      {
+        "category_id": 79,
+        "category_hex": "0x4f",
+        "enabled": 40,
+        "property_base_index": 3693,
+        "property_count": 8
+      },
+      {
+        "category_id": 80,
+        "category_hex": "0x50",
+        "enabled": 4,
+        "property_base_index": 3701,
+        "property_count": 1
+      },
+      {
+        "category_id": 81,
+        "category_hex": "0x51",
+        "enabled": 144,
+        "property_base_index": 3702,
+        "property_count": 33
+      },
+      {
+        "category_id": 82,
+        "category_hex": "0x52",
+        "enabled": 20,
+        "property_base_index": 3735,
+        "property_count": 5
+      },
+      {
+        "category_id": 83,
+        "category_hex": "0x53",
+        "enabled": 48,
+        "property_base_index": 3740,
+        "property_count": 2
+      },
+      {
+        "category_id": 84,
+        "category_hex": "0x54",
+        "enabled": 8,
+        "property_base_index": 3742,
+        "property_count": 2
+      },
+      {
+        "category_id": 85,
+        "category_hex": "0x55",
+        "enabled": 24,
+        "property_base_index": 3744,
+        "property_count": 6
+      },
+      {
+        "category_id": 86,
+        "category_hex": "0x56",
+        "enabled": 48,
+        "property_base_index": 3750,
+        "property_count": 13
+      },
+      {
+        "category_id": 87,
+        "category_hex": "0x57",
+        "enabled": 32,
+        "property_base_index": 3763,
+        "property_count": 9
+      },
+      {
+        "category_id": 88,
+        "category_hex": "0x58",
+        "enabled": 12,
+        "property_base_index": 3772,
+        "property_count": 2
+      },
+      {
+        "category_id": 89,
+        "category_hex": "0x59",
+        "enabled": 24,
+        "property_base_index": 3774,
+        "property_count": 6
+      },
+      {
+        "category_id": 90,
+        "category_hex": "0x5a",
+        "enabled": 32,
+        "property_base_index": 3780,
+        "property_count": 8
+      },
+      {
+        "category_id": 91,
+        "category_hex": "0x5b",
+        "enabled": 4,
+        "property_base_index": 3788,
+        "property_count": 1
+      },
+      {
+        "category_id": 92,
+        "category_hex": "0x5c",
+        "enabled": 32,
+        "property_base_index": 3789,
+        "property_count": 8
+      },
+      {
+        "category_id": 93,
+        "category_hex": "0x5d",
+        "enabled": 2264,
+        "property_base_index": 3797,
+        "property_count": 8
+      },
+      {
+        "category_id": 94,
+        "category_hex": "0x5e",
+        "enabled": 64112,
+        "property_base_index": 3805,
+        "property_count": 1
+      },
+      {
+        "category_id": 95,
+        "category_hex": "0x5f",
+        "enabled": 40,
+        "property_base_index": 3806,
+        "property_count": 10
+      },
+      {
+        "category_id": 96,
+        "category_hex": "0x60",
+        "enabled": 16,
+        "property_base_index": 3816,
+        "property_count": 2
+      },
+      {
+        "category_id": 97,
+        "category_hex": "0x61",
+        "enabled": 256,
+        "property_base_index": 3818,
+        "property_count": 10
+      },
+      {
+        "category_id": 98,
+        "category_hex": "0x62",
+        "enabled": 64,
+        "property_base_index": 3828,
+        "property_count": 18
+      },
+      {
+        "category_id": 99,
+        "category_hex": "0x63",
+        "enabled": 64,
+        "property_base_index": 3846,
+        "property_count": 16
+      },
+      {
+        "category_id": 100,
+        "category_hex": "0x64",
+        "enabled": 256,
+        "property_base_index": 3862,
+        "property_count": 10
+      },
+      {
+        "category_id": 101,
+        "category_hex": "0x65",
+        "enabled": 64,
+        "property_base_index": 3872,
+        "property_count": 16
+      },
+      {
+        "category_id": 102,
+        "category_hex": "0x66",
+        "enabled": 64,
+        "property_base_index": 3888,
+        "property_count": 16
+      },
+      {
+        "category_id": 103,
+        "category_hex": "0x67",
+        "enabled": 256,
+        "property_base_index": 3904,
+        "property_count": 10
+      },
+      {
+        "category_id": 104,
+        "category_hex": "0x68",
+        "enabled": 64,
+        "property_base_index": 3914,
+        "property_count": 16
+      },
+      {
+        "category_id": 105,
+        "category_hex": "0x69",
+        "enabled": 64,
+        "property_base_index": 3930,
+        "property_count": 16
+      },
+      {
+        "category_id": 106,
+        "category_hex": "0x6a",
+        "enabled": 256,
+        "property_base_index": 3946,
+        "property_count": 46
+      },
+      {
+        "category_id": 107,
+        "category_hex": "0x6b",
+        "enabled": 64,
+        "property_base_index": 3992,
+        "property_count": 16
+      },
+      {
+        "category_id": 108,
+        "category_hex": "0x6c",
+        "enabled": 64,
+        "property_base_index": 4008,
+        "property_count": 16
+      },
+      {
+        "category_id": 109,
+        "category_hex": "0x6d",
+        "enabled": 256,
+        "property_base_index": 4024,
+        "property_count": 64
+      },
+      {
+        "category_id": 110,
+        "category_hex": "0x6e",
+        "enabled": 64,
+        "property_base_index": 4088,
+        "property_count": 16
+      },
+      {
+        "category_id": 111,
+        "category_hex": "0x6f",
+        "enabled": 64,
+        "property_base_index": 4104,
+        "property_count": 16
+      },
+      {
+        "category_id": 112,
+        "category_hex": "0x70",
+        "enabled": 256,
+        "property_base_index": 4120,
+        "property_count": 64
+      },
+      {
+        "category_id": 113,
+        "category_hex": "0x71",
+        "enabled": 64,
+        "property_base_index": 4184,
+        "property_count": 16
+      },
+      {
+        "category_id": 114,
+        "category_hex": "0x72",
+        "enabled": 64,
+        "property_base_index": 4200,
+        "property_count": 16
+      },
+      {
+        "category_id": 115,
+        "category_hex": "0x73",
+        "enabled": 256,
+        "property_base_index": 4216,
+        "property_count": 64
+      },
+      {
+        "category_id": 116,
+        "category_hex": "0x74",
+        "enabled": 64,
+        "property_base_index": 4280,
+        "property_count": 16
+      },
+      {
+        "category_id": 117,
+        "category_hex": "0x75",
+        "enabled": 64,
+        "property_base_index": 4296,
+        "property_count": 16
+      },
+      {
+        "category_id": 118,
+        "category_hex": "0x76",
+        "enabled": 256,
+        "property_base_index": 4312,
+        "property_count": 64
+      },
+      {
+        "category_id": 119,
+        "category_hex": "0x77",
+        "enabled": 64,
+        "property_base_index": 4376,
+        "property_count": 16
+      },
+      {
+        "category_id": 120,
+        "category_hex": "0x78",
+        "enabled": 64,
+        "property_base_index": 4392,
+        "property_count": 16
+      },
+      {
+        "category_id": 121,
+        "category_hex": "0x79",
+        "enabled": 1024,
+        "property_base_index": 4408,
+        "property_count": 3
+      },
+      {
+        "category_id": 122,
+        "category_hex": "0x7a",
+        "enabled": 256,
+        "property_base_index": 4411,
+        "property_count": 1
+      },
+      {
+        "category_id": 123,
+        "category_hex": "0x7b",
+        "enabled": 256,
+        "property_base_index": 4412,
+        "property_count": 15
+      }
+    ]
+  },
+  "bvr_gyro_logging_specification": {
+    "found": true,
+    "header_offset": "0x4ce0f93",
+    "header_va": "0x44e40f93",
+    "destination_card_path": "A:\\%s",
+    "channels": {
+      "gyroscope_3axis": [
+        "YawDiff",
+        "PitchDiff",
+        "RollDiff"
+      ],
+      "accelerometer_shift": [
+        "ShiftX",
+        "ShiftY",
+        "ShiftXDetect",
+        "ShiftYDetect"
+      ],
+      "homography_matrix_3x3": [
+        "Homo[2][0]",
+        "Homo[2][1]",
+        "Homo[2][2]"
+      ],
+      "lens_distortion_polynomial": [
+        "DistMode",
+        "A",
+        "B",
+        "C",
+        "Da",
+        "fnorm",
+        "dnorm"
+      ]
+    },
+    "all_logged_fields": [
+      "Lens_Flag",
+      "[N/A]BVR_Mode",
+      "[N/A]LVR_Mode",
+      "Evr_Mode",
+      "FrameNum",
+      "YawDiff",
+      "PitchDiff",
+      "RollDiff",
+      "XLr0",
+      "YLr0",
+      "RLr0",
+      "ShiftX",
+      "ShiftY",
+      "ShiftXDetect",
+      "ShiftYDetect",
+      "OfsYaw",
+      "OfsPitch",
+      "OfsRoll",
+      "Homo[2][0]",
+      "Homo[2][1]",
+      "Homo[2][2]",
+      "DistMode",
+      "A",
+      "B",
+      "C",
+      "Da",
+      "fnorm",
+      "dnorm"
+    ]
+  },
+  "bvr_gyro_activation_trigger": {
+    "status": "fully_mapped",
+    "diagnostic_property_id": "0x40000100",
+    "property_category": 1,
+    "property_index": 0,
+    "required_bitmask": "0x00000010",
+    "required_bit_index": 4,
+    "logging_state_ram": "0x0A03BC73B8",
+    "logging_state_active_value": 3,
+    "mutex_lock_ram": "0x0A03BC71DC",
+    "card_destination_format": "A:\\%s",
+    "activation_sequence": [
+      "1. Host/app writes 0x10 to Camera Debug Flags Property 0x40000100 (via PTP 0xF051 or 0xA002)",
+      "2. Firmware function 0x40fa1f58 verifies (Property[0x40000100] & 0x10) != 0 via 0x40ec484c / 0x40f28130",
+      "3. State variable at RAM 0x0A03BC73B8 is updated from 0 to 3 under mutex 0x0A03BC71DC",
+      "4. Video frame pipeline function 0x40f9f750 detects state == 3, sets RAM 0x0A03BC72A4 = 1",
+      "5. Logger opens A:\\%s on memory card and streams per-frame gyro rates, shift acceleration, and 3x3 homography warp matrix in CSV format"
+    ]
+  },
+  "nisi_linux_packaging": {
+    "magic": "NISI",
+    "sub_image_count": 4,
+    "version": "0311b0",
+    "header_size": 96,
+    "sector_size": 2048,
+    "sub_images": [
+      {
+        "index": 0,
+        "type": "linux_kernel_image",
+        "start_sector": 1,
+        "sector_count": 2913,
+        "offset": 2048,
+        "byte_size": 5963784
+      },
+      {
+        "index": 1,
+        "type": "initramfs_cpio_rootfs",
+        "start_sector": 2914,
+        "sector_count": 4808,
+        "offset": 5967872,
+        "byte_size": 9846203
+      },
+      {
+        "index": 2,
+        "type": "device_tree_blob_1",
+        "start_sector": 7722,
+        "sector_count": 2,
+        "offset": 15814656,
+        "byte_size": 3141
+      },
+      {
+        "index": 3,
+        "type": "device_tree_blob_2",
+        "start_sector": 7724,
+        "sector_count": 2,
+        "offset": 15818752,
+        "byte_size": 3168
+      }
+    ]
+  },
+  "linux_shell_execution_gateway": {
+    "found_shell_path": true,
+    "found_debug_command_symbol": true,
+    "found_ipc_socket": true,
+    "found_oscom_device": true,
+    "ipc_socket_path": "/tmp/LaMainApp_unix_socket",
+    "oscom_driver_device": "/dev/oscom_memhelper",
+    "shell_invocation": [
+      "/bin/sh",
+      "-c",
+      "<command_string>"
+    ],
+    "privilege_level": "root (UID 0 / GID 0)"
+  }
+}

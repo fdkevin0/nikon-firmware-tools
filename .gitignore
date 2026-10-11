@@ -21,3 +21,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# Binary firmware extracts & partial dumps
+*.bi
+*.partial.bi
+
+

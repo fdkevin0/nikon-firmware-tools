@@ -1,0 +1,82 @@
+{
+  "target": "ZR__0111.bin",
+  "target_size": 117159984,
+  "header": {
+    "valid_magic": true,
+    "valid_reverse_guard": true,
+    "valid_spaces_marker": true,
+    "rsa_signature_sha256": "899635929d66534bf24801fa0a6b6d19e90cb1a3dd210d8b627c2f33ed2ee352",
+    "table_128_sha256": "c0b167b8b9ee0ff4706f4239ee5b18932d9bad71425330cb385c227446d386f4",
+    "payload_checksum_256": "da553c4e4360fb0e2353bc5ead186374126047faf48fa790726960d49f3e0c90"
+  },
+  "platform_model": "2100 (Nikon ZR)",
+  "sections": [
+    {
+      "index": 0,
+      "name": "ex2100_011000.bi",
+      "description": "Socionext / ARM Thumb microcontroller firmware",
+      "payload_offset": 176,
+      "file_offset": 816,
+      "size": 524290,
+      "raw_name_cipher": "b26539e3f50ac81b4d67f19dc44e30b5",
+      "raw_off_cipher": "728bfa0d",
+      "raw_len_cipher": "2b7342e8",
+      "reserved_keystream": "6f547c82857e208f"
+    },
+    {
+      "index": 1,
+      "name": "_tpj01_0210.bin",
+      "description": "Touch panel controller firmware",
+      "payload_offset": 524466,
+      "file_offset": 525106,
+      "size": 57346,
+      "raw_name_cipher": "fc3f0b6c800e7180b45e3fb53057e0ed",
+      "raw_off_cipher": "d74850b9",
+      "raw_len_cipher": "80f32ead",
+      "reserved_keystream": "f87e90a47204a86f"
+    },
+    {
+      "index": 2,
+      "name": "eg2100_0111b0.bi",
+      "description": "EXPEED 7 AArch64 Main OS",
+      "payload_offset": 581812,
+      "file_offset": 582452,
+      "size": 88361204,
+      "raw_name_cipher": "8b70f494ddf95dbb8d432825d6b50ca6",
+      "raw_off_cipher": "3d7f3915",
+      "raw_len_cipher": "deb9227e",
+      "reserved_keystream": "4f383a1e2bed82dd"
+    },
+    {
+      "index": 3,
+      "name": "vr2100_010100.bi",
+      "description": "Vibration Reduction microcontroller firmware",
+      "payload_offset": 88943036,
+      "file_offset": 88943676,
+      "size": 838664,
+      "raw_name_cipher": "b050ae5d2e60e2af3a8482ec6932a357",
+      "raw_off_cipher": "6d17a11a",
+      "raw_len_cipher": "796e4581",
+      "reserved_keystream": "fa992b7bea8ed8fd"
+    },
+    {
+      "index": 4,
+      "name": "li2100_0111b0.bi",
+      "description": "Linux 4.14 kernel + CPIO rootfs + DTBs (NISI container)",
+      "payload_offset": 89781673,
+      "file_offset": 89782313,
+      "size": 27377560,
+      "raw_name_cipher": "1455e669df105ae13a54a6783d6103b6",
+      "raw_off_cipher": "8824672a",
+      "raw_len_cipher": "676d433c",
+      "reserved_keystream": "b4c14c8ab075a53a"
+    }
+  ],
+  "section_0_cryptanalysis": {
+    "total_bytes": 524290,
+    "recovered_bytes": 287173,
+    "recovery_ratio": 0.5477369394800587,
+    "continuous_spans_bytes": 261888,
+    "reference_matched_bytes": 25252
+  }
+}

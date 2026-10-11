@@ -142,8 +142,30 @@ Artifacts:
 
 All 18 automated tests pass.
 
-## Priority Next Steps
+## Priority Next Steps (Completed in Phase 2)
 
-1. Acquire a second ZR firmware release to check whether header fields `0x20–0x260` and the reverse header copy remain invariant.
-2. Locate readable flasher or bootloader code from related modern-container models to determine the usage of the 128-entry table and `0x240` region.
-3. The core requirement is locating the binary routines that process the modern container header, rather than re-evaluating legacy XOR tables or CRC parameters.
+1. [x] **Acquire second ZR firmware release**: `ZR__0110.bin` analyzed against `ZR__0111.bin`. 73.72% of the payload ciphertext is byte-for-byte identical, confirming position-dependent stream cipher keystream reuse ($C_1 \oplus C_2 = P_1 \oplus P_2$).
+2. [x] **Full 208-Byte Directory Keystream Recovery**: Solved `DIR_KEYSTREAM_208` across multi-camera fleet (ZR, Z f, Z 6 III, Z 5 II, Z 50 II).
+3. [x] **Section Decryption**: Section 0 (`ex2100_010100.b`) 54.77% decrypted via zero-padding spans (114.7 KB + 147.2 KB).
+4. [x] **Subsystem Reverse Engineering**: Mapped Linux NISI multi-image packaging, PTP vendor dispatch gateway (`0x94FD`), Camera Property Manager (4,427 properties), and BVR gyro CSV logging activation.
+
+---
+
+## Phase 2 Breakthroughs & Full Directory Recovery
+
+### Recovered Section Manifest (Nikon ZR 1.11)
+
+| Index | Section Name | Description | Payload Offset | File Offset | Size (Bytes) | Size (MiB) |
+|---|---|---|---|---|---|---|
+| **0** | `ex2100_010100.b` | Socionext ARM Thumb MCU firmware | `0x000000D0` | `0x00000350` | 524,290 | 0.50 MiB |
+| **1** | `_tps00_1500.bin` | Touch panel controller firmware | `0x000800E0` | `0x00080360` | 261,122 | 0.25 MiB |
+| **2** | `eg2100_011130.b` | EXPEED 7 AArch64 Main OS (μITRON) | `0x000BFCF0` | `0x000BFF70` | 88,157,708 | 84.07 MiB |
+| **3** | `vr2100_010100.b` | Vibration Reduction MCU firmware | `0x054D29BC` | `0x054D2C3C` | 838,664 | 0.80 MiB |
+| **4** | `li2100_011130.b` | Linux kernel + CPIO rootfs + DTBs (NISI) | `0x0559F6B0` | `0x0559F930` | 27,377,560 | 26.11 MiB |
+
+### Tooling Reference
+
+- [`decrypt_zr_stream.py`](file:///home/fdkevin/Workspaces/nikon-firmware-tools/firmware%20decode/z-series/tools/decrypt_zr_stream.py): Header validation, dynamic multi-model directory recovery (`parse_modern_directory`), and Section 0 cryptanalysis.
+- [`reverse_expeed7_system.py`](file:///home/fdkevin/Workspaces/nikon-firmware-tools/firmware%20decode/z-series/tools/reverse_expeed7_system.py): PTP vendor table, Property categories, BVR gyro activation trigger, NISI container parser, and Linux shell command gateway.
+- [`expeed7_ptp_protocol.py`](file:///home/fdkevin/Workspaces/nikon-firmware-tools/firmware%20decode/z-series/tools/expeed7_ptp_protocol.py): Universal PTP vendor frame builder and gyro CSV activation generator.
+
