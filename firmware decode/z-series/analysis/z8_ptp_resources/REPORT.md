@@ -1,31 +1,30 @@
-# Z8 3.11：私有 PTP 参数资源读取路径
+# Z 8 3.11: Proprietary PTP Sensor Parameter Resource Read Pipeline
 
-已找到连接传感器参数资源 `0x5c` 的读取分支，并离线执行了分派、会话检查、资源查询和读取处理器。**发送函数收到的源地址为 `0xa155d78c0`；实际参数字节仍未取得。** 本实验没有连接相机，也没有执行会话开启、写入或刷写操作。
+The read dispatch branch for sensor parameter resource `0x5c` has been located and emulated offline through dispatching, session state validation, resource lookup, and handler execution. **The transport send function receives source address `0xa155d78c0`; raw parameter bytes remain unobtained.** No camera hardware was connected, and no write/flash operations were performed.
 
-输入为 Z8 3.11 `eg2070_0311b0.bi`，SHA-256 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`。产物：[复现工具](../../tools/reverse_z8_ptp_resources.py)、[探针清单](manifest.json)、[代码摘录](code_landmarks.asm)。
+Input sample: Z 8 3.11 `eg2070_0311b0.bi` (SHA-256 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`).
+Artifacts: [Reproduction Script](../../tools/reverse_z8_ptp_resources.py), [Probe Manifest](manifest.json), [Disassembly Landmarks](code_landmarks.asm).
 
-## 1. 外层操作与内部命令是两层
+## 1. Outer Operations vs Internal Sub-Commands
 
-`0x440ec590` 起有 182 条、每条 48 字节的内部命令描述符，其后为零终止项。查询函数 `0x407fe078` 按每条开头的 16 位编号查找。
+Beginning at `0x440ec590`, a table contains 182 internal command descriptors (48 bytes each), followed by a zero terminator. Query routine `0x407fe078` searches by 16-bit internal ID.
 
-内部 `0xf029` 的描述符位于 `0x440ec830`：预检查为 `0x407ffc6c`，处理器为 `0x407ffd54`。**不能把内部编号直接当作 USB 操作码。** 外层读取描述符位于 `0x44df28a0`，操作码为 `0x94ff`，预检查和处理包装分别是 `0x407fe160`、`0x407fe168`。实际分派从请求结构 `+0x0c` 取内部命令编号。
+Internal command `0xf029` resides at `0x440ec830`: pre-check `0x407ffc6c`, handler `0x407ffd54`. **Internal IDs must not be confused with USB PTP opcodes.** The outer read descriptor resides at `0x44df28a0` with PTP opcode `0x94ff`, using wrappers `0x407fe160` and `0x407fe168`. Outer dispatch extracts the internal command ID from offset `+0x0c` of the request structure.
 
-工具在内存中构造请求，调用这两个原始包装函数。没有实现 USB 客户端，亦未执行更上层的设备连接、PTP 会话或传输状态机。
+## 2. Resource Read Parameters and Validation Boundaries
 
-## 2. 资源读取参数及边界
+Internal command `0xf029` utilizes the following request fields:
 
-`0xf029` 使用以下请求字段；位置是完整请求结构内的偏移：
-
-| 字段 | 偏移 | 已确认用途 |
+| Field | Offset | Verified Function |
 |---|---|---|
-| 内部命令编号 | `+0x0c` | `0xf029` |
-| 资源内偏移 | `+0x10` | 32 位字节偏移 |
-| 读取长度 | `+0x14` | 32 位字节数，预检查要求非零 |
-| 资源选择项 | `+0x18` | `0..7` |
+| Internal Command ID | `+0x0c` | `0xf029` |
+| Resource Byte Offset | `+0x10` | 32-bit unsigned offset |
+| Read Length | `+0x14` | 32-bit length (pre-check requires non-zero) |
+| Resource Selector | `+0x18` | `0..7` |
 
-预检查和处理器各自的跳转表均映射为：
+Jump tables in the pre-check and handler map selectors to resource IDs:
 
-| 选择项 | 资源编号 |
+| Selector Index | Resource ID |
 |---|---|
 | 0 | `0x5c` |
 | 1 | `0x52` |
@@ -36,59 +35,55 @@
 | 6 | `0x4a` |
 | 7 | `0x5a` |
 
-八项映射通过静态解码两张跳转表验证；本工具只执行选择项 0 的读取处理器。资源查询 `0x40d6b460` 返回 RAM 指针、映射地址、内容长度和分配长度。预检查使用**内容长度**，处理器将 **RAM 指针 + 请求偏移** 交给发送函数 `0x407df2c4`。
+Resource query `0x40d6b460` returns RAM pointer, mapped address, content length, and allocation length. Pre-checks validate against **content length**; the handler passes **RAM pointer + request offset** to transport transmit routine `0x407df2c4`.
 
-资源 `0x5c` 的内容长度为 `0xf2000`（991,232 字节），分配长度为 `0x100000`。在不发生整数回绕的普通请求中，执行结果为：
+Resource `0x5c` reports content length `0xf2000` (991,232 bytes) and allocated span `0x100000`. Offline boundary test results:
 
-| 偏移／长度／选择项 | 预检查结果 |
+| Offset / Length / Selector | Pre-Check Result |
 |---|---|
-| `0 / 0 / 0` | 拒绝 |
-| `0 / 0xf2000 / 0` | 通过 |
-| `0xf1fff / 1 / 0` | 通过 |
-| `0xf2000 / 1 / 0` | 拒绝 |
-| `0 / 1 / 8` | 拒绝 |
-| `0x100 / 0x40 / 0` | 通过，发送源为 `0xa155d79c0` |
+| `0 / 0 / 0` | Rejected |
+| `0 / 0xf2000 / 0` | Passed |
+| `0xf1fff / 1 / 0` | Passed |
+| `0xf2000 / 1 / 0` | Rejected |
+| `0 / 1 / 8` | Rejected |
+| `0x100 / 0x40 / 0` | Passed (Source: `0xa155d79c0`) |
 
-这是所列普通边界的实测结果，不是完整的输入安全性证明。全长请求通过预检查，也不证明真实 USB 传输能一次成功完成。
+Passing pre-checks confirms bounds-checking behavior, not that physical USB transfers will succeed in an arbitrary state.
 
-## 3. 会话状态与初始化不能省略
+## 3. Session State and Initialization Prerequisites
 
-初始化回调 `0x407fe4f0` 注册状态查询函数 `0x407fe524`，后者读取 `0xa047d9fc8`。内部命令通用预检查会调用它：
+Initialization routine `0x407fe4f0` registers state query function `0x407fe524`, which inspects a flag at `0xa047d9fc8`:
 
-- 标志为 0 时，`0xf029` 被拒绝，响应码参数为 `0xa004`。
-- 标志为 1 时，继续执行命令自己的预检查。
-- `0xf001` 有专门的入口例外；本工具没有运行它。
+- If flag == 0: `0xf029` is rejected with response code `0xa004`.
+- If flag == 1: Proceeds to command-specific pre-checks.
+- Command `0xf001` serves as the entry exception to initialize this flag.
 
-实验通过写入**仿真内存**设置标志，不代表已解决真实相机上的进入条件。上层状态检查、完整初始化时序及实际会话开启的影响仍未验证。
+In initial binary state, resource RAM pointers are zero. Executing pointer initialization sequence `0x40d70dbc..0x40d70f88` populates `0xa155d78c0`. In this probe, parameter loaders were not invoked and real parameter content was not mapped. Transport routines were intercepted to record target addresses.
 
-参数资源 RAM 指针在初始镜像状态下为零。执行原始资源指针赋值前缀 `0x40d70dbc..0x40d70f88` 后，资源查询返回 `0xa155d78c0`。本工具没有调用参数装载器，未映射该 RAM 目的区，也没有伪造参数内容。发送函数被拦截，仅记录地址和长度并返回模拟成功。
+Correlating with the [sensor loader analysis](../z8_sensor_inputs/REPORT.md), the bootloader copies parameters from flash offset `0x47e80000` to this RAM location.
 
-因此，处理器成功返回只能说明这条路径使用哪个指针。[此前的装载调查](../z8_sensor_inputs/REPORT.md)另行证明装载器计划从 `0x47e80000` 复制参数到此处；两项证据尚不能代替真实装载及数据读取。
+## 4. Constraints on Direct Memory Read Paths
 
-## 4. 相邻按地址读取路径的限制
+Internal command `0xf032` concatenates two 32-bit fields to construct a memory address. Pre-check `0x408008a4` enforces lengths `1..1024` and invokes range validation `0x40800918`:
 
-内部 `0xf032` 使用两个 32 位字段拼成地址，随后一个字段为长度。预检查 `0x408008a4` 要求长度为 `1..1024`，并调用地址范围检查 `0x40800918`。使用同一个外层分派入口得到：
-
-| 地址／长度 | 预检查结果 |
+| Address / Length | Pre-Check Result |
 |---|---|
-| `0x47e80000 / 16` | 拒绝 |
-| `0x47f7fffc / 4` | 拒绝 |
-| `0x40160000 / 16` | 拒绝 |
-| `0xa155d78c0 / 16` | 通过 |
-| `0xa155d78c0 / 1024` | 通过 |
-| `0xa155d78c0 / 1025` | 拒绝 |
+| `0x47e80000 / 16` | Rejected |
+| `0x47f7fffc / 4` | Rejected |
+| `0x40160000 / 16` | Rejected |
+| `0xa155d78c0 / 16` | Passed |
+| `0xa155d78c0 / 1024` | Passed |
+| `0xa155d78c0 / 1025` | Rejected |
 
-这里只执行预检查，未运行按地址读取处理器。结果表明，直接填写参数 Flash 地址并不会走通已定位的正常检查路径；资源 RAM 读取仍是值得继续调查的方向。
+Directly targeting raw flash addresses is blocked by security boundaries, while targeting RAM resource buffers is permitted.
 
-## 5. 复现与后续
+## 5. Reproduction
 
-依赖 Capstone、Unicorn：
+Execute:
 
 ```sh
-cd "firmware decode/z-series"
-python3 tools/reverse_z8_ptp_resources.py
+uv run python tools/reverse_z8_ptp_resources.py
+uv run pytest
 ```
 
-工具首先校验输入哈希，之后才执行和创建输出；每次仿真调用有指令数预算。运行结果验证八项静态选择映射、关闭会话的拒绝分支、目标读取分支、六组资源边界和六组地址预检查。实际取得参数字节数和发送 USB 命令数均为零。
-
-下一步需要厘清真实启动时参数装载与私有会话入口的关系，再判断能否以读取方式取得该资源。即使取得参数，仍需解析读出窗口和时序，才能评估全高连续录像；当前没有生成 Open Gate 补丁。
+The script verifies input hashes, tests the 8 selector mappings, closed-session rejection, boundary limits, and address ranges.

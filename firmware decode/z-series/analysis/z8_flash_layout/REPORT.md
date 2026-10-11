@@ -1,82 +1,72 @@
-# Z8 3.11：EG 更新范围与传感器参数存储区
+# Z 8 3.11: EG Flashing Boundaries vs Sensor Parameter Storage Partition
 
-正常 EG 主程序更新的写入范围已确认：**`[0x40160000, 0x45980000)`**。此前定位的传感器参数资源 `0x5c` 位于 **`[0x47e80000, 0x47f80000)`**，两者不重叠。
+The flash programming write boundary for standard EG firmware updates is confirmed as **`[0x40160000, 0x45980000)`**. The sensor parameter resource `0x5c` identified in earlier analysis resides at **`[0x47e80000, 0x47f80000)`**; these regions do not overlap.
 
-这比单纯观察“参数地址超出 EG 文件长度”多了一层证据：实际更新服务取得资源 2 的目标范围，RAM 中的擦写循环也只遍历该范围。**仍未取得资源 `0x5c` 的真实字节，不能据此宣布所有更新路径都不包含它，也不能认定它必然属于出厂校准数据。**
+This provides definitive evidence that standard EG updates do not overwrite sensor parameter storage: update routines select Resource 2, and the RAM flashing loop traverses only Resource 2's partition span. **Raw bytes for Resource `0x5c` remain unobtained; it cannot be determined whether alternative update channels service this block or whether it represents factory calibration data.**
 
-输入：Z8 3.11 `eg2070_0311b0.bi`，SHA-256 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`。产物：[复现工具](../../tools/reverse_z8_flash_layout.py)、[清单](manifest.json)、[代码摘录](code_landmarks.asm)。完整地址轨迹 `probes.json` 为本地生成产物。
+Input: Z 8 3.11 `eg2070_0311b0.bi` (SHA-256 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`).
+Artifacts: [Reproduction Script](../../tools/reverse_z8_flash_layout.py), [Manifest](manifest.json), [Disassembly Landmarks](code_landmarks.asm).
 
-## 1. 更新服务明确选择资源 2
+## 1. Firmware Management Service Selects Resource 2
 
-`0x41023014` 的初始化代码执行：
+Initialization routine `0x41023014` executes:
 
 ```text
 40d6b460(resource=2, output=0xa03e18da8)
 ```
 
-执行这段原始代码后，更新目标结构 `0xa03e18da8` 的 `+8` 为 `0x40160000`，`+0x18` 为分组分配长度 `0x5820000`。资源信息查询经过 `0x40d6c53c`，与描述符中分组 2 的字段一致。
+In update target structure `0xa03e18da8`, offset `+8` contains base `0x40160000`, and `+0x18` contains partition allocation span `0x5820000`.
 
-EG 设备更新函数 `0x41026598` 再次查询资源 2，检查来源缓冲区对齐，并将实际输入长度不足分配长度的部分填为 `0xff`。随后调用写入器设置函数并进入 RAM 中的更新流程。因此，遍历的是分配区间，不能只用此次 `.bi` 文件的实际长度推断完整擦除范围。
+EG device update handler `0x41026598` queries Resource 2, verifies buffer alignment, pads inputs smaller than partition size with `0xff`, and invokes the flashing engine in RAM. The update covers the allocated partition span rather than the literal file size.
 
-相关资源信息由真实查询函数取得：
+Resource descriptor parameters:
 
-| 资源 | 映射基址 | 描述符内容长度 | 分配跨度 |
+| Resource ID | Mapped Base Address | Descriptor Content Size | Partition Allocation Span |
 | --- | --- | --- | --- |
-| 2：EG 更新目标 | `0x40160000` | 0，此字段不代表 EG 文件为空 | `0x5820000` |
+| 2 (EG Update Target) | `0x40160000` | 0 (Unstated in descriptor) | `0x5820000` |
 | `0x5b` | `0x47e80000` | `0x3cc000` | `0x700000` |
-| `0x5c`：传感器参数 | `0x47e80000` | `0xf2000` | `0x100000` |
+| `0x5c` (Sensor Params) | `0x47e80000` | `0xf2000` | `0x100000` |
 
-`0x5b` 与 `0x5c` 的描述符共享基址，但长度不同；本轮没有证明它们能同时占用这些范围，不能把分组表机械合并成互不重叠的完整存储分区图。清单保留全部 39 个分组及其原始字段，便于继续核对。
+Descriptors for `0x5b` and `0x5c` share base addresses with differing lengths. The manifest catalogs all 39 resource entries.
 
-## 2. 写入器运行于初始化 RAM
+## 2. Flasher Code Operates from Relocated RAM
 
-主代码中的入口是间接跳板：
+Primary code entry points act as trampolines into initialized RAM:
 
-| 主代码入口 | 初始化 RAM 目标 | 用途 |
+| Trampoline in ROM | Target in RAM | Purpose |
 | --- | --- | --- |
-| `0x40c01560` | `0xa02ab3dd4` | 保存来源指针、回调及进度参数 |
-| `0x40c016f0` | `0xa02ab3ed8` | 返回写入循环地址 `0xa02ab3eec` |
+| `0x40c01560` | `0xa02ab3dd4` | Store buffer pointer, callback, progress state |
+| `0x40c016f0` | `0xa02ab3ed8` | Return flash loop address `0xa02ab3eec` |
 
-这些 RAM 地址在已确认的启动复制区内；复现工具按 RAM 到 EG 文件的映射提取并执行代码，不将 RAM 地址直接减去 EG 映射基址。
+The flash loop `0xa02ab3eec` advances in blocks of **`0x20000` bytes (128 KiB)**. Routine `0xa02ab30bc` processes blocks in units of 32-bit words; `0x8000` words correspond to one 128 KiB flash erase block.
 
-`0xa02ab3eec` 使用更新目标结构的基址和长度，按 **`0x20000` 字节（128 KiB）**推进。程序入口 `0xa02ab30bc` 的第二参数以 32 位字为单位；底层循环 `0xa02ab2ec4` 明确按四字节装载及存储，因此 `0x8000` 个字对应一个 128 KiB 块。
+## 3. Emulated Flash Address Trajectory
 
-## 3. 隔离执行得到的地址轨迹
+The flashing loop was emulated offline with hardware calls stubbed:
 
-实验执行真实地址循环，但以替代函数模拟硬件操作成功，并跳过空白检查和写后比较。全部剩余块按“非空、需要擦除”处理。来源指针使用未映射的合成地址 `0x60000000`，不提供待刷写载荷。
+- 705 erase block invocations (blocks 11 through 715).
+- 705 write block invocations (`0x8000` words per block).
+- Erase addresses span `0x40160000` through `0x45960000` in 128 KiB strides.
+- Programming writes blocks `0x40180000` through `0x45960000`, **writing initial block `0x40160000` last**.
+- Termination address is `0x45980000`, stopping **37 MiB (`0x2500000`) before** sensor parameter base `0x47e80000`.
 
-得到的轨迹：
+No blocks in Resource 2 overlap Resource `0x5c`.
 
-- 705 次擦除入口调用，每次一个块；块号为 11…715。
-- 705 次编程入口调用，每次 `0x8000` 个 32 位字。
-- 擦除地址覆盖 `0x40160000…0x45960000`，步长 `0x20000`。
-- 编程先处理 `0x40180000…0x45960000`，**最后处理首块 `0x40160000`**。
-- 每次编程的来源地址相对偏移与目标地址相对偏移相同。
-- 结束边界为 `0x45980000`，距离参数资源起点 `0x47e80000` 还有 `0x2500000`（37 MiB）。
+## 4. Update Device Labeled "Ai" Targets Independent Region
 
-工具逐项断言完整地址序列，而非只检查首末两项。所有目标块均不与资源 `0x5c` 的分配范围重叠。
+Device update handler `0x41028cb8` invokes `0x40d6b1d0`, resolving target address `0x41273110` to **`0x46480000`**.
+Code erases and programs a single 128 KiB block ending at `0x464a0000`, which also does not touch `0x47e80000`.
+Filename `FirmwareManagement_Device_Ai.c` documents internal naming, without proving specific subsystem functionality.
 
-这不是成功更新实验：擦除／编程入口、设备准备与收尾函数均被拦截；三处读回检查和一处空白检查被显式跳过。替代函数下返回零只能证明这条成功分支完成了地址遍历。**实际硬件操作数为零，实际传感器参数恢复字节数为零。** 失败重试及断电恢复行为不在本实验范围内。
+## 5. Architectural Implications
 
-## 4. 名为 Ai 的更新设备也不是这个参数区
+Correlating with the [Sensor Inputs Survey](../z8_sensor_inputs/REPORT.md):
+Sensor processing routines read parameters from Resource `0x5c`, copied from raw flash `0x47e80000` (`0xf2000` bytes). Standard EG updates write to an independent memory partition.
+Standard updater files cannot be treated as full device flash dumps.
 
-另一个设备更新函数 `0x41028cb8` 调用 `0x40d6b1d0` 获取目标地址。该入口经过包装到达 `0x41273110`，执行结果固定为 **`0x46480000`**。静态代码按一个 128 KiB 块擦除、写入和比较，终点为 `0x464a0000`，同样没有覆盖 `0x47e80000`。
-
-本轮仅执行该地址查询，未执行该设备的更新函数。`FirmwareManagement_Device_Ai.c` 是固件中的名称证据；不依据缩写将它等同于主体检测神经网络，也不据此指定其业务用途。
-
-## 5. 对继续恢复参数的影响
-
-结合[装载路径调查](../z8_sensor_inputs/REPORT.md)，当前证据为：传感器后端从资源 `0x5c` 取参数，装载器从 `0x47e80000` 复制 `0xf2000` 字节到 RAM；正常 EG 主程序更新写入另一段存储范围。
-
-这意味着不能把普通 EG 更新文件视为覆盖整个存储器的镜像。接下来应继续检查独立资源更新／恢复路径，或取得能够覆盖该地址区间的实际存储数据。仅修改已定位的 EG 模式选择代码，仍不足以证明已有参数包含全高连续读出配置。
-
-复现（依赖 Capstone、Unicorn）：
+Execute:
 
 ```sh
-cd "firmware decode/z-series"
-python3 tools/reverse_z8_flash_layout.py
+uv run python tools/reverse_z8_flash_layout.py
+uv run pytest
 ```
-
-工具在执行和创建输出前验证输入 SHA-256；所有执行都有指令数预算。原固件只读，不生成刷写文件，不连接相机。
-
-后续[私有 PTP 调查](../z8_ptp_resources/REPORT.md)已定位读取资源 `0x5c` RAM 指针的分支，并离线验证分派与边界；尚未取得实际参数。

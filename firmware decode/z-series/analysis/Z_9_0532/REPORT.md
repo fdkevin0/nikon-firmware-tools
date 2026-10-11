@@ -1,15 +1,15 @@
-# Z 9 固件 5.32 批量分析
+# Z 9 Firmware 5.32 Batch Analysis
 
-样本：`Z_9_0532.bin`，101,846,611 字节。
-官方来源：[下载页](https://downloadcenter.nikonimglib.com/en/download/fw/585.html)。
+Sample: `Z_9_0532.bin`, 101,846,611 bytes.
+Official source: [Download Page](https://downloadcenter.nikonimglib.com/en/download/fw/585.html).
 
-SHA-256：`2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81`。
+SHA-256: `2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81`.
 
-[全系列报告](../catalog/REPORT.md) · [批量清单](survey/manifest.json)
+[All Series Report](../catalog/REPORT.md) · [Batch Manifest](survey/manifest.json)
 
-**已解包，6 个分段的 CRC、整包 CRC 和逐字节重编码均通过。**
+**Unpacked successfully; all 6 section CRCs, package CRC, and byte-for-byte re-encoding roundtrip passed.**
 
-| 分段 | 字节数 |
+| Section | Bytes |
 | --- | ---: |
 | `ex1990_051000.bi` | 524,290 |
 | `_tpj01_0210.bin` | 57,346 |
@@ -18,12 +18,12 @@ SHA-256：`2f13e75d38cd5b65da5b1f21a7828bc8a65ab17dc4c1b435b040ee62d2ed1d81`。
 | `_gst00_0017.bin` | 661,910 |
 | `li1990_053200.bi` | 17,940,482 |
 
-分段二进制、带偏移的字符串和熵统计位于本目录；深入结构检查位于 `survey/`。
+Section binaries, offset-indexed strings, and entropy statistics are located in this directory; detailed structural inspections are in `survey/`.
 
-检出 3 个结构可解析的嵌入 ELF，文件与符号表位于 `survey/embedded_elf/`。
+Detected 3 structurally parseable embedded ELFs; binaries and symbol tables are located in `survey/embedded_elf/`.
 
-Linux CPIO 条目数：1505；只提取普通文件，不创建固件中的设备节点或符号链接。
+Linux CPIO entry count: 1505; regular files extracted only, without creating device nodes or symbolic links.
 
-内核标识：`Linux version 4.14.224-ts-aarch64 (n8410@n8410) (gcc version 6.5.0 (Timesys 20200228)) #1 SMP PREEMPT Wed Jul 16 15:23:50 JST 2025`。
+Kernel banner: `Linux version 4.14.224-ts-aarch64 (n8410@n8410) (gcc version 6.5.0 (Timesys 20200228)) #1 SMP PREEMPT Wed Jul 16 15:23:50 JST 2025`.
 
-未执行固件，未生成刷机补丁。
+Firmware was not executed; no update patches were generated.

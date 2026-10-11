@@ -1,115 +1,113 @@
-# Z 系列历史固件：主要比较结果
+# Z-Series Historical Firmware: Key Comparative Findings
 
-分析日期：2026-10-05。**15 款机身、148 份已取得的官方原包、8,785,277,014 字节（8.79 GB）**。
-已完成 133 组同机型相邻已取得版本的比较。[全部版本及分段差异表](REPORT.md)、[原包来源和 SHA-256](downloads.json)、[详细比较数据](manifest.json)。
+Analysis date: 2026-10-05. Scope: **15 camera bodies, 148 acquired official firmware packages, 8,785,277,014 bytes (8.79 GB)**.
+Completed 133 adjacent release comparisons within identical models. See [All Versions & Section Differences](REPORT.md), [Download Sources & Checksums](downloads.json), and [Detailed Machine-Readable Manifest](manifest.json).
 
-## 覆盖与缺口
+## Coverage & Gaps
 
-| 项目 | 结果 |
+| Metric | Result |
 |---|---:|
-| 官方历史中已知的机型／版本记录 | 164 |
-| 实际取得并分析 | 148 |
-| 完整解码且通过整包 CRC、分段 CRC、逐字节回编码 | 123 包、523 分段 |
-| 新封装，完成参照辅助局部恢复 | 25 包 |
-| 提取的完整 CEVA ELF | 106 个实例、15 种内容 |
-| 完整覆盖的网络候选 | 2 种内容，各在 47 个版本中相同 |
-| 尚未取得原包 | 16 个记录 |
+| Known model/version records in official history | 164 |
+| Acquired and analyzed in this study | 148 |
+| Fully decoded with package CRC, section CRC, and re-encoding roundtrip | 123 packages, 523 sections |
+| Modern packaging with reference-assisted local recovery | 25 packages |
+| Extracted full CEVA DSP ELFs | 106 instances, 15 distinct binaries |
+| Fully covered serialized network candidates | 2 distinct contents, each identical across 47 versions |
+| Cataloged packages remaining unobtained | 16 records |
 
-缺失项是 **14 款的出厂 1.00、ZR 的首发 1.01，以及 Z6III 1.01**。前 15 项不一定曾以升级包公开；Z6III 1.01 有官方更新记录，但本次没有找到原始下载。不能称作“所有历史版本已抓齐”。详情见[来源调查](SOURCES.md)。
+The 16 missing items comprise **14 launch-day 1.00 factory releases, ZR initial release 1.01, and Z6III 1.01**. The first 15 may never have been distributed as public updaters; Z6III 1.01 is cataloged in official changelogs, but no public binary download was located during this crawl. This corpus represents all currently discoverable public releases, not every release ever compiled. See [Sources Survey](SOURCES.md).
 
-所有下载均来自 Nikon 官方 CDN，旧 EXE 只作静态解压，未运行安装器。两份早期包实际内含 `Z6_2_0110_01.bin`、`Z7_2_0110_01.bin`，保留修订后原文件名。原始 BIN 和解出的文件均未刷写到相机。
+All binaries originate from official Nikon CDN servers; legacy self-extracting EXE files were extracted statically without executing installers. Two early packages contained `Z6_2_0110_01.bin` and `Z7_2_0110_01.bin`, preserving original revision filenames. Raw BIN files and extracted payloads were never flashed to hardware.
 
-## 封装没有在已取得的同机型历史中发生切换
+## Packaging Formats Did Not Switch Within Acquired Model Histories
 
-| 封装 | 机型及已验证版本范围 |
+| Packaging Format | Models & Verified Release Ranges |
 |---|---|
-| 旧三表 XOR，完整校验 | Z30 1.10–1.20；Z5 1.01–1.50；Z50 1.10–2.60；Z6 1.01–3.80；Z6II 1.01–1.70；Z7 1.01–3.80；Z7II 1.01–1.70；Z8 1.01–3.11；Z9 1.10–5.32；Zfc 1.10–1.81 |
-| `0x260` 扩展头，新封装 | Z f 1.10–3.01；Z50II 1.01–1.11；Z5II 1.01–1.20；Z6III 1.02–2.00；ZR 1.10–1.11 |
+| Legacy 3-table XOR, fully validated | Z30 1.10–1.20; Z5 1.01–1.50; Z50 1.10–2.60; Z6 1.01–3.80; Z6II 1.01–1.70; Z7 1.01–3.80; Z7II 1.01–1.70; Z8 1.01–3.11; Z9 1.10–5.32; Zfc 1.10–1.81 |
+| Extended `0x260` header, modern container | Z f 1.10–3.01; Z50II 1.01–1.11; Z5II 1.01–1.20; Z6III 1.02–2.00; ZR 1.10–1.11 |
 
-范围只表示实际取得的离散版本，完整列表见总报告。**Z f 的 1.10、1.20、1.21、2.00、2.01、2.02、3.00、3.01 均实测为新封装**，补齐了先前尚无中间版本原包的证据缺口。1.00 仍未取得，因此仍只能说“至少自 1.10 起”，不能确定出厂 1.00 的包格式。
+Ranges represent discrete acquired versions; see the master report for full lists. **All acquired Z f releases (1.10, 1.20, 1.21, 2.00, 2.01, 2.02, 3.00, 3.01) are verified to use modern packaging**, filling previous gaps in intermediate versions. Because version 1.00 remains unobtained, the verified boundary remains "at least since 1.10".
 
-25 份新封装样本的固定头、128 项表和反序头区域均相同。每份均在既有位置掩码 `[0x16c20bc, 0x1ea95b8)` 内匹配到完整已知推理 ELF；窗口长 8,287,484 字节。**这仍不是整个新封装的解密**，新包的分段目录和 CRC 未验证。
+Across all 25 modern container samples, the 32-byte fixed header, 128-entry table, and reverse header regions are identical. Each matches the known neural inference ELF within the established position mask window `[0x16c20bc, 0x1ea95b8)` (8,287,484 bytes). **This does not represent a full decryption of modern containers**; section directories and package CRCs remain undecoded.
 
-## AI：网络数据长期相同，DSP 程序有明确演进
+## AI: Long-Term Network Stability vs Evolving DSP Executables
 
-两个序列化网络候选 N1、N2 分别为 1,042,864 和 1,083,248 字节，包含 `XM6NeuPro`、`Darkent2Caffe`、`UserInputBuffer` 及层名称。
+Two candidate serialized networks, designated N1 and N2, measure 1,042,864 and 1,083,248 bytes, featuring strings such as `XM6NeuPro`, `Darkent2Caffe`, `UserInputBuffer`, and convolution layer names.
 
-| 机型 | 两份候选数据完整且分别相同的版本 |
+| Model | Versions with Complete and Pairwise-Identical Candidates |
 |---|---|
-| Z8 | 全部 8 个已取得版本，1.01–3.11 |
-| Z9 | 全部 17 个已取得版本，1.10–5.32 |
-| Z f | 全部 8 个已取得版本，1.10–3.01 |
-| Z50II | 全部 6 个已取得版本，1.01–1.11 |
-| Z5II | 全部 5 个已取得版本，1.01–1.20 |
-| Z6III | 1.02、1.10、1.11 |
+| Z 8 | All 8 acquired versions, 1.01–3.11 |
+| Z 9 | All 17 acquired versions, 1.10–5.32 |
+| Z f | All 8 acquired versions, 1.10–3.01 |
+| Z50II | All 6 acquired versions, 1.01–1.11 |
+| Z5II | All 5 acquired versions, 1.01–1.20 |
+| Z6III | 1.02, 1.10, 1.11 |
 
-两份完整 SHA-256：
+Full SHA-256 hashes:
 
-- N1：`1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76`
-- N2：`418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541`
+- N1: `1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76`
+- N2: `418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541`
 
-新封装中的这两块数据位于各自已知参照 ELF 之外，没有将它们自身当作掩码构造依据。Z6III 2.00 仅覆盖 N1 的前 450,484 字节，前缀与 N1 相同；剩余内容和 N2 已移出当前窗口。ZR 两版本的两块数据也不在窗口覆盖内。**未覆盖不表示模型删除。**
+In modern containers, these payloads reside outside the known reference ELF, confirming they are genuine recoveries rather than injected references. In Z6III 2.00, only the first 450,484 bytes of N1 fall within the recovery window, matching the N1 prefix; remaining content and N2 have shifted outside the window. Both candidates also fall outside the recovery window in ZR 1.10 and 1.11. **Window truncation does not imply model removal.**
 
-目前没有完整解析 CDNN 网络格式、类别及所有模型区域，因此这些相同性不能扩展为“全部 AI 算法一样”，也不能推断性能、识别准确率或功能开关。
+Because proprietary CDNN layer structures, classes, and operators have not been reverse-engineered, candidate identity does not imply identical AI algorithms, detection accuracy, or camera feature states.
 
-### Z9 的 DSP 版本分界
+### Z 9 DSP Version Milestones
 
-A／B／C 分别是按已定义函数判断的图像处理、跟踪、神经推理程序，不是厂商公开模块名。指纹为 SHA-256 前 12 位，完整值与符号差异见清单。
+Modules A, B, and C correspond to image processing, tracking, and neural inference based on symbol profiles (not official vendor names). Fingerprints represent the first 12 characters of full SHA-256 hashes.
 
-| Z9 版本 | A：图像处理 | B：跟踪 | C：神经推理 |
+| Z 9 Version | A: Image Processing | B: Tracking | C: Neural Inference |
 |---|---|---|---|
-| 1.10、1.11 | `578259dd83b1` | `0a4134aecee6` | `322f7dcbd65f` |
-| 2.00、2.10、2.11 | `580a39503ac7` | `1bc15b1ba640` | `e9436f6fe7e2` |
-| 3.00、3.01、3.10 | `580a39503ac7` | `440d3b1867f0` | `a38f6e96513e` |
-| 4.00、4.01、4.10、5.00、5.10、5.20 | `b3eebaa20c2a` | `de9610259024` | `c7787ceda602` |
-| 5.30、5.31、5.32 | `b3eebaa20c2a` | `dd2e0e44d1cf` | `c7787ceda602` |
+| 1.10, 1.11 | `578259dd83b1` | `0a4134aecee6` | `322f7dcbd65f` |
+| 2.00, 2.10, 2.11 | `580a39503ac7` | `1bc15b1ba640` | `e9436f6fe7e2` |
+| 3.00, 3.01, 3.10 | `580a39503ac7` | `440d3b1867f0` | `a38f6e96513e` |
+| 4.00, 4.01, 4.10, 5.00, 5.10, 5.20 | `b3eebaa20c2a` | `de9610259024` | `c7787ceda602` |
+| 5.30, 5.31, 5.32 | `b3eebaa20c2a` | `dd2e0e44d1cf` | `c7787ceda602` |
 
-可以确定的变化：
+Confirmed code transitions:
 
-- **1.11 → 2.00**：三个 DSP 均改变。推理模块移除 36 个已定义函数名，其中包括 `vTaskStartScheduler`、`xTaskGenericCreate` 等调度相关函数；增加 `NikonTask_SetRequest`、`NikonTask_NonOsWorker` 两个函数名。反映该 DSP 的执行框架变化，不能据此声称整台相机更换了操作系统。
-- **2.11 → 3.00**：推理 ELF 仅差 **9 字节**；所有 `.text*` 机器码和函数名集合不变，变化为函数分发表槽位映射。跟踪程序有代码变化。
-- **3.10 → 4.00**：推理 ELF 再次仅差 **9 字节**，仍是分发表映射变化；图像处理和跟踪程序均有代码变化。
-- **5.20 → 5.30**：跟踪程序新增 5 个已定义函数名，均属 `CCvPeaking` 系列：Execute、LowPass、HiPassFilt、MovingSum、MovingSumRoi；图像处理和推理 ELF 不变。
+- **1.11 → 2.00**: All three DSP modules changed. The neural inference ELF removed 36 defined functions (including scheduler calls like `vTaskStartScheduler` and `xTaskGenericCreate`) while adding `NikonTask_SetRequest` and `NikonTask_NonOsWorker`. This reflects internal execution framework changes, not a full operating system swap.
+- **2.11 → 3.00**: The neural inference ELF differs by **only 9 bytes**; all `.text*` machine code sections and defined function names are identical, with differences confined to function dispatch table slot mappings. Tracking code contains functional changes.
+- **3.10 → 4.00**: The neural inference ELF again differs by **only 9 bytes**, representing dispatch table slot remappings; image processing and tracking programs underwent machine code updates.
+- **5.20 → 5.30**: Tracking added 5 defined functions belonging to the `CCvPeaking` family (Execute, LowPass, HiPassFilt, MovingSum, MovingSumRoi); image processing and neural inference ELFs remained unchanged.
 
-因此，**Z9 从 2.00 到 5.32 的已提取神经推理模块机器码保持相同**，其 ELF 有三个数据不同的版本。两份网络候选则从最早取得的 1.10 起就未变。新增识别功能需要继续追踪主处理器代码、其他模型及前后处理，不能归结为“只开了一个隐藏开关”。
+Consequently, **the machine code of the neural inference module in Z 9 remained identical from 2.00 to 5.32**, across three minor dispatch-table revisions. Serialized network candidates N1 and N2 remained byte-identical from 1.10 onward. New subject detection features reflect updates in main host processor code, tracking logic, or preprocessing pipelines rather than a simple hidden toggle.
 
-### Z8 与其他新机型
+### Z 8 and Newer Models
 
-Z8 1.01 → 2.00 的三个 DSP 改变；2.00 → 3.11 的三个 DSP 完全不变。其 2.00 之后的三个 ELF 与 Z9 4.00–5.20 对应三个 ELF 分别完全相同。Z8 的详细入口表差异见[原 Z8 报告](../z8_history/REPORT.md)。
+In Z 8, all three DSPs changed from 1.01 to 2.00, and remained completely identical from 2.00 through 3.11. The post-2.00 ELFs match those in Z 9 4.00–5.20 exactly. Detailed dispatch table shifts are documented in the [Z 8 Report](../z8_history/REPORT.md).
 
-Z f、Z50II、Z5II 已取得的各版本在当前窗口内均有同一份 C 类参照，前两份 DSP 没有完整落在该窗口内；这里没有把“未覆盖”记为“新增或删除”。Z6III 2.00 和 ZR 1.10／1.11 能额外恢复完整 A、B。ZR 两版本的三个 DSP 均相同；ZR A 中的额外图像处理函数和此前 Z5II 双样本差分恢复结果见[跨机型 AI 比较](../ai_comparison/REPORT.md)。
+Acquired releases of Z f, Z50II, and Z5II share the same Class C reference within the recovery window; modules A and B fall outside this window in those models. Z6III 2.00 and ZR 1.10/1.11 recover complete A and B modules. Across both ZR releases, all three DSPs are identical; additional image processing functions in ZR are detailed in [Cross-Model AI Comparison](../ai_comparison/REPORT.md).
 
-## Linux：Z9 的 5.00 与 5.30 是明显分界
+## Linux: Z 9 Milestones at 5.00 and 5.30
 
-Z8、Z9 所有已取得版本均带 `4.14.224-ts-aarch64` 版本字符串，但内核二进制会随构建和修改变化，不能仅凭版本字符串认定内核相同。
+All acquired releases of Z 8 and Z 9 report the `4.14.224-ts-aarch64` kernel banner string, but kernel binaries vary across build dates and compiler configurations.
 
-| 机型及更新 | 实际变化 |
+| Model & Update | Observed Changes |
 |---|---|
-| Z8 2.10 → 3.00 | 内核二进制改变；根文件系统有 8 个条目内容／属性变化 |
-| Z8 全部 8 版 | 内核配置、两份设备树分别完全相同；3.00、3.01、3.10、3.11 的四份 NISI 载荷分别相同 |
-| Z9 1.11 → 2.00 | 内核改变；设备树由 3 份变为 2 份；根文件系统增加 1 个条目、改变 34 个 |
-| Z9 2.11 → 3.00 | 内核改变；根文件系统增加 11 个条目、改变 19 个 |
-| Z9 4.10 → 5.00 | 内核改变；根文件系统增加 632 个条目、删除 17 个、改变 67 个 |
-| Z9 5.00 → 5.10 | 内核不变；48 个根文件系统条目变化，集中于网页控制 CGI／JavaScript 和相关应用 |
-| Z9 5.20 → 5.30 | 内核改变；增加 71 个条目、改变 36 个，包括 D-Bus、Avahi 工具及网络相关程序 |
-| Z9 全部 17 版 | 提取的内核配置完全相同；2.00 起两份设备树分别保持相同 |
+| Z 8 2.10 → 3.00 | Kernel binary changed; 8 rootfs entries modified |
+| Z 8 (All 8 Releases) | Kernel configuration and dual DTBs identical; NISI payloads identical across 3.00–3.11 |
+| Z 9 1.11 → 2.00 | Kernel changed; DTB count reduced from 3 to 2; rootfs added 1 entry, modified 34 |
+| Z 9 2.11 → 3.00 | Kernel changed; rootfs added 11 entries, modified 19 |
+| Z 9 4.10 → 5.00 | Kernel changed; rootfs added 632 entries, deleted 17, modified 67 |
+| Z 9 5.00 → 5.10 | Kernel unchanged; 48 rootfs entries modified, focused on web control CGI/JS |
+| Z 9 5.20 → 5.30 | Kernel changed; added 71 entries, modified 36, including D-Bus, Avahi, and networking tools |
+| Z 9 (All 17 Releases) | Extracted kernel configs identical; dual DTBs identical from 2.00 onward |
 
-根文件系统比较包含内容、类型、权限、链接目标和设备类型，忽略时间戳与 inode；条目数量包含目录和链接，不能当作新增可执行程序数。
+Rootfs diffs evaluate content, type, permissions, symlink targets, and device IDs (ignoring build timestamps and inode numbers). Entry counts include directories and symlinks.
 
-Z9 5.00 新增的 `home/htdocs`、`home/htdocs/cgi`、`usr/bin/LaHttpServer` 等给出了可直接检查的网页控制组件。5.10 修改其中多项。这比单纯比较文件大小更能定位网络功能相关工作，但静态存在不证明某个用户模式一定启用了该服务。
+Z 9 5.00 introduced web-control components including `home/htdocs`, `home/htdocs/cgi`, and `usr/bin/LaHttpServer`, modified further in 5.10. Outer section containers in Z 9 also varied: 1.10–2.00 contained `_gnt00_0007.bin`; 2.10–4.10 omitted this section; 5.00 introduced `_gst00_0017.bin`.
 
-Z9 外层还出现分段增减：1.10、1.11、2.00 包含 `_gnt00_0007.bin`；2.10–4.10 不携带该分段；5.00 起携带 `_gst00_0017.bin`。目前不对这两个缩写的具体硬件用途作推断。
+## Legacy and Dual-Processor Bodies
 
-## 较早机型与双处理器机型
+Touch controller sections remained identical across all acquired versions for each of the 10 legacy-format models. EG main executable sections varied in every release; EX and VR sections changed intermittently.
 
-10 款可完整解码机型的触控分段，在各自已取得的全部版本中分别保持完全相同。其 EG 主程序分段每版都有字节变化；EX、VR 则只在部分更新中变化。版本文字、链接布局也会影响哈希，不能据此自动判定增加了什么功能。
+Z 6II and Z 7II carry dual `eg..._mas_...` and `eg..._sla_...` executables. Each model includes 12 acquired versions, representing 12 distinct builds per processor. They were tracked as separate execution paths.
 
-Z6II、Z7II 均携带 `eg..._mas_...` 与 `eg..._sla_...` 两份主、从程序。两款各取得 12 个版本，每条程序序列都对应 12 个不同内容。比较时分别追踪，未合并成一个 EG。
+First-generation bodies (Z 30, Z 5, Z 50, Z 6, Z 6II, Z 7, Z 7II, Z fc) did not yield CEVA DSP ELFs under the current extraction pipeline; this reflects architecture differences rather than an absence of face/eye detection or machine-learning capabilities, which reside in ARM/Thumb binaries.
 
-Z30、Z5、Z50、Z6、Z6II、Z7、Z7II、Zfc 的当前方法未提取到同类 CEVA ELF；不能据此说这些机型没有 AI 或人眼识别。对它们的算法比较仍需继续分析 ARM／Thumb 主程序。
+## Verification
 
-## 验证
+All 148 raw binaries match documented sizes and SHA-256 hashes; 523 section outputs, 25 recovery windows, and 15 unique DSP ELFs were verified. All DSP ELFs pass `readelf -h -l -S -s` validation with zero errors. 37 automated tests pass.
 
-148 份原包的大小和 SHA-256 全部重新核验；523 份分段产物、25 份恢复窗口和 15 份不同 DSP ELF 重新核验。所有 DSP ELF 均通过系统 `readelf -h -l -S -s` 独立检查，无错误输出。37 项自动测试通过。
-
-本轮补齐了五项可复现工作：历史地址发现、官方包下载与静态解压、快速旧格式解码、逐版组件比较、早期 Z9 五项 NISI 容器支持。复现命令见[总报告](REPORT.md)。
+Reproducible tool pipelines are detailed in the [Master Report](REPORT.md).

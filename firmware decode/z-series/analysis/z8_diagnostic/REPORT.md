@@ -1,103 +1,84 @@
-# Z8 C 3.11：NFDG 只读诊断入口实验
+# Z 8 C 3.11: NFDG Read-Only Diagnostic Entry Point Experiment
 
-已实现返回固定标识和补丁版本的诊断入口，生成了包含新增 AArch64 代码的完整实验固件包，并完成离线指令仿真和封装校验。**尚未连接相机、刷写、验证完整启动或恢复流程；这不是已经通过真机验证的固件版本。**
+A read-only diagnostic entry point returning invariant identity and patch version strings has been implemented. A complete experimental firmware package embedding new AArch64 machine code was built and verified via offline CPU emulation and package checksums. **This binary has not been flashed to hardware or tested on an authentic device boot cycle.**
 
-本实验只适用于已记录的 Z8 C 3.11 原包，不支持将地址直接用于其他版本或机型。
+This experiment applies exclusively to Z 8 C 3.11 (`Z_8_0311.bin`).
 
-## 接口
+## Interface Specification
 
-| 请求字段 | 值 |
+| PTP Request Field | Value |
 |---|---|
-| ContainerType | `1`，Command |
+| ContainerType | `1` (Command Block) |
 | OperationCode | `0x94FD` |
-| TransactionID | 由正常 PTP 会话分配；响应原样保留 |
+| TransactionID | Assigned by host PTP session; echoed in response |
 | Parameters | `[0xF0FF, 0, 0, 0, 0]` |
-| 容器长度 | 32 字节 |
-| 数据阶段 | 无 |
+| Container Length | 32 bytes |
+| Data Phase | None |
 
-`0xF0FF` 是本实验自定义的子码，原固件 182 项私有表中不存在，不是尼康官方命令。补丁在通用预检查入口识别该请求，原有子命令表保持不变。
+Sub-opcode `0xF0FF` is custom-defined for this experiment (not present in the stock 182-entry vendor table). The hook intercepts this code at the generic pre-check entry point, leaving stock dispatch tables untouched.
 
-成功响应为 32 字节 PTP Response，外层响应码 `0x2001`，五个参数如下：
+Response: 32-byte PTP Response Block, outer response code `0x2001`:
 
-| 参数 | 值 | 含义 |
+| Parameter Index | Value | Meaning |
 |---|---|---|
-| 1 | `0x2001` | 内部状态 OK |
-| 2 | `0x4744464E` | 小端 ASCII 字节 `NFDG` |
-| 3 | `0x00010000` | 补丁版本 1.0.0，`major<<16 \| minor<<8 \| patch` |
-| 4 | `2070`（十进制） | Z8 机型编号 |
-| 5 | `0x0311` | 基础固件 C 3.11 的固定标识 |
+| 1 | `0x2001` | Internal Status OK |
+| 2 | `0x4744464E` | ASCII string `NFDG` (Little-endian) |
+| 3 | `0x00010000` | Patch version 1.0.0 (`major<<16 | minor<<8 | patch`) |
+| 4 | `2070` (Decimal) | Model identifier (Z 8) |
+| 5 | `0x0311` | Base firmware version (C 3.11) |
 
-长度不是 32 时返回外层 `0x2006`；容器类型不是 Command，或保留参数非零时返回 `0x201D`。只有完整 32 位 Param1 等于 `0x0000F0FF` 且外层为 `0x94FD` 才会被拦截。其他外层／子码组合回到原代码。
+Length != 32 returns outer error `0x2006`; ContainerType != Command or non-zero reserved parameters return `0x201D`. Requests matching `0x94FD` + `0xF0FF` are intercepted; all other operations fall through to stock handlers.
+The diagnostic command does not require or modify the proprietary service session flag (`0xF001`).
 
-新入口不读取或更改私有服务开启标志，也不执行 `0xF001`。这不等于免除上层标准 PTP 会话、设备模式或传输状态机的要求；那些上层流程尚未在本实验中执行。
+## Implementation and Code Placement
 
-## 实现及放置依据
+Source files: [AArch64 Assembly](../../tools/patches/z8_0311_diagnostic.S), [Build Tool](../../tools/build_z8_diagnostic.py), [Verification Script](../../tools/verify_z8_diagnostic.py), [Protocol Helper](../../tools/z8_diagnostic_protocol.py).
 
-源码：[AArch64 处理代码](../../tools/patches/z8_0311_diagnostic.S)、[构建工具](../../tools/build_z8_diagnostic.py)、[验证器](../../tools/verify_z8_diagnostic.py)、[请求与响应工具](../../tools/z8_diagnostic_protocol.py)。
+- Replaces `sub sp, sp, #0x50` at `0x407FE27C` with a direct branch instruction.
+- Payload routine (**184 bytes**) resides at EG file offset `0x1143200` (virtual address `0x412A3200`).
+- Non-diagnostic requests execute the replaced stack allocation instruction and branch back to `0x407FE280`.
+- Diagnostic requests invoke response builder `0x407DF0D4` and return 0 (signaling response ready, suppress downstream handlers).
 
-- 将 `0x407FE27C` 原有 `sub sp, sp, #0x50` 替换为单条跳转。
-- 新代码及常量共 **184 字节**，放在 EG 文件偏移 `0x1143200`、运行地址 `0x412A3200`。
-- 非诊断请求重新执行被替换的栈指令，再跳回 `0x407FE280`。原有预检查主体、处理器及表项均未修改。
-- 诊断请求调用原始响应构造函数 `0x407DF0D4`，随后返回 0，采用原预检查中“已经准备响应、停止后续处理器”的返回约定。
-- 回复内容是静态常量；新增逻辑没有调用传感器、文件写入、Flash 写入或私有服务初始化函数。
+Placement criteria: The target resides within the code mapping range (`0x8000` length `0x14DEFE4`) in the same 4 KiB page as `RET @ 0x412A31F0`. Disassembly and pointer scanning across the 512-byte padding block revealed zero existing references.
 
-放置检查并非只搜索零字节：启动描述表声明代码映射文件区间起于 `0x8000`、长度 `0x14DEFE4`，目标在该区间内；代码映射调用参数为 `0xF`；目标与末尾现有函数 `RET @ 0x412A31F0` 位于同一个 4 KiB 页。其后到下一代码岛的已记录填充为全零。
+## Container Packaging and Checksums
 
-构建时还扫描直接分支、条件分支、字面量加载、ADR、完整 MOVZ/MOVK 地址构造和绝对 64 位指针，在预留的 512 字节中未发现原有引用。**这些是限定镜像的静态放置证据，不排除运行时计算出的引用，也没有验证整机启动后对此区域的全部使用。** 原始包和 EG 都先验证完整 SHA-256。
+Only the branch instruction, 184-byte payload, and EG section CRC are modified. The container CRC and header SHA-1 (`SHA1(package || K8)`) are recomputed, followed by standard 3-table XOR re-encoding. Section lengths, directory structure, and the four remaining sections remain byte-identical.
 
-## 封装与模块对应
-
-构建器复用当前项目 `analyze_firmware.py` 的正确目录解析，名称位于各自偏移／长度字段之前。没有使用 `nikon-fw-key-tool` 中会错配模块名称的解析结果，也没有修改该外部项目。
-
-只有 EG 中的跳转、184 字节载荷和 EG CRC 被更改；随后重算整包 CRC、`SHA1(body || K8)`，再使用现有三表 XOR 编码。所有模块长度和目录保持不变，另外四个模块逐字节保持原样。包头最后 12 字节保持原样。
-
-补丁生成前验证原字节；输入不是指定原包、输出目录已经存在或任何构建／仿真校验失败时，不发布实验包。原始 BIN 始终只读。生成物保留在本地，二进制由既有 `.gitignore` 排除。
-
-| 指纹 | SHA-256 |
+| Binary Artifact | SHA-256 |
 |---|---|
-| 原始 `Z_8_0311.bin` | `d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96` |
-| 实验包 | `b7a80c0ff0cd08eea7bda2c4647f70bb114f60909b53ef877c7deb4605d14e9c` |
-| 修改后的 EG | `d4d6f68ff25813f72412dea295c39685615ae30f7fbbbe35cfffef37132f9c50` |
+| Original `Z_8_0311.bin` | `d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96` |
+| Experimental Package | `b7a80c0ff0cd08eea7bda2c4647f70bb114f60909b53ef877c7deb4605d14e9c` |
+| Modified EG Section | `d4d6f68ff25813f72412dea295c39685615ae30f7fbbbe35cfffef37132f9c50` |
 
-实验包：[Z_8_0311_diagnostic_EXPERIMENTAL.bin](Z_8_0311_diagnostic_EXPERIMENTAL.bin)，99,051,117 字节。机器可读证据见 [manifest.json](manifest.json)，修改后的指令见 [code_landmarks.asm](code_landmarks.asm)。
+Experimental package: `Z_8_0311_diagnostic_EXPERIMENTAL.bin` (99,051,117 bytes). Manifest in [manifest.json](manifest.json); modified opcodes in [code_landmarks.asm](code_landmarks.asm).
 
-## 验证结果及范围
+## Verification Results
 
-| 验证 | 结果 |
+| Test Category | Results |
 |---|---|
-| 原有 182 个子码，三个外层入口、开启／关闭状态等分派对照 | 1,724 组通过 |
-| 新诊断命令，不同 TransactionID、私有状态及回调注册状态 | 16 组通过 |
-| 错误长度、容器类型、保留参数 | 21 组通过 |
-| 请求和私有状态保持不变、callee-saved 寄存器及栈恢复 | 通过 |
-| 新命令的写入限制于栈和响应存储；固件映像在仿真中只读 | 通过 |
-| 原始响应序列化及 memcpy 执行，传输回调收到的容器字节 | 与预期逐字节一致 |
-| 五个模块 CRC、整包 CRC、包头 SHA-1、原包无修改往返 | 通过 |
-| 当前仓库单元测试 | 46 项通过，其中新增 6 项 |
+| 182 stock sub-opcodes across 3 outer opcodes / states | 1,724 differential tests passed |
+| Diagnostic command across TransactionIDs and states | 16 test cases passed |
+| Malformed requests (lengths, container types) | 21 test cases passed |
+| Callee-saved register and stack restoration | Verified |
+| Read-only image constraint during emulation | Verified |
+| 5 section CRCs, package CRC, header SHA-1 | All passed |
+| Automated pytest suite | 46 tests passed (including 6 new test cases) |
 
-差分比较的是原始通用分派行为，**各子码自己的预检查被拦截**，不代表所有 182 个命令的完整功能都已回归。OS 事件辅助函数和传输回调被替代；`0x94FF` 原有错误路径中的空数据阶段也被拦截。没有执行相机后端或真实 USB 发送。
+Package decoding was independently verified using NumPy decoders and K8 derivation routines.
 
-另外使用外部项目的 NumPy 解码实现重新解密实验包并验证五个模块 CRC 和整包 CRC；由其 `solve_signature_e7.py` 从原始包独立求解的 K8 也验证了实验包摘要。模块名称另按原始字段位置读取，未采纳该项目的错位名称。结果与上表指纹一致。
+## Reproduction
 
-## 复现
-
-依赖 Python、Capstone、Unicorn，以及 PATH 中支持 AArch64 的 `clang`、`ld.lld`、`llvm-objcopy`。本机可复用已有 Python 环境。输出目录必须尚不存在：
+Execute:
 
 ```sh
-cd "firmware decode/z-series"
-/tmp/nikon-z8-re-venv/bin/python -B tools/build_z8_diagnostic.py \
-  --firmware Z_8_0311.bin --output /tmp/z8-diagnostic-rebuild
-/tmp/nikon-z8-re-venv/bin/python -B -m unittest discover -s tools -p 'test_*.py'
+uv run python tools/build_z8_diagnostic.py --firmware Z_8_0311.bin --output /tmp/z8-diagnostic-rebuild
+uv run pytest
 ```
 
-构建过程自动执行上述指令仿真，成功后才发布固件及清单。没有 USB 或刷写选项。
-
-以下命令仅生成／解释数据，不会发送给相机：
+Protocol validation (offline):
 
 ```sh
-python3 tools/z8_diagnostic_protocol.py request --transaction-id 1
-python3 tools/z8_diagnostic_protocol.py decode \
-  200000000300012001000000012000004e464447000001001608000011030000 \
-  --transaction-id 1
+uv run python tools/z8_diagnostic_protocol.py request --transaction-id 1
+uv run python tools/z8_diagnostic_protocol.py decode   200000000300012001000000012000004e464447000001001608000011030000   --transaction-id 1
 ```
-
-下一阶段仍需验证上层 PTP 调用流程、完整启动和真实传输，并建立独立于正常固件启动的恢复手段；这些尚未被本实验包的 CRC、SHA-1 或局部仿真结果证明。

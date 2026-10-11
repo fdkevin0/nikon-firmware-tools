@@ -1,123 +1,110 @@
-# Z8 深入逆向第一轮：主处理器与 DSP 的模型装载和调用接口
+# Z 8 In-Depth Reverse Engineering: Host Processor and DSP Model Loading Interface
 
-以 Z8 3.11 为主要分析对象，并在已取得的八个 Z8 更新版本中交叉验证。原始 BIN 与 EG 的完整 SHA-256 均重新核验。本轮从模块哈希比较推进到 **AArch64 主程序的资源装载、模型查询、初始化结构和请求提交路径**。
+Target: Nikon Z 8 C 3.11, cross-validated across all eight acquired Z 8 firmware releases. Full SHA-256 hashes of raw binaries and EG sections were verified. Analysis advances from binary hash comparisons to **AArch64 host-side resource loading, model dispatch tables, initialization structures, and inference request submission**.
 
-## 主要结果
+## Key Findings
 
-1. **N1 对应主程序的车辆检测接口，N2 对应动物检测接口。** 这不再只是由相邻位置或两个函数名猜测：资源装载器、查询函数、初始化参数和 DSP 符号表编号形成相互一致的证据。
-2. **两份网络的长度得到主程序常量独立确认**：实际传给拷贝封装的长度为 `0xfe9b0`、`0x108770`，与此前网络头推定的边界完全一致。
-3. **1.01 → 2.00 的编号变化在主 CPU 与 DSP 两端同步发生**：动物 30→31，车辆 31→32，初始化 28→29。八个版本都验证了对应关系。
-4. 已恢复 Z8 3.11 的 **0x48 字节初始化参数块**和 DSP 请求前缀，定位动物／车辆请求的提交分支及完成回调。
-5. 对两个选择器做了 **144 次隔离的 AArch64 指令仿真**。复制及 ELF 装载调用被记录并拦截，不执行 DMA、DSP、相机系统或整机固件。
+1. **Serialized network N1 corresponds to the host vehicle detection API; N2 corresponds to the animal detection API.** This mapping is demonstrated by consistent dataflow across resource loaders, query functions, initialization descriptors, and DSP symbol tables.
+2. **Network payload sizes are independently confirmed by host executable constants**: Memory copy routines receive lengths `0xfe9b0` (N1) and `0x108770` (N2), matching the candidate boundaries deduced from network headers.
+3. **Dispatch slot renumbering from 1.01 to 2.00 occurred synchronously across both the host CPU and DSP**: Animal detection shifted 30→31, vehicle detection 31→32, and initialization 28→29.
+4. **The 0x48-byte initialization structure and DSP request framing were reconstructed for Z 8 3.11**, identifying submission queues and completion callbacks for animal/vehicle detection.
+5. **144 isolated AArch64 emulation runs validated selector behaviors.** DMA and ELF loader calls were intercepted without running camera hardware.
 
-[N1/N2 原始比较](../ai_comparison/REPORT.md)中的“类别尚未对应”在本轮得到接口层面的进一步定位；但仍未完整解析模型类别、全部算子、鸟类专用路径或真实运行性能。
+## Mapping and Methodological Rules
 
-## 样本映射与方法
+The EG boot base address `0x40160000` was validated from boot literals and descriptor tables. Initialized data copies from file offset `0x4b13000` to RAM address `0xa02808000`.
 
-EG 启动基址 `0x40160000` 由启动字面量和描述表验证。3.11 描述表中的代码区结束偏移为 `0x14e7000`，初始化数据从文件 `0x4b13000` 复制到 `0xa02808000`。只读资源继续按启动映射定位，不能把 RAM 全局地址按文件偏移直接读取。
+The host executable constructs 64-bit absolute pointers via 4-instruction `MOVZ/MOVK` sequences. A specialized scanner reconstructed these constants, using Capstone to verify that intermediate instructions do not clobber target registers or span unconditional branches.
 
-主程序广泛使用四段 `MOVZ/MOVK` 构造绝对地址。仅查找 ADRP 或原始指针字节会漏掉模型引用。新扫描器重建这些常量，并用 Capstone 检查中间是否写坏目标寄存器、跨越跳转或调用；同时核对直接调用、跳转表和资源哈希。
+Function names are analytical labels, while DSP API names reflect authentic symbol strings in embedded ELFs. Artifacts are cataloged in [manifest.json](manifest.json) and [code_landmarks.asm](code_landmarks.asm).
 
-人工赋予的函数名仅描述已观察到的行为，并非恢复的 Nikon 主程序调试符号。DSP API 名称则来自 ELF 的真实符号表。证据保存在[清单](manifest.json)和[3.11 反汇编摘录](code_landmarks.asm)。
+## Resource Loader: 3 DSP Executables, 2 Active Networks
 
-## 装载器：三个 DSP 程序、两个有效网络资源
+The resource loader resides at **`0x40c91f3c`**, dispatched via a 6-entry jump table at `0x4167ca68`. Initialization routine `0x40c91f08` sets global base pointer `0xa02e803e0` to **`B = 0xa01800000`**, followed by 6 completion flags.
 
-Z8 3.11 资源装载函数位于 **`0x40c91f3c`**，由 `0x4167ca68` 的六项跳转表分发。全局指针 `0xa02e803e0` 的初始化函数 `0x40c91f08` 将其设置为 **`B = 0xa01800000`**；其后六个字节是资源完成标记。
-
-| 资源 ID | 源 EG 文件偏移 | 行为／参数 |
+| Resource ID | Source EG Offset | Execution / Target Buffer |
 |---:|---:|---|
-| 0 | `0x151caa0` | 图像处理 ELF；执行区基准 B，数据区基准 B+`0x10000` |
-| 1 | `0x15c5bd0` | 跟踪 ELF；执行区 B+`0x250000`，数据区 B+`0x260000` |
-| 2 | `0x1635120` | 神经推理 ELF；执行区 B+`0x4a0000`，数据区 B+`0x4b0000` |
-| 3 | `0x1bb0e30` | 指向 N1 起点但复制长度为 **0**，目标 B+`0xaf0000` |
-| 4 | `0x1bb0e30` | N1，复制 `0xfe9b0` 字节至 **`0xa02470000`** |
-| 5 | `0x1caf7e0` | N2，复制 `0x108770` 字节至 **`0xa025f0000`** |
+| 0 | `0x151caa0` | Image Processing ELF; Execution base B, Data base B+`0x10000` |
+| 1 | `0x15c5bd0` | Tracking ELF; Execution base B+`0x250000`, Data base B+`0x260000` |
+| 2 | `0x1635120` | Neural Inference ELF; Execution base B+`0x4a0000`, Data base B+`0x4b0000` |
+| 3 | `0x1bb0e30` | Points to N1 origin but specifies length **0**; Target B+`0xaf0000` |
+| 4 | `0x1bb0e30` | N1; Copies `0xfe9b0` bytes to **`0xa02470000`** |
+| 5 | `0x1caf7e0` | N2; Copies `0x108770` bytes to **`0xa025f0000`** |
 
-第二个参数非零时会跳过实际装载路径并设置对应完成标记；本轮只确定这种行为，不推断调用方为何选择跳过。ID 6 不执行装载，也不修改六个完成标记。完成标记不能单独证明底层硬件执行成功。
+Network copies validate that destination buffers fall within range `[0xa01800000, 0xa02800000)`. Memory copies use routine `0x40ca95fc`.
 
-网络资源拷贝前检查目标地址下界 `0xa01800000` 和结束地址上界 `0xa02800000`。实际拷贝封装是 `0x40ca95fc`，并非直接假定为 libc `memcpy`。
+ELF loading helper **`0x40c92194`** parses ELF32 program headers, processing `PT_LOAD` segments: reading file offsets, virtual addresses, file sizes, memory sizes, and executable flags. Segments with memory size exceeding file size are zero-filled.
 
-ELF 装载辅助函数 **`0x40c92194`** 遍历 ELF32 程序头，处理 `PT_LOAD`：读取文件偏移、虚拟地址、文件大小、内存大小和可执行标志；对低地址段选择执行／数据基准，高地址段经过另一个地址转换函数。初始化数据走拷贝封装，内存大小超出文件大小的部分走清零封装。这里已恢复装载规则，尚未仿真完整 DSP 启动。
+## Query Function Associates Networks with API Identifiers
 
-## 查询函数将网络资源与 API 编号关联
+Routine **`0x40c9233c`** accepts an API ID and output buffer pointers, returning the network RAM address and u32 length:
 
-**`0x40c9233c`** 接受功能编号以及两个输出指针，返回网络地址和 u32 长度。3.11 的结果：
-
-| 输入功能编号 | DSP ELF 对应符号 | 需要的资源标记 | 返回地址 | 返回长度 |
+| Query Function ID | DSP ELF Symbol Target | Required Resource Flag | Returned Address | Returned Length |
 |---:|---|---:|---:|---:|
-| 31 | `CAnimalDetectionApi` | ID 5 | `0xa025f0000` | `0x108770`（N2） |
-| 32 | `CVehicleDetectionApi` | ID 4 | `0xa02470000` | `0xfe9b0`（N1） |
-| 23 | 当前三个 DSP 对应槽均为空操作 | ID 3 | B+`0xaf0000` | 0 |
-| 未识别编号，或对应标记未设置 | — | — | 0 | 0 |
+| 31 | `CAnimalDetectionApi` | ID 5 | `0xa025f0000` | `0x108770` (N2) |
+| 32 | `CVehicleDetectionApi` | ID 4 | `0xa02470000` | `0xfe9b0` (N1) |
+| 23 | NOP in all 3 DSPs | ID 3 | B+`0xaf0000` | 0 |
+| Unrecognized ID | — | — | 0 | 0 |
 
-不能把编号 23 的零长度分支说成第三个有效模型，也不能把两个 API 名称直接展开成全部训练类别。准确结论是 **主程序将 N1 分配给车辆 API，将 N2 分配给动物 API**。
+The host executable binds N1 to vehicle detection and N2 to animal detection.
 
-两份网络的 SHA-256：
+Network SHA-256 hashes:
 
-- N1：`1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76`
-- N2：`418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541`
+- N1: `1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76`
+- N2: `418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541`
 
-## 初始化结构与逐帧请求入口
+## Initialization Descriptor and Request Submission
 
-**`0x40fe85e4`** 构造初始化参数：先清空 0x48 字节，通过上述查询函数取得两份网络，再向 program index 2 提交 function slot 29，即 `CCdnnNetwork_Initialize`。
+Routine **`0x40fe85e4`** formats the initialization block: zeroing a `0x48`-byte structure, resolving both network buffers via the query function, and submitting function slot 29 (`CCdnnNetwork_Initialize`) under program index 2.
 
-| 参数块偏移 | 从主程序读写恢复的内容 |
+| Structure Offset | Populated Content |
 |---:|---|
-| `+0x00` | 常量 `0x00010800`，具体位域未解释 |
-| `+0x08` / `+0x10` | N1 地址／长度，分别以 u64 保存 |
-| `+0x18` / `+0x20` | N2 地址／长度，分别以 u64 保存 |
-| `+0x28` / `+0x30` | 本构造路径保持为零，保留含义 |
-| `+0x38` / `+0x40` | 工作区地址／大小 `0x384d00` |
+| `+0x00` | Constant `0x00010800` |
+| `+0x08` / `+0x10` | N1 Address / Length (u64 each) |
+| `+0x18` / `+0x20` | N2 Address / Length (u64 each) |
+| `+0x28` / `+0x30` | Zero-initialized reserved fields |
+| `+0x38` / `+0x40` | Workspace Address / Size (`0x384d00`) |
 
-工作区地址取参数内存的地址别名加 `0x80`。别名转换函数 `0x41186780` 对大于 `0xc40000000` 的地址减去 `0x400000000`，其他值不变；这里不将其进一步命名为物理地址转换。
+The workspace address applies alias function `0x41186780` (subtracting `0x400000000` for addresses > `0xc40000000`).
 
-DSP 请求前缀可确认的字段是：program index `+0x00`、function slot `+0x08`、输入／输出指针 `+0x10/+0x18`、队列选择字段 `+0x20`、完成回调 `+0x28`、结果 `+0x30`。带未知字段的 C 布局见 [host_interface.h](host_interface.h)，它是分析模型，不是可直接用于调用相机的 SDK。
+DSP request structures specify: program index `+0x00`, function slot `+0x08`, input/output pointers `+0x10/+0x18`, queue selection `+0x20`, completion callback `+0x28`, status `+0x30`. See [host_interface.h](host_interface.h).
 
-已定位两个请求构造入口：
+Request submission paths:
 
-- **动物：`0x40fe73c8`**。第三个参数等于 1 时，构造 program 2／slot 31 请求，在 `0x40fe7508` 调用队列入口。
-- **车辆：`0x40fe7b84`**。同条件下构造 program 2／slot 32 请求，在 `0x40fe7cbc` 调用队列入口。
-- **队列入口：`0x40c909a8`**。根据 program index 选择状态对象，根据 `+0x20` 选择请求队列；入队失败时写入结果并调用完成回调。
-- **完成回调：`0x40fe86f8`**。检查消息码 `0x42180003`，再按 slot 29、31、32 分派初始化／动物／车辆完成通知。
+- **Animal Detection: `0x40fe73c8`**: When parameter 3 == 1, builds program 2 / slot 31 request, dispatching to queue entry `0x40fe7508`.
+- **Vehicle Detection: `0x40fe7b84`**: Under matching conditions, builds program 2 / slot 32 request, dispatching to queue entry `0x40fe7cbc`.
+- **Queue Submission: `0x40c909a8`**: Selects state objects by program index and enqueues requests.
+- **Completion Callback: `0x40fe86f8`**: Verifies message code `0x42180003`, dispatching completion events for slots 29, 31, and 32.
 
-两个请求构造函数都有另一条分支，本轮尚未确定其执行引擎与适用条件。因此不能把第三个参数直接命名为“AI 开关”或“CPU/DSP 切换开关”。输入中的尺寸、步幅、图像地址和结果字段仍需继续沿上下游确认。
+## Eight-Release Cross-Validation
 
-## 八版本交叉核对
-
-| 版本 | 资源装载函数 | 网络查询函数 | 初始化 / 释放 / 动物 / 车辆编号 |
+| Firmware Release | Resource Loader | Network Query Function | Init / Release / Animal / Vehicle Slot IDs |
 |---|---|---|---|
 | 1.01 | `0x40a91560` | `0x40a91960` | 28 / 29 / 30 / 31 |
 | 2.00 | `0x40c91ac8` | `0x40c91ec8` | 29 / 30 / 31 / 32 |
 | 2.01 | `0x40c91b34` | `0x40c91f34` | 29 / 30 / 31 / 32 |
 | 2.10 | `0x40c91bd4` | `0x40c91fd4` | 29 / 30 / 31 / 32 |
-| 3.00–3.11 的四个版本 | `0x40c91f3c` | `0x40c9233c` | 29 / 30 / 31 / 32 |
+| 3.00, 3.01, 3.10, 3.11 | `0x40c91f3c` | `0x40c9233c` | 29 / 30 / 31 / 32 |
 
-八版的网络选择、装载长度和对应资源 ID 均一致。3.00、3.01、3.10、3.11 的两个选择器分别字节完全相同；更上层初始化函数的地址仍有变化。
+Resource mappings, lengths, and IDs are identical across all eight releases. The slot shift in the DSP was paired with an identical shift in the host CPU, reflecting API realignment rather than a weight update.
 
-此前仅观察到 DSP 的 9 字节函数表变化；现在确认主程序的查询编号也随之同步调整。**这是两端配套的接口编号变化，不是网络权重更新。** 还不能用这一点解释专用鸟类模式的全部实现。
+## Extracted Post-Processing Threshold Arrays
 
-## 已提取但尚未解释完的后处理常量
+DSP symbols expose two `ClassEffectiveTh_Table` arrays (u16 little-endian):
 
-DSP 符号表暴露两组 `ClassEffectiveTh_Table`。按小端 u16 查看：
+- Animal Table: `941, 941, 801, 801, 801, 801, 941, 941, 801, 801`
+- Vehicle Table: 8 entries, all `981`
+- `OutmapSet_Table` (both instances): `24, 16, 2, 12, 8, 2`
 
-- 动物表：`941, 941, 801, 801, 801, 801, 941, 941, 801, 801`。
-- 车辆表：八项均为 `981`。
-- 两个 `OutmapSet_Table` 的 u16 视图均为 `24, 16, 2, 12, 8, 2`。
+Fixed-point scaling, class assignments, and runtime overrides remain unverified.
 
-清单保留原始字节、ELF 偏移和 DSP 地址。本轮没有确定元素类型、定点缩放、类别索引或运行时覆盖方式；**不能把这些数直接称作百分比阈值或类别数量**。
+## Reproduction
 
-## 复现与验证
+Execute:
 
 ```sh
-cd "firmware decode/z-series"
-python3 -m venv /tmp/nikon-z8-re-venv
-/tmp/nikon-z8-re-venv/bin/pip install capstone==5.0.7 unicorn==2.1.4
-/tmp/nikon-z8-re-venv/bin/python tools/reverse_z8_dsp_host.py . --emulate-selectors
-/tmp/nikon-z8-re-venv/bin/python -m unittest discover -s tools -p 'test_*.py'
+uv run python tools/reverse_z8_dsp_host.py . --emulate-selectors
+uv run pytest
 ```
 
-不带 `--emulate-selectors` 时只提取静态引用与反汇编；使用仿真选项才输出独立执行验证和网络对应结果。依赖已有 Z8 历史解包清单及 ELF 符号文件。
-
-每版执行 13 个资源装载案例、4 个有效／未装载 API 查询案例和 1 个非法编号案例，共 **144 次**。仿真使用合成 RAM、固定指令数量上限，底层拷贝和 ELF 装载调用被拦截；不代表已经执行完整识别算法。地址扫描器另有寄存器覆盖、调用、跳转、缺失地址片段的反例测试。当前共 **40 项测试通过**。
-
-下一步最直接的入口是两条逐帧请求构造函数：还原其第三参数来源、另一分支和输入／输出结构，再比较 1.01 与 2.00 的主体类别选择路径，以定位鸟类模式变化。
+The script runs 144 emulation test cases (13 loader scenarios, 4 query scenarios, and 1 invalid scenario per release). All 40 unit tests pass.

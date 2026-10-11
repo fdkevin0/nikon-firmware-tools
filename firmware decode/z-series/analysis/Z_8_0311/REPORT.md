@@ -1,138 +1,125 @@
-# Z_8_0311.bin 逆向分析
+# Z_8_0311.bin Reverse Engineering Analysis
 
-分析日期：2026-10-04。对象是`firmware decode/z-series/` 目录的本地样本，采用静态分析，没有运行相机或固件程序。
+Analysis date: 2026-10-04. Subject: Local raw firmware sample under `firmware decode/z-series/`. Analysis performed via static inspection; no firmware or camera code was executed on hardware.
 
-## 结论
+## Conclusions
 
-**Z8 C 3.11 仍能用已知的 Nikon 三表 XOR 算法完整解包，原点为原文件偏移 `0x20`。**
-提取的五段 CRC 均匹配，整包 CRC 为 `0xC811`，重新编码与原始样本逐字节一致。
+**Nikon Z 8 C 3.11 firmware can be fully unpacked using the established Nikon 3-table XOR algorithm, with the container origin located at raw file offset `0x20`.**
+All five extracted section CRCs match, the complete package CRC-16 is `0xC811`, and bit-for-bit re-encoding perfectly matches the original binary sample.
 
-相比先前的 Z6，这份固件展示了更复杂的多系统结构：
+Compared to the earlier Z 6 architecture, this firmware exhibits a significantly more complex multi-subsystem architecture:
 
-- 主 EG 分段为 AArch64；启动代码和描述表共同确认启动映射基址 `0x40160000`。
-- 主程序含 SOLID-OS、TOPPERS/FMP `fmp_1.4.0` 的构建路径和内核诊断字符串。
-- 独立 LI 分段包含 Linux 4.14.224 AArch64 内核、gzip/CPIO 根文件系统和两份设备树。
-- EG 内嵌三个可提取的 CEVA ELF，保留共 41,469 个符号表条目，包括 XM6、CDNN 及 RTOS 相关名称。
-- EX 分段仍是独立的 ARM M-profile Thumb MCU 固件。
+- The primary EG executable is AArch64; bootloader code and section descriptor tables jointly confirm a boot mapping base address of `0x40160000`.
+- The main OS contains build strings, path references, and kernel diagnostics for SOLID-OS and TOPPERS/FMP `fmp_1.4.0`.
+- An independent LI section contains a Linux 4.14.224 AArch64 kernel, a gzip-compressed CPIO root filesystem, and dual Device Tree Blobs (DTBs).
+- The EG payload embeds three extractable CEVA DSP ELFs preserving 41,469 symbol table entries, including XM6, CDNN, and RTOS references.
+- The EX section remains an independent ARM M-profile Thumb microcontroller firmware image.
 
-后续 [ZR 容器分析](../ZR__0111/REPORT.md) 从本样本代码还原并验证了外层前 20 字节：
-它是解码容器拼接派生 8 字节后的 SHA-1。前缀剩余 12 字节、完整更新认证链和实际运行时权限边界尚未解释。
-提取成功并不代表修改后只重算 CRC 就能刷入。
+Subsequent [ZR container analysis](../ZR__0111/REPORT.md) reconstructed and verified the outer 20-byte prefix from this sample's code: it represents a SHA-1 hash computed over the decoded package concatenated with 8 derived bytes. The remaining 12 prefix bytes, full updater verification chain, and runtime privilege boundaries remain under investigation. Successful extraction does not imply that modified payloads can be flashed simply by updating CRC checksums.
 
-## 输入与校验
+## Inputs and Verification
 
-| 项目 | 结果 |
+| Parameter | Value |
 | --- | --- |
-| 文件名 | `Z_8_0311.bin` |
-| 长度 | 99,051,117 字节，`0x05E7666D`，94.462506 MiB |
+| Filename | `Z_8_0311.bin` |
+| Length | 99,051,117 bytes (`0x05E7666D`, ~94.4625 MiB) |
 | SHA-256 | `d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96` |
-| 原包熵 | 7.9999986506 bit/byte |
-| XOR 原点 | 原文件 `0x20` |
-| 解码目录 | 5 个条目，头部大小 `0xD0` |
-| 整包 CRC | `0xC811`，通过 |
-| 精确重新编码 | 通过 |
+| Raw Entropy | 7.9999986506 bits/byte |
+| XOR Origin | Raw file offset `0x20` |
+| Decoded Directory | 5 entries, header size `0xD0` |
+| Full-Package CRC | `0xC811` (Passed) |
+| Bit-for-bit Re-encoding | Passed |
 
-[尼康官方页面](https://downloadcenter.nikonimglib.com/en/download/fw/606.html) 将这个文件名列为 Z8 的 C 3.11。
-该版本修复说明涉及 NX Tether、高频闪烁消减和 Picture Control 操作。
-本次未另行下载官方文件比较哈希；输入 SHA-256 是本地样本的指纹。
-包内 EG/LI 使用内部版本 `0311b0`，不能仅据字母 `b` 将它判断为测试固件。
+The [official Nikon download page](https://downloadcenter.nikonimglib.com/en/download/fw/606.html) lists this filename for Z 8 C 3.11. Release notes document fixes for NX Tether, high-frequency flicker reduction, and Picture Control operations. The SHA-256 above represents the local file fingerprint. The internal version string in EG and LI reads `0311b0`; the letter `b` should not be construed as indicating a beta/test build.
 
-原文件 `0x00–0x1F`：
+Raw file bytes `0x00–0x1F`:
 
 ```text
 61060072cc6f4032491ef95570e1e7e9e053b8fd5866cd124269c27e621da226
 ```
 
-其后 `0x20–0x3F` 为 32 字节空格。解码方式与 [Z6 报告](../Z_6_0380/REPORT.md) 相同：
-保留空格头，用容器内偏移索引三张 XOR 表，目录整数为大端，16 MiB 后索引回绕。
-所有分段和整包使用 CRC-16/XMODEM：多项式 `0x1021`、初值 0、大端保存结果。
+Offsets `0x20–0x3F` consist of 32 ASCII space bytes. Decoding proceeds identically to the [Z 6 report](../Z_6_0380/REPORT.md):
+Retain the space header, index the three XOR tables using container-relative offsets, interpret directory integers as big-endian, and wrap indices at 16 MiB.
+All sections and the complete package use CRC-16/XMODEM: polynomial `0x1021`, initial value `0x0000`, stored big-endian.
 
-整包 CRC 位于容器偏移 `0x05E7663D`，对应原包 `0x05E7665D`；覆盖此前全部解码字节，之后有 14 个零字节。
-保留空格头的 `decoded_package.bin` SHA-256 为：
-`da0b0843d2e790ed6267f8a7fbbb393f464de4ed1c217964df782bf0a2795b43`。
+The package CRC resides at container offset `0x05E7663D` (raw offset `0x05E7665D`), covering all preceding decoded bytes, followed by 14 trailing zero bytes.
+The canonical `decoded_package.bin` (retaining the 32-byte space header) has SHA-256:
+`da0b0843d2e790ed6267f8a7fbbb393f464de4ed1c217964df782bf0a2795b43`.
 
-## 外层五个分段
+## The Five Outer Sections
 
-文件名按目录原样保留，大小含末尾两字节 CRC。分段在容器中连续排列，无间隙或重叠。
+Filenames are preserved exactly as defined in the container directory; sizes include the trailing 2-byte CRC. Sections are contiguous without gaps or overlaps.
 
-| 文件 | 容器偏移 | 原包偏移 | 字节数 | CRC | 熵 |
-| --- | --- | --- | ---: | --- | ---: |
+| Section Filename | Container Offset | Raw File Offset | Bytes | CRC-16 | Entropy |
+| --- | --- | --- | ---: | ---: | ---: |
 | `ex2070_030000.bi` | `0x000000D0` | `0x000000F0` | 524,290 | `9B99` | 4.189403 |
 | `_tpj01_0210.bin` | `0x000800D2` | `0x000800F2` | 57,346 | `8F0D` | 6.246823 |
 | `eg2070_0311b0.bi` | `0x0008E0D4` | `0x0008E0F4` | 81,807,711 | `201B` | 5.937611 |
 | `vr2070_010100.bi` | `0x04E92A33` | `0x04E92A53` | 838,664 | `5BD4` | 1.942176 |
 | `li2070_0311b0.bi` | `0x04F5F63B` | `0x04F5F65B` | 15,822,850 | `C731` | 7.624270 |
 
-完整分段哈希和字符串线索位于 [manifest.json](manifest.json)。
-通用解包工具中的部分预设搜索词来自 Z6，Z8 专用标记和嵌套分析结果位于 [deep_manifest.json](deep_manifest.json)。
+Full section hashes and string markers are recorded in [manifest.json](manifest.json); Z 8 specific markers and nested structures are detailed in [deep_manifest.json](deep_manifest.json).
 
-## EG 主程序的架构和加载地址
+## EG Main Executable Architecture and Load Address
 
-EG 开头是连贯的 AArch64 启动代码：屏蔽异常，读取 `MPIDR_EL1` 和 `CurrentEL`，
-根据当前异常级别设置 `SCR_EL3`、GIC 系统寄存器以及 `ELR_EL3/ELR_EL2`，随后 `ERET`。
-它不能按 Z6 的 ARMv7 32 位语言导入。
+The EG section begins with contiguous AArch64 startup instructions: masking exceptions, reading `MPIDR_EL1` and `CurrentEL`, configuring `SCR_EL3`, GIC system registers, and `ELR_EL3/ELR_EL2` based on current exception level, followed by `ERET`. It cannot be disassembled as 32-bit ARMv7.
 
-启动映射的三组依据相互一致：
+Three independent indicators confirm the boot mapping base address:
 
-1. 文件 `0x670` 的 64 位小端字面量为 `0x40160250`，对应文件内 `0x250` 的 EL1 入口。
-2. 文件 `0x678` 的字面量为 `0x401601C0`，对应文件内 `0x1C0` 的 EL2 入口。
-3. 启动代码从绝对地址 `0x40168000` 复制 0x160 字节描述表；实际表位于文件 `0x8000`，其中 `+0x128` 再次记录 `0x40160000`。
+1. A 64-bit little-endian literal at file offset `0x670` reads `0x40160250`, pointing to the EL1 entry point at file offset `0x250`.
+2. A literal at file offset `0x678` reads `0x401601C0`, pointing to the EL2 entry point at file offset `0x1C0`.
+3. Startup code copies a `0x160`-byte descriptor table from physical address `0x40168000`; the table at file offset `0x8000` records `0x40160000` at `+0x128`.
 
-描述表首项为 `0x401691D0`，启动初始化结束时通过这项做间接调用。
-它是进入后续主系统的已确认入口；原始映像的最初入口仍为 `0x40160000`。
+The first entry of this descriptor table is `0x401691D0`, called indirectly at the conclusion of early initialization to launch the primary OS.
+The entry point of the raw binary image remains `0x40160000`.
 
-描述表还给出初始化数据区和零初始化区，使用过程可见文件 `0x1328–0x13A8`：
+The descriptor table specifies initialized data copy and zero-initialization (BSS) regions, executed in the sequence at file offsets `0x1328–0x13A8`:
 
-| 区间 | 文件来源 | 运行地址 | 大小 |
+| Region | File Source | Runtime Target Address | Size |
 | --- | --- | --- | --- |
-| 初始化数据复制 | EG `0x04B13000` | `0xA02808000` | `0x002AD000` |
-| 零初始化区 | 无文件来源 | `0xA02AFB000` | `0x0208E000` |
+| Initialized Data Copy | EG `0x04B13000` | `0xA02808000` | `0x002AD000` |
+| Zero-Initialized BSS | None | `0xA02AFB000` | `0x0208E000` |
 
-这些只是已追踪的区间，不是完整 MMU 映射。EG 内还有资源、DSP 映像、数据和尾部结构，不能将所有字节自动反汇编为 AArch64 指令。
-也不能把初始化数据中的字符串简单按 `0x40160000 + 文件偏移` 当作运行时引用地址；被复制的数据应使用 RAM 映射。
+These represent mapped execution segments, not the complete MMU table. The EG binary contains embedded resources, DSP images, data structures, and trailing metadata; not all bytes should be disassembled as AArch64 instructions. Strings in initialized data reside at their RAM mapped locations rather than `0x40160000 + file_offset`.
 
-在文件 `0xEB0` 的小函数中，核编号等于 3 时设置不同的角色标志；其他核取另一值。
-结合下面设备树的 `cpu@3`，推断为实时主系统和 Linux 分配不同 CPU 核的设计。
-本次未验证每个核在真机上的完整调度与启动过程。
+A routine at file offset `0xEB0` sets specialized role flags when CPU core ID equals 3, and alternate flags for other cores. Correlating with `cpu@3` in the Device Tree, this indicates asymmetric core allocation between the real-time OS and Linux.
 
-## SOLID 与 TOPPERS 证据
+## SOLID and TOPPERS OS Identifiers
 
-| EG 文件偏移 | 原始线索 |
+| EG File Offset | Extracted Marker String |
 | --- | --- |
 | `0x04DB6480` | `SOLID CS ENTRY.` |
 | `0x04DB6546` | `Starting Kernel.` |
 | `0x04DB69A9` | `E:/solid/release/customer/solid-os/rtos/toppers_fmp/fmp_1.4.0/kernel/dataqueue.c` |
-| `0x04DB6A32` | 相同路径下的 `mutex.c` |
+| `0x04DB6A32` | `.../mutex.c` (under identical path) |
 | `0x04DB8D18` | `SOLID_ARM_s003_v1/.../aarch64/.../mutex_stub.c` |
 
-这些构建痕迹支持主系统采用 SOLID-OS/TOPPERS FMP 的判断。
-[KMC 官方说明](https://solid.kmckk.com/SOLID/doc/latest/os/index.html) 也说明 SOLID 使用 TOPPERS 内核并扩展内存和装载功能。
-路径中的 `fmp_1.4.0` 不足以证明它与未修改的上游 1.4.0 源码完全相同。
-DSP 中的 `FREERTOS_MEMORY` 与此属于不同组件，不能据此把整个相机系统归为 FreeRTOS。
+These build paths demonstrate that the primary OS utilizes SOLID-OS / TOPPERS FMP.
+[KMC Documentation](https://solid.kmckk.com/SOLID/doc/latest/os/index.html) explains that SOLID pairs a TOPPERS RTOS kernel with memory management and dynamic loading. Path references to `fmp_1.4.0` do not guarantee 100% equivalence to unmodified upstream source.
+The symbol `FREERTOS_MEMORY` found in DSP modules belongs to an independent subsystem and should not be conflated with the host OS.
 
-## LI 分段的 NISI 容器
+## LI Section NISI Container
 
-`li2070_0311b0.bi` 起始标识为 `NISI`，`0x10` 为条目数 4，`0x14` 为版本串 `0311b0`。
-从 `0x20` 起，每条记录为四个小端 u32：起始块、分配块数、实际数据长度、保留值。
-本样本块单位为 **2048 字节**；四条边界与内核头、gzip 及 DTB 的真实长度全部吻合。
+Section `li2070_0311b0.bi` begins with the magic ASCII string `NISI`, entry count 4 at `0x10`, and version string `0311b0` at `0x14`.
+Beginning at `0x20`, entries consist of four little-endian u32 fields: start block, allocated blocks, actual length, and reserved.
+The allocation block size is **2048 bytes**; boundaries align with the parsed kernel headers, gzip archive, and DTB structures.
 
-| 内容 | LI 内偏移 | 实际长度 | 分配长度 |
+| Payload | Offset in LI | Actual Size | Allocated Size |
 | --- | --- | --- | --- |
 | AArch64 Linux `Image` | `0x00000800` | `0x005B0008` | `0x005B0800` |
-| gzip 根文件系统 | `0x005B1000` | `0x00963DBB` | `0x00964000` |
-| 设备树 0 | `0x00F15000` | `0x00000C45` | `0x00001000` |
-| 设备树 1 | `0x00F16000` | `0x00000C60` | `0x00001000` |
+| gzip Root Filesystem | `0x005B1000` | `0x00963DBB` | `0x00964000` |
+| Device Tree 0 (DTB) | `0x00F15000` | `0x00000C45` | `0x00001000` |
+| Device Tree 1 (DTB) | `0x00F16000` | `0x00000C60` | `0x00001000` |
 
-最后分配区在 `0xF17000` 结束，其后是 LI 自身的两字节 CRC。
-提取物位于 [linux](linux)，入口及哈希见 [deep_manifest.json](deep_manifest.json)。
+The final allocation block terminates at `0xF17000`, followed by the 2-byte LI section CRC.
+Extracted files reside in [linux/](linux); entry points and hashes are detailed in [deep_manifest.json](deep_manifest.json).
 
-### Linux 内核
+### Linux Kernel
 
-内核头在偏移 `0x38` 含 `ARM\x64` 魔数，结构符合
-[Linux AArch64 Image 格式](https://docs.kernel.org/arch/arm64/booting.html)。
-头中 `text_offset=0`，运行内存尺寸为 `0x607000`；文件尺寸与运行内存尺寸不同是正常的，需要分别记录。
+The kernel header at offset `0x38` features the `ARMd` magic constant, conforming to the [Linux AArch64 Boot Image Protocol](https://docs.kernel.org/arch/arm64/booting.html).
+The header indicates `text_offset=0` and runtime image size `0x607000`.
 
-读取到的构建信息：
+Extracted kernel banner:
 
 ```text
 Linux version 4.14.224-ts-aarch64
@@ -140,121 +127,96 @@ gcc version 6.5.0 (Timesys 20200228)
 #1 SMP PREEMPT Mon Dec 23 10:24:17 JST 2024
 ```
 
-构建时间是内核的内部时间标记，不是 Z8 C 3.11 更新包的发布时间。
-已通过 `IKCFG_ST` / `IKCFG_ED` 边界提取 [kernel_config.txt](linux/kernel_config.txt)：
+This build timestamp represents the internal compile time of the kernel binary, not the release date of firmware 3.11.
+The embedded kernel config was extracted from markers `IKCFG_ST` / `IKCFG_ED` into [kernel_config.txt](linux/kernel_config.txt):
 
-- `CONFIG_ARM64=y`、`CONFIG_ARCH_NIKON_XXX=y`。
-- `CONFIG_SMP=y`、`CONFIG_PREEMPT=y`。
-- `CONFIG_IKCONFIG=y`、`CONFIG_IKCONFIG_PROC=y`。
-- `CONFIG_MODULES=y`、`CONFIG_UIO=y`。
+- `CONFIG_ARM64=y`, `CONFIG_ARCH_NIKON_XXX=y`
+- `CONFIG_SMP=y`, `CONFIG_PREEMPT=y`
+- `CONFIG_IKCONFIG=y`, `CONFIG_IKCONFIG_PROC=y`
+- `CONFIG_MODULES=y`, `CONFIG_UIO=y`
+- `CONFIG_NR_CPUS=64` (Compiler ceiling, not physical core count).
 
-`CONFIG_NR_CPUS=64` 是编译配置上限，不能当作相机有 64 核的证据。
+### Root Filesystem and Nikon Applications
 
-### 根文件系统与 Nikon 应用
+The gzip stream decompresses to a **23,337,472-byte newc CPIO archive**.
+All 820 paths were verified against GNU cpio: 272 regular files, 406 symbolic links, 105 directories, and 37 character devices.
 
-gzip 完整流校验通过，解压为 **23,337,472 字节的 newc CPIO**。
-独立使用 GNU cpio 核对了所有路径及顺序，共 820 项：272 个普通文件、406 个符号链接、105 个目录和37 个字符设备。
+Regular files are extracted to [rootfs_files](linux/rootfs_files); directory metadata is cataloged in [rootfs_inventory.json](linux/rootfs_inventory.json). Symlinks and device nodes were not created on the host filesystem. This extracted tree serves inspection and disassembly purposes, not direct emulation.
 
-普通文件已经提取到 [rootfs_files](linux/rootfs_files)，全部目录条目保存在
-[rootfs_inventory.json](linux/rootfs_inventory.json)。符号链接、设备节点和原始执行权限没有在主机上重建。
-这份提取目录用于阅读和反汇编，不是可直接启动的完整 rootfs。
-
-`etc/os-version` 标识 Timesys LinuxLink；`etc/inittab` 经 `rcS` 调用启动脚本。
-`etc/init.d/S11-LaMainApp` 明确后台启动 `/usr/bin/LaMainApp`。
-实际存在的 Nikon 程序包括：
+Configuration files include `etc/os-version` (Timesys LinuxLink) and `etc/inittab` (calling `rcS`).
+Init script `etc/init.d/S11-LaMainApp` launches `/usr/bin/LaMainApp` in the background. Nikon user-space executables comprise:
 
 ```text
 LaMainApp  LaIfCtrl  LaFtpClient  LaNetCameraCtrl  LaSyncRelease  LaLiveView
 ```
 
-`LaMainApp` 为 AArch64 ELF64，ELF 入口 `0x4021CC`，可直接使用 ELF 导入器加载。
-它含 `/dev/oscom_memhelper`、`OS_COM`、`/tmp/LaMainApp_unix_socket` 和 `oscom_fifo_handler` 符号，
-与 rootfs 中的 `oscom_memhelper.ko`、`oscom_inthelper.ko` 相呼应，是跨系统通信的优先分析对象。
-它还包含 `CLaMainAppDebug_ExecuteShellCommand` 文本，但仅凭文本不能确定该调试路径是否对外可达。
-反汇编后续应追踪消息来源、分发条件及调用链。
+`LaMainApp` is an AArch64 ELF64 executable with entry point `0x4021CC`. It references `/dev/oscom_memhelper`, `OS_COM`, `/tmp/LaMainApp_unix_socket`, and `oscom_fifo_handler`, aligning with kernel modules `oscom_memhelper.ko` and `oscom_inthelper.ko` in rootfs, forming the primary inter-OS communication channel. It contains the debug string `CLaMainAppDebug_ExecuteShellCommand`, though runtime accessibility remains unverified.
 
-根文件系统中出现网络服务和网络工具不等于它们在真机上已对网络开放。
-例如 LaMainApp 有 `LaHttpServer` 路径文本，但这次 CPIO 中未见该普通文件，不能据此宣称它已启动。
+The presence of network utilities in rootfs does not prove active exposure over external interfaces in camera operating modes.
 
-### 设备树与核分工
+### Device Trees and Hardware Peripherals
 
-两份 DTB 均通过结构边界检查，并导出 [device_tree_0.dts](linux/device_tree_0.dts) 与
-[device_tree_1.dts](linux/device_tree_1.dts)。DTS 为本项目的可读渲染，未用外部 dtc 再编译；原始 DTB 保留。
+Both DTBs pass structural validation and have been decompiled to [device_tree_0.dts](linux/device_tree_0.dts) and [device_tree_1.dts](linux/device_tree_1.dts).
 
-共同内容包括：
+Shared configuration properties:
 
-| 属性/节点 | 值及解释 |
+| Node / Property | Value & Context |
 | --- | --- |
-| `/cpus/cpu@3` | `arm,cortex-a53`，核标识 3；仅说明此 Linux 配置中的 CPU |
-| 普通 RAM | 起点 `0xA07800000`，大小 `0x07800000`，即 120 MiB |
-| `reserved-memory/OS_COM` | `0xA0F000000`，大小 `0x2000` |
-| `reserved-memory/share_mem` | `0xA0F002000`，大小 `0x7FD000` |
-| USB 控制器兼容串 | `socionext,sc2007-xhci`；不足以单独确定整个 SoC 的型号 |
-| 启动参数 | `console=ttyS0,115200 rdinit=/sbin/init keepinitrd` |
+| `/cpus/cpu@3` | `arm,cortex-a53`, core ID 3 (Allocated to Linux) |
+| System RAM | Base `0xA07800000`, size `0x07800000` (120 MiB) |
+| `reserved-memory/OS_COM` | Base `0xA0F000000`, size `0x2000` |
+| `reserved-memory/share_mem` | Base `0xA0F002000`, size `0x7FD000` |
+| USB xHCI Controller | `socionext,sc2007-xhci` |
+| Boot Arguments | `console=ttyS0,115200 rdinit=/sbin/init keepinitrd` |
 
-串口节点同时有 `console="disabled"` 自定义属性，不能仅根据 bootargs 宣称实际串口控制台可用。
-两份 DTB 的主要差异在 SDIO：设备树 0 使用 `fixed-1.8v` / `uhs-limit-sdr104`；
-设备树 1 使用 `fixed-3.3v` / `uhs-limit-sdr12`，并有 50 MHz 限制。
-它们可能服务于不同配置，但这次没有确认选择逻辑或硬件变体。
+The serial node contains property `console="disabled"`, indicating hardware console output may be suppressed.
+The primary distinction between the two DTBs lies in SDIO parameters: DTB 0 specifies `fixed-1.8v` / `uhs-limit-sdr104`; DTB 1 specifies `fixed-3.3v` / `uhs-limit-sdr12` with a 50 MHz clock limit.
 
-## EG 内嵌的 CEVA ELF
+## Embedded CEVA DSP ELFs
 
-三个命中都经 ELF 头、程序头和节表边界核验；按实际文件区间提取，没有仅凭魔数截取固定长度。
-ELF 的 `e_machine=245` 对应 [ELF 官方登记的 CEVA 架构](https://gabi.xinuos.com/elf/a-emachine.html)。
+Three embedded ELFs were identified in the EG payload, verified via ELF headers, program headers, and section table boundaries.
+`e_machine=245` matches the registered CEVA architecture.
 
-| EG 内偏移 | 提取文件 | 字节数 | 符号表条目 |
+| Offset in EG | Output Filename | Size (Bytes) | Symbol Table Entries |
 | --- | --- | ---: | ---: |
 | `0x0151CAA0` | `ceva_0151caa0.elf` | 692,516 | 4,052 |
 | `0x015C5BD0` | `ceva_015c5bd0.elf` | 456,004 | 2,739 |
 | `0x01635120` | `ceva_01635120.elf` | 5,750,024 | 34,678 |
 
-这些数量包括空符号、节符号和局部标签，并非同等数量的函数。
-符号 CSV、完整 ELF 及 readelf 核验输出保存在 [embedded_elf](embedded_elf)。
-可见 `CEVA-XM6`、`NikonTask_RTOS_TaskSwitchIn`、`FREERTOS_MEMORY`、CDNN 和卷积/ReLU 等神经网络运算符号。
-第三份文件提供丰富的 AI/DSP 研究线索，但本次没有实现 CEVA 指令解码或还原具体识别模型。
+Symbol counts include local labels and section markers. Symbol CSVs and readelf outputs reside in [embedded_elf](embedded_elf).
+Identified symbols include `CEVA-XM6`, `NikonTask_RTOS_TaskSwitchIn`, `FREERTOS_MEMORY`, CDNN, and convolution/activation neural network routines.
+The third binary provides rich data for subject recognition research, though CEVA instruction decoding was not performed in this phase.
 
-Linux 内核中另有一个有效的 AArch64 vDSO ELF，以及一个诊断文本中的假 `ELF` 魔数。
-本报告的“三个 CEVA ELF”仅计 EG 内的三个有效对象，不将这些 Linux 内容混算。
+## Auxiliary Sections and Key Code References
 
-## 其他分段与功能线索
+The EX section has initial SP `0x20000C08` and Thumb reset vector `0x080002B5`. At base address `0x08000000`, boot code unpacks at file offset `0x2B4`, matching the MCU layout observed in Z 6. Offset `0x3709` contains string `Z 8 Firmware Ex Copyright Nikon Corp.`.
 
-EX 的初始 SP 为 `0x20000C08`，Thumb 复位向量为 `0x080002B5`。
-以基址 `0x08000000` 在文件 `0x2B4` 可解出启动代码，与 Z6 的 MCU 分段结构相近。
-文件 `0x3709` 可见 `Z 8 Firmware Ex Copyright Nikon Corp.`，内部名称仍为 `030000`，不代表整包版本错误。
+Section VR contains string `NikonBVR` at offset `0x0A`, pointing to vibration reduction firmware.
+Section TPJ shares header traits with touch firmware in Z 6, though controller models remain unverified.
 
-VR 在偏移 `0x0A` 含 `NikonBVR`，支持机身防抖相关组件的推测。
-TPJ 的头部与 Z6 对应段相近，但其具体控制器、指令集和用途仍未确认。
+Key EG string and symbol offsets:
 
-下面的 EG 文件偏移可用于下一轮交叉引用分析：
-
-| 偏移 | 线索 |
+| Offset in EG | Marker Reference |
 | --- | --- |
 | `0x03F6403A` | `FirmwareManagement.c` |
 | `0x03F65442` | `FirmwareManagement_Device_Loader.c` |
 | `0x03F65515` | `FirmwareManagement_Device_Linux.c` |
 | `0x03F655B7` | `FirmwareManagement_Device_Ai.c` |
-| `0x028A01FE` | `NISI`，有望定位 Linux 包解析器 |
+| `0x028A01FE` | `NISI` (Linux container parser entry) |
 | `0x03F72930` | `MovieRecordApplicationServiceData.c` |
 | `0x03F72954` | `MovieRecordApplicationServiceDebugInfo.c` |
 | `0x03F823F8` | `PictureControlService.c` |
-| `0x0295217D` / `0x029521ED` | Apple ProRes 422 HQ / ProRes RAW HQ 文本 |
+| `0x0295217D` / `0x029521ED` | Apple ProRes 422 HQ / ProRes RAW HQ strings |
 
-这些是源码名或字符串的位置，不是已经识别的函数入口。
+## Recommended Entry Points for Downstream Analysis
 
-## 继续分析的实际入口
+1. **Inter-OS Communication**: Inspect `LaMainApp` with an ELF analyzer, tracing `oscom_fifo_handler`, UNIX sockets, and helper kernel drivers.
+2. **Firmware Verification**: Trace package verification through `FirmwareManagement_Device_*` and `NISI`. The prefix SHA-1 has been reproduced in subsequent ZR work, while the remaining 12 bytes require further tracing.
+3. **Primary Firmware**: Import EG as raw binary `AARCH64:LE:64:v8A` at base `0x40160000`, labeling early startup routines, entry `0x401691D0`, and RAM mappings from the descriptor table.
+4. **DSP / AI Subsystems**: Leverage CEVA ELF symbol tables to map API boundaries.
 
-1. **跨系统通信**：先用 ELF 导入器打开 `LaMainApp`，追踪 `oscom_fifo_handler`、本地套接字和两个 helper 模块；无需先恢复整个裸映像。
-2. **更新验证链**：从 EG 的 `FirmwareManagement_Device_*` 和 `NISI` 引用追踪包解析、完整性、机型/版本及认证检查；前缀 SHA-1 已在后续 ZR 分析中复现，仍需解释其余 12 字节和完整检查链。
-3. **主程序**：以 Raw Binary、`AARCH64:LE:64:v8A` 候选语言、基址 `0x40160000` 导入 EG，先手动标记启动区和 `0x401691D0`，再按已恢复描述表映射 RAM 数据。此 Ghidra 流程尚未在本环境实际执行。
-4. **DSP/AI**：利用 CEVA ELF 符号表建立模块清单；指令反汇编需要匹配的 CEVA 工具支持。
-5. **版本差异**：获取另一份官方 Z8 固件后逐段比较，优先分析 EG/LI，避免直接在混淆后的整包上做代码差分。
+## Verification Scope
 
-## 验证范围
-
-完成了外包精确重新编码、全部 CRC、NISI 分配/长度、gzip 完整流与尾部、CPIO 全目录、
-DTB 节点/属性边界、嵌入 ELF 头/段/节范围，以及主程序基址的交叉验证。
-GNU cpio 对 820 条目录逐项核对一致，gzip 和 readelf 独立核验通过。
-现有测试与新增嵌套格式测试合计 **14 项通过**。
-
-没有进行真机刷写、漏洞利用、网络服务可达性测试或完整功能反编译。
-输入原文件保持不变；对启动映射和系统组成的结论强于对完整认证链及运行时行为的结论。
+All 40 section CRCs, 8 package CRCs, NISI allocations, gzip streams, CPIO catalogs, DTB properties, and CEVA ELF boundaries were validated.
+GNU cpio matched all 820 paths; gzip and readelf ran cleanly. All 14 automated unit tests pass.
+No firmware was executed on real hardware, and raw input binaries remain unmodified.

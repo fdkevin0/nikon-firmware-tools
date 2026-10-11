@@ -1,126 +1,76 @@
-# Z8 3.11 官方固件 QEMU 启动进展
+# Z 8 3.11 Official Firmware QEMU Boot Progress
 
-已新增 AArch64 Z8 板级模型，并执行**未修改的官方 3.11 有效载荷**：
-EL3 引导、EL1 初始化、真实 DMA 清零/复制、固件自身释放核 1/2、RTOS 调度及平台设备任务。
-**完整相机开机、原生设置菜单、Linux 和诊断补丁验收尚未完成。**
+An AArch64 Z 8 board model has been added to execute the **unmodified official 3.11 firmware payload**:
+EL3 boot, EL1 initialization, authentic DMA clearing and copying, firmware-driven core release for CPUs 1 and 2, RTOS scheduling, and platform device tasks.
+**Full camera boot, native setup menus, Linux subsystems, and visual diagnostic patch verification remain incomplete.**
 
-[构建与运行](../../qemu/z8/README.md)、[板级模型](../../qemu/z8/nikon-z8.c)、
-[证据清单](manifest.json)、[Z7 参考分析](../z7_qemu_reference/REPORT.md)。
-这是开发中的启动模型，不能把断点命中或探针退出码 0 当作完整开机通过。
+See [QEMU Build & Run Guide](../../qemu/z8/README.md), [Board Model Source](../../qemu/z8/nikon-z8.c), [Manifest](manifest.json), and [Z7 Reference Study](../z7_qemu_reference/REPORT.md).
 
-## 输入与执行边界
+## Input Artifacts and Execution Boundaries
 
-| 对象 | SHA-256 |
+| Artifact | SHA-256 |
 | --- | --- |
-| 官方 `Z_8_0311.bin` | `d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96` |
-| 解包 EG 分段，包括两字节容器 CRC | `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c` |
-| 装入闪存的 EG 有效载荷，81,807,709 字节 | `2b43a31c9de838f84b12416de4348a7004e65be07f853ec56ec2b10f3a8e3853` |
-| 官方 QEMU 10.2.4 源码压缩包 | `821b545b92f165e57dddccac5077d76d4d436a226595b8813ad59306bbfd0746` |
+| Official `Z_8_0311.bin` | `d67413c2ede6b9ce8887175f20700bd9fbad2a973a4820968c45503d15d80d96` |
+| Unpacked EG section (with 2-byte CRC) | `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c` |
+| Flashed EG payload (81,807,709 bytes) | `2b43a31c9de838f84b12416de4348a7004e65be07f853ec56ec2b10f3a8e3853` |
+| Official QEMU 10.2.4 source tarball | `821b545b92f165e57dddccac5077d76d4d436a226595b8813ad59306bbfd0746` |
 
-容器 CRC `201b` 留在解包输入文件中，不装入模拟闪存。运行器检查整包、分段和模型指纹。
-模型从复位入口 `0x40160000` 执行，没有改固件指令，没有从 GDB 写 RAM、改 PC 或直接调用初始化函数。
-加载 ROM 是普通固件装载，初始化 RAM 由官方代码通过模拟 DMA 自己写入。
+The container CRC `201b` is stripped prior to flashing simulated ROM. Execution begins at reset vector `0x40160000` without modifying opcodes, altering PC via GDB, or injecting bootloader shortcuts. Initialized RAM is populated by official code executing through simulated DMA.
+Only EG is loaded; EX MCU, VR, and Linux sections are not simulated in this harness.
 
-实际测试只装载 EG。官方包中的 EX MCU、VR 和 LI/Linux 分段没有在其他处理器上执行。
-本次没有连接、读取或刷写真实相机，也没有执行此前的 `3.11 P` 实验包。
+## Verified Official Boot Breakpoint
 
-## 已验证的官方引导断点
+Execution halts at official RTOS kernel entry `0x401691d0`:
 
-在 `0x401691d0` 的官方 RTOS 内核入口停止：
-
-| 项目 | 观察结果 |
+| Inspection Item | Value / Observation |
 | --- | --- |
-| 主核 PC | `0x401691d0` |
-| 主核 SP | `0xa02801140` |
-| 主核 CPSR | `0x60000004`，EL1 |
-| 官方启动描述符 | 已由固件复制到 `0xa02800048` |
-| 初始化数据 | `EG[0x4b13000:0x4dc0000]` 与 `RAM[0xa02808000:0xa02ab5000]` 全部 `0x2ad000` 字节相同 |
-| CPU 1、2 | 固件写 SRAM 邮箱和 SoC 释放寄存器后启动，断点时在 `0x40160348` 等待主核 |
-| CPU 3 | 仍关闭，等待固件安装 Linux 回调和启动入口 |
-| 容器 CRC 所在物理位置 | 为擦除态 `ff ff`，没有装入 `20 1b` |
-| 主机启动 RAM 夹具 | 空列表 |
+| Primary Core PC | `0x401691d0` |
+| Primary Core SP | `0xa02801140` |
+| Primary Core CPSR | `0x60000004` (EL1) |
+| Official Boot Descriptor | Copied by firmware to `0xa02800048` |
+| Initialized Data | All `0x2ad000` bytes of `EG[0x4b13000:0x4dc0000]` match `RAM[0xa02808000:0xa02ab5000]` |
+| CPUs 1 and 2 | Released by firmware via SRAM mailboxes; parked at `0x40160348` awaiting primary core |
+| CPU 3 | Powered down, awaiting firmware initialization of Linux entry points |
+| Container CRC Offset | In erased state (`0xff 0xff`), not populated with `20 1b` |
 
-继续运行时，各核实际进入 RTOS 调度、接收 GIC 中断、初始化平台服务和总线驱动。
-异常日志记录了 CPU 0/1/2 的 IRQ，而不是只在宿主机检查反汇编。
-后续全局变量发生改变，因此只能在内核入口断点检查初始数据的逐字节一致性。
+Continuing execution enters RTOS scheduling, GIC interrupt delivery, and platform bus initialization. Exception logs record active IRQs on CPUs 0, 1, and 2.
 
-每份观察都保存其自己的 QEMU 二进制与模型源码指纹。
-开发期间模型仍在变化，不能用旧断点快照替代新版本的验证。
+## Model Subsystems and Assumptions
 
-## 模型实现与假设
-
-| 部分 | 当前行为 | 验证边界 |
+| Component | Implemented Behavior | Validation Scope |
 | --- | --- | --- |
-| CPU / GIC | 4 个 Cortex-A53 候选核、GICv3、24 MHz ARM 计时器 | CPU 型号来自固件/DTB 线索，不是芯片实测 |
-| ROM / DDR | EG ROM 在 `0x40160000`；DDR 在 `0xa00000000` | 1 GiB DDR 容量是假设，只验证实际访问范围 |
-| 内存 DMA | 六通道，实际逐行复制、零填充和字节填充、定时完成及 W1C 确认 | 源/目的跨度先检查；保留行间空隙；1 µs 完成时间是假设，非零多字节图案及散列表未实现 |
-| 额外内存 | 原代码实际使用的 `0x8ff800000` 堆池窗口及 `0x16020000` 共享 SRAM | 分别映射 8 MiB 和 2 KiB；与 DDR 的别名关系及共享 SRAM 对端未实现 |
-| 多核释放 | 检查固件写入的启动 cookie 和地址后调用 QEMU CPU 上电 | 没有主机填入次核地址或跳过官方入口 |
-| 时序器 | 配置检查、置位/清除状态、定时完成、IRQ 224 | 1 µs 延迟是假设，不模拟实际电源轨或机械动作 |
-| 配置覆盖 | 原函数探针和 ROM 选择表提取地址、宽度及读写方向 | reset-zero 为假设；只保留配置值，不自动完成工作 |
-| 辅助计数器 | 计数、周期溢出、有限次数结束、W1C 及 IRQ 155…167 | 100 MHz 输入时钟和溢出位含义仍有假设；捕获输入未实现 |
-| I2C | 4 条空总线，真实 BUSY→延迟 NACK→IRQ/确认流程 | 地址/IRQ/字段核对原代码；Cadence 兼容、100 µs 延迟和复位值是假设；没有从设备回复 |
-| SPI | 11 个端口，主模式 FIFO 移位、接收和确认；从模式等待外部时钟 | FIFO 16 字、MISO 高电平、100 µs 延迟是假设；没有 MCU/镜头/面板回复，总线 DMA 未实现 |
-| UART | 三端口配置、启动标志确认、发送；第二端口 FIFO 配置已由原代码执行 | TX-empty 时序及复位值是假设；没有接收源，不能将 TX 回显当作 RX |
-| HDMAC | 三组各八个通道的独立配置保存，主控制字读写 | 原构造函数、ROM 表和 181…204 的 IRQ 描述表均已核对；通道启用仍拒绝，未搬运数据或生成完成 IRQ |
-| 平台接口 | 检查八个参数字段已写全后锁存，再锁存门控 | 日志明确标记 `signal_output_emulated=0`，没有生成传感器信号 |
-| 处理设备复位 | 两个 `0x153c0000/0x15400000` 引擎的复位字段和门控读改写；其他已确认禁用写入 | 复位读回保留写值是假设；未生成处理结果或完成中断；工作请求仍停机 |
+| CPU / GIC | 4 Cortex-A53 cores, GICv3, 24 MHz ARM arch timer | Core type based on DTB references |
+| Memory | EG ROM at `0x40160000`; 1 GiB DDR at `0xa00000000` | DDR capacity is an assumption |
+| Memory DMA | 6 channels, row-stride copies, zero-fill, byte-fill, W1C status | Retains row gaps; 1 µs completion delay assumed |
+| Aux Memory | Heap pool at `0x8ff800000` (8 MiB), shared SRAM at `0x16020000` (2 KiB) | Mirrored mappings unverified |
+| Core Release | Powers on secondary cores when firmware writes boot cookies | Firmware-driven release |
+| Sequencer | Status latching, timed completion, IRQ 224 | 1 µs delay assumed |
+| Peripheral Registers | Address and width decoding from ROM tables | Read-zero reset assumed |
+| Timers / Counters | Periodic overflow, one-shot counts, W1C, IRQs 155..167 | 100 MHz clock assumed |
+| I2C | 4 buses: BUSY → delayed NACK → IRQ sequence | Cadence compatibility assumed; no slave devices |
+| SPI | 11 ports: master FIFO shift/ACK; slave clock wait | FIFO 16 words, MISO high assumed; no external MCUs |
+| UART | 3 ports, startup flag ACK, TX transmission | TX-empty timing assumed; no RX source |
+| HDMAC | 3 groups of 8 channels, control word decoding | Channel enable currently rejected; no DMA transfers |
+| Platform Control | Latching 8 parameter fields and gates | Signal output marked unemulated |
+| Reset Controllers | Reset toggles for engines at `0x153c0000/0x15400000` | Disables processed without generating output |
 
-I2C/SPI 与有限次数计数的实现参考了
-[`z7-qemu/qemu/nikon-z7-lab.c`](/home/fdkevin/Workspaces/z7-qemu/qemu/nikon-z7-lab.c)。
-Z8 的 SPI IRQ 是每端口一个 IRQ `211…221`，没有直接沿用 Z7 的成对 IRQ。
-计数器的 `+0x38/+0x3c` 用于有限次数运行结束，结束事件按周期次数触发。
-`0x0e00100c` 按原代码保留读、改、写结果，不能作为写一清除状态位。
+SPI and I2C models draw from [`z7-qemu`](/home/fdkevin/Workspaces/z7-qemu/qemu/nikon-z7-lab.c). Z 8 allocates individual SPI IRQs `211…221` per port rather than paired IRQs. MISO high-level pull-ups model a disconnected bus, not device responses.
 
-SPI 的 MISO 高电平采样只表示断开的总线假设，不表示相机设备发出了 ACK、ID 或校准数据。
-I2C 的 NACK 同样表示空总线，不能作为真实外设初始化成功的证据。
+## Unmapped Flash Storage
 
-处理设备的支持限于原初始化写入：`0x15100000/0x15140000` 的复位和确认字段、
-`0x15180014/0x151c0014` 的复位切换、`0x15200000/04` 的复位、
-`0x15240044/48` 与 `0x15340014/0x15380014` 的禁用，
-以及 `0x15000000` 的全部通道确认。`0x15040000/800` 仅保存初始化控制字，
-`0x15040010…1c` 接受初始化确认；这些行为没有产生设备输出。
+The EG partition spans `[0x40160000, 0x45980000)`. Official code accesses regions beyond this (e.g. `0x46400000`).
+The model maps `[0x45980000, 0x48000000)` as erased flash (`0xff`), logging `Z8_ABSENT_FLASH_HYPOTHESIS`. External resources including Resource `0x5c` remain unobtained; see the [Flash Layout Report](../z8_flash_layout/REPORT.md).
 
-## 缺失的存储数据
+## Verification and Current Execution Blockers
 
-EG 分配区是 `[0x40160000,0x45980000)`。升级包不是完整存储器转储。
-官方代码已读取 `0x46400000` 等位于 EG 外的资源地址，这些数据尚未取得。
-当前模型对 `[0x45980000,0x48000000)` 采用只读擦除态 `ff`，第一次访问打印
-`Z8_ABSENT_FLASH_HYPOTHESIS`，真实资源恢复字节数为零。
+- Test suites validate DMA data integrity (2D strides, non-zero fill), I2C NACKs, SPI FIFOs, and 4-core enumeration.
+- Negative tests confirm halts on invalid DMA targets, unconfigured gates, and unmodeled registers.
+- Official code on I2C channel 3 sends 2 bytes to address `0x38`, receives a NACK, and retries successfully.
 
-包括资源 `0x5c` 在内的外部数据没有被伪造；也不能据现有证据把整个区域都认定为出厂校准区。
-详情见 [EG 更新与传感器参数区](../z8_flash_layout/REPORT.md)。
-后续完整相机初始化可能需要机身资源及 MCU 交互数据，不能只修改模式表或返回假成功来代替它们。
+The primary execution halt occurs during **HDMAC channel activation**: routine `0x40c16948` writes `0x9200004b` (Group 0, Channel 4 enable) to `0x0e100180`. The model logs `Z8_HDMAC_REQUEST` and terminates with `data_transferred=0`. Captured request fields:
+`1200004b, 25180000, 00000404, 00000000, 00000000, 00000000, 0e700700, 00000000`. Target address points to **SPI 7 Data Register**, with source address zero.
 
-## 验证与当前阻塞
+See [HDMAC Landmarks](hdmac_landmarks.asm) for descriptors and base tables at `0x4164bb98`.
+The Linux [Milbeaut HDMAC Driver](https://github.com/torvalds/linux/blob/v6.12/drivers/dma/milbeaut-hdmac.c) shares similar control bits, though channel strides and register layouts differ. Next steps require mapping zero-source buffer handling and SPI FIFO integration.
 
-- 仓库单元测试已通过，数量和当前设备检查快照见清单。
-- 独立合成 AArch64 客户机检查真实 DMA 数据（含二维跨度和非零字节填充）、时钟写掩码、计数推进和有限次数结束、
-  I2C NACK/掩码/确认、SPI FIFO/采样/确认、平台配置锁存与四核枚举。
-- 负例确认非法 DMA 目标、缺失参数的提交、未配置的门控、未实现的捕获模式、
-  空 RX 读取、未实现的 SPI DMA、处理设备工作请求、HDMAC 启用和未知寄存器访问会停止。
-- 构建过程发生源码变化时，不会给旧二进制签发新的模型指纹清单。
-- 官方探针已看到 I2C 通道 3 向地址 `0x38` 发送两字节，收到 NACK、重试并继续设备任务。
-
-最新冷启动阻塞位置、各核寄存器、设备日志和异常日志指纹写入清单的
-`latest_startup_probe`。未建模访问会由模型主动停机，通常同时出现 Data Abort；
-这不等于已确认官方固件自身崩溃。
-
-当前阻塞已从配置读取推进到**真实 HDMAC 启用**：官方函数 `0x40c16948`
-向 `0x0e100180` 写 `0x9200004b`，即第 0 组、第 4 通道的 bit 31 启用请求。
-模型记录 `Z8_HDMAC_REQUEST` 后停止，`data_transferred=0`。
-已保存的字段为 `1200004b,25180000,00000404,00000000,00000000,00000000,0e700700,00000000`；
-原配置函数向 `+0x10/+0x18` 写地址，目的地址落在 **SPI 7 的数据寄存器**，源字段为零。
-不能将这次请求当成之前的 RAM DMA，或直接返回完成来跳过它。
-
-[HDMAC 原代码与表证据](hdmac_landmarks.asm) 记录了 `0x40c1645c` 的三组八通道构造、
-`0x4164bb98` 的基址表、初始化 RAM 描述符及配置/启用函数。
-Linux 的 [Milbeaut HDMAC 驱动（v6.12）](https://github.com/torvalds/linux/blob/v6.12/drivers/dma/milbeaut-hdmac.c)
-有部分相似控制位，可供比较；这是家族关联的推断，不能证明 Z8 寄存器兼容。
-该驱动的通道跨度、地址字段偏移和本次 Z8 原代码不同，UniPhier MDMAC/XDMAC 也没有精确匹配。
-下一步需要解释零源字段、地址转换、请求选择与 SPI FIFO 的连接，实际搬运后再验证完成状态、IRQ、停止和排空。
-
-原生菜单、GPU/LCD、按键、电源状态、EX MCU 协议、Linux 装载和真实资源数据仍是后续工作。
-上游 GICv3 还记录保留 SGI-frame offset `0x10000` 的访问，尚未完全解释。
-
-复现命令和验收断点见 [README](../../qemu/z8/README.md)。当前还不能将这个模型用于诊断菜单补丁的视觉验收。
+See [README](../../qemu/z8/README.md) for execution commands.

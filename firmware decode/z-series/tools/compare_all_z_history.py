@@ -342,15 +342,17 @@ def analyze(root):
 def report(out, s):
     rows = s["versions"]
     lines = [
-        "# Z 系列历史固件全量获取与比较",
+        "# Comprehensive Z-Series Historical Firmware Extraction and Comparison",
         "",
-        "范围：官方当前 15 款 Z 系列机身的已知版本记录。缺失原包单独列出；出厂版本记录不代表曾公开提供下载。",
+        "**Key findings are summarized in [Historical Comparison Findings](FINDINGS.md)**, including Z9 DSP evolution, Z f intermediate version validation, and Linux network component changes.",
         "",
-        f"实际分析 **{len(rows)}** 个版本，原始 BIN 合计 **{sum(r['size'] for r in rows):,} 字节**；尚未取得 **{len(s['unavailable_versions'])}** 个记录的原包。",
+        "Scope: Known firmware release records across all 15 official Z-series camera models. Missing original packages are listed separately; factory version records do not imply public downloads were ever available.",
         "",
-        f"完整解码 {sum(r['status'] == 'fully_decoded_crc_roundtrip' for r in rows)} 个包、{sum(len(r['sections']) for r in rows)} 个分段，均通过分段 CRC、整包 CRC 和逐字节回编码。新封装仅作已验证范围内的局部比较，不计入完整解码。",
+        f"Analyzed **{len(rows)}** firmware releases totaling **{sum(r['size'] for r in rows):,} bytes** of raw binary files; **{len(s['unavailable_versions'])}** cataloged packages remain unavailable.",
         "",
-        "| 机型 | 已取得版本 | 完整解码 / 局部 | 缺失原包 |",
+        f"Fully decoded {sum(r['status'] == 'fully_decoded_crc_roundtrip' for r in rows)} packages across {sum(len(r['sections']) for r in rows)} sections, all verified with section CRC, package CRC, and bit-for-bit re-encoding roundtrip. Modern container formats are compared locally within verified windows only and are not counted as fully decoded.",
+        "",
+        "| Model | Acquired Versions | Full Decode / Partial | Missing Packages |",
         "|---|---|---:|---|",
     ]
     for model in sorted({r["model"] for r in rows}):
@@ -362,11 +364,11 @@ def report(out, s):
         )
     lines += [
         "",
-        "## DSP 与网络数据版本分组",
+        "## DSP and Network Data Version Grouping",
         "",
-        "下列相同组依据完整内容 SHA-256。新封装的已知 DSP 是参照辅助结果，不作为独立明文发现；其范围外恢复的网络数据另有记录。",
+        "Identical groups are determined by full SHA-256 hash. Known DSP modules in newer containers serve as reference anchors rather than independent plaintext discoveries; network data recovered outside that scope is documented separately.",
         "",
-        "| DSP 指纹（SHA-256 前 12 位） | 符号角色 | 字节数 | 机型及相同版本 |",
+        "| DSP Fingerprint (SHA-256 First 12) | Role by Symbols | Size (Bytes) | Models and Matching Versions |",
         "|---|---|---:|---|",
     ]
     for key, members in s["dsp_identity_groups"].items():
@@ -378,18 +380,18 @@ def report(out, s):
         lines.append(f"| `{key[:12]}` | {p['role_by_symbols']} | {p['size']:,} | {labels} |")
     lines += [
         "",
-        f"完整网络候选共 **{len(s['network_identity_groups'])}** 种内容；完整覆盖版本及 SHA-256 见清单的 `network_identity_groups`。未覆盖或仅覆盖前缀的版本不参与完整相同性结论。",
+        f"A total of **{len(s['network_identity_groups'])}** distinct full network candidates were identified; see `network_identity_groups` in the manifest for full coverage versions and SHA-256 hashes. Versions not covered or only covering prefixes are excluded from full equivalence conclusions.",
         "",
-        "## 各机型逐版差异",
+        "## Version-by-Version Differences by Model",
         "",
-        "分段变化按完整 SHA-256 判定。相同表示字节完全一致；变化不直接等同功能变化。DSP 按嵌入 ELF 内容识别，网络数据仍是边界验证过的候选格式，并未完整解析类别和算子。",
+        "Section changes are determined by full SHA-256 comparison. 'Identical' denotes byte-for-byte equivalence; changes do not necessarily indicate feature changes. DSP modules are identified by embedded ELF contents; network data represents boundary-verified candidate formats with unparsed layers and operators.",
         "",
     ]
     for model in sorted({r["model"] for r in rows}):
         lines += [
             f"### {model}",
             "",
-            "| 版本变化 | 变化分段 | 不变分段 | DSP / 网络候选 | Linux 根文件系统 |",
+            "| Version Transition | Changed Sections | Unchanged Sections | DSP / Network Candidate | Linux Rootfs |",
             "|---|---|---|---|---|",
         ]
         for d in s["adjacent_comparisons"]:
@@ -402,36 +404,36 @@ def report(out, s):
             )
             same = ", ".join(x["component"] for x in d["sections"] if x["change"] == "identical")
             ai = []
-            for name, key in [("DSP", "dsp"), ("网络", "networks")]:
+            for name, key in [("DSP", "dsp"), ("Network", "networks")]:
                 old, new = d[key + "_before"], d[key + "_after"]
-                ai.append(name + ("未覆盖" if not old and not new else "相同" if old == new else "变化/覆盖变化"))
+                ai.append(name + (" Not covered" if not old and not new else " Identical" if old == new else " Changed/Coverage delta"))
             linux = d.get("linux", {}).get("rootfs")
             fs = (
-                "—" if linux is None else f"改{len(linux['changed'])} 增{len(linux['added'])} 删{len(linux['removed'])}"
+                "—" if linux is None else f"mod:{len(linux['changed'])} add:{len(linux['added'])} del:{len(linux['removed'])}"
             )
             lines.append(
-                f"| {d['from']} → {d['to']} | {changed or '未完整解码' if not d['sections'] else changed or '—'} | {same or '—'} | {'；'.join(ai)} | {fs} |"
+                f"| {d['from']} -> {d['to']} | {changed or 'Not fully decoded' if not d['sections'] else changed or '—'} | {same or '—'} | {'; '.join(ai)} | {fs} |"
             )
         lines.append("")
     lines += [
-        "## 证据与复现",
+        "## Evidence and Reproduction",
         "",
-        "- [官方历史地址及发现过程](SOURCES.md)；[下载清单与 SHA-256](downloads.json)；[完整机器可读比较](manifest.json)。",
-        "- `coverage.csv` 列出逐版本状态；`versions/<BIN名>/manifest.json` 给出分段、DSP、网络和 Linux 证据。",
-        "- 新格式使用此前多机型重叠验证的固定位置掩码，并要求在每个新样本中匹配完整已知 DSP ELF 后才分析窗口。该 ELF 的相同不能视为独立发现；窗口外、整个新封装和其 CRC 尚未解码。",
-        "- 网络候选的相同只针对明确提取的区域，不表示所有模型、全部 AI 流程或相机功能相同。未找到 ELF/标记不表示没有 AI。",
-        "- 只解包和静态读取，未执行固件或安装器，未修改原始固件。下载均来自 Nikon 官方 CDN；部分发布日期仅由服务器 Last-Modified 推定。",
+        "- [Official Source URL History and Discovery Process](SOURCES.md); [Download Manifest and SHA-256](downloads.json); [Full Machine-Readable Comparison](manifest.json).",
+        "- `coverage.csv` lists per-version status; `versions/<BIN_NAME>/manifest.json` provides section, DSP, network, and Linux evidence.",
+        "- Modern format analysis relies on fixed-offset masks cross-validated across overlapping camera models, requiring a full match of the known DSP ELF before analyzing the window. Matching ELF instances should not be considered independent discoveries; regions outside the window, the full modern container, and container CRCs remain undecoded.",
+        "- Equivalence in network candidates applies strictly to extracted regions and does not imply identity across all models, full AI pipelines, or camera features. The absence of ELF/markers does not imply absence of AI functionality.",
+        "- Static unpacking and inspection only; no firmware or installers were executed, and no raw firmware was modified. All downloads originate from official Nikon CDNs; release dates are estimated from HTTP Last-Modified headers when unstated.",
         "",
         "```sh",
-        "python3 tools/discover_z_history.py",
-        "python3 tools/collect_all_z_history.py .",
-        "python3 tools/compare_all_z_history.py .",
-        "python3 -m unittest discover -s tools -p 'test_*.py'",
+        "uv run python tools/discover_z_history.py",
+        "uv run python tools/collect_all_z_history.py .",
+        "uv run python tools/compare_all_z_history.py .",
+        "uv run pytest",
         "```",
         "",
     ]
     if s["errors"]:
-        lines += ["分析错误：`" + json.dumps(s["errors"], ensure_ascii=False) + "`", ""]
+        lines += ["Analysis errors: `" + json.dumps(s["errors"], ensure_ascii=False) + "`", ""]
     (out / "REPORT.md").write_text("\n".join(lines))
     with (out / "coverage.csv").open("w", newline="") as file:
         fields = ["model", "version", "status", "filename", "size", "sha256"]

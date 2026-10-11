@@ -1,41 +1,35 @@
-# Z8 3.11 Open Gate：视频模式限制与全高几何参数
+# Z 8 3.11 Open Gate: Video Mode Constraints and Full-Height Geometry Analysis
 
-**尚未找到可以开启 Open Gate 的开关或可用补丁。已确认：只扩充 SDK 的视频模式白名单不够，后续尺寸枚举转换也会失败。** 本轮沿视频属性进入机内设置，执行原始 AArch64 函数验证限制，并追踪一处包含全高尺寸的几何计算函数。没有连接相机、修改原始固件或生成刷机文件。
+**Status: No Open Gate enabling switch or flashable patch has been found. Expanding the SDK video mode whitelist alone is insufficient; downstream resolution conversion fails.** This phase traced video attributes into internal camera settings, emulating AArch64 routines to examine validation boundaries and analyzing geometry functions containing full-height sensor constants. No firmware was flashed to hardware.
 
-后续已将 N-RAW 尺寸连接到有效尺寸更新回调及采集状态结构，见[采集信息服务续查](../z8_capture_state/REPORT.md)。
+Subsequent investigations connected N-RAW resolutions to capture state structures; see the [Capture Information Service Survey](../z8_capture_state/REPORT.md).
 
-目标样本为 `Z_8_0311/eg2070_0311b0.bi`，SHA-256：
+Target sample: Z 8 3.11 EG (`Z_8_0311/eg2070_0311b0.bi`, SHA-256 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`). Addresses represent runtime virtual addresses. Reference documentation: [Z 8 USB/MTP Specification](<../../references/remote-sdk-2.0.0/original/Command/English/Z 8UsbMtpE_02.pdf>), pages 295, 299–303.
 
-```text
-f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c
-```
+## 1. Public PTP Properties to Internal Configuration
 
-文中地址均为该样本运行地址；EG 文件偏移需减去 `0x40160000`。函数行为名称由分析赋予，不是恢复出的主程序调试符号。SDK 依据为本地 [Z8 USB/MTP 文档](<../../references/remote-sdk-2.0.0/original/Command/English/Z 8UsbMtpE_02.pdf>) 第 295、299–303 页。
-
-## 1. 从公开属性进入机内设置
-
-`MovieRecordScreenSize = 0xD0A0` 是 UINT64，包含宽、高、帧率及附加标志，并非可以任填宽高的接口：
+`MovieRecordScreenSize = 0xD0A0` is a packed UINT64 field containing width, height, frame rate, and operational flags:
 
 ```text
-63..48 width | 47..32 height | 23..16 fps
-15..14 scan type | 13..8 special | 7..0 extra
+Bits 63..48: width  | Bits 47..32: height | Bits 23..16: fps
+Bits 15..14: scan   | Bits 13..8:  flags  | Bits 7..0:   extra
 ```
 
-属性记录位于 EG 文件偏移 `0x4c9ccb8`。设置函数 `0x408401ec` 调用 `0x40841c8c` 获取当前编码格式对应的模式列表，逐项比较整个 UINT64。未匹配即返回 `0x201c`，不会写入尺寸或帧率设置。
+The property descriptor resides at EG file offset `0x4c9ccb8`. Setter `0x408401ec` calls `0x40841c8c` to fetch the mode whitelist for the active codec, performing full 64-bit comparison. Unmatched values return `0x201c` without updating settings.
 
-匹配后，函数分别查找尺寸、帧率转换表，再选择当前编码格式的机内设置编号，调用 `0x40856be8` 提交两个编号及枚举值。这里没有把任意宽高直接传给传感器。
+Upon matching, the function queries dimension and frame rate conversion tables, selects internal setting IDs, and invokes `0x40856be8` to commit the values. Arbitrary resolutions are not forwarded directly to the sensor:
 
 ```text
 0xD0A0 UINT64
-    → 当前编码格式的完整模式白名单
-    → 宽高转换表 + 帧率转换表
-    → 编码格式对应的机内设置编号
-    → 设置服务（本轮仿真到此截获）
+    → Codec-Specific Mode Whitelist Comparison
+    → Resolution Conversion Table + Frame Rate Conversion Table
+    → Internal Setting IDs per Codec
+    → Setting Service (Intercepted in emulation)
 ```
 
-`MovieFileType = 0xD0AF` 的协议值经 `0x440f4190` 转换成内部格式编号；当前格式读取使用 `0x06001206`。`0x40856964`／`0x408568d0` 分别选择尺寸／帧率设置编号。
+`MovieFileType = 0xD0AF` maps to internal format IDs via `0x440f4190`; active format is read from `0x06001206`. Routines `0x40856964` and `0x408568d0` select resolution and frame rate setting IDs respectively:
 
-| 格式 | 协议值 | 内部格式编号 | 白名单项数 | 尺寸设置编号 | 帧率设置编号 |
+| Codec | Protocol Value | Format ID | Whitelist Count | Resolution Setting ID | Frame Rate Setting ID |
 |---|---|---:|---:|---|---|
 | H.264 MP4 | `0x00000801` | 1 | 8 | `0x07001202` | `0x07001203` |
 | H.265 8-bit | `0x00010800` | 2 | 17 | `0x0700124b` | `0x0700124c` |
@@ -44,13 +38,14 @@ f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c
 | ProRes RAW | `0x00110c00` | 5 | 10 | `0x0500125b` | `0x0500125d` |
 | N-RAW | `0x00020c02` | 6 | 19 | `0x0500125a` | `0x0500125c` |
 
-N-RAW 的 19 项为：8256×4644 和 5392×3032 各支持列表中的 60/50/30/25/24；4128×2322 为 120/100/60/50/30/25/24；3840×2160 为 120/100。ProRes RAW 的 10 项为：5392×3032 的 30/25/24，4128×2322 的 60/50/30/25/24，3840×2160 的 60/50。这是该函数静态列表，实际会话仍可能有状态限制。
+The 19 N-RAW modes comprise: 8256×4644 and 5392×3032 at 60/50/30/25/24 fps; 4128×2322 at 120/100/60/50/30/25/24 fps; 3840×2160 at 120/100 fps.
+The 10 ProRes RAW modes comprise: 5392×3032 at 30/25/24 fps; 4128×2322 at 60/50/30/25/24 fps; 3840×2160 at 60/50 fps.
 
-## 2. 为什么只放行白名单不够
+## 2. Why Modifying Whitelists Alone Fails
 
-`0x440f41c0` 的尺寸转换表只有七种：
+Conversion table `0x440f41c0` contains only 7 resolution entries:
 
-| 宽×高 | 机内尺寸枚举 |
+| Resolution | Internal Dimension Enum |
 |---|---:|
 | 1280×720 | 0 |
 | 1920×1080 | 1 |
@@ -60,75 +55,51 @@ N-RAW 的 19 项为：8256×4644 和 5392×3032 各支持列表中的 60/50/30/2
 | 5392×3032 | 5 |
 | 8256×4644 | 6 |
 
-所有项目均接近或等于 16:9；该表没有 8256×5504 或 4128×2752。查找函数 `0x40811c40` 在未找到尺寸时返回 **`0x7fffffff`**。
+All entries adhere to approximately 16:9 aspect ratios; 8256×5504 and 4128×2752 (3:2) are absent. Lookup function `0x40811c40` returns **`0x7fffffff`** for unlisted resolutions.
 
-隔离实验执行原始设置函数及查找指令，只替换外部设置服务：
+Emulation findings:
 
-- 六种编码格式共 **80 项原始模式**，均返回局部 `0x2001`，传出的尺寸／帧率编号和值与转换表一致。
-- 六种格式分别输入 8256×5504、4128×2752 的 24/25/30，共 **36 项 3:2 请求**，全部返回 `0x201c`，无设置写入。
-- 仅在模拟器 RAM 中将 N-RAW 列表首项替换为 8256×5504@24，保持指令及转换表不变。函数最终返回 `0x2001`，但向尺寸设置 `0x0500125a` 传出 **`0x7fffffff`**，向帧率设置 `0x0500125c` 传出 `6`。
+- All 80 authentic SDK modes across the 6 codecs return `0x2001`, transmitting expected dimension and frame rate IDs.
+- Testing 36 custom 3:2 modes (8256×5504 and 4128×2752 at 24/25/30 fps across 6 codecs) returned error `0x201c` with zero settings committed.
+- Patching the N-RAW whitelist in emulator RAM to permit 8256×5504@24 allowed the setter to return `0x2001`, but it transmitted invalid enum **`0x7fffffff`** to dimension setting `0x0500125a`, while sending `6` to frame rate setting `0x0500125c`.
 
-最后一项证明局部 OK 不能作为成功开启的判断：设置服务被截获，真实服务对无效编号的处理没有执行。实验结束恢复该 RAM 项，也不输出任何修改后的固件。
+Routines `0x406d2ba4` and `0x406d2c24` near `MovieOptionInfo.c` map dimension enums to width and height fields. When flags are zero, they accept values `0..6` only; inputs `7` and `0x7fffffff` return 0 without updating target fields.
 
-另一组 `MovieOptionInfo.c` 附近的函数 `0x406d2ba4`／`0x406d2c24`，从输入结构 `+0x0c` 读取尺寸枚举，向输出 `+0xa4`／`+0xa6` 写入宽／高。在特殊标志为零时，仅接受 `0..6`，映射与上表一致；`7` 和 `0x7fffffff` 返回零并保持输出原值。九组离线输入均已验证。它们属于视频选项构造路径；尚未证明新增 N-RAW 模式必经这两个函数，但这表明相关结构也使用有限枚举。
+## 3. Full-Height Sensor Geometries Exist in Metadata Routines
 
-## 3. 全高尺寸确实存在，但尚未通到录像
+Routine `0x41065194` accepts a configuration structure, utilizing jump tables `0xa02a97648` and `0xa02a97700` in initialized RAM to construct a `0x6c`-byte geometry record.
+Testing 1,932 input permutations confirms it can generate 8256×5504 and 8280×5520 alongside 8256×4644 and 8280×4688:
 
-函数 `0x41065194` 接受一个小结构，按 `+0` 的 `0..22` 模式编号、其他字段和标志构造 `0x6c` 字节结果。它使用两张位于初始化 RAM 的跳转表 `0xa02a97648`／`0xa02a97700`。
-
-执行 1,932 组输入后确认，该函数可以生成 8256×5504、8280×5520，也可以生成 8256×4644、8280×4688。以下保留原始字段偏移，避免把未知字段命名成传感器寄存器：
-
-| 输入 `[+0,+4,+8,+c,+10字节]` | 输出 u16 对 `+0` | 输出 `+0xc` | 输出 `+0x24` | 输出 `+0x64` |
+| Input Struct `[+0,+4,+8,+c,+10]` | Output u16 Pair `+0` | Output `+0xc` | Output `+0x24` | Output `+0x64` |
 |---|---|---|---|---|
 | `[0,4,6,1,0]` | 8256×5504 | 8280×5520 | 8256×5504 | 8280×5520 |
 | `[0,4,6,0,0]` | 8256×4640 | 8280×5520 | 8256×5504 | 8280×5520 |
 | `[12,4,6,0,0]` | 1920×1080 | 8256×4644 | 1920×1080 | 8280×4688 |
 | `[10,4,6,0,0]` | 1920×1080 | 4128×2322 | 1920×1080 | 4140×2344 |
 
-注意第二行是 **4640**，不是录像列表中的 4644。该结果同时含预览和不同坐标空间的尺寸，不能只挑一个字段解释成输出视频。
+Notice row 2 outputs **4640**, differing from video mode 4644. These outputs govern preview coordinate spaces and scaling calculations across callers `0x41055ac0`, `0x410567dc`, `0x41056c20`, `0x41057178`, `0x41057dd8`, `0x41057fb8`, and `0x410584e4`. There is no evidence that altering video mode IDs to 0 or 19 enables full-height continuous sensor readout.
 
-已找到的调用方包括 `0x41055ac0`、`0x410567dc`、`0x41056c20`、`0x41057178`、`0x41057dd8`、`0x41057fb8`、`0x41057fe0`、`0x410584e4`。周边调用方进行坐标缩放；例如 `0x41057f64` 分别构造两份输入、根据模式是否为 `0x13` 设置 `+0xc` 标志，再取结果 `+0x64/+0x66`。**没有证据说明把某个录像模式改成 0 或 19 就会启用全高读出。** 本组输入也不是已经验证的相机合法组合。
+A 68-row resolution/framerate table at `0x44b5110c` is used by display formatting routine `0x4087da40` and does not configure sensor timing registers.
 
-此外，运行地址 `0x44b5110c` 有 68 行、每行 20 字节的分辨率／帧率表。已定位使用者 `0x4087da40` 附近，用于构造显示信息；不能将它当成传感器模式表并直接修改。
+## 4. Missing Infrastructure and Verification Chain
 
-## 4. 真正缺失的路径与后续入口
+Settings consumer `0x40ed0310` evaluates N-RAW and ProRes RAW settings alongside system state to compute effective capture values; routines `0x40ed8e90` and `0x40ed8f74` select active values.
 
-实际设置消费者 `0x40ed0310` 读取 N-RAW／ProRes RAW 各自尺寸和帧率编号，并结合其他状态选择有效值；`0x40ed8e90` 和 `0x40ed8f74` 分别是进一步追踪帧率／尺寸的入口。这里已比修改 SDK 配置更接近实际录像设置，但仍未定位到传感器命令。
+Prerequisites for enabling Open Gate:
 
-接下来需要证明的链条是：
+1. Tracing resolution ID `0x0500125a` to sensor timing registers to determine whether the hardware video readout window natively outputs 4644 lines or is cropped downstream.
+2. If full-height readout can be activated, verifying buffer strides, RAW encoder pipelines, and container file writers.
+3. Overcoming flasher validation checks; successful re-encoding does not imply flasher acceptance.
 
-1. 从 N-RAW 尺寸设置 `0x0500125a` 的有效值，追到传感器模式选择及逐帧读出窗口，区分视频源本来就只有 4644 行，还是更下游才裁切。
-2. 若存在可连续工作的全高源，追踪缓冲区尺寸、stride、RAW 编码输入和文件写入；确认新增高度不会只改变元数据或坐标映射。
-3. 独立解决修改后固件能否被相机接受、启动和验证的问题。原包 XOR／CRC 重新编码一致不证明修改包可执行；目前也没有已验证的恢复路径。
+8256×5504 produces 18.5% more pixel data than 8256×4644 at equivalent framerates. While 24/25/30 fps represent plausible exploration targets, reduced framerates do not guarantee line timing feasibility.
 
-8256×5504 相比 8256×4644 同帧率多 18.5% 像素。24/25/30 fps 可以作为未来实验的优先目标，但降低帧率不能单独证明全高扫描时序、RAW 编码器和文件格式均可行。
+## Reproduction and Emulation Bounds
 
-现阶段的可行性判断：**具备继续逆向的明确入口，但没有足够证据承诺软件解锁成功。** 现有结果既不能证明硬件做不到，也不能证明厂商只是藏了开关。
-
-## 复现与验证边界
-
-从 `firmware decode/z-series` 目录运行，需安装 `capstone`、`unicorn`：
+Execute:
 
 ```sh
-python3 tools/reverse_z8_video_modes.py
+uv run python tools/reverse_z8_video_modes.py
+uv run pytest
 ```
 
-工具校验完整 EG SHA-256 后才使用固定地址。加载 EG 到 `0x40160000`，并按先前确认的启动复制关系，把文件 `0x4b13000` 起 `0x2ad000` 字节映射到 RAM `0xa02808000`。每次函数调用重置 CPU 上下文和栈，设置指令数上限，要求实际执行到返回哨兵。
-
-外部服务截获边界：
-
-| 地址 | 仿真替代行为 |
-|---|---|
-| `0x408564ec`、`0x41012c84` | 仅允许读取 `0x06001206`，返回测试选择的编码格式 |
-| `0x40856be8`、`0x40856bcc` | 记录设置写入，返回零；不执行真实设置服务 |
-| `0x40814800` | 验证通知编号为 `0xd1a8`，随后返回 |
-| `0x4127a900` | 为几何函数执行请求的 12 字节 memcpy |
-
-白名单选择、完整值比较、尺寸／帧率查找、设置编号选择、两个宽高构造函数和几何分支均执行原始指令。没有执行 USB 会话检查、传感器、ISP、DSP、RAW 编码或文件写入。
-
-产物：
-
-- [manifest.json](manifest.json)：模式列表、内部编号、116 项原始／3:2 设置测试、仅改模拟器白名单的反例、九组宽高映射测试。
-- [code_landmarks.asm](code_landmarks.asm)：关键函数反汇编和各段 SHA-256；调用方片段明确标为 excerpt。
-- `geometry_probes.json`：1,932 组几何输入和原始 u16 输出，本地生成、默认不纳入版本管理。
-- [复现工具](../../tools/reverse_z8_video_modes.py)：断言检查原始模式、拒绝路径、无效尺寸传播及两个几何结果锚点。
+The harness maps EG at `0x40160000` and initialized RAM at `0xa02808000`, resetting CPU state per call. Setting services at `0x40856be8` and `0x40856bcc` were stubbed. USB sessions, sensor hardware, ISP, and encoders were not emulated.

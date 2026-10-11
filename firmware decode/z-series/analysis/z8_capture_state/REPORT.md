@@ -1,92 +1,88 @@
-# Z8 Open Gate 续查：N-RAW 尺寸进入采集信息服务
+# Z 8 Open Gate Investigation: N-RAW Resolution Pipeline into CaptureInformationService
 
-本轮把[上一轮的设置编号](../z8_open_gate/REPORT.md)接到了真实的有效尺寸更新节点和采集状态结构。**N-RAW 尺寸 `0x0500125a` 在此路径中生成 `0x0400211e`，再进入状态结构 `+0x38c`。这一层仍传递枚举，不产生任意宽高，也没有执行传感器读出。**
+This phase connected video mode configurations from the [earlier study](../z8_open_gate/REPORT.md) to active resolution update callbacks and internal capture state structures. **N-RAW resolution setting `0x0500125a` triggers generation of DataID `0x0400211e`, which is written to state structure offset `+0x38c`. This pipeline transmits discrete enumeration IDs rather than arbitrary pixel geometries, and does not execute sensor readout routines.**
 
-在合成基线状态下，80 个 SDK 原始视频模式的尺寸都通过该路径；注入的 `7` 和 `0x7fffffff` 也原样传播。这使“设置函数返回 OK”更不能作为成功录像的依据。本轮没有生成补丁或修改原始固件。
+Across 80 stock Nikon SDK video modes, resolution configurations route through this pipeline; injected test values `7` and `0x7fffffff` propagate identically. This demonstrates that successful return codes from configuration functions do not guarantee valid video capture. No updater patches were created.
 
-## 已连接的路径
+## Connected Control Flow
 
 ```text
-SDK 0xD0A0 视频模式设置
-  └─ N-RAW 尺寸 0x0500125a / ProRes RAW 尺寸 0x0500125b
-       └─ CaptureInformationService 设置快照
-            └─ 注册回调 0x40ee0070
-                 └─ 0x40ed8f74 选择有效尺寸
-                      └─ 更新队列：(0x0400211e, 尺寸枚举)
-                           └─ DataID 存储（仿真由测试框架提交）
-                                └─ 0x40f3911c 更新采集快照 +0x38c
-                                     └─ ImageInfoService 构造尺寸输入
+SDK 0xD0A0 Video Mode Configuration
+  └─ N-RAW Size 0x0500125a / ProRes RAW Size 0x0500125b
+       └─ CaptureInformationService Settings Snapshot
+            └─ Registered Callback 0x40ee0070
+                 └─ 0x40ed8f74 Resolution Selector
+                      └─ Update Queue: (0x0400211e, resolution_enum)
+                           └─ DataID Storage (Committed via Test Harness)
+                                └─ 0x40f3911c Update Capture Snapshot +0x38c
+                                     └─ ImageInfoService Geometry Input
 ```
 
-链条中“测试框架提交”是明确的仿真边界：回调和入队使用原始指令，但没有执行完整事务调度器、锁及通知流程。随后执行真实 DataID 读取函数和采集快照更新函数。图中的最后一条 ImageInfoService 消费关系来自静态指令分析，未在这 80 项测试中执行。
+In the sequence above, "Committed via Test Harness" denotes the emulation boundary: callbacks and queue insertions execute authentic instructions, while transaction locks and event notifications are simulated. Downstream DataID reads and capture snapshot updates execute authentic code.
 
-## 地址和字段有直接对应证据
+## Memory Mappings and Structural Correspondence
 
-样本仍为 Z8 3.11 EG，SHA-256 为 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`。除明确标注外，地址均为运行地址。
+Input sample: Z 8 3.11 EG (`eg2070_0311b0.bi`, SHA-256 `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`). Addresses represent runtime virtual addresses.
 
-`0x40ed3b14` 将三块 RAM 地址传给 `0x40f38e58`。后者用 ID 数组 `0xa0292a624` 的 **763 项**填充设置快照 `0xa03b98570`；另有内部状态快照 `0xa03b9915c`。`0x41012cf0` 按数组顺序逐项读取 DataID，每项输出四字节，因此可以确定下表，而不靠猜测字段名。
+Routine `0x40ed3b14` passes three RAM pointers to `0x40f38e58`, which populates settings snapshot `0xa03b98570` with **763 entries** from ID array `0xa0292a624`, alongside internal state snapshot `0xa03b9915c`. Routine `0x41012cf0` reads each 4-byte DataID sequentially:
 
-| 快照偏移 | DataID | 此次已知用途 |
+| Snapshot Offset | DataID | Identified Role |
 |---|---|---|
-| `+0x90` | `0x06001206` | 当前视频文件类型设置 |
-| `+0x278` | `0x0700124b` | H.265 8-bit 尺寸 |
-| `+0x27c` | `0x0700124d` | H.265 10-bit 尺寸 |
-| `+0x280` | `0x0700124f` | ProRes 422 HQ 尺寸 |
-| `+0x284` | `0x07001202` | H.264 尺寸 |
-| `+0x288` | `0x0500125b` | ProRes RAW 尺寸 |
-| `+0x28c` | `0x0500125a` | N-RAW 尺寸 |
-| `+0x38c` | `0x0400211e` | 有效视频尺寸 |
-| `+0x3a0` | `0x00002171` | 有效帧率枚举；后续已用 SDK 读取路径确认，见[输入链路调查](../z8_sensor_inputs/REPORT.md) |
+| `+0x90` | `0x06001206` | Current video container type setting |
+| `+0x278` | `0x0700124b` | H.265 8-bit resolution |
+| `+0x27c` | `0x0700124d` | H.265 10-bit resolution |
+| `+0x280` | `0x0700124f` | ProRes 422 HQ resolution |
+| `+0x284` | `0x07001202` | H.264 resolution |
+| `+0x288` | `0x0500125b` | ProRes RAW resolution |
+| `+0x28c` | `0x0500125a` | N-RAW resolution |
+| `+0x38c` | `0x0400211e` | Effective video resolution enum |
+| `+0x3a0` | `0x00002171` | Effective frame rate enum (Confirmed via SDK read paths in [Sensor Inputs Survey](../z8_sensor_inputs/REPORT.md)) |
 
-不要把 `+0x390` 当成 SDK 帧率枚举：它对应 `0x04001dc8`，语义尚未确定。帧率也有独立的原始及派生属性，不能仅依据相邻偏移命名。
+The registration descriptor for `0x0400211e` resides at EG file offset `0x4d343e8` (RAM address `0xa02a293e8`). Offset `+0x20` specifies callback **`0x40ee0070`**; `+0x10` references a 47-entry dependency list including N-RAW/ProRes RAW resolutions and operational flags.
 
-`0x0400211e` 的注册记录位于 EG 文件偏移 **`0x4d343e8`**，启动复制后的地址为 `0xa02a293e8`。记录 `+0x20` 是回调 **`0x40ee0070`**；`+0x10` 指向含 47 项的关联 ID 列表，其中含 N-RAW／ProRes RAW 尺寸及多项状态。仿真执行 `0x40f2350c` 查找该 ID，得到的记录地址与提取结果一致。
+The callback inspects offset `+0x90` and passes resolution values for 6 codecs to `0x40ed8f74`. Under N-RAW, register `w6` is selected (corresponding to snapshot `+0x28c`). Updates are enqueued via **`0x40ed3e24`**.
 
-回调读取快照 `+0x90` 及多个状态，向 `0x40ed8f74` 传递六种编码格式的尺寸。在本轮基线中，N-RAW 分支使用 `w6`，对应快照 `+0x28c`。变化结果经 **`0x40ed3e24`** 入队；这个函数在容量足够时复制 `(ID,value)`，容量不足时返回零。
+DataID storage for effective resolution resides at `0x440179d0` (type 9, pointer `0xa03d7c778`). Routine `0x4101553c` reads from this pointer. Capture state updater `0x40f3911c` branches at `0x40f3ebdc`, writing the value to output snapshot `+0x38c` at `0x40f3ec00`.
 
-有效尺寸的 DataID 存储记录位于 `0x440179d0`，类型值 `9`，存储指针为 **`0xa03d7c778`**。`0x4101553c` 按 DataID 的低 16 位索引分组及类型表，再从此地址读取值。采集状态更新器 `0x40f3911c` 的相关分支在 `0x40f3ebdc`；`0x40f3ec00` 将值写入输出快照 `+0x38c`。
+Routine `0x4105c138..0x4105c188` copies from capture context `+0x38c` to structure offset `+0x20`, invoking resolution constructor `0x41066aa8`. Subsequent [Context Constructor Analysis](../z8_sensor_inputs/REPORT.md) confirmed that settings snapshots and capture contexts are distinct structures with different layouts.
 
-`0x4105c138..0x4105c188` 从**实际采集上下文** `+0x38c` 复制到另一输入结构 `+0x20`，调用尺寸构造函数 `0x41066aa8`。后续[上下文构造调查](../z8_sensor_inputs/REPORT.md)已确认：设置快照与该上下文是两种结构，只有部分偏移恰好对应同一 DataID；相邻字段不能直接套用本表。实际上下文的尺寸也来自 `0x0400211e`，但通过独立构造函数写入。此前对 `+0x3a0` 的业务解释不能用于该上下文。
+Strings in this region reference `ImageInfoService.c`, reinforcing the conclusion that full-height constants in geometry routines relate to image metadata processing rather than unconstrained sensor readout configurations.
 
-同区域保留 `ImageInfoService.c` 的源码名引用。这加强了上一轮结论：几何函数中的全高常量属于图像信息处理证据，不能直接当作传感器全高录像配置。
+## Isolated Verification Results
 
-## 隔离验证
+Baseline state: Snapshot offset `0x280c` = 1; container type, resolution, and frame rate populated from authentic SDK configuration outputs; initial effective size = `0xffffffff`.
 
-基线设置：快照 `0x280c` 为 `1`，原始文件类型及尺寸／帧率来自真实 SDK 设置函数输出，原有效尺寸为 `0xffffffff`；其他快照字段清零。**这是用于验证局部数据流的合成状态，不是从相机取得的开机状态，也不代表所有特殊模式均已覆盖。**
-
-| 验证 | 结果 |
+| Test Condition | Result |
 |---|---|
-| 80 个原始 SDK 视频模式 | 设置输出经有效尺寸回调、入队、DataID 读取及快照更新，均得到预期尺寸枚举 |
-| 注入 N-RAW 尺寸 `7`、`0x7fffffff` | 两者均原样进入 `0x0400211e` 和快照 `+0x38c`；此基线未检查尺寸合法性 |
-| 原有效尺寸与计算结果同为 `6` | 返回成功，不重复入队 |
-| 更新队列容量为零 | 返回失败，不写入队列项目 |
-| 执行真实注册表查找 | 找到 `0xa02a293e8`，与提取的注册记录一致 |
+| 80 stock SDK video modes | Settings output correctly triggers resolution callback, queueing, DataID read, and snapshot update |
+| Injected N-RAW size values `7` and `0x7fffffff` | Propagate unmodified into `0x0400211e` and snapshot `+0x38c` without bounds rejection |
+| Existing resolution equals computed result (`6`) | Returns success without redundant queue insertion |
+| Queue capacity = 0 | Returns failure without queue corruption |
+| Authentic registry lookup | Resolves `0xa02a293e8`, matching extracted descriptor |
 
-这里的成功仅指这些原始函数按预期返回和传值。无效枚举能传播不是隐藏模式存在的证据；更下游可能拒绝、回退或错误处理，尚需追踪。
+Propagation of unlisted enum values indicates lack of early validation rather than the presence of hidden capture modes.
 
-## 新增可搜索的关联表
+## Registered Dependency Tables
 
-已导出 `0xa02a28ff8` 起 **669 条注册记录**。范围由实际查找函数的 `0..0x29c` 循环确定。`0x40f23438` 还将前 197 项和接下来的 147 项分别提供给调用方；后续记录可能没有回调，因此不能按“遇到空回调就结束”截断。
+A total of **669 registration entries** beginning at `0xa02a28ff8` were extracted.
+**21 entries** explicitly reference N-RAW size `0x0500125a` in their dependency lists.
+Field `0x04001dc8` possesses a registration descriptor without callbacks, referencing effective size, frame rate, and multiple capture properties.
 
-每条记录保留 ID、三组关联 ID 列表和两个回调地址。三组列表的调度含义尚未完全恢复，导出使用中性字段名 `id_lists`，不把所有关联都宣布为已证明的单向依赖。
+Hardware register configuration, sensor timing, and raw buffer allocation remain unmapped.
 
-有 **21 条记录**的列表引用 N-RAW 尺寸 `0x0500125a`，本轮清单已保留这些记录及回调。后续可优先沿这些入口继续，避免重新扫描全部分辨率常量。`0x04001dc8` 也有无回调记录，其列表关联有效尺寸、帧率及多项采集设置，值得和其写入者一起分析。
+## Reproduction
 
-下一段尚缺的证据仍是：从这些有效设置进入实际传感器模式或读出窗口，再到 RAW 缓冲区与编码输入。本轮没有定位到硬件窗口寄存器，也没有证明全高连续读出可被复用。
-
-## 复现
-
-从 `firmware decode/z-series` 运行，依赖 `capstone`、`unicorn`：
+Execute:
 
 ```sh
-python3 tools/reverse_z8_capture_state.py
+uv run python tools/reverse_z8_capture_state.py
+uv run pytest
 ```
 
-- [manifest.json](manifest.json)：字段对应、回调记录、21 条 N-RAW 关联记录及全部验证结果。
-- [code_landmarks.asm](code_landmarks.asm)：关键函数和明确标注的代码片段，各段包含 SHA-256。
-- `registry.json`：完整 669 条记录，本地生成，默认不纳入版本管理。
-- [复现工具](../../tools/reverse_z8_capture_state.py)：固定样本哈希校验、真实函数执行及断言。
+Artifacts:
 
-SDK 部分沿用上一轮的外部服务截获；采集回调及快照更新部分不截获设置服务，真实执行 DataID 读取。CPU／栈隔离、指令数上限及返回检查沿用上一轮工具。相机、传感器、ISP、DSP、编码器和存储设备均未执行。
+- [manifest.json](manifest.json): Mappings, callback records, 21 N-RAW dependency records, and test results.
+- [code_landmarks.asm](code_landmarks.asm): Key functions and disassembly snippets with SHA-256 hashes.
+- `registry.json`: Extracted 669 registration records (Git-ignored).
 
-后续调查见 [CaptureSensor 后端模式与命令参数块](../z8_sensor_backend/REPORT.md)。已识别后端模块、模式选择和参数资源 `0x5c`；本报告快照到后端请求的完整转换仍未连接。
+See subsequent report: [CaptureSensor Backend Mode and Parameter Blocks](../z8_sensor_backend/REPORT.md).

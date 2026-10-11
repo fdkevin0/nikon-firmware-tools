@@ -1,108 +1,82 @@
-# Nikon Z8 全部公开更新固件的获取与比较
+# Comprehensive Acquisition and Comparison of Public Nikon Z 8 Firmware Releases
 
-核验日期：2026-10-05。已取得 **1.01、2.00、2.01、2.10、3.00、3.01、3.10、3.11 八个公开更新包**，
-对应本轮查到的全部公开更新版本，BIN 合计 **771,494,600 字节**。
-八份均采用旧三表 XOR 封装、原点 `0x20`；**40 个分段 CRC、8 个整包 CRC、8 次原样重编码全部通过**。
+Verification date: 2026-10-05. Scope: **All 8 public update releases (1.01, 2.00, 2.01, 2.10, 3.00, 3.01, 3.10, 3.11)**, totaling **771,494,600 bytes** of binary payload.
+All 8 packages utilize legacy 3-table XOR packaging with origin `0x20`; **all 40 section CRCs, 8 package CRCs, and 8 re-encoding roundtrips passed successfully**.
 
-**出厂 1.00 是明确的缺口**：官方版本记录中存在，但本次没有找到原始二进制升级包。
-不能把开源代码下载包当作完整固件，也不声称已取得包含出厂版本在内的所有固件。
-版本履历由[尼康官方 OSS 索引](https://imaging.nikon.com/imaging/oss/en/)和
-[当前固件更新履历](https://downloadcenter.nikonimglib.com/en/download/fw/606.html)交叉核对。
+**Factory release 1.00 represents a known gap**: documented in official changelogs, but no public binary updater was located.
+Open-source code releases cannot substitute for compiled firmware payloads.
+Version histories were cross-referenced against the [Nikon OSS Index](https://imaging.nikon.com/imaging/oss/en/) and the [Current Update History](https://downloadcenter.nikonimglib.com/en/download/fw/606.html).
 
-## 主要发现
+## Key Discoveries
 
-- **2.00 是可见 DSP 实现的主要变化点**：图像处理 ELF 增加 29 个已定义函数名，跟踪 ELF 有新增、替换及函数签名变化；神经网络推理 ELF 的代码节不变，仅分发表改变 9 个字节。
-- **2.00 至 3.11 的三个完整 CEVA ELF 均分别逐字节相同**。这是对七个实际完整解包样本的比较，不是新封装已知明文参照推导。
-- **两块已识别的序列化网络候选数据，在全部八版中分别相同**，包括新增专用鸟类模式之前的 1.01。它们不能代表相机的全部 AI 模型。
-- **3.00 更新了 Linux 内核构建及八个根文件系统文件**，但内核版本字符串仍为 `4.14.224-ts-aarch64`，内核配置和两份设备树不变。
-- **3.00／3.01／3.10／3.11 的 Linux 内核、压缩根文件系统、两份设备树完全相同**。这些相邻小版本的 LI 分段各仅差 4 字节，变化落在版本标记与分段 CRC。
-- 触控分段在八版中完全相同；VR 分段只在 1.01 → 2.00 时变化，此后保持相同。
+- **Version 2.00 represents the primary architectural milestone for DSP executables**: Image processing added 29 defined functions; tracking was restructured with modified function signatures; the neural inference ELF kept identical machine code sections, differing by only 9 bytes in its function dispatch table.
+- **The three CEVA DSP ELFs are byte-for-byte identical across all seven releases from 2.00 through 3.11**. This reflects full container decodes rather than known-plaintext inferences.
+- **Two candidate serialized networks (N1, N2) are identical across all eight releases**, including 1.01 prior to the addition of bird detection. They represent specific network payloads rather than the entirety of on-device AI models.
+- **Version 3.00 updated the Linux kernel build and eight rootfs files**, though the banner string remained `4.14.224-ts-aarch64`, with kernel config and dual DTBs identical.
+- **Linux components (kernel, rootfs, dual DTBs) are byte-for-byte identical across 3.00, 3.01, 3.10, and 3.11**. Minor LI section differences (4 bytes) reflect container version markers and section CRCs.
+- Touch controller sections are identical across all 8 versions; VR changed only between 1.01 and 2.00.
 
-所有原始哈希、分段位置、模块及网络哈希、相邻差异都在[分析清单](manifest.json)中；
-下载链、HTTP 信息、RAR 提取证据在[下载记录](downloads.json)中。
+Raw hashes, section offsets, module signatures, and diffs are cataloged in [manifest.json](manifest.json); download sources and HTTP metadata reside in [downloads.json](downloads.json).
 
-## 获取范围、来源与完整性
+## Scope, Provenance, and Integrity
 
-| 版本 | 官方版本日期 | BIN 字节数 | 原包 SHA-256 前 12 位 | 获取方式 |
+| Version | Official Date | BIN Bytes | Raw SHA-256 (Prefix 12) | Retrieval Method |
 | --- | --- | ---: | --- | --- |
-| 1.00 | 2023-05-25 | — | — | 出厂记录／开源代码可见，原始升级包未取得 |
-| 1.01 | 2023-08-23 | 86,319,173 | `a22e229f9dd1` | 官方 EXE 内静态提取 BIN |
-| 2.00 | 2024-02-07 | 96,221,253 | `ab98e95fd9ff` | 官方 CDN BIN |
-| 2.01 | 2024-04-23 | 96,225,349 | `e6c529847f28` | 官方 CDN BIN |
-| 2.10 | 2025-02-26 | 96,524,357 | `73fcde0b7e57` | 官方 CDN BIN |
-| 3.00 | 2025-07-01 | 99,051,117 | `a2faa72d15f2` | 官方 CDN BIN |
-| 3.01 | 2025-07-16 | 99,051,117 | `1b3223023155` | 官方 CDN BIN |
-| 3.10 | 2025-09-17 | 99,051,117 | `34fc0317ede9` | 官方 CDN BIN |
-| 3.11 | 2026-09-16 | 99,051,117 | `d67413c2ede6` | 既有官方样本，重新核验 |
+| 1.00 | 2023-05-25 | — | — | Documented in OSS index; raw updater binary unobtained |
+| 1.01 | 2023-08-23 | 86,319,173 | `a22e229f9dd1` | Static extraction from official Windows EXE wrapper |
+| 2.00 | 2024-02-07 | 96,221,253 | `ab98e95fd9ff` | Direct download from official Nikon CDN |
+| 2.01 | 2024-04-23 | 96,225,349 | `e6c529847f28` | Direct download from official Nikon CDN |
+| 2.10 | 2025-02-26 | 96,524,357 | `73fcde0b7e57` | Direct download from official Nikon CDN |
+| 3.00 | 2025-07-01 | 99,051,117 | `a2faa72d15f2` | Direct download from official Nikon CDN |
+| 3.01 | 2025-07-16 | 99,051,117 | `1b3223023155` | Direct download from official Nikon CDN |
+| 3.10 | 2025-09-17 | 99,051,117 | `34fc0317ede9` | Direct download from official Nikon CDN |
+| 3.11 | 2026-09-16 | 99,051,117 | `d67413c2ede6` | Existing official sample, re-verified |
 
-日期来自官方 OSS 版本索引；八个更新包的官方 CDN `Last-Modified` 日期亦逐项吻合。
-这些日期不等于包内每个程序的编译时间。完整 SHA-256 保存在 JSON，而不是只保存表中的短标识。
+Dates reflect Nikon OSS index listings, matching official CDN `Last-Modified` timestamps. Full 64-character SHA-256 hashes are recorded in manifest files.
 
-旧版下载页部分已返回 404。通过旧官方页面缓存及第三方历史索引恢复了下载路径，
-**最终下载的文件全部来自 `download.nikonimglib.com`**，没有使用第三方镜像二进制。
-第三方索引只用于发现官方链接；每个版本的发现路径详见[来源调查](SOURCES.md)和[发现清单](discovery.json)。
+Deprecated download pages returning HTTP 404 were resolved via cached official pages and archive indexes; **all payload binaries originate directly from `download.nikonimglib.com`**. Discovery paths are documented in [SOURCES.md](SOURCES.md) and [discovery.json](discovery.json).
 
-1.01 的官方分发包为 `F-Z8-V101W.exe`，70,578,888 字节。
-它包含 RAR3 归档中的 `Z8Update/Z_8_0101.bin`；本次使用本地归档库读取，未执行 EXE。
-提取 BIN 的 RAR CRC32 为 `AE4E54EE`，与归档目录一致，随后再通过 Nikon 内部 CRC 和重编码检查。
-这层 Windows 自解压包装不影响其内部 BIN 仍为旧 XOR 封装的判断。
+Release 1.01 was distributed as self-extracting archive `F-Z8-V101W.exe` (70,578,888 bytes), containing `Z8Update/Z_8_0101.bin` inside a RAR3 stream. It was extracted statically using archive libraries without executing the installer, matching internal RAR CRC32 `AE4E54EE`.
 
-本地 SHA-256 用于固定样本身份，不冒充尼康提供的数字签名认证。
+## Evolution Across the Five Firmware Sections
 
-## 五个分段随版本的变化
+All eight releases contain five sections: EX, Touch, EG, VR, and LI, with valid continuous boundaries and CRCs. "Identical" denotes byte-for-byte equivalence including section CRCs.
 
-八版均为 EX、触控、EG、VR、LI 五段，目录边界连续、CRC 有效。
-下面的“相同”指整个分段逐字节相同，包含尾部 CRC；分段名称变化本身不算内容判断依据。
-
-| 相邻版本 | EX | 触控 | EG 主程序 | VR | LI 容器 |
+| Adjacent Versions | EX | Touch | EG Main | VR | LI Container |
 | --- | --- | --- | --- | --- | --- |
-| 1.01 → 2.00 | 变化 | 相同 | 变化 | 变化 | 变化 |
-| 2.00 → 2.01 | 变化 | 相同 | 变化 | 相同 | 仅 4 字节变化 |
-| 2.01 → 2.10 | 变化 | 相同 | 变化 | 相同 | 变化 |
-| 2.10 → 3.00 | 变化 | 相同 | 变化 | 相同 | 变化 |
-| 3.00 → 3.01 | 相同 | 相同 | 变化 | 相同 | 仅 4 字节变化 |
-| 3.01 → 3.10 | 相同 | 相同 | 变化 | 相同 | 仅 4 字节变化 |
-| 3.10 → 3.11 | 相同 | 相同 | 变化 | 相同 | 仅 4 字节变化 |
+| 1.01 → 2.00 | Changed | Identical | Changed | Changed | Changed |
+| 2.00 → 2.01 | Changed | Identical | Changed | Identical | 4-byte header diff only |
+| 2.01 → 2.10 | Changed | Identical | Changed | Identical | Changed |
+| 2.10 → 3.00 | Changed | Identical | Changed | Identical | Changed |
+| 3.00 → 3.01 | Identical | Identical | Changed | Identical | 4-byte header diff only |
+| 3.01 → 3.10 | Identical | Identical | Changed | Identical | 4-byte header diff only |
+| 3.10 → 3.11 | Identical | Identical | Changed | Identical | 4-byte header diff only |
 
-EG 从 1.01 的 69,079,863 字节增至 2.00 的 78,979,895 字节，
-再于 3.00 增至 81,807,711 字节；3.00 后尺寸保持不变，内容仍有变化。
-整个语料中 EX 有 5 种内容、触控 1 种、EG 8 种、VR 2 种、LI 8 种。
+The EG executable expanded from 69,079,863 bytes in 1.01 to 78,979,895 bytes in 2.00, and 81,807,711 bytes in 3.00, remaining constant in size thereafter while varying in content. Across the corpus, EX has 5 variants, Touch has 1, EG has 8, VR has 2, and LI has 8.
 
-清单另记录了同偏移字节比较、首末差异及部分变化块。
-主程序的链接地址与布局变化会造成大量同偏移差异，**不能把这些字节比例解释为修改了多少函数或多少算法**。
+## AI and DSP Architecture
 
-## AI／DSP：区分程序变化、分发接口和网络数据
+### Version Grouping of the Three CEVA Executables
 
-### 三个 CEVA 程序的版本分组
-
-| 程序类别 | 1.01 | 2.00／2.01／2.10／3.00／3.01／3.10／3.11 |
+| Module Category | 1.01 | 2.00 / 2.01 / 2.10 / 3.00 / 3.01 / 3.10 / 3.11 |
 | --- | --- | --- |
-| 图像处理 | 644,872 字节；532 个已定义函数名；`93c839aef532…` | 692,516 字节；561 个；`b3eebaa20c2a…`，七版完全相同 |
-| 跟踪／运动分析 | 437,664 字节；337 个；`440d3b1867f0…` | 456,004 字节；350 个；`de9610259024…`，七版完全相同 |
-| 神经网络推理 | 5,750,024 字节；3,461 个；`a38f6e96513e…` | 5,750,024 字节；3,461 个；`c7787ceda602…`，七版完全相同 |
+| Image Processing | 644,872 bytes; 532 defined functions; `93c839aef532...` | 692,516 bytes; 561 defined functions; `b3eebaa20c2a...` (Identical across 7 releases) |
+| Tracking / Motion Analysis | 437,664 bytes; 337 defined functions; `440d3b1867f0...` | 456,004 bytes; 350 defined functions; `de9610259024...` (Identical across 7 releases) |
+| Neural Inference | 5,750,024 bytes; 3,461 defined functions; `a38f6e96513e...` | 5,750,024 bytes; 3,461 defined functions; `c7787ceda602...` (Identical across 7 releases) |
 
-三个程序类别由实际函数符号判断，不能仅凭 ELF 存在或源文件名把全部 DSP 工作归为神经网络。
-所有版本合计 24 个 CEVA 实例，去重后为 6 种二进制。
+Program roles are classified by defined symbol profiles. The 24 total CEVA instances deduplicate to 6 distinct binaries.
 
-1.01 → 2.00 的图像处理程序保留原有函数名，并新增 29 个。
-其中包括 `RefCmp`、`refcmp::Line_Ratio`、`refcmp::Init_LutGain`、`frect_calc_dist` 等；
-也含标准运行库函数，不能将 29 个名字等同于 29 项新增产品功能。
-其分发表第 21 槽由空操作变为 `RefCmp`，`NlgCirc` 从第 32 槽移到第 34 槽。
+In 2.00, image processing added 29 functions (including `RefCmp`, `refcmp::Line_Ratio`, `refcmp::Init_LutGain`, `frect_calc_dist`, and runtime routines). Dispatch slot 21 shifted from NOP to `RefCmp`, with `NlgCirc` moving from slot 32 to 34.
+Tracking added 22 functions and removed 9 older names, introducing `MovingDetector_SmoothImageNoDma`, `MedianFilter5x5`, and modified signatures for `Mvd_StepLmvX/Y` and `CreateLmvBgMap`.
 
-跟踪程序新增 22 个函数名、失去 9 个旧名称；部分是参数签名变化，例如 `Mvd_StepLmvX/Y`、
-`BackGroundMap`、`CreateLmvBgMap`，另有 `MovingDetector_SmoothImageNoDma`、`MedianFilter5x5` 等新增名字。
-这些提供运动检测、背景图和跟踪处理发生变化的直接线索，尚未恢复其完整行为和性能影响。
+### Neural Inference 9-Byte Difference Located in Dispatch Table
 
-### 推理 ELF 的 9 字节差异已定位到分发表
+Between 1.01 and 2.00, the neural inference ELF is **identical across 5,750,015 bytes, differing by only 9 bytes**.
+All `.text*` code sections, symbol tables, and program headers are identical; differences reside exclusively in `g_NikonDspFrameworkFunctionTable` within `.data.external`.
 
-1.01 和 2.00 的推理 ELF 有 **5,750,015 字节相同，仅 9 字节不同**。
-所有 `.text*` 代码节、符号表、程序头均相同；变化全部位于 `.data.external` 中的
-`g_NikonDspFrameworkFunctionTable`，不是网络权重或编译时间文本。
+Located at virtual address `0x4221c808` (256 bytes, 64 32-bit pointers), differences map to file offsets `0x468e98` through `0x468ea9`:
 
-该符号在 ELF 中地址为 `0x4221c808`，大小 256 字节，为 64 个 32 位指针。
-变化落在 ELF 文件偏移 `0x468e98` 至 `0x468ea9` 的五个指针槽：
-
-| 表槽（从 0 编号） | 1.01 指向 | 2.00 及以后指向 |
+| Slot (0-indexed) | Target in 1.01 | Target in 2.00+ |
 | --- | --- | --- |
 | 28 | `CCdnnNetwork_Initialize` | `nopFunction` |
 | 29 | `CCdnnNetwork_Release` | `CCdnnNetwork_Initialize` |
@@ -110,81 +84,62 @@ EG 从 1.01 的 69,079,863 字节增至 2.00 的 78,979,895 字节，
 | 31 | `CVehicleDetectionApi` | `CAnimalDetectionApi` |
 | 32 | `nopFunction` | `CVehicleDetectionApi` |
 
-这是明确的函数分发编号调整。它支持调用接口发生配套变化的判断，
-但尚未追踪主 CPU 如何生成这些编号，也不意味着该表可单独替换用于升级功能。
+This remapping indicates dispatch index realignments between the host processor and DSP.
 
-### 两块网络候选在八版中完全一致
+### Invariant Network Candidates Across All Eight Versions
 
-此前跨机型分析识别的 N1、N2，在本次八个 Z8 完整解码的 EG 中均存在：
+Both candidate networks N1 and N2 are present in all eight Z 8 EG sections:
 
-| 候选 | 大小 | SHA-256 |
+| Candidate | Size (Bytes) | SHA-256 |
 | --- | ---: | --- |
 | N1 | 1,042,864 | `1a14b38f7905898d4de87f477d7ec945f4cbcbdcd28482640f16cffc3e156a76` |
 | N2 | 1,083,248 | `418f21fae72c525a7d9b598f0375b520464daeabda8018696e1db69405bb2541` |
 
-候选包含 `XM6NeuPro`、`Darkent2Caffe`、`UserInputBuffer`、卷积／池化／route 层名称。
-长度按照两个头部字段与后继结构推定，方法和边界限制见[前轮 AI 比较](../ai_comparison/REPORT.md)。
-尚未完成整个专有格式解析、类别映射或模型执行；这里的相同结论只覆盖这两块具体数据。
+Both candidates carry `XM6NeuPro`, `Darkent2Caffe`, `UserInputBuffer`, and convolution/pooling/route layer names.
+Nikon introduced dedicated bird detection and auto-capture in version 2.00. Binary analysis indicates **these additions cannot be explained by payload replacements in N1/N2 or machine code modifications in the inference ELF**. New functionality relies on host ARM processing, tracking algorithms, or auxiliary configuration data. See [Nikon 2.00 Press Release](https://www.nikon.com/company/news/2024/0207_firmware_01/).
 
-尼康官方将专用鸟类检测与自动拍摄列为 2.00 的新增功能。
-二进制比较表明，**这些新增功能不能完全由替换 N1／N2 或改写这份推理 ELF 的机器码解释**。
-其他模型、主 CPU 的配置与调度、预处理、跟踪策略等仍需继续追踪。
-不能由此推导“1.01 与 2.00 的全部 AI 一样”，也不能断言只是隐藏开关。
-[尼康 2.00 官方发布说明](https://www.nikon.com/company/news/2024/0207_firmware_01/)。
+## Linux Operating System Evolution
 
-## Linux：变化集中在几个版本节点
+All releases report the `4.14.224-ts-aarch64` banner, but contain two distinct kernel binaries:
 
-所有版本的内核版本串均为 `4.14.224-ts-aarch64`，但存在两个不同的内核二进制：
-
-| 版本范围 | 内核构建时间字符串 | 内核 SHA-256 前 12 位 |
+| Version Range | Kernel Build Date String | Kernel SHA-256 (Prefix 12) |
 | --- | --- | --- |
-| 1.01 至 2.10 | 2023-03-10 | `948ed21b875a` |
-| 3.00 至 3.11 | 2024-12-23 | `6fe644e96fcf` |
+| 1.01 to 2.10 | 2023-03-10 | `948ed21b875a` |
+| 3.00 to 3.11 | 2024-12-23 | `6fe644e96fcf` |
 
-八版内核配置逐字节相同；设备树 0、设备树 1 也各自跨八版逐字节相同。
-每份 CPIO 都有 820 个条目，路径集合相同。文件内容／类型／权限／符号链接目标／设备号的变化如下，
-构建时的时间戳及 inode 编号不作为内容变化：
+Kernel configurations and dual DTBs are identical across all eight releases. CPIO archives contain 820 entries across identical path sets:
 
-| 相邻版本 | 根文件系统中变化的条目 |
+| Adjacent Versions | Modified Rootfs Entries |
 | --- | --- |
-| 1.01 → 2.00 | 六个 Nikon 程序：`LaFtpClient`、`LaIfCtrl`、`LaLiveView`、`LaMainApp`、`LaNetCameraCtrl`、`LaSyncRelease` |
-| 2.00 → 2.01 | 无，压缩根文件系统本身也相同 |
-| 2.01 → 2.10 | `LaFtpClient`、`LaIfCtrl` |
-| 2.10 → 3.00 | 上述六个 Nikon 程序，加 `bin/busybox` 和 `usr/lib/libcrypto.so.1.1` |
-| 3.00 → 3.01 → 3.10 → 3.11 | 无；内核、压缩根文件系统和两份设备树均相同 |
+| 1.01 → 2.00 | Six Nikon executables: `LaFtpClient`, `LaIfCtrl`, `LaLiveView`, `LaMainApp`, `LaNetCameraCtrl`, `LaSyncRelease` |
+| 2.00 → 2.01 | None; compressed rootfs identical |
+| 2.01 → 2.10 | `LaFtpClient`, `LaIfCtrl` |
+| 2.10 → 3.00 | The six Nikon executables above, plus `bin/busybox` and `usr/lib/libcrypto.so.1.1` |
+| 3.00 → 3.01 → 3.10 → 3.11 | None; kernel, rootfs, and dual DTBs identical |
 
-`LaMainApp` 有三个实际版本组：1.01；2.00／2.01／2.10；3.00／3.01／3.10／3.11。
-因此 LI 容器哈希不同不一定意味着 Linux 软件改变。
-2.00 → 2.01 及 3.x 的相邻小更新，仅容器版本字段和 CRC 共四字节变化；其四个 NISI 内部对象哈希均保持相同。
+`LaMainApp` exists in three version groups: 1.01; 2.00–2.10; and 3.00–3.11.
 
-这些结果为后续问题定位提供了范围：3.x 小更新的实质变化在 EG 主程序，不能仅因 LI 文件名换了版本就追查 Linux 应用。
-但尚未把具体 EG 函数修改逐一映射到官方修复条目。
+## Reproducible Artifacts and Verification
 
-## 可复现产物与验证
-
-从 `firmware decode/z-series` 运行：
+Execute from `firmware decode/z-series`:
 
 ```sh
-# 使用已记录的官方链接抓取；只读取 BIN 和静态解压 EXE，不执行下载内容。
-python3 tools/collect_z8_history.py .
-# 解包、校验、提取和相邻版本比较。
-python3 tools/compare_z8_history.py .
-python3 -m unittest discover -s tools -p 'test_*.py'
+# Fetch recorded links and extract statically.
+uv run python tools/collect_z8_history.py .
+
+# Unpack, verify checksums, extract components, and run adjacent comparisons.
+uv run python tools/compare_z8_history.py .
+uv run pytest
 ```
 
-解包与分析代码使用 Python 标准库。1.01 静态提取还使用 7-Zip 列目录；
-若其不含 RAR 解码器，回退到系统 `libarchive`，提取后核对 RAR CRC32。
-已存在的原始文件不会被覆盖；1.01 的既有 BIN 必须与重新提取结果逐字节一致。
+Artifacts generated:
 
-- [discovery.json](discovery.json)、[SOURCES.md](SOURCES.md)：版本清单、官方与索引来源、缺失项。
-- [downloads.json](downloads.json)：官方文件 URL、HTTP 元数据、长度、完整 SHA-256，以及 1.01 包装层的哈希和 CRC。
-- [manifest.json](manifest.json)：逐版分段、DSP、网络、Linux 信息及七组相邻差异。
-- `analysis/Z_8_<版本>/`：完整解码容器、五个原始分段、字符串与 CRC 清单。
-- 本目录 `versions/`：逐版 CEVA ELF、符号表、Linux 内核／配置／设备树／根文件系统及清单。
-- 本目录 `modules/`、`networks/`：按 SHA-256 去重后的六个 DSP 程序、两块网络候选。
-- 本目录 `diffs/`：设备树和内核配置的相邻文本差异；此次全部为空，符合内容哈希相同的结果。
+- [discovery.json](discovery.json), [SOURCES.md](SOURCES.md): Version catalog and retrieval provenance.
+- [downloads.json](downloads.json): URLs, HTTP headers, content lengths, SHA-256 hashes, and RAR CRC32 checksums.
+- [manifest.json](manifest.json): Section layouts, DSP ELFs, network candidates, Linux metadata, and adjacent diffs.
+- `analysis/Z_8_<VERSION>/`: Unpacked legacy sections, strings, and checksum manifests.
+- `versions/`: Per-version CEVA ELFs, symbol tables, Linux kernel images, DTBs, and root filesystems.
+- `modules/`, `networks/`: Deduplicated DSP executables and serialized network candidates.
+- `diffs/`: Textual diffs of DTBs and kernel configs (all empty, matching hash identity).
 
-本轮完成全量原包哈希核对、40 个分段及 8 个容器 CRC、8 次精确重编码，
-并对嵌套 gzip／CPIO／DTB／ELF 做结构与边界检查。
-24 个 CEVA 实例哈希均已核对，去重后的六个 ELF 通过独立 `readelf` 检查；全部 34 项测试通过。
-没有进行真机执行、刷写、性能测量或修改后固件的认证验证。
+All 24 CEVA ELF instances pass `readelf` verification; all 34 automated unit tests pass.

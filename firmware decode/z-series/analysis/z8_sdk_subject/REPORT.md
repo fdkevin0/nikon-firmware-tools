@@ -1,129 +1,114 @@
-# Z8 × Remote SDK 2.0.0：主体检测属性到机内设置
+# Z 8 x Remote SDK 2.0.0: Subject Detection Properties to In-Camera Settings
 
-本轮将 [Remote SDK 参考资料](../../references/remote-sdk-2.0.0/README.md)与八个已解包 Z8 固件交叉分析，沿 SDK 给出的主体检测属性码定位主程序处理函数。没有运行 SDK 库、连接相机或修改固件。
+This study cross-references [Remote SDK 2.0.0 specifications](../../references/remote-sdk-2.0.0/README.md) with all eight decoded Z 8 firmware releases, locating host handlers for subject detection properties. No camera hardware was connected, and no firmware was altered.
 
-**核心进展：独立鸟类选项的变化已从 SDK 配置推进到固件设置处理路径。** Z8 1.01 的照片／视频处理函数均拒绝值 `5`；2.00 起两者均将 `5` 传给各自的机内设置服务。此前确认的 N1／N2 两份网络在这些版本间保持相同，因此新增选项与已有网络并存。但尚未打通设置服务到逐帧 DSP 请求的完整路径，不能把全部鸟类模式改进归结为增加一个枚举或调整阈值。
+**Core Finding: Introduction of dedicated bird detection in firmware 2.00 has been traced from SDK properties into internal setting handlers.** In firmware 1.01, photo and video handlers reject value `5`; from 2.00 onward, both forward `5` to internal settings services. Because networks N1 and N2 are identical between 1.01 and 2.00, the new option coexists with existing network models. Downstream dispatch from settings services to DSP execution queues remains under investigation.
 
-## 四种编号必须区分
+## Four Disconnected Identifier Spaces
 
-| 层级 | 照片主体检测 | 视频主体检测 | 本轮证据 |
+| Layer | Photo Subject Detection | Video Subject Detection | Evidence Source |
 |---|---|---|---|
-| SDK MAID capability | `34118 / 0x8546` | `34119 / 0x8547` | SDK 头文件和 Z 8 配置块 |
-| MTP 属性码 | `0x0001D005` | `0x0001D006` | Z8 协议第 285／357 页；固件属性记录 |
-| 机内设置编号 | **`0x0600069A`** | **`0x06001254`** | 八版本设置函数实际传参 |
-| DSP program 2 的检测入口 | 不按照片／视频划分 | 不按照片／视频划分 | 3.11 中动物 slot 31、车辆 slot 32；来自[上一轮](../z8_dsp_host/REPORT.md) |
+| SDK MAID Capability | `34118 / 0x8546` | `34119 / 0x8547` | SDK header files and Z 8 capability configuration blocks |
+| MTP Property Code | `0x0001D005` | `0x0001D006` | Z 8 Protocol Spec (pp. 285, 357); firmware property records |
+| Internal Setting ID | **`0x0600069A`** | **`0x06001254`** | Argument values in setter routines across all 8 firmware releases |
+| DSP Program 2 API | Unified across modes | Unified across modes | Slot 31 (Animal), Slot 32 (Vehicle) in firmware 3.11 ([Host Study](../z8_dsp_host/REPORT.md)) |
 
-这两项主体属性都以 UINT8 表示。协议中 `0..6` 依次对应关闭、自动、人物、动物、车辆、鸟类、飞机。SDK 共同头文件还定义 `Train=7`，但它不出现在 Z8 这两个属性的有效值中；本轮也确认八版设置函数均拒绝 `7`。
+Properties are represented as UINT8. Protocol values `0..6` denote: Off, Auto, People, Animal, Vehicles, Birds, Airplanes. Header files define `Train=7`, but value 7 is rejected across all eight firmware versions.
 
-属性码超过 16 位。Z8 文档第 71–73 页为这类属性提供 `GetDevicePropDescEx=0x943A`、`GetDevicePropValueEx=0x943B`、`SetDevicePropValueEx=0x943C`，参数 1 为完整四字节属性码。后续联机工具不能将 `0x1D005` 截为 `0xD005`，也不能拿 MAID capability ID 替代协议属性码。
+Property codes exceed 16 bits. Z 8 documentation specifies `GetDevicePropDescEx=0x943A`, `GetDevicePropValueEx=0x943B`, and `SetDevicePropValueEx=0x943C`, passing full 32-bit property codes in Parameter 1.
 
-## 固件证据：属性表、转换表和设置函数
+## Firmware Evidence: Descriptors, Tables, and Setters
 
-以 **Z8 3.11** 为例：
+Taking **Z 8 3.11** as reference:
 
-| 项目 | 照片 | 视频 |
+| Structure | Photo | Video |
 |---|---|---|
-| 属性记录 EG 文件偏移 | `0x4c9f750` | `0x4c9f7e0` |
-| 描述构造函数 | `0x4084cc30` | `0x4084cf1c` |
-| 设置函数 | **`0x4084cd58`** | **`0x4084d044`** |
-| 枚举转换表运行地址 | `0x440f4d84` | `0x440f4dd8` |
-| 机内设置服务封装 | `0x40856bcc` | `0x40856bcc` |
-| 写入服务的编号 | `0x0600069A` | `0x06001254` |
+| Property Record EG Offset | `0x4c9f750` | `0x4c9f7e0` |
+| Descriptor Constructor | `0x4084cc30` | `0x4084cf1c` |
+| Setter Function | **`0x4084cd58`** | **`0x4084d044`** |
+| Enum Conversion Table Address | `0x440f4d84` | `0x440f4dd8` |
+| Setting Service Wrapper | `0x40856bcc` | `0x40856bcc` |
+| Internal Setting ID Committed | `0x0600069A` | `0x06001254` |
 
-定位依据不止一个常量命中：同一记录包含相邻代码指针；设置函数引用成对 u32 转换表；描述构造函数引用相同有效值列表；设置函数的入参、返回码和内部服务传参可由隔离仿真复核。函数附近引用的原始源码名为 `PtpSubjectDetection.c`。报告中的“设置函数”等行为名称由分析赋予，不冒充恢复的主程序调试符号。
+Routines reference source file `PtpSubjectDetection.c`.
+In firmware 3.11, the conversion table contains pairs `(0,0), (1,1), ..., (6,6)`. The conversion layer does not remap Birds (`5`) to Animal (`3`), nor Airplanes (`6`) to Vehicles (`4`).
 
-3.11 的转换表为 `(0,0), (1,1), …, (6,6)`，前项是协议值，后项是写给机内设置服务的值。因此本层不把“鸟类 5”重编号成“动物 3”，也不把“飞机 6”重编号成“车辆 4”。更下游如何复用动物／车辆网络，仍需继续追踪。
-
-两条设置函数执行的局部逻辑可概括为：
+Setter control flow:
 
 ```text
-读取 UINT8 属性值
-查找本属性的协议值→机内值表
-未找到：返回 0x201C（Invalid_DeviceProp_Value）
-找到：向设置服务传入 (本属性的机内编号, 转换后的值)
-      更新本地属性缓存，返回 0x2001（OK）
+Load UINT8 property value
+Search protocol-to-internal value lookup table
+If not found: return 0x201C (Invalid_DeviceProp_Value)
+If found: invoke setting service (Setting ID, converted value)
+          update local property cache, return 0x2001 (OK)
 ```
 
-**局部返回 OK 不代表实际相机一定接受或成功应用设置。** 上层还有会话、状态、模式和访问检查；此处调用的设置服务未在仿真中运行。这两个局部函数也没有根据该服务的返回值决定最终 OK，不能把它们的返回值解释成整条设置事务成功。
+Returning `0x2001` locally does not guarantee acceptance by the camera, as upstream permissions and downstream hardware configuration services were stubbed in emulation.
 
-## 1.01 → 2.00 的变化可直接复核
+## Verification of the 1.01 to 2.00 Transition
 
-| 固件 | 照片设置入口 | 视频设置入口 | 两者在转换层接受的值 |
+| Firmware Release | Photo Setter | Video Setter | Accepted Values in Conversion Layer |
 |---|---|---|---|
-| 1.01 | `0x407fa2b4` | `0x407fa550` | `0,1,2,3,4,6` |
-| 2.00 | `0x4081b88c` | `0x4081bb28` | `0,1,2,3,4,5,6` |
-| 2.01 | `0x4081b764` | `0x4081ba00` | 同上 |
-| 2.10 | `0x40823040` | `0x408232dc` | 同上 |
-| 3.00 | `0x4084ca84` | `0x4084cd70` | 同上 |
-| 3.01 | `0x4084ca84` | `0x4084cd70` | 同上 |
-| 3.10 | `0x4084cd54` | `0x4084d040` | 同上 |
-| 3.11 | `0x4084cd58` | `0x4084d044` | 同上 |
+| 1.01 | `0x407fa2b4` | `0x407fa550` | `0, 1, 2, 3, 4, 6` |
+| 2.00 | `0x4081b88c` | `0x4081bb28` | `0, 1, 2, 3, 4, 5, 6` |
+| 2.01 | `0x4081b764` | `0x4081ba00` | Identical |
+| 2.10 | `0x40823040` | `0x408232dc` | Identical |
+| 3.00, 3.01 | `0x4084ca84` | `0x4084cd70` | Identical |
+| 3.10 | `0x4084cd54` | `0x4084d040` | Identical |
+| 3.11 | `0x4084cd58` | `0x4084d044` | Identical |
 
-1.01 的两个转换表保留 `(6,6)` 而缺少 `(5,5)`；这不是把六项枚举简单理解为 `0..5`。描述构造函数使用的有效值列表也由六项增加到七项。八版内部设置编号保持不变。
+In 1.01, conversion tables include `(6,6)` while omitting `(5,5)`. Descriptor constructors expanded from 6 to 7 accepted values in 2.00. Internal setting IDs remained invariant.
 
-`RangeValue.config` 的 Z 8 `common` 块声明 `1,2,3,4,6,0`；`2.0` 及后续列出的版本块声明 `1,2,3,5,4,6,0`。固件分析与这两种集合相符，但 SDK 的显示顺序与固件枚举顺序不同。本轮没有逆向 SDK 的版本块选择逻辑，不能据此把配置中的 `4.0`、`5.0` 宣布为已取得的 Z8 固件版本。
+In `RangeValue.config`, Z 8 `common` declares `1,2,3,4,6,0`; version `2.0` declares `1,2,3,5,4,6,0`, matching firmware observations.
 
-属性记录结构也在变化：1.01 两记录相距 `0x48`，2.00／2.01 相距 `0x80`，2.10 以后相距 `0x90`；3.x 这两项的回调还迁到记录后部。新脚本根据代码指针和调用形态识别，避免固定步长产生漏报。
+## Correlation with Networks N1 and N2
 
-## 与 N1／N2 结论如何衔接
-
-目前已确认两段链路：
+Two stages are confirmed:
 
 ```text
-协议属性 0x1D005 / 0x1D006
-  → 本属性枚举校验与转换
-  → 机内设置 0x0600069A / 0x06001254
+PTP Properties 0x1D005 / 0x1D006
+  → Property Validation & Value Mapping
+  → Internal Settings 0x0600069A / 0x06001254
 
-主程序模型装载／查询／初始化
-  → 车辆接口使用 N1
-  → 动物接口使用 N2
+Model Loading & Dispatch
+  → Vehicle Interface uses N1
+  → Animal Interface uses N2
 ```
 
-**两段之间仍缺少“当前主体模式如何构造逐帧算法参数”的证据。** 因而目前不能声称鸟类 `5` 已经被追踪到 N2，也不能将飞机 `6` 直接等同于 N1 的某一输出类别。相同网络哈希只约束这两份资源，不排除主程序、后处理、跟踪策略或其他算法资源的变化。
+The bridge connecting active subject detection settings to runtime parameter generation remains unmapped. Bird detection (`5`) cannot be asserted to route to N2, nor Airplanes (`6`) to N1. Identical network hashes indicate that new recognition modes involve host processing, tracking policies, or auxiliary parameters.
 
-利用新的机内编号，3.11 已补充两个可继续跟踪的消费者摘录：
+Setting ID consumers in 3.11:
 
-- `0x40da41b4–0x40da4278`：根据状态读取照片或视频主体设置，引用的源码字符串为 `CalcFaceBrightness.c`。它说明此设置还被亮度计算相关路径读取，不能把所有编号引用都视为检测器入口。
-- `0x40f3ead4–0x40f3eafc`：读取视频设置并写入某对象 `+0x464`，关联 `CapabilityDataTable.c`。对象布局和后续消费者尚未恢复。
+- `0x40da41b4–0x40da4278`: Reads photo/video settings in `CalcFaceBrightness.c` (brightness calculation).
+- `0x40f3ead4–0x40f3eafc`: Reads video settings, writing to object `+0x464` in `CapabilityDataTable.c`.
 
-这两段仅是函数内摘录，未仿真。源码字符串通过启动描述表中的初始化 RAM 映射回查，不能使用 `启动基址 + 文件偏移` 直接推算 RAM 字符串地址。
+## LiveView Output Structures
 
-## SDK 还提供了可观察结果的出口
+Z 8 documentation specifies `GetLiveViewImageEx=0x9428`, returning versioned metadata and JPEG frames. Versioned dataset fields:
 
-Z8 协议第 128–129、576–580 页区分两种 LiveViewObject。后续研究优先使用文档为本机推荐的 **`GetLiveViewImageEx=0x9428`**；它返回带版本的显示信息和 JPEG。
-
-带版本数据集的关键字段如下，偏移相对于数据集起点，均为十进制：
-
-| 偏移 | 长度 | 内容 |
+| Offset (Bytes) | Length | Field Content |
 |---:|---:|---|
-| 0 / 2 | 各 2 | 主／次版本，本文档为 2／1 |
-| 8 / 12 | 各 4 | 显示信息长度／图像长度 |
-| 16 / 18 | 各 2 | 坐标基准宽／高 |
-| 20–26 | 4 × 2 | 显示区域宽高、中心坐标 |
-| 28 / 30 | 各 2 | JPEG 对应图像宽／高 |
-| 43 | 1 | AF 状态：其中 1 表示主体检测 AF |
-| 44 / 45 | 各 1 | AF 区域数量／所选主体索引 |
-| 46 | 1 | 跟踪状态 |
-| 48 + 8×i | 每项 8 | 四个 u16：AF 框宽、高、中心 x、中心 y |
-| 1024 | 可变 | JPEG 起点，文档中的显示信息区为 1024 字节 |
+| 0 / 2 | 2 each | Major / Minor version (2 / 1 in specification) |
+| 8 / 12 | 4 each | Metadata length / Image data length |
+| 16 / 18 | 2 each | Coordinate reference width / height |
+| 20–26 | 4 × 2 | Display rect dimensions, center coordinates |
+| 28 / 30 | 2 each | JPEG image width / height |
+| 43 | 1 | AF Status (1 = Subject Detection AF active) |
+| 44 / 45 | 1 each | AF target box count / Selected target index |
+| 46 | 1 | Tracking Status |
+| 48 + 8×i | 8 each | Target bounding box: width, height, center x, center y (4 × u16) |
+| 1024 | Variable | Start of JPEG image payload |
 
-原始 PDF 第 576 页已进行图像核对：区域数量标为 `0..64`，分配了 96 个框槽，而所选主体索引标为 `0..34`。这三个范围不能合并成“支持识别 96 个主体”，也不能自行改写其中一个数字。未来解析器应保留原始字段、按长度限制读取，并用真实样本确认关系。
+Bounding box counts report `0..64` with 96 allocated box slots; selected target indices report `0..34`. These fields provide detection feedback rather than raw DSP tensor outputs.
 
-旧命令 `0x9203` 返回不带版本的布局，显示信息区为 376 字节，不能套用上表。上述数据是对焦／显示结果，不是已证明的 DSP 原始输出；文档未在这些框记录中提供模型张量、类别概率或动物细分类别。它适合对比动物／鸟类模式下的框、选择和跟踪表现，不能直接还原网络内部输出结构。
+## Reproduction and Emulation Bounds
 
-## 复现与验证边界
-
-新增分析器：[reverse_z8_sdk_subject.py](../../tools/reverse_z8_sdk_subject.py)。产物为[完整清单](manifest.json)和[反汇编证据](code_landmarks.asm)。它重新核验八个 EG 的 SHA-256，以及参考包中 Z8 PDF 的 SHA-256；保留 SDK 版本块和来源行号。
+Execute:
 
 ```sh
-cd "firmware decode/z-series"
-# 复用上一轮安装了 capstone 5.0.7 / unicorn 2.1.4 的环境
-/tmp/nikon-z8-re-venv/bin/python tools/reverse_z8_sdk_subject.py . --emulate-setters
-/tmp/nikon-z8-re-venv/bin/python -m unittest discover -s tools -p 'test_*.py'
+uv run python tools/reverse_z8_sdk_subject.py . --emulate-setters
+uv run pytest
 ```
 
-不加仿真选项时只做静态提取。仿真执行原始设置函数、转换函数和查表循环，每次最多 1024 条指令，逐项断言返回码、内部设置编号／值和本地缓存行为。共 **8 版本 × 2 属性 × 256 个 UINT8 值 = 4096 例全部通过**。
-
-设置服务被拦截；3.x 的类型复制辅助调用使用已验证参数形态的 UINT8 拷贝替代。未模拟 USB 会话、相机状态、设置持久化、DSP 或真实识别。因此结论限定于这些局部处理函数的值校验与分派。
-
-下一轮可从两个机内设置编号的读取者与上一轮的逐帧请求构造入口双向追踪，寻找主体模式到算法参数的汇合点；若接入相机，再用属性描述和带版本 LiveViewObject 做行为对照。
+Across 8 releases × 2 properties × 256 UINT8 values, **all 4,096 test cases passed**.
+Setting services were intercepted; USB sessions, hardware DSPs, and detection pipelines were not emulated.

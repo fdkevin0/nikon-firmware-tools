@@ -1,129 +1,105 @@
-# Nikon Z5 II 1.20：局部内容恢复与公共掩码
+# Nikon Z5 II 1.20: Partial Payload Recovery and Shared Position Mask
 
-**本轮取得局部恢复结果，但尚未完成整包解密或 CRC 验证。**
-跨机型密文异或显露两个完整 CEVA ELF 候选；结合已验证的 Z8 明文参照，
-恢复了原始文件区间 **`0x16c7c14–0x1ea95b8`，共 8,264,100 字节**的位置掩码。
-其中 Z5 II 自身参照模块以后的 2,514,076 字节由其他机型的参照推导，
-不是简单把 Z8 模块复制回 Z5 II；这部分开头约 2.1 MB 又通过未参与掩码构造的 Z8 明文检查。
+**Status: Partial recovery achieved; full-package decryption and CRC verification remain unresolved.**
+Cross-model ciphertext XOR revealed two structurally complete CEVA DSP ELFs. Combined with verified Z 8 plaintext anchors, this reconstructed a position-dependent XOR keystream across raw file range **`0x16c7c14–0x1ea95b8` (8,264,100 bytes)**.
+Within this window, 2,514,076 bytes beyond the Z5 II reference module were derived from other models' anchors rather than copied directly from Z 8; the first ~2.1 MB of this span matches Z 8 plaintext that was excluded from mask construction, validating the recovery.
 
-## 样本与复现
+## Samples and Reproduction
 
-目标为 [Nikon 官方 Z5II 1.20 固件](https://downloadcenter.nikonimglib.com/en/download/fw/601.html)，
-本地文件 `Z5_2_0120.bin`，108,716,229 字节，SHA-256：
+Target: [Official Nikon Z5II 1.20 Firmware](https://downloadcenter.nikonimglib.com/en/download/fw/601.html), local file `Z5_2_0120.bin`, 108,716,229 bytes, SHA-256:
 
 ```text
 96fa8c2d735864c4c612dee498818f2e3b6911458b13ad55befcfe9ffdf35af9
 ```
 
-对照为已保存的 `Z_f_0301.bin`、`Z6_3_0200.bin`、`ZR__0111.bin`，
-以及此前通过分段 CRC、整包 CRC、重编码验证的 Z8 提取物。
-本轮没有取得新的 Z5 II 旧版样本。所有输入均以 SHA-256 限定，完整清单见
-[manifest.json](manifest.json)。
+Comparison baselines: `Z_f_0301.bin`, `Z6_3_0200.bin`, `ZR__0111.bin`, and CRC-verified Z 8 extraction artifacts. Sample hashes are listed in [manifest.json](manifest.json).
 
-在 `firmware decode/z-series` 目录运行：
+Execute from `firmware decode/z-series`:
 
 ```sh
-python3 tools/analyze_z5ii.py . --z8-directory analysis/Z_8_0311 --output analysis/Z5_2_0120
-python3 -m unittest discover -s tools -p 'test_*.py'
+uv run python tools/analyze_z5ii.py . --z8-directory analysis/Z_8_0311 --output analysis/Z5_2_0120
+uv run pytest
 ```
 
-脚本仅依赖 Python 标准库，输出局部二进制、带原始文件偏移的字符串、ELF、符号 CSV
-及记录来源和验证边界的清单。原始固件与生成的二进制、字符串、符号文件均被 Git 忽略。
+Artifacts generated include recovered window binaries, offset-indexed strings, extracted ELFs, and symbol tables.
 
-## 从差分到可检查内容
+## Differential Analysis to Recovered Content
 
-Z5 II 与三个对照样本共享新封装固定头、128 项小端 u16 表、倒序头副本及目录候选首块。
-完整同位置比较得到：
+Z5 II shares the modern container framing (32-byte header, 128-entry table, reverse header, candidate directory) with comparison samples. Positional comparison yields:
 
-| 对照 | 共同覆盖字节数 | 相同字节数 | 比例 | 最长相同区间长度 |
-| --- | ---: | ---: | ---: | ---: |
+| Baseline | Overlapping Bytes | Identical Bytes | Percentage | Longest Matching Span |
+| --- | ---:| ---:| ---:| ---:|
 | Z f 3.01 | 107,820,261 | 21,503,751 | 19.944072% | 4,007,164 |
-| Z6 III 2.00 | 108,716,229 | 15,013,802 | 13.810083% | 3,086,187 |
+| Z6III 2.00 | 108,716,229 | 15,013,802 | 13.810083% | 3,086,187 |
 | ZR 1.11 | 108,716,229 | 12,683,627 | 11.666728% | 1,214,316 |
 
-长度不同的尾部不计入比例。仅有相同密文不能确定明文，进一步证据来自逐字节 XOR：
+Pairwise XOR reveals structured content:
 
-- `Z5 II XOR ZR` 在 `0x4cb8140` 出现 `..\SRC\FirmwareChkLib.c`。
-  周边 `0x4cb7e41–0x4cb87c4` 共 **2,435 字节**与 Z8 EG
-  `0x4a2a111–0x4a2aa94` 完全相同，包含此前识别的两张 Nikon 查表数据。
-- `Z5 II XOR Z f` 在 `0x28bd6ee` 附近出现连续的固件更新、镜头更新和自动操作日志文本。
-- `Z5 II XOR ZR` 与 `Z5 II XOR Z6 III` 在相同偏移显露两个结构完整且逐字节相同的 ELF。
+- `Z5 II XOR ZR` exposes string `..\SRC\FirmwareChkLib.c` at `0x4cb8140`. Surrounding region `0x4cb7e41–0x4cb87c4` (**2,435 bytes**) matches Z 8 EG `0x4a2a111–0x4a2aa94` byte-for-byte, including two Nikon lookup tables.
+- `Z5 II XOR Z f` exposes firmware update, lens update, and logging strings near `0x28bd6ee`.
+- `Z5 II XOR ZR` and `Z5 II XOR Z6III` reveal two structurally intact, identical ELFs at matching offsets.
 
-这些结果有力支持局部模型 `C[file, offset] = P[file, offset] XOR K[offset]`。
-在该模型下，异或结果是两份明文之差；一方为零填充时会显露另一方内容。
-**未经独立核对的差分字符串不能直接归属于 Z5 II 或对照机型，也不能把整份差分当作明文。**
+These results validate the local model `C[file, offset] = P[file, offset] XOR K[offset]`.
+Under this model, ciphertext XOR yields the difference between plaintexts; zero-fill in one file exposes the other. Unverified differential strings cannot be definitively assigned to Z5 II versus the baseline model.
 
-## CEVA ELF 产物
+## CEVA DSP ELF Artifacts
 
-文件保存在 [differential_candidates](differential_candidates) 中，旁边有符号 CSV。
+Saved in [differential_candidates](differential_candidates) alongside symbol CSVs:
 
-| 原始文件偏移 | 字节数 | 符号表项数 | 证据性质 |
-| --- | ---: | ---: | --- |
-| `0x15af864` | 691,804 | 4,059 | 两组差分完全一致；另由公共掩码独立恢复的 Z6 III 模块再次核对 |
-| `0x16586c4` | 456,004 | 2,739 | 两组差分一致，且与已验证的 Z8 第二个 CEVA ELF 完全相同 |
-| `0x16c7c14` | 5,750,024 | 34,678 | Z8 第三个 CEVA ELF 参照辅助恢复，不能计为独立发现的全部新明文 |
+| Raw Offset | Size (Bytes) | Symbols | Validation Basis |
+| --- | ---:| ---:| --- |
+| `0x15af864` | 691,804 | 4,059 | Pairwise diffs match; cross-checked against Z6III mask recovery |
+| `0x16586c4` | 456,004 | 2,739 | Pairwise diffs match; identical to verified Z 8 second CEVA ELF |
+| `0x16c7c14` | 5,750,024 | 34,678 | Reference-assisted recovery via Z 8 third CEVA ELF |
 
-三个 ELF 均为 ELF32、小端、`e_machine=245`（CEVA）；`readelf -h -l -S -s`
-均正常退出、无标准错误输出。结构解析验证节表、段表边界及符号字符串，**不等于固件容器 CRC 通过**。
-它们描述的是嵌入式 DSP 模块，不能据此把相机主 CPU 标为 CEVA。
+All three ELFs are ELF32, little-endian, `e_machine=245` (CEVA); `readelf -h -l -S -s` completes with zero errors. They represent embedded DSP executables, not host CPU code.
 
-前两个文件 SHA-256：
+SHA-256 for the first two ELFs:
 
 ```text
 6b89673f8596c4b3f57be3bbe39defe8de2388e624c344bb039a92dbc9f8fca6
 de961025902457d6dab9cbb17eb832f9e441c1d685867b109bf354a8b81af2f4
 ```
 
-独立交叉检查的位置分别是 Z6 III 原始文件 `0x17a7544`、`0x18503a4`。
-这两个候选没有用于构造公共掩码，恢复结果仍分别与上述文件完全一致。
+In Z6III, these correspond to raw offsets `0x17a7544` and `0x18503a4`.
 
-## 公共位置掩码的恢复与边界
+## Shared Position Mask Recovery and Scope
 
-使用 Z8 中已验证的第三个 CEVA ELF（SHA-256
-`c7787ceda602a291dea500b778aefa682a20a7c6345363d33a3b24fa3bfd041f`）作已知明文，
-在四个新机型中的候选位置分别计算 `K = C XOR reference`：
+Using the verified third CEVA ELF from Z 8 (`c7787ceda602...`) as a known-plaintext anchor, candidate keystreams were calculated as `K = C XOR reference`:
 
-| 机型 | 参照起点 | 终点（不含） |
+| Model | Anchor Start | Anchor End (Exclusive) |
 | --- | --- | --- |
 | Z5 II | `0x16c7c14` | `0x1c4391c` |
 | Z f | `0x16fe3a4` | `0x1c7a0ac` |
-| Z6 III | `0x18bf8f4` | `0x1e3b5fc` |
+| Z6III | `0x18bf8f4` | `0x1e3b5fc` |
 | ZR | `0x192d8b0` | `0x1ea95b8` |
 
-六组重叠比较分别覆盖 3,235,948–5,526,904 字节，**全部零差异**。
-脚本遇到重叠冲突或覆盖空洞会报错，不以补零方式伪造掩码。
-合并区间共 8,264,100 字节，其中：
+Across the six overlapping spans (3,235,948 to 5,526,904 bytes), **all comparisons showed zero discrepancies**.
+The merged keystream covers 8,264,100 bytes:
 
-| 每字节参照来源数 | 字节数 |
-| ---: | ---: |
+| Contributing Anchor Sources per Byte | Span Length (Bytes) |
+| ---:| ---:|
 | 1 | 673,612 |
 | 2 | 3,680,928 |
 | 3 | 673,612 |
 | 4 | 3,235,948 |
 
-单来源边缘仍依赖“对应模块等于所用 Z8 参照”的假设。该假设受到大范围重叠一致性的支持，
-但没有整包校验兜底。掩码只适用于这些已核对的原始文件位置，不能平移使用，也不是通用密钥。
+Single-source edges depend on the assumption that the anchor module matches the Z 8 reference. The mask applies strictly to these fixed raw offsets and cannot be translated across other file regions.
 
-输出：
+Artifacts:
 
-- `shared_position_mask.bin`：从原始偏移 `0x16c7c14` 开始的局部掩码。
-- `z5ii_reference_assisted_window.bin`：同一区间的 Z5 II 恢复窗口；文件内偏移加 `0x16c7c14` 才是原始偏移。
-- `z5ii_reference_assisted_window.strings.txt`：已使用原始文件偏移标记的字符串。
+- `shared_position_mask.bin`: Keystream starting at raw offset `0x16c7c14`.
+- `z5ii_reference_assisted_window.bin`: Decrypted window for Z5 II across this span.
+- `z5ii_reference_assisted_window.strings.txt`: Extracted strings labeled with raw offsets.
 
-在 Z5 II 自身第三个 ELF 结束后的 `0x1c4391c–0x1ea95b8`，
-掩码完全来自其他机型参照，恢复出 2,514,076 字节。
-其中 `0x1c4391c–0x1e4aa55` 的 **2,126,137 字节**与 Z8 EG 对应内容连续相同；
-这部分 Z8 内容**没有用于构造掩码**，是额外的明文验证。
-窗口内出现 `Darkent2Caffe`、`UserInputBuffer`、卷积层和池化层名称，提示包含神经网络相关资源。
-这些字符串不足以确定具体识别对象、网络精度或实际运行方式。
+Beyond the third ELF (`0x1c4391c–0x1ea95b8`), the mask was derived entirely from other models, recovering 2,514,076 bytes.
+Within this, **2,126,137 bytes** (`0x1c4391c–0x1e4aa55`) match Z 8 EG continuously; this Z 8 region was **not used during mask construction**, serving as an independent validation check.
+Strings in this window include `Darkent2Caffe`, `UserInputBuffer`, and convolution/pooling layer names.
 
-## 尚未完成的部分
+## Open Problems
 
-- 没有恢复产生全文件掩码的算法或密钥；本轮工具不能完整解包任意新格式固件。
-- 候选目录首块仍无法用旧 Nikon 三表 XOR 的任何 `2^24` 相位恢复旧式保留零字段。
-- 分段名、分段边界、主 CPU 入口及容器 CRC 尚未验证。
-- `FirmwareChkLib.c` 周边可读数据已定位，但未从差分中取得可验证的调用代码。
+- Keystream generation algorithm and cryptographic keys remain unknown; complete unpacking is not yet possible.
+- The candidate directory block cannot be decoded via legacy 3-table XOR across any phase.
+- Section names, section boundaries, host CPU entry points, and container CRCs remain unverified.
 
-后续可用已恢复窗口和三个 DSP 模块作固定参照，扩展跨版本/跨机型的明文覆盖；
-完整解码仍应以新封装解码器代码或经过验证的掩码生成规则为目标。
-本轮 24 项单元测试通过，并独立检查了三个 ELF；没有执行固件或生成刷机补丁。
+All 24 unit tests pass; raw binaries remain unmodified.

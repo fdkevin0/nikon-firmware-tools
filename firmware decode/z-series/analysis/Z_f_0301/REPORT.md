@@ -1,13 +1,11 @@
-# Nikon Z f 3.01：新封装跨版本差分
+# Nikon Z f 3.01: Modern Container Cross-Version Differential Analysis
 
-**状态：尚未解密或解包，未验证分段 CRC，也未从 Z f 中提取可反汇编代码。**
-本轮确认 Z f 1.21、3.01、Z6 III 2.00、Z5 II 1.20 和 ZR 1.11
-共享新封装的固定字段。两版 Z f 的密文差分支持继续研究位置相关掩码，
-但尚不能据此给出算法、密钥或已验证的目录。
+**Status: The container is not fully decrypted or unpacked; section CRCs are unverified, and disassemblable code has not been extracted from Z f.**
+This investigation confirms that Z f 1.21, 3.01, Z6III 2.00, Z5II 1.20, and ZR 1.11 share invariant header fields. Ciphertext differentials between the two Z f versions support a position-dependent mask model, but do not yet yield the key generator or verified directory.
 
-## 样本与复现
+## Samples and Reproduction
 
-| 本地样本 | 字节数 | `(文件长度 - 0x280) % 16` |
+| Local Sample | File Size (Bytes) | `(Size - 0x280) % 16` |
 | --- | ---: | ---: |
 | `Z_f_0301.bin` | 107,820,261 | 5 |
 | `Z_f_0121.bin` | 90,124,933 | 5 |
@@ -15,119 +13,94 @@
 | `Z5_2_0120.bin` | 108,716,229 | 5 |
 | `ZR__0111.bin` | 117,159,984 | 0 |
 
-每个样本的完整 SHA-256 见 [manifest.json](manifest.json)，脚本运行前逐一校验。
-Z f 3.01 的 SHA-256 为
-`bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6`。
+Full SHA-256 hashes are cataloged in [manifest.json](manifest.json). Z f 3.01 SHA-256:
+`bfc1ef4ec1588ef10c85e06bf1bf5bcaa7456e49bb2b7160dd4043ab8934d1a6`.
 
-本轮新增的 1.21 样本来自 [Nikon 官方下载页](https://downloadcenter.nikonimglib.com/en/download/fw/545.html)
-及其 [固件下载地址](https://download.nikonimglib.com/archive7/n0iDd008ZRGu06fP5t0730yBc323/Z_f_0121.bin)。
-该样本已具有相同的新头部，因此不能指望通过降至 1.21 获得旧 XOR 封装。
-原始固件只保存在本地并被 Git 忽略。
+Sample 1.21 originates from the [Nikon Download Page](https://downloadcenter.nikonimglib.com/en/download/fw/545.html) and [Payload URL](https://download.nikonimglib.com/archive7/n0iDd008ZRGu06fP5t0730yBc323/Z_f_0121.bin). It already employs the modern header structure; downgrading to 1.21 does not yield a legacy XOR container.
 
-在 `firmware decode/z-series` 下运行：
+Execute from `firmware decode/z-series`:
 
 ```sh
-python3 tools/analyze_zf.py . --output analysis/Z_f_0301
-python3 -m unittest discover -s tools -p 'test_*.py'
-# 可选的有界密码/伪随机数假设探测，需要 PyCryptodome：
-python3 tools/probe_zf_stream.py Z_f_0301.bin > analysis/Z_f_0301/stream_probes.json
+uv run python tools/analyze_zf.py . --output analysis/Z_f_0301
+uv run pytest
+# Optional PRNG/stream cipher probes (requires pycryptodome):
+uv run python tools/probe_zf_stream.py Z_f_0301.bin > analysis/Z_f_0301/stream_probes.json
 ```
 
-主分析只依赖 Python 标准库。输出包括样本摘要、区域差分、目录候选区 XOR、
-完整同位置比较的最长相同区间和旧 XOR 全相位排查结果。
+Outputs include sample digests, regional diffs, candidate directory XORs, matching spans, and full-phase XOR sweeps.
 
-## 五个样本共有的固定结构
+## Shared Invariant Framing Across Five Samples
 
-以下区间均为原始文件偏移，右端不含：
+Offsets represent raw file offsets (right-hand exclusive):
 
-| 区间 | 实际观测 | 解释边界 |
+| Byte Range | Observation | Interpretation Boundaries |
 | --- | --- | --- |
-| `0x000–0x020` | 五个样本逐字节相同的 32 字节 | 尚不知是标识、密钥材料还是其他常量 |
-| `0x020–0x120` | 随样本变化的 256 字节 | 未证实为签名或密文 |
-| `0x120–0x220` | 五个样本完全相同；按小端为 128 个不同的 u16，范围 153–32757 | 全部小于 `0x8000`；不能据此认定为 PRNG 输出 |
-| `0x220–0x240` | 正好是首 32 字节的倒序 | 明确的结构性重复 |
-| `0x240–0x260` | 随样本变化的 32 字节 | 尚未确定校验或密钥语义 |
-| `0x260–0x280` | 32 个 ASCII 空格 | 与旧封装标记形式一致 |
-| `0x280–0x290` | 五个样本完全相同 | 候选目录首块，尚未解码 |
-| `0x290–0x330` | 稀疏字节差异 | 与五个 32 字节目录项的布局相容，但尚未验证 |
+| `0x000–0x020` | 32 invariant bytes across all 5 samples | Unknown whether magic constant, key material, or identifier |
+| `0x020–0x120` | 256 variable bytes per sample | Unverified signature or encrypted block |
+| `0x120–0x220` | Byte-identical across all 5 samples; 128 little-endian u16 values (153–32,757) | All values < `0x8000`; not proven to be PRNG output |
+| `0x220–0x240` | Exact bitwise reverse of initial 32 bytes | Structural repetition |
+| `0x240–0x260` | 32 variable bytes per sample | Unknown checksum or key material |
+| `0x260–0x280` | 32 ASCII space bytes | Preserves spacing convention from legacy container |
+| `0x280–0x290` | Byte-identical across all 5 samples | Candidate directory header block |
+| `0x290–0x330` | Sparse byte differences | Compatible with five 32-byte directory entries |
 
-固定首 32 字节：
+Invariant initial 32 bytes:
 
 ```text
 420601f57f69308eab4d2a4ea3f486e256d93c6d8f165c968e99e4d20a029fb3
 ```
 
-候选目录首块：
+Candidate directory block (`0x280–0x28F`):
 
 ```text
 e14c9918cd6382668a35f65123f14e4f
 ```
 
-以 Z f 3.01 为基准，候选目录项区 `0x290–0x330` 的不同字节数量：
+Discrepant bytes within `0x290–0x330` (160 bytes) relative to Z f 3.01:
 
-| 对照样本 | 160 字节中不同的字节 |
+| Reference Sample | Discrepant Bytes out of 160 |
 | --- | ---: |
 | Z f 1.21 | 20 |
-| Z6 III 2.00 | 28 |
-| Z5 II 1.20 | 30 |
+| Z6III 2.00 | 28 |
+| Z5II 1.20 | 30 |
 | ZR 1.11 | 41 |
 
-固定头和固定表使跨机型比较成为可行入口；它们**不能证明整个包共享同一密钥**。
-多个样本长度不按 16 字节对齐，仅排除了从 `0x280` 到 EOF 全部由完整
-AES ECB/CBC 块组成的简单布局，不能排除带尾部、局部加密、CTR、CTS 等形式。
+The invariant framing enables cross-model comparison, but does not prove that payloads share identical encryption keys. Non-16-byte aligned lengths rule out simple ECB/CBC cipher block chaining without padding or stream modes.
 
-## Z f 1.21 与 3.01 的同位置比较
+## Positional Comparison Between Z f 1.21 and 3.01
 
-比较两者共同覆盖的前 90,124,933 字节，19,306,879 字节相同，占 **21.422350%**。
-3.01 多出的 17,695,328 字节未计入比较，不把长度差异计为不同字节。
+Across their 90,124,933 overlapping bytes, 19,306,879 bytes are identical (**21.422350%**).
+The extra 17,695,328 bytes in 3.01 are excluded from comparison.
 
-最长相同区间包括：
+Longest identical ciphertext spans:
 
-| 起点 | 终点（不含） | 相同字节数 |
+| Start Offset | End Offset | Identical Bytes |
 | --- | --- | ---: |
 | `0x1194ad8` | `0x1578dc5` | 4,080,365 |
 | `0x802224` | `0xb2e34c` | 3,326,248 |
 | `0xbb432` | `0x12e35e` | 470,828 |
 | `0x52018` | `0x80321` | 189,193 |
 
-目录候选区内，差异落在类似版本号、长度和偏移的位置，而保留区保持相同。
-这种稀疏差分和大段相同密文，与跨版本复用位置相关 XOR 掩码的模型相容。
-它不是证明：独立块编码、分区重置或其他确定性编码也可能产生部分相同现象。
-没有明文对应关系时，不能把“相同密文”直接标注为“零填充”或相同代码。
+In the candidate directory, deltas fall on fields corresponding to version strings, lengths, and offsets, while reserved areas remain unchanged.
+Sparse differences and large matching spans are consistent with a position-dependent XOR keystream reused across releases. Without plaintext correspondences, matching ciphertext cannot be definitively labeled as zero-fill or identical code.
 
-若额外假设明文沿用旧目录头 `count=5, header_size=0xd0, reserved=0,0`，
-其前 16 字节的**条件性** XOR 掩码为：
+Assuming the directory header preserves legacy structure (`count=5, header_size=0xd0, reserved=0,0`), the **conditional** XOR mask for the first 16 bytes is:
 
 ```text
 e14c991dcd6382b68a35f65123f14e4f
 ```
 
-在同一假设下，第一段起点应为 `0x260 + 0xd0 = 0x330`。
-这些只是后续已知明文尝试的输入，未输出为已解码目录或分段。
+Under this assumption, Section 0 would begin at `0x260 + 0xd0 = 0x330`.
 
-## 已排查范围
+## Investigated and Excluded Hypotheses
 
-- 旧 Nikon 三表 XOR：在 `0x280` 的候选目录上覆盖全部 `2^24` 相位。
-  八个保留零字节没有任何匹配，合法旧目录数为零。
-  这排除了“仅改变旧 XOR 起点”的方案，前提是旧目录格式仍成立。
-- 三组 32 位 LCG 参数 `(214013,2531011)`、`(1103515245,12345)`、
-  `(1664525,1013904223)`：按输出位 `16..23` 匹配八个候选掩码字节，无命中；
-  按输出位 `16..30` 匹配 128 项表、固定步长 1–32，也无命中。
-  未知高位不影响这些输出位，因此枚举的低 16 位覆盖了相应状态类别。
-- 直接密钥探测共 1,860 项：固定头和固定表的对齐窗口、MD5/SHA-256 派生值，
-  配合脚本列出的 AES 计数器块，以及 ChaCha20/Salsa20 的 nonce 和流偏移。
-  无一匹配八个假定保留零字节。这只是有限假设排查，不能排除上述算法。
+- **Legacy 3-Table XOR**: Evaluated across all `2^24` phases against the candidate directory at `0x280`. Zero phases yielded valid reserved-zero fields. This excludes simple offset shifts of the legacy XOR scheme under the assumed directory format.
+- **32-Bit Linear Congruential Generators (LCGs)**: Parameters `(214013, 2531011)`, `(1103515245, 12345)`, and `(1664525, 1013904223)` matched against candidate mask bytes (bits 16..23) and the 128-entry table (bits 16..30) across strides 1..32 yielded zero hits.
+- **Direct Cipher Probes**: 1,860 candidate configurations (aligned header keys, MD5/SHA-256 derivations, AES-CTR/CBC/ECB blocks, ChaCha20/Salsa20 nonces) produced zero matches against the 8 reserved-zero bytes.
 
-前一轮对 ZR 的结构、Z8 参照解码器与 SHA-1 校验还原见
-[ZR 报告](../ZR__0111/REPORT.md)。Z8 的代码不能直接当作 Z f 解码器。
+## Next Steps and Validation Standards
 
-## 下一入口与验证门槛
+Priority lies in obtaining readable flasher code, bootloader binaries, or authorized RAM/ROM dumps from modern container models to identify routines referencing the 32-byte header or 128-entry table.
+Continued known-plaintext attempts must validate section boundaries, section CRCs, package checksums, and re-encoding roundtrips; matching printable strings or 16-byte headers does not constitute decryption.
 
-优先寻找新封装机型的可读更新器、启动程序或授权取得的固件内存/闪存转储，
-定位固定 32 字节标识、倒序副本检查或 128 项表的使用点。
-已有两版 Z f 与另外三机型样本，可用于检查找到的规则是否跨文件成立。
-继续尝试已知明文时，应验证目录范围、分段连续性、分段 CRC、整包校验和重新编码，
-不能仅凭一个可打印文件名或 16 字节头部宣布解密成功。
-
-本轮主分析运行成功，全部 22 项现有与新增单元测试通过；独立流探测脚本运行完成。
-没有执行固件代码、生成刷机补丁或修改原始样本。
+All 22 unit tests pass; firmware binaries remain unmodified.

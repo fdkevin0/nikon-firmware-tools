@@ -1,94 +1,87 @@
-# Nikon Z 系列固件语料库与批量分析
+# Nikon Z-Series Firmware Corpus and Batch Analysis
 
-本轮已取得 **官方产品目录中全部 15 款 Z 系列机身的当前公开固件**。
-加上先前保存的 Z f 1.21，共 **16 份样本、1,155,141,671 字节（约 1.16 GB）**。
-其中 10 份旧格式固件已完整解包，**42 个分段 CRC、10 个整包 CRC、10 次逐字节重编码全部通过**；
-另外 6 份新格式样本只完成结构分析与局部参照辅助恢复，不能用于完整重编码或刷写。
+This phase has acquired the **current publicly available firmware for all 15 Z-series camera bodies in Nikon's official product catalog**.
+Combined with previously archived Z f 1.21, the dataset comprises **16 firmware samples totaling 1,155,141,671 bytes (~1.16 GB)**.
+Among them, 10 legacy-format firmware images are fully decoded, with **all 42 section CRCs, 10 package CRCs, and 10 bit-for-bit re-encoding roundtrips verified**;
+the remaining 6 modern container format samples have undergone structural analysis and local reference-assisted recovery, but cannot yet be fully re-encoded or flashed.
 
-后续 AI 比较另取得 Z f 1.10，随后又补齐 Z8 的八个公开更新版本；当时样本总数为 24。后续[全历史采集](../all_history/REPORT.md)已扩展至 148 份。
-本页及其清单保留这轮 16 份样本的结果。
-新增样本、AI 模块和网络数据比较见[后续报告](../ai_comparison/REPORT.md)，
-Z f 新封装的最早实证已前推至 1.10，见[版本调查](ZF_PACKAGING_HISTORY.md)；
-Z8 逐版分析见[历史固件报告](../z8_history/REPORT.md)。
+Subsequent AI comparative studies separately acquired Z f 1.10 and later completed all eight public update releases of the Z 8, bringing the working sample set to 24 at that stage. Subsequent [comprehensive historical acquisition](../all_history/REPORT.md) expanded this to 148 releases.
+This report and its manifests preserve the findings from this 16-sample baseline.
+For expanded samples, AI modules, and serialized network data comparisons, see the [subsequent comparison report](../ai_comparison/REPORT.md).
+The earliest verified occurrence of the modern Z f container has been traced to 1.10 in the [version survey](ZF_PACKAGING_HISTORY.md);
+per-version analysis of the Z 8 is detailed in the [historical firmware report](../z8_history/REPORT.md).
 
-这里的“全机型覆盖”不等于“所有历史版本已下载”。官方变更记录提到 164 个机型/版本组合，
-本地持有其中 16 个；其余 148 个在本轮检索的官方页面中未发现对应下载链接。
-其中也可能包含从未单独公开下载的出厂版本，不能把它们全部称为已下架下载。
+Full model coverage in this catalog phase does not imply that every historical release has been downloaded. Official change logs reference 164 model/version combinations, of which 16 were locally held in this batch; the remaining 148 had no corresponding active download links on the queried official pages.
+Some of these records correspond to factory-installed versions never made available for standalone download and cannot be categorized simply as deprecated links.
 
-## 来源、范围与下载状态
+## Sources, Scope, and Download Status
 
-机型来自 [Nikon 官方产品 XML](https://downloadcenter.nikonimglib.com/en/1/product_data.xml)，
-包括 Z 系列无反机身及单独分类的 ZR，排除 NIKKOR Z 镜头、增距镜和附件。
-逐款读取产品页及固件下载页，经官方 `crossgate.nikonimglib.com` 跳转到 Nikon 下载 CDN。
-保存了最终 URL、长度、HTTP 元数据和本地 SHA-256；服务器未提供可独立认证的 SHA-256，
-因此本地哈希用于固定样本身份，不冒充官方签名验证。
+Model targets were extracted from Nikon's [official product XML](https://downloadcenter.nikonimglib.com/en/1/product_data.xml), covering Z-series mirrorless bodies and the separately classified ZR, while excluding NIKKOR Z lenses, teleconverters, and accessories.
+Product and download pages were crawled sequentially, following official `crossgate.nikonimglib.com` redirects to the Nikon download CDN.
+Final URLs, content lengths, HTTP metadata, and local SHA-256 hashes were recorded; because Nikon servers do not provide standalone authoritative SHA-256 signatures, local hashes establish sample provenance without purporting to represent official signature verification.
 
-扫描了 [2018](https://downloadcenter.nikonimglib.com/en/update/index/2018.html) 至
-[2026](https://downloadcenter.nikonimglib.com/en/update/index/2026.html) 的年度更新索引。
-当前 HTML 中共找到 15 个 Z 机身固件链接，与产品页指向相同的现行版本；
-页面的“More”只展开已有 HTML，没有遗漏待加载的分页请求。
-此前的 Z f 1.21 下载页本轮返回 404，已保存的原始文件继续保留。
+Annual update indexes from [2018](https://downloadcenter.nikonimglib.com/en/update/index/2018.html) through [2026](https://downloadcenter.nikonimglib.com/en/update/index/2026.html) were scanned.
+A total of 15 current Z-body firmware links were located in active HTML, matching active versions on product pages; page "More" buttons expand embedded HTML without hidden paginated requests.
+The earlier Z f 1.21 download page returned HTTP 404 during this crawl; the previously archived raw binary is retained.
 
-- [下载清单与官方来源](manifest.json)：15 款产品、下载页、最终 URL、文件哈希、历史索引与失败状态。
-- [历史版本覆盖表](history_coverage.csv)：逐项区分当前已下载、已保留旧版、只在变更记录中出现的版本。
-- [批量分析清单](deep_manifest.json)：校验结果、分段、Linux、ELF 和局部掩码证据。
+- [Download Manifest & Official Sources](manifest.json): 15 catalog products, download pages, final URLs, file hashes, index history, and error states.
+- [Historical Version Coverage Matrix](history_coverage.csv): Itemized accounting of current downloads, retained legacy files, and changelog-only versions.
+- [Batch Analysis Manifest](deep_manifest.json): Checksum validations, section layouts, Linux components, ELF structures, and local mask evidence.
 
-## 当前公开版的逐机型结果
+## Per-Model Results for Current Public Releases
 
-| 机型 | 版本 | 封装 | 结果 | 本地报告 |
+| Model | Version | Packaging | Result | Local Report |
 | --- | --- | --- | --- | --- |
-| Z 30 | 1.20 | 旧 XOR，标记 `0x20` | 3 段，全部校验通过 | [报告](../Z_30_0120/REPORT.md) |
-| Z 5 | 1.50 | 旧 XOR，标记 `0x20` | 4 段，全部校验通过 | [报告](../Z_5_0150/REPORT.md) |
-| Z 50 | 2.60 | 旧 XOR，标记 `0x20` | 3 段，全部校验通过 | [报告](../Z_50_0260/REPORT.md) |
-| Z 6 | 3.80 | 旧 XOR，标记 `0x20` | 4 段，全部校验通过 | [报告](../Z_6_0380/REPORT.md) |
-| Z 6II | 1.70 | 旧 XOR，标记 `0x20` | 5 段，全部校验通过 | [报告](../Z6_2_0170/REPORT.md) |
-| Z 7 | 3.80 | 旧 XOR，标记 `0x20` | 4 段，全部校验通过 | [报告](../Z_7_0380/REPORT.md) |
-| Z 7II | 1.70 | 旧 XOR，标记 `0x20` | 5 段，全部校验通过 | [报告](../Z7_2_0170/REPORT.md) |
-| Z 8 | 3.11 | 旧 XOR，标记 `0x20` | 5 段，全部校验通过 | [报告](../Z_8_0311/REPORT.md) |
-| Z 9 | 5.32 | 旧 XOR，标记 `0x20` | 6 段，全部校验通过 | [报告](../Z_9_0532/REPORT.md) |
-| Z fc | 1.81 | 旧 XOR，标记 `0x20` | 3 段，全部校验通过 | [报告](../Z_fc_0181/REPORT.md) |
-| Z f | 3.01 | 新封装，标记 `0x260` | 局部参照辅助恢复，整包未解 | [报告](../Z_f_0301/REPORT.md) |
-| Z50II | 1.11 | 新封装，标记 `0x260` | 新样本验证公共掩码，整包未解 | [报告](../Z50_2_0111/REPORT.md) |
-| Z5II | 1.20 | 新封装，标记 `0x260` | 局部参照辅助恢复，整包未解 | [报告](../Z5_2_0120/REPORT.md) |
-| Z6III | 2.00 | 新封装，标记 `0x260` | 局部窗口内 3 个可解析 ELF，整包未解 | [批量结果](../Z6_3_0200/survey/manifest.json) |
-| ZR | 1.11 | 新封装，标记 `0x260` | 局部窗口内 3 个可解析 ELF，整包未解 | [批量结果](../ZR__0111/survey/manifest.json) |
+| Z 30 | 1.20 | Legacy XOR, marker `0x20` | 3 sections, all checksums passed | [Report](../Z_30_0120/REPORT.md) |
+| Z 5 | 1.50 | Legacy XOR, marker `0x20` | 4 sections, all checksums passed | [Report](../Z_5_0150/REPORT.md) |
+| Z 50 | 2.60 | Legacy XOR, marker `0x20` | 3 sections, all checksums passed | [Report](../Z_50_0260/REPORT.md) |
+| Z 6 | 3.80 | Legacy XOR, marker `0x20` | 4 sections, all checksums passed | [Report](../Z_6_0380/REPORT.md) |
+| Z 6II | 1.70 | Legacy XOR, marker `0x20` | 5 sections, all checksums passed | [Report](../Z6_2_0170/REPORT.md) |
+| Z 7 | 3.80 | Legacy XOR, marker `0x20` | 4 sections, all checksums passed | [Report](../Z_7_0380/REPORT.md) |
+| Z 7II | 1.70 | Legacy XOR, marker `0x20` | 5 sections, all checksums passed | [Report](../Z7_2_0170/REPORT.md) |
+| Z 8 | 3.11 | Legacy XOR, marker `0x20` | 5 sections, all checksums passed | [Report](../Z_8_0311/REPORT.md) |
+| Z 9 | 5.32 | Legacy XOR, marker `0x20` | 6 sections, all checksums passed | [Report](../Z_9_0532/REPORT.md) |
+| Z fc | 1.81 | Legacy XOR, marker `0x20` | 3 sections, all checksums passed | [Report](../Z_fc_0181/REPORT.md) |
+| Z f | 3.01 | Modern container, marker `0x260` | Local reference-assisted recovery; full container undecoded | [Report](../Z_f_0301/REPORT.md) |
+| Z50II | 1.11 | Modern container, marker `0x260` | Common mask validated on new sample; full container undecoded | [Report](../Z50_2_0111/REPORT.md) |
+| Z5II | 1.20 | Modern container, marker `0x260` | Local reference-assisted recovery; full container undecoded | [Report](../Z5_2_0120/REPORT.md) |
+| Z6III | 2.00 | Modern container, marker `0x260` | 3 parseable ELFs in recovery window; full container undecoded | [Batch Manifest](../Z6_3_0200/survey/manifest.json) |
+| ZR | 1.11 | Modern container, marker `0x260` | 3 parseable ELFs in recovery window; full container undecoded | [Batch Manifest](../ZR__0111/survey/manifest.json) |
 
-额外保留的 Z f 1.21 同样是新封装，纳入局部掩码交叉验证。
-早先的单机报告保留当时的研究结论；本轮最新跨机型结果以本报告和批量清单为准。
+The separately preserved Z f 1.21 is likewise a modern container sample, included in cross-validation of the local mask.
+Earlier single-model reports record findings from their respective analysis sessions; the cross-model comparative findings here and in the batch manifests supersede earlier single-model snapshots.
 
-## 可解包组的主要发现
+## Key Discoveries in the Decodable Group
 
-Z 30、Z 5、Z 50、Z 6、Z 6II、Z 7、Z 7II、Z fc 的 EG 分段均包含
-`SMP T-Kernel` 标识。Z 6II 和 Z 7II 各有名称带 `mas`、`sla` 的两份 EG 映像，
-两者都含该标识；这不是单一主映像外再加一个 Linux 容器。
+The EG main executable sections of Z 30, Z 5, Z 50, Z 6, Z 6II, Z 7, Z 7II, and Z fc all feature the `SMP T-Kernel` operating system identifier.
+Z 6II and Z 7II each contain two EG images labeled `mas` (master) and `sla` (slave), both carrying this identifier; this architecture represents dual T-Kernel execution cores rather than a single primary image coupled with a Linux container.
 
-Z8、Z9 均有 SOLID 标识、三个 CEVA ELF 和独立的 `NISI` Linux 分段。
-Z9 的六段分别是 EX、触控、EG、VR、`_gst00_0017.bin`、Linux；
-本轮没有仅凭名字给 `_gst00_0017.bin` 指定处理器或用途。
+Z 8 and Z 9 contain SOLID OS identifiers, three embedded CEVA DSP ELFs, and an independent `NISI` Linux payload section.
+Z 9 contains six sections: EX, Touch, EG, VR, `_gst00_0017.bin`, and Linux.
+No specific processor or subsystem role is assigned to `_gst00_0017.bin` purely on the basis of its filename.
 
-| 项目 | Z8 3.11 | Z9 5.32 |
+| Item | Z 8 3.11 | Z 9 5.32 |
 | --- | --- | --- |
-| Linux 内核标识 | `4.14.224-ts-aarch64` | `4.14.224-ts-aarch64` |
-| 内核构建时间字符串 | 2024-12-23 | 2025-07-16 |
-| CPIO 条目数 | 820 | 1,505 |
-| LaMainApp | ELF64，AArch64 | ELF64，AArch64 |
-| 嵌入 CEVA ELF 数 | 3 | 3 |
+| Linux Kernel Banner | `4.14.224-ts-aarch64` | `4.14.224-ts-aarch64` |
+| Kernel Build Timestamp String | 2024-12-23 | 2025-07-16 |
+| CPIO Archive Entries | 820 | 1,505 |
+| LaMainApp | ELF64, AArch64 | ELF64, AArch64 |
+| Embedded CEVA DSP ELFs | 3 | 3 |
 
-两者 `/usr/bin/LaMainApp` 逐字节相同，SHA-256 为
-`d9abc0aac413318fbf0076347b160414779e424987f9d68b26c1c8cb0ba61428`。
-第三个 CEVA ELF 也相同，正是新格式局部恢复采用的已知明文参照。
-Linux 的 gzip、CPIO 和两个设备树均通过对应结构检查；提取根文件系统时只写普通文件，
-符号链接、设备节点等记录为元数据，不构造成可启动系统。
+The primary user-space application `/usr/bin/LaMainApp` is byte-for-byte identical between Z 8 3.11 and Z 9 5.32, with matching SHA-256:
+`d9abc0aac413318fbf0076347b160414779e424987f9d68b26c1c8cb0ba61428`.
+Their third CEVA DSP ELF is also identical, serving as the known plaintext anchor used for local recovery of modern containers.
+Gzip streams, CPIO archives, and dual Device Tree Blobs in the Linux sections passed structural validation; extracted root filesystems write regular files only, while symlinks and device nodes are cataloged as metadata rather than constructed into a bootable host filesystem.
 
-在十份已解包固件的所有分段中，未直接发现完整的新格式固定首 32 字节或完整 256 字节 u16 表。
-这只是针对这些常量的原样搜索，不能排除常量被生成、变换或间接存储。
+Direct byte searches across all sections of the 10 decoded legacy firmware images revealed neither the full 32-byte fixed header nor the 256-byte u16 table found in modern containers.
+This literal search does not exclude the possibility that these constants are generated, permuted, or indirectly stored.
 
-## 新格式的跨机型局部恢复
+## Cross-Model Local Recovery of the Modern Container Format
 
-本轮使用此前 Z5 II 分析产生的掩码作为基线，再以唯一的 64 字节参照片段定位新样本中的 CEVA 模块。
-候选位置必须满足大范围掩码重叠逐字节一致；仅共享固定头或出现可打印字符串不能通过验证。
+This phase leveraged the position-dependent mask derived from earlier Z5 II analysis as a baseline, using a 64-byte unique reference snippet to locate the CEVA module in new samples.
+Candidate positions require byte-for-byte consistency across a large overlapping mask window; sharing a fixed header or containing printable strings alone is insufficient.
 
-| 样本 | 第三个 CEVA ELF 原始偏移 | 与原基线重叠、全部一致的字节 |
+| Sample | Third CEVA ELF Raw Offset | Overlapping Identical Bytes with Baseline |
 | --- | --- | ---: |
 | Z50II 1.11 | `0x16c20bc` | 5,726,640 |
 | Z f 1.21 | `0x16c7904` | 5,749,240 |
@@ -97,42 +90,41 @@ Linux 的 gzip、CPIO 和两个设备树均通过对应结构检查；提取根�
 | Z6III 2.00 | `0x18bf8f4` | 5,750,024 |
 | ZR 1.11 | `0x192d8b0` | 5,750,024 |
 
-六组派生掩码的 **15 个两两重叠区全部零差异**，合并区间为：
+Across the 6 derived masks, **all 15 pairwise overlapping regions exhibit zero discrepancy**, merging into a unified window:
 
 ```text
-原始文件偏移 [0x16c20bc, 0x1ea95b8)
-长度 8,287,484 字节；比上一轮增加 23,384 字节
+Raw File Offset Range: [0x16c20bc, 0x1ea95b8)
+Length: 8,287,484 bytes (an expansion of 23,384 bytes over the previous run)
 ```
 
-公共掩码保存在 `analysis/catalog/shared_position_mask.bin`。
-六份固件各自的恢复窗口、带原始偏移的字符串和 ELF 位于 `analysis/<样本名>/survey/`。
-共导出 10 个结构可解析的 ELF 实例，其中有重复模块；不能把实例数量当作十种不同程序。
+The shared position mask is archived in `analysis/catalog/shared_position_mask.bin`.
+Each of the 6 firmware samples has its recovered window, offset-indexed strings, and extracted ELFs in `analysis/<SAMPLE_DIR>/survey/`.
+A total of 10 structurally valid ELF instances were exported, containing duplicate modules; the instance count should not be conflated with 10 distinct programs.
 
-Z50 II 和旧版 Z f 是本轮新增的掩码验证样本。这些结果支持六份样本在该区间复用位置相关 XOR 掩码，
-但并未恢复全文件掩码生成器或密钥。参照模块本身属于已知明文注入，不能作为独立新明文发现；
-单来源边缘仍依赖参照一致性假设，所有新格式样本都尚未通过整包 CRC。
+Z50 II and the earlier Z f sample represent newly added mask validation targets. These results confirm that all 6 samples reuse a position-dependent XOR keystream within this window, but do not reconstruct the global keystream generator or cryptographic key. The reference module itself constitutes an injected known-plaintext anchor rather than an independently discovered payload; outer boundaries rely on reference consistency assumptions, and none of the modern format samples have passed full-package CRC verification.
 
-## 复现与产物
+## Reproduction and Generated Artifacts
 
-在 `firmware decode/z-series` 下执行：
+Execute from `firmware decode/z-series`:
 
 ```sh
-# 读取官方产品目录和年度更新索引，并下载当前可访问的固件；不执行下载内容。
-python3 tools/collect_z_series.py . --through-year 2026 --download
-# 解包、校验、检查嵌套结构，并进行局部掩码验证与扩展。
-python3 tools/analyze_z_catalog.py .
-python3 -m unittest discover -s tools -p 'test_*.py'
+# Fetch active firmware from product catalog and annual indexes (static download only).
+uv run python tools/collect_z_series.py . --through-year 2026 --download
+
+# Unpack, verify, inspect nested structures, and perform mask validation/extension.
+uv run python tools/analyze_z_catalog.py .
+uv run pytest
 ```
 
-元数据页面保存在 `analysis/catalog/pages/`；重复收集会复用缓存。
-需要重新发现官方版本时，应先将该缓存目录移到别处，再运行收集命令。
-已存在的原始固件不会被覆盖；长度冲突会报告失败。
-新下载先写临时文件，完成长度检查后才发布到最终文件名。
+Metadata pages are cached in `analysis/catalog/pages/`; repeated runs reuse cached HTML.
+To perform clean discovery against Nikon's servers, relocate or delete the cache directory before running the collection tool.
+Existing binary files are not overwritten; length mismatches trigger errors.
+New downloads stream to temporary files and are promoted to their final filename only upon verifying expected Content-Length.
 
-局部恢复步骤依赖此前 Z8 和 Z5 II 报告中的已验证参照产物。
-如果只保留原始固件，可先按 [Z8](../Z_8_0311/REPORT.md) 和 [Z5 II](../Z5_2_0120/REPORT.md) 的命令生成这些参照。
-脚本会校验掩码与参照 SHA-256；没有掩码时仍可完成旧格式解包和新格式结构统计。
+Local recovery relies on verified reference artifacts from earlier Z 8 and Z5 II reports.
+When working solely from raw binaries, generate these references following the instructions in the [Z 8](../Z_8_0311/REPORT.md) and [Z5 II](../Z5_2_0120/REPORT.md) reports.
+Analysis scripts verify mask and reference SHA-256 hashes; in the absence of a mask, legacy format decoding and modern container structural analysis proceed unaffected.
 
-每份旧格式固件的解包结果位于 `analysis/<样本名>/`，批量深入结果位于其 `survey/`。
-原始固件、提取二进制、Linux 普通文件及符号表保留本地并被 Git 忽略；报告、下载清单与顶层分析清单可纳入版本管理。
-没有执行固件代码、发送相机命令或生成刷机补丁。
+Unpacked files for each legacy firmware reside in `analysis/<SAMPLE_DIR>/`, with detailed inspection artifacts in `survey/`.
+Raw firmware binaries, extracted payloads, Linux rootfs files, and symbol tables remain local and are Git-ignored; reports, download records, and top-level manifests are version-controlled.
+No camera firmware was executed on hardware, no camera commands were transmitted, and no updater patches were generated.

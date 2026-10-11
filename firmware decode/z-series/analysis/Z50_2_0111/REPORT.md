@@ -1,18 +1,18 @@
-# Z50II 固件 1.11 批量分析
+# Z50II Firmware 1.11 Batch Analysis
 
-样本：`Z50_2_0111.bin`，107,828,357 字节。
-官方来源：[下载页](https://downloadcenter.nikonimglib.com/en/download/fw/605.html)。
+Sample: `Z50_2_0111.bin`, 107,828,357 bytes.
+Official source: [Download Page](https://downloadcenter.nikonimglib.com/en/download/fw/605.html).
 
-SHA-256：`f1e92e1ae982a589000f1bc2bcd9e3e57613886b5b72398024ebc569bb8d7439`。
+SHA-256: `f1e92e1ae982a589000f1bc2bcd9e3e57613886b5b72398024ebc569bb8d7439`.
 
-[全系列报告](../catalog/REPORT.md) · [批量清单](survey/manifest.json)
+[All Series Report](../catalog/REPORT.md) · [Batch Manifest](survey/manifest.json)
 
-**尚未完整解密，未验证固件分段或整包 CRC。**
+**Not fully decrypted; firmware section and package CRCs are unverified.**
 
-参照辅助恢复窗口：`0x16c20bc–0x1ea95b8`，8,287,484 字节。
-已知明文参照位置：`0x16c20bc`；与原公共掩码的 5,726,640 字节重叠全部一致。
+Reference-assisted recovery window: `0x16c20bc–0x1ea95b8`, 8,287,484 bytes.
+Known plaintext reference position: `0x16c20bc`; completely identical across the 5,726,640-byte overlap with the original common mask.
 
-窗口和字符串位于 `survey/reference_assisted_window.*`；结构可解析的 ELF 与符号表位于 `survey/expanded_elf/`。
-注入的已知参照不算作独立发现的明文；局部掩码不能用于未覆盖的文件位置。
+Window dumps and extracted strings are located in `survey/reference_assisted_window.*`; structurally parseable ELFs and symbol tables are located in `survey/expanded_elf/`.
+Injected known references do not constitute independently discovered plaintext; local masks cannot be extrapolated to uncovered payload offsets.
 
-未执行固件，未生成刷机补丁。
+Firmware was not executed; no update patches were generated.

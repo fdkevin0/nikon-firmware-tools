@@ -1,99 +1,96 @@
-# Z8 3.11：CaptureSensor 后端模式与命令参数块
+# Z 8 3.11: CaptureSensor Backend Mode and Parameter Command Blocks
 
-本轮把调查推进到 CaptureSensor 后端的模式选择和命令字节流入口，定位到资源编号 `0x5c` 的参数块。**仍未确认全高视频读出配置，也未形成 Open Gate 补丁。**
+This investigation advances to backend mode selection and command byte-stream entry points within the CaptureSensor subsystem, identifying parameter resource block `0x5c`. **Full-height video readout configurations remain unconfirmed, and no Open Gate patch has been established.**
 
-与此前 [采集状态调查](../z8_capture_state/REPORT.md) 的区别是：这里有事件回调注册、参数绑定及发送函数的数据流证据，能够识别传感器后端模块；但高层视频设置到这份后端配置的完整转换尚未连接。不能把前两轮的尺寸枚举或 ImageInfo 几何模式编号直接代入本轮后端模式编号。
+Unlike the [Capture State Survey](../z8_capture_state/REPORT.md), this analysis provides dataflow evidence from event callback registrations, parameter binding, and transport routines, definitively identifying backend sensor modules. However, the complete mapping from high-level video configurations to this backend mode representation remains unresolved. Dimension enumerations or ImageInfo geometry mode IDs from earlier phases cannot be mapped directly to backend mode IDs.
 
-## 样本与产物
+## Samples and Generated Artifacts
 
-- 输入：Z8 3.11 的 `eg2070_0311b0.bi`。
-- SHA-256：`f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`。
-- [复现工具](../../tools/reverse_z8_sensor_backend.py)、[清单与选择表](manifest.json)、[代码摘录](code_landmarks.asm)。
-- `probes.json` 为本地生成的完整探针结果，不纳入版本管理。
+- Input: Z 8 3.11 `eg2070_0311b0.bi`
+- SHA-256: `f85e0138e2f5e660ece8560de62e0d12cb795e0e14983e50f20b61dce906c46c`
+- [Reproduction Script](../../tools/reverse_z8_sensor_backend.py), [Manifest & Selection Tables](manifest.json), [Disassembly Landmarks](code_landmarks.asm)
+- `probes.json` contains full local execution trace logs (Git-ignored).
 
-代码映射仍为 EG 文件偏移加 `0x40160000`；初始化 RAM 使用此前确认的复制映射。所有运行结果均来自隔离的 AArch64 仿真，无相机访问、固件写入或硬件发送。
+Code mappings use EG file offset plus `0x40160000`; initialized RAM follows previously validated mappings. All results derive from isolated AArch64 emulation without camera connections, firmware modification, or hardware packet transmission.
 
-## 1. 模块归属的证据
+## 1. Module Identification Landmarks
 
-模块名称表中，EG 文件 `0x4ccb5e0`／运行地址 `0xa029c05e0` 的记录以 `0x02010000` 开头，名称为 `CaptureSensorSer`。名称本身不是充分证据；相关代码路径如下：
+In the module descriptor table, EG file offset `0x4ccb5e0` (runtime `0xa029c05e0`) begins with `0x02010000`, labeled `CaptureSensorSer`. Dataflow landmarks confirm its role:
 
-1. 服务初始化 `0x40f588bc–0x40f588cc` 把函数 `0x40f58a44` 注册到后端 `0x411540ac`。
-2. 后端将回调保存在 `0xa0496f258`；`0x41151b50` 构造事件 `0x0201000a`，再经该指针调用服务回调。
-3. `0x40f58a44` 按 `0x02010001…0x0201000e` 分派事件。多个事件设置服务状态位并唤醒任务，并非任意传感器配置入口。
-4. 同一服务初始化在 `0x40f5893c–0x40f58944` 查询资源 `0x5c`，随后调用 `0x411540f4 → 0x41166d54`，把返回指针存入 `0xa0496f6a0`。后端时序计算和命令构造均读取该指针。
+1. Service initialization at `0x40f588bc–0x40f588cc` registers routine `0x40f58a44` with backend handler `0x411540ac`.
+2. The backend stores this callback at `0xa0496f258`; routine `0x41151b50` formats event `0x0201000a` and invokes the service callback through this pointer.
+3. Callback `0x40f58a44` dispatches events `0x02010001…0x0201000e`, configuring internal state flags and signaling OS tasks.
+4. Initialization at `0x40f5893c–0x40f58944` queries resource `0x5c` and calls `0x411540f4 → 0x41166d54`, saving the returned pointer to `0xa0496f6a0`. Both backend timing calculations and command construction read from this pointer.
 
-配置入口 `0x41158850` 的服务侧调用点包括 `0x40f54544`、`0x40f5a880`、`0x40f5c3b8` 和 `0x40f5e8e0`。它生成工作配置 `0xa029bdce8`；后续应用函数 `0x41158c04` 对这份配置进行计算和命令调用。
+Service-level invocations of configuration entry `0x41158850` originate from `0x40f54544`, `0x40f5a880`, `0x40f5c3b8`, and `0x40f5e8e0`, populating working configuration structure `0xa029bdce8`. Application routine `0x41158c04` then executes timing calculations and command dispatch over this configuration.
 
-## 2. 请求结构到后端模式
+## 2. Request Structure to Backend Mode Mapping
 
-`0x41158850` 从请求结构整理一个临时结构，调用纯选择函数 `0x411717f4`，然后在 `0x411588f8` 将返回值写入工作配置 `+0`。关键字段关系：
+Routine `0x41158850` constructs a transient structure from the request block, calling pure selector function `0x411717f4`, and writing the return value to working configuration `+0` at `0x411588f8`:
 
-| 配置请求偏移 | 选择函数输入偏移 | 已确认用途 |
+| Request Block Offset | Selector Input Offset | Verified Role |
 | --- | --- | --- |
-| `+0x00` | `+0x00` | 顶层分支选择，显式处理 0…8 |
-| `+0x04` | `+0x04` | 次级选择值 |
-| `+0x1c` | `+0x0c` | 顶层值 5 下的子分支 |
-| 无，入口固定写零 | `+0x20`、`+0x2c`、`+0x2d` | 其他调用方可用的选择标志 |
+| `+0x00` | `+0x00` | Top-level branch selector (handles values 0..8) |
+| `+0x04` | `+0x04` | Secondary selector parameter |
+| `+0x1c` | `+0x0c` | Sub-branch selector under top-level branch 5 |
+| Unset (zero-initialized) | `+0x20`, `+0x2c`, `+0x2d` | Extended selector flags available to other callers |
 
-这里保留字段偏移名称，尚未将它们等同于 SDK 文件格式、FX/DX、分辨率或帧率。
+Selector function output examples (with extended flags set to zero):
 
-标志均为零时的实际函数结果举例：
-
-| 输入 `+0` | 输入 `+0xc` | 输入 `+4` 条件 | 返回后端模式 |
+| Input `+0` | Input `+0xc` | Input `+4` Condition | Returned Backend Mode |
 | --- | --- | --- | --- |
-| 0 | 任意 | 等于 2 | 4 |
-| 0 | 任意 | 其他 | 0 |
-| 2 | 任意 | 任意 | 20 |
+| 0 | Any | Equal to 2 | 4 |
+| 0 | Any | Other | 0 |
+| 2 | Any | Any | 20 |
 | 5 | 1 | 5 / 6 / 7 / 8 | 18 / 16 / 17 / 17 |
 | 5 | 2 | 4 / 5 / 6 / 7 / 8 | 9 / 13 / 16 / 14 / 15 |
-| 5 | 3 | 等于 8／其他 | 15／7 |
-| 6 | 任意 | 任意 | 21 |
-| 7 | 任意 | 任意 | 22 |
-| 8 | 任意 | 0 / 4 / 其他 | 2 / 7 / 14 |
+| 5 | 3 | Equal to 8 / Other | 15 / 7 |
+| 6 | Any | Any | 21 |
+| 7 | Any | Any | 22 |
+| 8 | Any | 0 / 4 / Other | 2 / 7 / 14 |
 
-顶层输入超出范围时返回 0。**0 同时也是正常分支输出，不能将返回 0 自动解释为拒绝请求。** 以上是合成输入的函数行为，不是相机允许使用的模式组合清单。
+Out-of-range top-level inputs return 0. **Mode 0 represents a valid operational branch output; returning 0 must not be assumed to indicate an error state.**
 
-后端模式转命令表列的函数 `0x411679dc` 接受 0…22；23 及更大值返回 `0xffff`。23 个有效编号映射到 15 列：
+Routine `0x411679dc` maps backend mode IDs (0..22) to command table column indices (values >= 23 return `0xffff`):
 
 ```text
-模式:  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
-列号:  0  1  1  1  2  3  4  5  4  5  6  7  8  9  6  7 10  7  9 11 12 13 14
+Mode:   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+Column: 0  1  1  1  2  3  4  5  4  5  6  7  8  9  6  7 10  7  9 11 12 13 14
 ```
 
-另一个函数 `0x41167e40` 选择时序参数行，其结果与上述列号并不完全相同。模式 0 还受第二参数影响。两张表不能混用。
+A separate routine `0x41167e40` selects timing parameter rows, with outputs diverging from the column indices above. Mode 0 is additionally modulated by a second parameter.
 
-## 3. 参数块 `0x5c`
+## 3. Parameter Resource Block 0x5c
 
-实际资源查询链为：
+Resource resolution sequence:
 
 ```text
 40f58940: get_resource(0x5c)
   → 40d6b4f4
-  → 40d6cc6c 或 40d6cc94（取决于运行时状态）
-  → 40d712c8（资源描述符）/ 40d712ac（分组描述符）
+  → 40d6cc6c or 40d6cc94 (runtime dependent)
+  → 40d712c8 (Resource Descriptor) / 40d712ac (Partition Descriptor)
 40f58944: bind_parameter_pointer(result)
   → 411540f4 → 41166d54 → [a0496f6a0]
 ```
 
-资源描述符 `0xa0291da88` 的字段为：ID `0x5c`，分组 38，分组内偏移 0，长度 **`0xf2000`（991,232 字节）**，备用指针初始值 0。分组描述符 `0xa0291e0a8` 的配置基址为 **`0x47e80000`**。
+Resource descriptor `0xa0291da88` specifies: ID `0x5c`, Group 38, Group Offset 0, Content Length **`0xf2000` (991,232 bytes)**, fallback pointer 0. Group descriptor `0xa0291e0a8` assigns base address **`0x47e80000`**.
 
-在明确置零的合成资源状态下，执行原始查询函数得到 `0x47e80000`；再执行原始绑定函数，后端指针变为同值。这验证的是初始描述符路径，不能断言真机始终使用这个地址。备用指针分支还受运行时状态影响。
+Under zero-initialized baseline state, the authentic query resolves to `0x47e80000`, copied to the backend pointer. This validates descriptor resolution, without proving that physical hardware always uses this address.
+This address lies outside the EG direct mapping and initialized RAM regions. Parameter storage payload remains unobtained.
 
-该地址不在本轮 EG 直接映射及初始化 RAM 复制范围内。**参数内容及其装载来源尚未定位**；这不等于证明参数不存在于固件包中，也不足以认定它来自机身校准区。仿真没有用零填充伪造参数内容。
+## 4. Command Selection Pipeline
 
-## 4. 命令选择已追到发送入口
+Dispatch sequence in `0x41166d6c(command, working_config)`:
 
-`0x41166d6c(command, working_config)`：
+1. Translates working configuration `+0` mode to column index.
+2. Reads byte at `0xa02a99e70 + command × 15 + column`. A value of `0xff` indicates the combination is inactive (function returns 1).
+3. For commands 0..46, dispatches via jump table `0xa02a990b0`.
+4. Derives pointers to command byte-stream data, length arrays, or dynamic packet buffers from the parameter block.
+5. Routine `0x41167b7c` reads the 16-bit length array and streams byte buffers sequentially to transport handler `0x41177e0c`, terminating when length is zero.
 
-1. 将工作配置 `+0` 的模式转为列号。
-2. 读取 `0xa02a99e70 + command × 15 + column` 的字节。值 `0xff` 表示该组合不继续发送，函数返回 1。
-3. 对命令 0…46，使用分发表 `0xa02a990b0` 选择处理分支。
-4. 分支从参数块计算命令字节流指针、长度数组指针，或构造可变包。
-5. `0x41167b7c` 读取 16 位长度数组，依次把每段字节流传给 `0x41177e0c`，长度为零时结束。
+For example, Command 5 resolves to `parameter_base + 0xe5810 + matrix_value × 0x1b0`, with length array at `parameter_base + 0xe79d0`:
 
-例如命令 5 的数据地址是 `parameter_base + 0xe5810 + matrix_value × 0x1b0`，长度数组位于 `parameter_base + 0xe79d0`。执行原始选择代码得到：
-
-| 后端模式 | 表项值 | 命令 5 数据偏移 | 长度数组偏移 |
+| Backend Mode | Matrix Value | Command 5 Data Offset | Length Array Offset |
 | --- | --- | --- | --- |
 | 0 | 0 | `0xe5810` | `0xe79d0` |
 | 9 | 5 | `0xe6080` | `0xe79d0` |
@@ -101,34 +98,30 @@
 | 21 | 13 | `0xe6e00` | `0xe79d0` |
 | 22 | 14 | `0xe6fb0` | `0xe79d0` |
 
-这些是**待读取的字节流地址**，不包含真实参数或寄存器值，也没有证明命令 5 的具体功能。尚未确认哪个命令或字节字段控制垂直读出窗口。
+These offsets point to unpopulated parameter buffers. Specific register commands controlling vertical readout windows remain unmapped.
 
-先前关注的 `0x41171e88` 实际计算 `u16(config+0xea) × u16(config+0xf6) / 72`；`0x41171e4c` 使用相关字段做类似计算。结合时序参数表访问，本轮将它们视为时序量查询，不用其返回值推断像素宽高。物理单位仍需进一步确认。
+Routine `0x41171e88` calculates `u16(config+0xea) × u16(config+0xf6) / 72`, representing internal timing ratios rather than pixel spatial dimensions.
 
-## 5. 隔离验证与边界
+## 5. Emulation Verification Matrix
 
-复现命令（需要 Capstone 和 Unicorn）：
+Execute:
 
 ```sh
-cd "firmware decode/z-series"
-python3 tools/reverse_z8_sensor_backend.py
+uv run python tools/reverse_z8_sensor_backend.py
+uv run pytest
 ```
 
-- 500 组请求映射：顶层 0…9、次级值 0…9、子分支 0…4。
-- 7 组额外标志分支，包含表边界和直接字节返回路径。
-- 24 个后端编号，覆盖有效 0…22 及越界 23；逐项比对静态列号表。
-- 36 个只计算地址的命令 × 24 个模式，共 **864** 组；**784** 组到达发送入口，余下 80 组被原始选择逻辑跳过。
-- 每个发送入口均被拦截并返回零；因此返回零只反映这个替代发送函数下的行为，不是硬件成功。
-- 所有记录的数据／长度数组起点均落在描述符给出的参数块长度内。未读取数组，不能据此保证整段字节流都合法。
-- 参数块未映射，参数字节读取和底层传输调用均为零。需要解析参数或构造可变包的 11 个命令未纳入地址探针。
-- 工具锁定输入 SHA-256，使用有指令预算的函数执行；输出在分析通过后才创建。
+- 500 request mappings (top-level 0..9, secondary 0..9, sub-branch 0..4).
+- 7 extended flag branches (verifying table boundaries and direct return paths).
+- 24 backend IDs (0..22 valid, 23 out-of-bounds) verified against static column tables.
+- 864 command permutations (36 address-calculation commands × 24 modes): 784 reached transport dispatch, 80 skipped by selection logic.
+- Transport entry points intercepted; zero return reflects stub success rather than physical hardware acknowledgement.
+- All derived data/length array offsets fall within descriptor-declared span (`0xf2000`).
 
-## 下一步
+## Next Steps
 
-以下第 1、2 项的新进展见[参数装载与采集尺寸转换](../z8_sensor_inputs/REPORT.md)：已确认备用指针赋值、复制参数及尺寸适配层；资源真实字节与完整录像状态仍待确认。
+See [Sensor Inputs and Geometry Adaptation](../z8_sensor_inputs/REPORT.md) for parameter loading and dimension translation analysis:
 
-1. 追踪分组 38／资源 `0x5c` 的装载与备用指针赋值，定位真实参数字节，再解析命令 5 等模式差分。
-2. 补齐 CaptureInformation 的尺寸／格式状态到服务请求的转换。一个明确入口是 `0x40f5bfd8`：其参数指向的配置经 `0x40f5c18c…` 转换后，在 `0x40f5c3b8` 传入后端。
-3. 识别垂直窗口、行时序、采集缓冲区与 RAW 编码输入之间的约束，再判断是否有可复用的全高录像路径。
-
-当前可以确认“菜单白名单之外还有后端模式与命令参数选择”，但还不能确认“改哪个值即可实现 Open Gate”，也不能判断传感器是否支持目标全高帧率。
+1. Trace Group 38 / Resource `0x5c` bootloader copying to recover parameter data.
+2. Bridge CaptureInformation dimensions to service requests (e.g., via entry point `0x40f5bfd8 → 0x40f5c18c → 0x40f5c3b8`).
+3. Evaluate vertical window, line timing, and buffer constraints against RAW encoders.

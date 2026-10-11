@@ -1,8 +1,9 @@
-# Z 系列历史固件下载来源调查
+# Z-Series Historical Firmware Download Sources Survey
 
-调查日期：2026-10-05。共核对 15 款机身、164 个历史版本记录，找到 **148 个版本**的尼康官方固件下载链接。发现与元数据核验独立于后续二进制下载、解包和完整性检查。
+Survey date: 2026-10-05. Across 15 camera bodies and 164 historical version records, official Nikon CDN download URLs were resolved for **148 releases**.
+Source discovery and metadata verification operate independently of binary payload downloads, decoding, and checksum verification.
 
-| 机型 | 已知版本数 | 官方下载链接 | EXE 包装数量 | 未找到原包 |
+| Model | Known Releases | Official Download URLs | EXE Packages | Missing Packages |
 |---|---:|---:|---:|---|
 | Z 30 | 4 | 3 | 1 | 1.00 |
 | Z 5 | 12 | 11 | 9 | 1.00 |
@@ -17,29 +18,33 @@
 | Z fc | 11 | 10 | 6 | 1.00 |
 | Z50II | 7 | 6 | 0 | 1.00 |
 | Z5II | 6 | 5 | 0 | 1.00 |
-| Z6III | 6 | 4 | 0 | 1.00、1.01 |
+| Z6III | 6 | 4 | 0 | 1.00, 1.01 |
 | ZR | 3 | 2 | 0 | 1.01 |
 
-## 版本范围与下载证据
+## Version Scope & Download Evidence
 
-以现有[官方当前版本及变更历史清单](../catalog/history_coverage.csv)为基线，并与[尼康 OSS 版本索引](https://imaging.nikon.com/imaging/oss/en/)交叉核对。保留当前官方页面、Z 8 历史调查及 Z f 1.10 的已知官方地址。
+Baselined against the [current official releases and change history](../catalog/history_coverage.csv) and cross-referenced with the [Nikon OSS release index](https://imaging.nikon.com/imaging/oss/en/).
+Preserves current official pages and established addresses for Z 8 history and Z f 1.10.
 
-系统读取 [TousLesDrivers 尼康历史目录](https://www.touslesdrivers.com/index.php?v_page=26&v_code=535)和[当前目录](https://www.touslesdrivers.com/index.php?v_page=12&v_code=535)，提取准确机型及版本匹配的固件条目，再读取其公开 HTTP 跳转。第三方目录仅用于定位地址；**实际文件均来自尼康官方 `download.nikonimglib.com` CDN**。本轮新增的 125 条链接全部通过官方 CDN HEAD 检查（HTTP 200）。
+Systematic index retrieval through TousLesDrivers Nikon archives resolves exact model/version matches and public HTTP redirects.
+**All actual files originate from official `download.nikonimglib.com` CDN endpoints**.
+All newly discovered URLs were verified via official CDN HTTP HEAD requests (HTTP 200).
 
-最终 [discovery.json](discovery.json) 逐项记录官方地址、线索页、来源、文件名、分发包装文件名、HTTP 状态、长度及 Last-Modified。EXE 包应静态解压取出 BIN，无需运行。包装文件的字节数不等于相机 BIN 字节数。
+[discovery.json](discovery.json) records official URLs, referral pages, sources, filenames, wrapper names, HTTP status codes, payload sizes, and Last-Modified timestamps.
 
-## 日期含义
+## Date Semantics
 
-- `official_oss_index`：尼康 OSS 页面标注的源码公布日期，不单独证明升级包也在同日公开。
-- `cdn_last_modified`：官方 CDN 文件时间，属于下载元数据，不应无条件写成公开发布日期。
-- 未取得可靠日期的记录保留 `null`，不使用第三方收录日期冒充官方发布日期。
+- `official_oss_index`: Release date indicated on Nikon OSS pages; does not independently prove update packages were released on the same day.
+- `cdn_last_modified`: Official CDN file timestamp (download metadata); should not be conflated with public release announcements.
+- Records without verified dates retain `null` rather than substituting third-party scrape dates.
 
-## 未找到的 16 个版本
+## 16 Uncollected Releases
 
-14 款机型的 1.00 与 ZR 1.01 为首发版本记录，未找到公开原始升级包。这不证明原包从未存在，也不能用 GPL 源码包替代完整固件。
+14 models' 1.00 factory releases and ZR 1.01 represent launch-day versions without publicly released updater binaries.
+Additionally, **Z6III 1.01** is documented in Nikon change histories (adding Nikon Imaging Cloud support in Mainland China), but omitted from official OSS indices and mirrors.
+These versions are classified as 'historical presence, binary unobtained'.
 
-另有 **Z6III 1.01**：当前[尼康官方变更历史](https://downloadcenter.nikonimglib.com/en/download/fw/571.html)明确记载其增加中国大陆 Nikon Imaging Cloud 支持，但官方 OSS 索引只列 1.00、1.02 及后续版本，第三方历史目录也缺少 1.01。精确文件名 `Z6_3_0101.bin` 及机型/版本/下载组合检索未找到公开下载地址。因此该版本按“历史存在、原包未取得”保留，不能把它算作已抓取，也不推断其从未公开。
+## Reproduction
 
-## 复现
-
-运行 `python3 "firmware decode/z-series/tools/discover_z_history.py"`。脚本仅抓取元数据，缓存目录与重定向后逐项原子更新清单，不下载固件二进制。
+Run `uv run python tools/discover_z_history.py`.
+The script retrieves metadata and updates manifests without downloading heavy binary payloads.
