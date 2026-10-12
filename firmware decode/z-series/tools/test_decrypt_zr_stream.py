@@ -172,6 +172,82 @@ class TestDecryptZRStream(unittest.TestCase):
             self.assertEqual(sec_names[3], "vr2200_010300.bi")
             self.assertEqual(sec_names[4], "li2200_030130.bi")
 
+    def test_compare_zr_versions_differential(self):
+        from decrypt_zr_stream import compare_zr_versions
+
+        zr10_path = Path("firmware decode/z-series/ZR__0110.bin")
+        zr11_path = Path("firmware decode/z-series/ZR__0111.bin")
+        if not (zr10_path.exists() and zr11_path.exists()):
+            self.skipTest("ZR firmware binaries not available")
+
+        zr10_data = zr10_path.read_bytes()
+        zr11_data = zr11_path.read_bytes()
+
+        res = compare_zr_versions(zr10_data, zr11_data)
+        self.assertEqual(res["total_size"], len(zr10_data))
+        self.assertGreater(res["overall_match_ratio"], 0.70)
+        self.assertEqual(len(res["section_comparisons"]), 5)
+
+        # Section 0 must be 100% identical
+        sec0 = res["section_comparisons"][0]
+        self.assertEqual(sec0["match_ratio"], 1.0)
+        self.assertTrue(sec0["is_identical"])
+
+        # Section 1 (touch) must be ~83.8% match
+        sec1 = res["section_comparisons"][1]
+        self.assertGreater(sec1["match_ratio"], 0.80)
+
+        # Section 3 (VR) must be > 99.99% match
+        sec3 = res["section_comparisons"][3]
+        self.assertGreater(sec3["match_ratio"], 0.9999)
+
+        # Section 4 (Linux) must be > 99.99% match
+        sec4 = res["section_comparisons"][4]
+        self.assertGreater(sec4["match_ratio"], 0.9999)
+
+    def test_decrypt_section_0_consensus_high_confidence(self):
+        from decrypt_zr_stream import decrypt_section_0_consensus
+
+        zr11_path = Path("firmware decode/z-series/ZR__0111.bin")
+        if not zr11_path.exists():
+            self.skipTest("ZR__0111.bin not available")
+
+        zr11_data = zr11_path.read_bytes()
+        z8_ref_path = Path("firmware decode/z-series/analysis/Z_8_0311/ex2070_030000.bi")
+        z8_ref = z8_ref_path.read_bytes() if z8_ref_path.exists() else None
+        z9_ref_path = Path("firmware decode/z-series/analysis/Z_9_0532/ex1990_051000.bi")
+        z9_ref = z9_ref_path.read_bytes() if z9_ref_path.exists() else None
+
+        decrypted, stats = decrypt_section_0_consensus(zr11_data, z8_ref, z9_ref)
+        self.assertEqual(stats["total_bytes"], 524290)
+        self.assertGreater(stats["recovery_ratio"], 0.55)
+        self.assertGreater(stats["recovered_bytes"], 289000)
+
+    def test_decrypt_section_2_cross_offset_entry(self):
+        from decrypt_zr_stream import decrypt_section_2_cross_offset
+
+        zr11_path = Path("firmware decode/z-series/ZR__0111.bin")
+        zf_path = Path("firmware decode/z-series/Z_f_0301.bin")
+        z8_eg_path = Path("firmware decode/z-series/analysis/Z_8_0311/eg2070_0311b0.bi")
+
+        if not (zr11_path.exists() and zf_path.exists() and z8_eg_path.exists()):
+            self.skipTest("Binaries for Section 2 test not available")
+
+        zr_data = zr11_path.read_bytes()
+        zf_data = zf_path.read_bytes()
+        z8_eg = z8_eg_path.read_bytes()
+
+        # Decrypt first 64KB
+        decrypted, stats = decrypt_section_2_cross_offset(zr_data, zf_data, z8_eg, max_bytes=65536)
+        self.assertEqual(stats["analyzed_bytes"], 65536)
+        self.assertGreater(stats["recovered_bytes"], 25000)
+
+        # Verify entry point instruction (mrs x0, mpidr_el1: 0xd53800a0)
+        # In little-endian bytes: a0 00 38 d5
+        self.assertEqual(decrypted[:4], bytes.fromhex("a00038d5"))
+        # Verify ands x0, x0, #0xf (0xf2400c00)
+        self.assertEqual(decrypted[4:8], bytes.fromhex("000c40f2"))
+
 
 if __name__ == "__main__":
     unittest.main()

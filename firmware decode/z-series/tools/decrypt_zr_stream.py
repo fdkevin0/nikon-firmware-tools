@@ -275,12 +275,218 @@ def decrypt_section_0(zr_data: bytes, z8_reference: bytes | None = None) -> tupl
     return bytes(decrypted), stats
 
 
+def decrypt_section_0_consensus(
+    zr_data: bytes,
+    z8_reference: bytes | None = None,
+    z9_reference: bytes | None = None,
+    peer_ciphertexts: list[bytes] | None = None,
+) -> tuple[bytes, dict]:
+    """Perform multi-model consensus decryption on Section 0 (ex2100_010100.b).
+    
+    Returns (decrypted_bytes, recovery_stats).
+    """
+    file_off = 0x350
+    size = 524290
+    if len(zr_data) < file_off + size:
+        raise ValueError("Firmware data too short for Section 0")
+
+    c = zr_data[file_off : file_off + size]
+    n = len(c)
+    keystream = [None] * n
+
+    # 1. Definite zero padding spans
+    for i in range(0x394C, 0x20000):
+        keystream[i] = c[i]
+    for i in range(0x5C13C, 0x7FFF0):
+        keystream[i] = c[i]
+    for i in range(0x7FFF0, 0x7FFFE):
+        keystream[i] = c[i]
+
+    # 2. Immutable Cortex-M bootloader routines
+    boot_spans = [(0x0000, 0x02E2), (0x02E3, 0x060C), (0x0636, 0x0AA0), (0x0B07, 0x0E58)]
+    if z8_reference and z9_reference:
+        for s_start, s_end in boot_spans:
+            for i in range(s_start, min(s_end, n)):
+                if z8_reference[i] == z9_reference[i]:
+                    keystream[i] = c[i] ^ z8_reference[i]
+    elif z8_reference:
+        for s_start, s_end in boot_spans:
+            for i in range(s_start, min(s_end, n)):
+                keystream[i] = c[i] ^ z8_reference[i]
+
+    # 3. Known string literals & padding
+    target_str = b"Firmware Ex Copyright Nikon Corp."
+    for j, b in enumerate(target_str):
+        if 0x370E + j < n:
+            keystream[0x370E + j] = c[0x370E + j] ^ b
+    for i in range(0x3730, 0x3740):
+        if i < n:
+            keystream[i] = c[i]
+
+    # 4. Multi-peer consensus
+    if peer_ciphertexts and z8_reference and z9_reference:
+        from collections import Counter
+        all_samples = [c] + [p for p in peer_ciphertexts if len(p) >= n]
+        for i in range(n):
+            if keystream[i] is None and z8_reference[i] == z9_reference[i]:
+                counts = Counter(s[i] for s in all_samples)
+                top_b, top_cnt = counts.most_common(1)[0]
+                if top_cnt >= 3 and c[i] == top_b:
+                    keystream[i] = c[i] ^ z8_reference[i]
+
+    # 5. Reference zero matching
+    ref_matched = 0
+    if z8_reference and len(z8_reference) >= n:
+        for i in range(n):
+            if keystream[i] is None and z8_reference[i] == 0:
+                keystream[i] = c[i]
+                ref_matched += 1
+
+    decrypted = bytearray(n)
+    recovered_count = 0
+    for i in range(n):
+        if keystream[i] is not None:
+            decrypted[i] = c[i] ^ keystream[i]
+            recovered_count += 1
+        else:
+            decrypted[i] = 0x00
+
+    stats = {
+        "total_bytes": n,
+        "recovered_bytes": recovered_count,
+        "recovery_ratio": recovered_count / n,
+        "zero_spans_bytes": (0x20000 - 0x394C) + (0x7FFF0 - 0x5C13C) + 14,
+        "reference_matched_bytes": ref_matched,
+    }
+    return bytes(decrypted), stats
+
+
+def compare_zr_versions(zr10_data: bytes, zr11_data: bytes) -> dict:
+    """Perform differential cryptanalysis and section comparison between ZR 1.10 and ZR 1.11."""
+    if len(zr10_data) != len(zr11_data):
+        raise ValueError(f"ZR size mismatch: {len(zr10_data)} vs {len(zr11_data)}")
+
+    total_len = len(zr10_data)
+    total_match = sum(1 for a, b in zip(zr10_data, zr11_data) if a == b)
+
+    dir10 = parse_modern_directory(zr10_data)
+    dir11 = parse_modern_directory(zr11_data)
+
+    section_diffs = []
+    for s10, s11 in zip(dir10["sections"], dir11["sections"]):
+        idx = s10["index"]
+        fo = s10["file_offset"]
+        sz = s10["size"]
+        c10 = zr10_data[fo : fo + sz]
+        c11 = zr11_data[fo : fo + sz]
+        match_count = sum(1 for a, b in zip(c10, c11) if a == b)
+        diff_count = sz - match_count
+        section_diffs.append({
+            "index": idx,
+            "name_110": s10["name"],
+            "name_111": s11["name"],
+            "description": s10["description"],
+            "size": sz,
+            "file_offset": fo,
+            "matched_bytes": match_count,
+            "differing_bytes": diff_count,
+            "match_ratio": match_count / sz if sz else 1.0,
+            "is_identical": diff_count == 0,
+        })
+
+    return {
+        "total_size": total_len,
+        "overall_matched_bytes": total_match,
+        "overall_differing_bytes": total_len - total_match,
+        "overall_match_ratio": total_match / total_len,
+        "section_comparisons": section_diffs,
+    }
+
+
+def decrypt_section_2_cross_offset(
+    zr_data: bytes,
+    zf_data: bytes,
+    z8_eg_data: bytes,
+    z9_eg_data: bytes | None = None,
+    z6_data: bytes | None = None,
+    z5_data: bytes | None = None,
+    max_bytes: int | None = None,
+) -> tuple[bytes, dict]:
+    """Decrypt Section 2 (eg2100_011130.b) via cross-offset multi-camera consensus.
+
+    Exploits the static file-offset stream cipher keystream and the constant shift:
+    Delta_file = 0x000BFF70 - 0x0008E354 = 0x31C1C (203,804 bytes).
+
+    Returns (decrypted_bytes, recovery_stats).
+    """
+    file_off = 0x000BFF70
+    sec2_size = 88157708
+    delta = 0x000BFF70 - 0x0008E354  # 0x31C1C
+
+    limit = sec2_size
+    if max_bytes:
+        limit = min(limit, max_bytes)
+    limit = min(limit, len(zr_data) - file_off, len(zf_data) - file_off, len(z8_eg_data) - delta)
+
+    c_zr = zr_data[file_off : file_off + limit]
+    c_zf = zf_data[file_off : file_off + limit]
+    p_z8 = z8_eg_data[delta : delta + limit]
+    p_z9 = z9_eg_data[delta : delta + limit] if z9_eg_data else None
+    c_z6 = z6_data[file_off : file_off + limit] if z6_data else None
+    c_z5 = z5_data[file_off : file_off + limit] if z5_data else None
+
+    keystream = [None] * limit
+    code_count = 0
+    zero_count = 0
+
+    for i in range(limit):
+        is_ref_invariant = (p_z9 is None) or (p_z8[i] == p_z9[i])
+        if not is_ref_invariant:
+            continue
+
+        peer_match = True
+        if c_z6 and c_z5:
+            peer_match = (c_zf[i] == c_z6[i]) or (c_zf[i] == c_z5[i]) or (c_z6[i] == c_z5[i])
+        elif c_z6:
+            peer_match = (c_zf[i] == c_z6[i])
+
+        if peer_match:
+            ks_byte = c_zf[i] ^ p_z8[i]
+            keystream[i] = ks_byte
+            if p_z8[i] == 0:
+                zero_count += 1
+            else:
+                code_count += 1
+
+    decrypted = bytearray(limit)
+    recovered_total = 0
+    for i in range(limit):
+        if keystream[i] is not None:
+            decrypted[i] = c_zr[i] ^ keystream[i]
+            recovered_total += 1
+        else:
+            decrypted[i] = 0x00
+
+    stats = {
+        "analyzed_bytes": limit,
+        "recovered_bytes": recovered_total,
+        "recovery_ratio": recovered_total / limit if limit else 0.0,
+        "recovered_code_data_bytes": code_count,
+        "recovered_zero_padding_bytes": zero_count,
+        "file_offset": file_off,
+        "peer_offset_delta": delta,
+    }
+    return bytes(decrypted), stats
+
+
 def main():
     parser = argparse.ArgumentParser(description="Nikon ZR Modern Container Cryptanalysis & Extraction")
     parser.add_argument("zr_binary", help="Path to ZR firmware binary (e.g. ZR__0111.bin)")
+    parser.add_argument("--zr10-binary", help="Path to ZR 1.10 firmware binary for differential comparison", default="firmware decode/z-series/ZR__0110.bin")
     parser.add_argument("--zf-binary", help="Path to reference Z f binary for differential cryptanalysis", default="firmware decode/z-series/Z_f_0301.bin")
     parser.add_argument("--output-dir", help="Directory to save recovered reports and artifacts", default="analysis/ZR_decryption")
     parser.add_argument("--extract-sec0", action="store_true", help="Extract partially decrypted Section 0 binary")
+    parser.add_argument("--extract-sec2", action="store_true", help="Extract partially decrypted Section 2 binary")
     args = parser.parse_args()
 
     out_dir = Path(args.output_dir)
@@ -299,30 +505,82 @@ def main():
     zf_path = Path(args.zf_binary)
     zf_data = zf_path.read_bytes() if zf_path.exists() else None
 
-    sections = recover_directory_entries(zr_data, zf_data)
-    print(f"\nSuccessfully decoded {len(sections)} sections in directory:")
+    modern_dir = parse_modern_directory(zr_data)
+    sections = modern_dir["sections"]
+    print(f"\nSuccessfully decoded {len(sections)} sections in directory (Model: {modern_dir['platform_model']}):")
     for s in sections:
         print(f"  Sec {s['index']}: {s['name']:<18} File 0x{s['file_offset']:08x} ({s['size']:>10,} B) - {s['description']}")
+
+    # Differential comparison with ZR 1.10 if available
+    diff_report = None
+    zr10_path = Path(args.zr10_binary)
+    if zr10_path.exists():
+        zr10_data = zr10_path.read_bytes()
+        diff_report = compare_zr_versions(zr10_data, zr_data)
+        print(f"\nDifferential Comparison (ZR 1.10 vs ZR 1.11):")
+        print(f"  Overall Match: {diff_report['overall_matched_bytes']:,} / {diff_report['total_size']:,} bytes ({diff_report['overall_match_ratio']*100:.2f}%)")
+        for sd in diff_report["section_comparisons"]:
+            print(f"  Sec {sd['index']} ({sd['name_110']} -> {sd['name_111']}): {sd['match_ratio']*100:.2f}% match ({sd['matched_bytes']:,}/{sd['size']:,} B)")
 
     # Cryptanalysis of Section 0
     z8_ref_path = Path("firmware decode/z-series/analysis/Z_8_0311/ex2070_030000.bi")
     z8_ref = z8_ref_path.read_bytes() if z8_ref_path.exists() else None
-    sec0_decrypted, sec0_stats = decrypt_section_0(zr_data, z8_ref)
-    print(f"\nSection 0 (ex2100_011000.bi) Cryptanalysis:")
+    z9_ref_path = Path("firmware decode/z-series/analysis/Z_9_0532/ex1990_051000.bi")
+    z9_ref = z9_ref_path.read_bytes() if z9_ref_path.exists() else None
+
+    # Load peer modern samples
+    peer_samples = []
+    for peer_name in ["Z5_2_0120.bin", "Z_f_0301.bin", "Z6_3_0200.bin"]:
+        p_path = Path("firmware decode/z-series") / peer_name
+        if p_path.exists():
+            peer_samples.append(p_path.read_bytes()[0x350 : 0x350 + 524290])
+
+    sec0_decrypted, sec0_stats = decrypt_section_0_consensus(zr_data, z8_ref, z9_ref, peer_samples)
+    print(f"\nSection 0 (ex2100_010100.b) Cryptanalysis:")
     print(f"  Recovered keystream: {sec0_stats['recovered_bytes']:,} / {sec0_stats['total_bytes']:,} bytes ({sec0_stats['recovery_ratio']*100:.2f}%)")
 
     if args.extract_sec0:
-        sec0_out = out_dir / "ex2100_011000.partial.bi"
-        sec0_out.write_bytes(sec0_decrypted)
-        print(f"  Saved decrypted Section 0 to {sec0_out}")
+        sec0_out1 = out_dir / "ex2100_010100.partial.bi"
+        sec0_out1.write_bytes(sec0_decrypted)
+        sec0_out2 = out_dir / "ex2100_011000.partial.bi"
+        sec0_out2.write_bytes(sec0_decrypted)
+        print(f"  Saved decrypted Section 0 to {sec0_out1}")
+
+    # Cryptanalysis of Section 2 (Main OS eg2100)
+    sec2_stats = None
+    z8_eg_path = Path("firmware decode/z-series/analysis/Z_8_0311/eg2070_0311b0.bi")
+    z9_eg_path = Path("firmware decode/z-series/analysis/Z_9_0532/eg1990_053200.bi")
+    z6_path = Path("firmware decode/z-series/Z6_3_0200.bin")
+    z5_path = Path("firmware decode/z-series/Z5_2_0120.bin")
+
+    if zf_data and z8_eg_path.exists():
+        z8_eg = z8_eg_path.read_bytes()
+        z9_eg = z9_eg_path.read_bytes() if z9_eg_path.exists() else None
+        z6_data = z6_path.read_bytes() if z6_path.exists() else None
+        z5_data = z5_path.read_bytes() if z5_path.exists() else None
+
+        sec2_decrypted, sec2_stats = decrypt_section_2_cross_offset(
+            zr_data, zf_data, z8_eg, z9_eg, z6_data, z5_data
+        )
+        print(f"\nSection 2 (eg2100_011130.b) Cross-Offset Cryptanalysis:")
+        print(f"  Recovered keystream: {sec2_stats['recovered_bytes']:,} / {sec2_stats['analyzed_bytes']:,} bytes ({sec2_stats['recovery_ratio']*100:.2f}%)")
+        print(f"    - Code/Data: {sec2_stats['recovered_code_data_bytes']:,} bytes")
+        print(f"    - Zero Padding: {sec2_stats['recovered_zero_padding_bytes']:,} bytes")
+
+        if args.extract_sec2:
+            sec2_out = out_dir / "eg2100_011130.partial.bi"
+            sec2_out.write_bytes(sec2_decrypted)
+            print(f"  Saved decrypted Section 2 to {sec2_out}")
 
     report = {
         "target": Path(args.zr_binary).name,
         "target_size": len(zr_data),
         "header": {k: v for k, v in hdr_info.items() if k != "table_128_integers"},
-        "platform_model": "2100 (Nikon ZR)",
+        "platform_model": modern_dir["platform_model"],
         "sections": sections,
+        "differential_comparison_110_vs_111": diff_report,
         "section_0_cryptanalysis": sec0_stats,
+        "section_2_cross_offset_cryptanalysis": sec2_stats,
     }
     report_file = out_dir / "manifest.json"
     with open(report_file, "w") as f:

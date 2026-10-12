@@ -13,70 +13,132 @@
   "sections": [
     {
       "index": 0,
-      "name": "ex2100_011000.bi",
-      "description": "Socionext / ARM Thumb microcontroller firmware",
-      "payload_offset": 176,
-      "file_offset": 816,
+      "name": "ex2100_010100.b",
+      "description": "Microcontroller (MCU) bootloader / power management",
+      "payload_offset": 208,
+      "file_offset": 848,
       "size": 524290,
-      "raw_name_cipher": "b26539e3f50ac81b4d67f19dc44e30b5",
-      "raw_off_cipher": "728bfa0d",
-      "raw_len_cipher": "2b7342e8",
-      "reserved_keystream": "6f547c82857e208f"
+      "reserved_valid": true
     },
     {
       "index": 1,
-      "name": "_tpj01_0210.bin",
+      "name": "_tps00_1500.bin",
       "description": "Touch panel controller firmware",
-      "payload_offset": 524466,
-      "file_offset": 525106,
-      "size": 57346,
-      "raw_name_cipher": "fc3f0b6c800e7180b45e3fb53057e0ed",
-      "raw_off_cipher": "d74850b9",
-      "raw_len_cipher": "80f32ead",
-      "reserved_keystream": "f87e90a47204a86f"
+      "payload_offset": 524512,
+      "file_offset": 525152,
+      "size": 261122,
+      "reserved_valid": true
     },
     {
       "index": 2,
-      "name": "eg2100_0111b0.bi",
+      "name": "eg2100_011130.b",
       "description": "EXPEED 7 AArch64 Main OS",
-      "payload_offset": 581812,
-      "file_offset": 582452,
-      "size": 88361204,
-      "raw_name_cipher": "8b70f494ddf95dbb8d432825d6b50ca6",
-      "raw_off_cipher": "3d7f3915",
-      "raw_len_cipher": "deb9227e",
-      "reserved_keystream": "4f383a1e2bed82dd"
+      "payload_offset": 785648,
+      "file_offset": 786288,
+      "size": 88157708,
+      "reserved_valid": true
     },
     {
       "index": 3,
-      "name": "vr2100_010100.bi",
-      "description": "Vibration Reduction microcontroller firmware",
+      "name": "vr2100_010100.b",
+      "description": "Vibration Reduction (IBIS / VR) controller firmware",
       "payload_offset": 88943036,
       "file_offset": 88943676,
       "size": 838664,
-      "raw_name_cipher": "b050ae5d2e60e2af3a8482ec6932a357",
-      "raw_off_cipher": "6d17a11a",
-      "raw_len_cipher": "796e4581",
-      "reserved_keystream": "fa992b7bea8ed8fd"
+      "reserved_valid": true
     },
     {
       "index": 4,
-      "name": "li2100_0111b0.bi",
-      "description": "Linux 4.14 kernel + CPIO rootfs + DTBs (NISI container)",
-      "payload_offset": 89781673,
-      "file_offset": 89782313,
+      "name": "li2100_011130.b",
+      "description": "Linux kernel + CPIO rootfs + DTBs (NISI container)",
+      "payload_offset": 89781936,
+      "file_offset": 89782576,
       "size": 27377560,
-      "raw_name_cipher": "1455e669df105ae13a54a6783d6103b6",
-      "raw_off_cipher": "8824672a",
-      "raw_len_cipher": "676d433c",
-      "reserved_keystream": "b4c14c8ab075a53a"
+      "reserved_valid": true
     }
   ],
+  "differential_comparison_110_vs_111": {
+    "total_size": 117159984,
+    "overall_matched_bytes": 86370107,
+    "overall_differing_bytes": 30789877,
+    "overall_match_ratio": 0.7371980095183353,
+    "section_comparisons": [
+      {
+        "index": 0,
+        "name_110": "ex2100_010100.b",
+        "name_111": "ex2100_010100.b",
+        "description": "Microcontroller (MCU) bootloader / power management",
+        "size": 524290,
+        "file_offset": 848,
+        "matched_bytes": 524290,
+        "differing_bytes": 0,
+        "match_ratio": 1.0,
+        "is_identical": true
+      },
+      {
+        "index": 1,
+        "name_110": "_tps00_1400.bin",
+        "name_111": "_tps00_1500.bin",
+        "description": "Touch panel controller firmware",
+        "size": 261122,
+        "file_offset": 525152,
+        "matched_bytes": 218918,
+        "differing_bytes": 42204,
+        "match_ratio": 0.8383743997058846,
+        "is_identical": false
+      },
+      {
+        "index": 2,
+        "name_110": "eg2100_0110h0.b",
+        "name_111": "eg2100_011130.b",
+        "description": "EXPEED 7 AArch64 Main OS",
+        "size": 88157708,
+        "file_offset": 786288,
+        "matched_bytes": 57410332,
+        "differing_bytes": 30747376,
+        "match_ratio": 0.6512230558444192,
+        "is_identical": false
+      },
+      {
+        "index": 3,
+        "name_110": "vr2100_010100.b",
+        "name_111": "vr2100_010100.b",
+        "description": "Vibration Reduction (IBIS / VR) controller firmware",
+        "size": 838664,
+        "file_offset": 88943676,
+        "matched_bytes": 838662,
+        "differing_bytes": 2,
+        "match_ratio": 0.9999976152547385,
+        "is_identical": false
+      },
+      {
+        "index": 4,
+        "name_110": "li2100_0110h0.b",
+        "name_111": "li2100_011130.b",
+        "description": "Linux kernel + CPIO rootfs + DTBs (NISI container)",
+        "size": 27377560,
+        "file_offset": 89782576,
+        "matched_bytes": 27377404,
+        "differing_bytes": 156,
+        "match_ratio": 0.9999943019027262,
+        "is_identical": false
+      }
+    ]
+  },
   "section_0_cryptanalysis": {
     "total_bytes": 524290,
-    "recovered_bytes": 287173,
-    "recovery_ratio": 0.5477369394800587,
-    "continuous_spans_bytes": 261888,
-    "reference_matched_bytes": 25252
+    "recovered_bytes": 292602,
+    "recovery_ratio": 0.5580918957065746,
+    "zero_spans_bytes": 263542,
+    "reference_matched_bytes": 17761
+  },
+  "section_2_cross_offset_cryptanalysis": {
+    "analyzed_bytes": 81603907,
+    "recovered_bytes": 12472588,
+    "recovery_ratio": 0.15284302502820116,
+    "recovered_code_data_bytes": 585017,
+    "recovered_zero_padding_bytes": 11887571,
+    "file_offset": 786288,
+    "peer_offset_delta": 203804
   }
 }

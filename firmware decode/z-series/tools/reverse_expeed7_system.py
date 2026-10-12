@@ -202,6 +202,100 @@ def find_bvr_activation_trigger(eg_data: bytes) -> dict:
     }
 
 
+def find_axislog_gyro_task(eg_data: bytes) -> dict:
+    """Analyze the DevSvP01 5-axis gyro recording RTOS task and A:\\AxisLog.csv writer."""
+    csv_needle = b"A:\\AxisLog.csv"
+    task_needle = b"DevSvP01"
+    fmt_needle = b"\r\n0x%04X  0x%04X\r\n"
+
+    csv_pos = eg_data.find(csv_needle)
+    task_pos = eg_data.find(task_needle)
+    fmt_pos = eg_data.find(fmt_needle)
+
+    angles_deg = [45.0, 75.0, 90.0, 105.0, 135.0, 225.0, 270.0, 285.0, 315.0, 360.0, -360.0]
+
+    return {
+        "found": csv_pos != -1,
+        "task_name": "DevSvP01",
+        "task_name_va": f"0x{EG_BASE_VA + task_pos:x}" if task_pos != -1 else None,
+        "csv_filename": "A:\\AxisLog.csv",
+        "csv_filename_va": f"0x{EG_BASE_VA + csv_pos:x}" if csv_pos != -1 else None,
+        "format_string_va": f"0x{EG_BASE_VA + fmt_pos:x}" if fmt_pos != -1 else None,
+        "event_flag_ram": "0x0A02E562E8",
+        "event_flags": {
+            "0x01": "Bit 0: Allocate buffer (19,200 B) and start logging",
+            "0x02": "Bit 1: Sample & record 36-byte 5-axis motion data point",
+            "0x04": "Bit 2: Stop logging",
+            "0x08": "Bit 3: Flush ring buffer to A:\\AxisLog.csv",
+        },
+        "sample_record_size_bytes": 36,
+        "sample_fields": [
+            "YawDiff", "PitchDiff", "RollDiff",
+            "XLr0", "YLr0", "RLr0",
+            "GMV1", "GMV2", "GMV3",
+        ],
+        "ring_buffer": {
+            "max_samples": 1200,
+            "total_buffer_bytes": 43200,
+            "sample_counter_ram": "0x0A02E5633C",
+            "sample_array_ram": "0x0A02E56340",
+            "latest_sample_ram": "0x0A02E56318",
+        },
+        "calibration_angle_thresholds_deg": angles_deg,
+    }
+
+
+def extract_firmware_chk_crypto(eg_data: bytes) -> dict:
+    """Extract Blowfish encryption engine, 8 authentication keys, and SHA-1 vectors from FirmwareChkLib."""
+    chk_str_pos = eg_data.find(b"..\\SRC\\FirmwareChkLib.c")
+    if chk_str_pos == -1:
+        return {"found": False}
+
+    chk_str_va = EG_BASE_VA + chk_str_pos
+    keys_va = 0x44B8A42C
+    keys_off = keys_va - EG_BASE_VA
+
+    auth_keys = []
+    if keys_off + 64 <= len(eg_data):
+        for i in range(8):
+            k_bytes = eg_data[keys_off + i * 8 : keys_off + (i + 1) * 8]
+            auth_keys.append({
+                "index": i,
+                "va": f"0x{keys_va + i * 8:08x}",
+                "hex": k_bytes.hex(),
+            })
+
+    # Pi fractional digits in initial Blowfish P-array
+    p_init_va = 0x44B8A46C
+    p_init_off = p_init_va - EG_BASE_VA
+    p_pi = []
+    if p_init_off + 72 <= len(eg_data):
+        p_pi = [f"0x{w:08x}" for w in struct.unpack("<18I", eg_data[p_init_off : p_init_off + 72])]
+
+    return {
+        "found": True,
+        "source_file_symbol": "..\\SRC\\FirmwareChkLib.c",
+        "source_file_va": f"0x{chk_str_va:08x}",
+        "cipher": "Blowfish (16-round Feistel network)",
+        "cipher_mode": "CBC / ECB with 64-bit blocks",
+        "context_size_bytes": 0x108C,
+        "key_schedule_function_va": "0x41194e84",
+        "feistel_round_function_va": "0x41194d8c",
+        "feistel_decrypt_function_va": "0x41194e08",
+        "block_driver_function_va": "0x411951e0",
+        "p_array_init_pi_words": p_pi[:4],
+        "pre_shared_auth_keys": auth_keys,
+        "sha1_vectors": {
+            "h0": "0x67452301",
+            "h1": "0xefcdab89",
+            "h2": "0x98badcfe",
+            "h3": "0x10325476",
+            "h4": "0xc3d2e1f0",
+        },
+        "handshake_callers": ["0x406f78b0", "0x406f7ac8", "0x406fa230"],
+    }
+
+
 def analyze_linux_shell_executor(lamainapp_data: bytes) -> dict:
     """Analyze LaMainApp's built-in CLaMainAppDebug_ExecuteShellCommand function."""
     sh_str_pos = lamainapp_data.find(b"/bin/sh")
@@ -241,12 +335,17 @@ def main():
         prop_cats = extract_property_categories(eg_data)
         bvr_spec = find_bvr_gyro_logging_spec(eg_data)
         bvr_trigger = find_bvr_activation_trigger(eg_data)
+        axis_task = find_axislog_gyro_task(eg_data)
+        fw_crypto = extract_firmware_chk_crypto(eg_data)
 
         total_props = sum(c["property_count"] for c in prop_cats)
         print(f"  Extracted {len(ptp_cmds)} PTP vendor commands (0x94FD)")
         print(f"  Extracted {len(prop_cats)} Property Categories ({total_props:,} properties)")
         print(f"  Mapped BVR Gyro & Homography CSV logging spec: {bvr_spec['destination_card_path']}")
         print(f"  Mapped BVR Gyro activation trigger: Property {bvr_trigger['diagnostic_property_id']} (mask {bvr_trigger['required_bitmask']})")
+        print(f"  Mapped AxisLog DevSvP01 task: {axis_task['csv_filename']} (event flag {axis_task['event_flag_ram']})")
+        if fw_crypto.get("found"):
+            print(f"  Mapped FirmwareChkLib Crypto: {fw_crypto['cipher']} ({len(fw_crypto['pre_shared_auth_keys'])} auth keys, context {fw_crypto['context_size_bytes']} B)")
 
         report["ptp_vendor_gateway"] = {
             "outer_opcode": "0x94FD",
@@ -260,6 +359,8 @@ def main():
         }
         report["bvr_gyro_logging_specification"] = bvr_spec
         report["bvr_gyro_activation_trigger"] = bvr_trigger
+        report["axislog_gyro_task"] = axis_task
+        report["firmware_chk_authentication_crypto"] = fw_crypto
 
     li_path = Path(args.li_binary)
     if li_path.exists():

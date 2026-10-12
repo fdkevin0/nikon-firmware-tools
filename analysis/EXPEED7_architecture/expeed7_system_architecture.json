@@ -2235,6 +2235,125 @@
       "5. Logger opens A:\\%s on memory card and streams per-frame gyro rates, shift acceleration, and 3x3 homography warp matrix in CSV format"
     ]
   },
+  "axislog_gyro_task": {
+    "found": true,
+    "task_name": "DevSvP01",
+    "task_name_va": "0x41668f31",
+    "csv_filename": "A:\\AxisLog.csv",
+    "csv_filename_va": "0x41668dd0",
+    "format_string_va": null,
+    "event_flag_ram": "0x0A02E562E8",
+    "event_flags": {
+      "0x01": "Bit 0: Allocate buffer (19,200 B) and start logging",
+      "0x02": "Bit 1: Sample & record 36-byte 5-axis motion data point",
+      "0x04": "Bit 2: Stop logging",
+      "0x08": "Bit 3: Flush ring buffer to A:\\AxisLog.csv"
+    },
+    "sample_record_size_bytes": 36,
+    "sample_fields": [
+      "YawDiff",
+      "PitchDiff",
+      "RollDiff",
+      "XLr0",
+      "YLr0",
+      "RLr0",
+      "GMV1",
+      "GMV2",
+      "GMV3"
+    ],
+    "ring_buffer": {
+      "max_samples": 1200,
+      "total_buffer_bytes": 43200,
+      "sample_counter_ram": "0x0A02E5633C",
+      "sample_array_ram": "0x0A02E56340",
+      "latest_sample_ram": "0x0A02E56318"
+    },
+    "calibration_angle_thresholds_deg": [
+      45.0,
+      75.0,
+      90.0,
+      105.0,
+      135.0,
+      225.0,
+      270.0,
+      285.0,
+      315.0,
+      360.0,
+      -360.0
+    ]
+  },
+  "firmware_chk_authentication_crypto": {
+    "found": true,
+    "source_file_symbol": "..\\SRC\\FirmwareChkLib.c",
+    "source_file_va": "0x44b8a410",
+    "cipher": "Blowfish (16-round Feistel network)",
+    "cipher_mode": "CBC / ECB with 64-bit blocks",
+    "context_size_bytes": 4236,
+    "key_schedule_function_va": "0x41194e84",
+    "feistel_round_function_va": "0x41194d8c",
+    "feistel_decrypt_function_va": "0x41194e08",
+    "block_driver_function_va": "0x411951e0",
+    "p_array_init_pi_words": [
+      "0x243f6a88",
+      "0x85a308d3",
+      "0x13198a2e",
+      "0x03707344"
+    ],
+    "pre_shared_auth_keys": [
+      {
+        "index": 0,
+        "va": "0x44b8a42c",
+        "hex": "704066e40433d552"
+      },
+      {
+        "index": 1,
+        "va": "0x44b8a434",
+        "hex": "ed4b8fac15f7e47b"
+      },
+      {
+        "index": 2,
+        "va": "0x44b8a43c",
+        "hex": "24471f118b5ea1fc"
+      },
+      {
+        "index": 3,
+        "va": "0x44b8a444",
+        "hex": "05960c312b8c7f41"
+      },
+      {
+        "index": 4,
+        "va": "0x44b8a44c",
+        "hex": "fda588c1eba8b1f3"
+      },
+      {
+        "index": 5,
+        "va": "0x44b8a454",
+        "hex": "991660561bd3d550"
+      },
+      {
+        "index": 6,
+        "va": "0x44b8a45c",
+        "hex": "cd32687fa9e28a30"
+      },
+      {
+        "index": 7,
+        "va": "0x44b8a464",
+        "hex": "2a8fe834dec7ebf4"
+      }
+    ],
+    "sha1_vectors": {
+      "h0": "0x67452301",
+      "h1": "0xefcdab89",
+      "h2": "0x98badcfe",
+      "h3": "0x10325476",
+      "h4": "0xc3d2e1f0"
+    },
+    "handshake_callers": [
+      "0x406f78b0",
+      "0x406f7ac8",
+      "0x406fa230"
+    ]
+  },
   "nisi_linux_packaging": {
     "magic": "NISI",
     "sub_image_count": 4,

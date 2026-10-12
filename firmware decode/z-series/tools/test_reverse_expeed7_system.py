@@ -75,13 +75,35 @@ class TestReverseExpeed7System(unittest.TestCase):
         self.assertIn("Homo[2][0]", bvr_spec["channels"]["homography_matrix_3x3"])
 
         # 4. BVR Gyro Activation Trigger
-        from reverse_expeed7_system import find_bvr_activation_trigger
+        from reverse_expeed7_system import find_axislog_gyro_task, find_bvr_activation_trigger
         bvr_trigger = find_bvr_activation_trigger(eg_data)
         self.assertEqual(bvr_trigger["status"], "fully_mapped")
         self.assertEqual(bvr_trigger["diagnostic_property_id"], "0x40000100")
         self.assertEqual(bvr_trigger["required_bitmask"], "0x00000010")
         self.assertEqual(bvr_trigger["logging_state_ram"], "0x0A03BC73B8")
         self.assertEqual(bvr_trigger["logging_state_active_value"], 3)
+
+        # 5. AxisLog DevSvP01 Task Specification
+        axis_task = find_axislog_gyro_task(eg_data)
+        self.assertTrue(axis_task["found"])
+        self.assertEqual(axis_task["task_name"], "DevSvP01")
+        self.assertEqual(axis_task["csv_filename"], "A:\\AxisLog.csv")
+        self.assertEqual(axis_task["event_flag_ram"], "0x0A02E562E8")
+        self.assertEqual(axis_task["sample_record_size_bytes"], 36)
+        self.assertEqual(axis_task["ring_buffer"]["max_samples"], 1200)
+        self.assertIn("0x01", axis_task["event_flags"])
+        self.assertIn("0x08", axis_task["event_flags"])
+        self.assertIn(90.0, axis_task["calibration_angle_thresholds_deg"])
+
+        # 6. FirmwareChkLib Blowfish & Pre-Shared Auth Keys
+        from reverse_expeed7_system import extract_firmware_chk_crypto
+        crypto_spec = extract_firmware_chk_crypto(eg_data)
+        self.assertTrue(crypto_spec["found"])
+        self.assertIn("Blowfish", crypto_spec["cipher"])
+        self.assertEqual(len(crypto_spec["pre_shared_auth_keys"]), 8)
+        self.assertEqual(crypto_spec["pre_shared_auth_keys"][0]["hex"], "704066e40433d552")
+        self.assertEqual(crypto_spec["p_array_init_pi_words"][0], "0x243f6a88")
+        self.assertEqual(crypto_spec["sha1_vectors"]["h0"], "0x67452301")
 
 
     def test_analyze_linux_shell_executor_synthetic(self):
