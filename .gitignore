@@ -24,5 +24,7 @@ __pycache__/
 # Binary firmware extracts & partial dumps
 *.bi
 *.partial.bi
+analysis/**/*.bin
+*.lead.bin
 
 

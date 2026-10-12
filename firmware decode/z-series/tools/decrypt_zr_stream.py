@@ -479,6 +479,98 @@ def decrypt_section_2_cross_offset(
     return bytes(decrypted), stats
 
 
+def decrypt_section_4_consensus(
+    zr_data: bytes,
+    z6_data: bytes | None = None,
+    z8_li_data: bytes | None = None,
+    z9_li_data: bytes | None = None,
+    max_bytes: int | None = None,
+) -> tuple[bytes, dict]:
+    """Decrypt Section 4 (li2100_011130.b) via cross-camera VR padding bridge and kernel zero-spans.
+
+    Exploits the 0xFF flash erase padding of Z 6 III Section 3 (VR MCU) spanning the first
+    468,683 bytes (0x726CB) of Section 4 to recover 100% ground-truth Linux kernel code,
+    plus multi-peer zero-spans across the remainder of the container.
+
+    Also recovers the pure NISI multi-image container header at file offset 0x0559F810,
+    mapping all 4 sub-images (kernel, CPIO rootfs, and 2 Device Tree Blobs).
+
+    Returns (decrypted_bytes, recovery_stats).
+    """
+    file_off = 0x0559F930
+    nisi_file_off = 0x0559F810
+    sec4_size = min(27377560, len(zr_data) - file_off)
+    if max_bytes:
+        sec4_size = min(sec4_size, max_bytes)
+
+    decrypted = bytearray(sec4_size)
+    keystream = [None] * sec4_size
+    lead_recovered = 0
+    zero_spans_recovered = 0
+
+    # 1. Lead bridge via Z 6 III VR 0xFF flash padding
+    vr_lead = 0
+    if z6_data and len(z6_data) > file_off:
+        vr_lead = min(0x056120D0 - file_off, sec4_size, len(z6_data) - file_off)
+        for i in range(vr_lead):
+            ks_b = z6_data[file_off + i] ^ 0xFF
+            keystream[i] = ks_b
+            decrypted[i] = zr_data[file_off + i] ^ ks_b
+            lead_recovered += 1
+
+    # 2. Kernel common zero spans beyond vr_lead
+    k_start = 0x6E0
+    if z8_li_data and z9_li_data:
+        k_len = min(6455296, len(z8_li_data) - 0x800, len(z9_li_data) - 0x800)
+        start_idx = max(0, vr_lead - k_start) if z6_data else 0
+        for i in range(start_idx, k_len):
+            idx = k_start + i
+            if idx < sec4_size:
+                if z8_li_data[0x800 + i] == 0 and z9_li_data[0x800 + i] == 0:
+                    keystream[idx] = zr_data[file_off + idx]
+                    decrypted[idx] = 0x00
+                    zero_spans_recovered += 1
+
+    recovered_total = sum(1 for k in keystream if k is not None)
+
+    # Parse recovered kernel header at 0x6e0 if available
+    kernel_info = {}
+    if recovered_total >= 0x720:
+        raw_hdr = decrypted[0x6E0 : 0x6E0 + 64]
+        magic = bytes(raw_hdr[0x38:0x3C])
+        if magic == b"ARM\x64":
+            img_sz, flags = struct.unpack("<2Q", raw_hdr[0x10:0x20])
+            kernel_info = {
+                "valid_magic": True,
+                "magic": "ARM\\x64",
+                "image_size": img_sz,
+                "flags": hex(flags),
+                "kernel_offset": 0x6E0,
+                "stext_offset": 0xEE0,
+            }
+
+    # 3. Recover NISI container header at 0x0559F810
+    nisi_info = {}
+    if z6_data and len(z6_data) >= nisi_file_off + 96 and len(zr_data) >= nisi_file_off + 96:
+        nisi_raw = bytes(zr_data[nisi_file_off + i] ^ z6_data[nisi_file_off + i] ^ 0xFF for i in range(96))
+        if nisi_raw[:4] == b"NISI":
+            from reverse_expeed7_system import parse_nisi_container
+            nisi_info = parse_nisi_container(nisi_raw)
+
+    stats = {
+        "analyzed_bytes": sec4_size,
+        "recovered_bytes": recovered_total,
+        "recovery_ratio": recovered_total / sec4_size if sec4_size else 0.0,
+        "lead_bridge_recovered_bytes": lead_recovered,
+        "kernel_zero_spans_recovered_bytes": zero_spans_recovered,
+        "file_offset": file_off,
+        "nisi_file_offset": nisi_file_off,
+        "kernel_header": kernel_info,
+        "nisi_container": nisi_info,
+    }
+    return bytes(decrypted), stats
+
+
 def main():
     parser = argparse.ArgumentParser(description="Nikon ZR Modern Container Cryptanalysis & Extraction")
     parser.add_argument("zr_binary", help="Path to ZR firmware binary (e.g. ZR__0111.bin)")
@@ -487,6 +579,7 @@ def main():
     parser.add_argument("--output-dir", help="Directory to save recovered reports and artifacts", default="analysis/ZR_decryption")
     parser.add_argument("--extract-sec0", action="store_true", help="Extract partially decrypted Section 0 binary")
     parser.add_argument("--extract-sec2", action="store_true", help="Extract partially decrypted Section 2 binary")
+    parser.add_argument("--extract-sec4", action="store_true", help="Extract partially decrypted Section 4 binary")
     args = parser.parse_args()
 
     out_dir = Path(args.output_dir)
@@ -572,6 +665,54 @@ def main():
             sec2_out.write_bytes(sec2_decrypted)
             print(f"  Saved decrypted Section 2 to {sec2_out}")
 
+    # Cryptanalysis of Section 4 (Linux li2100)
+    sec4_stats = None
+    z8_li_path = Path("firmware decode/z-series/analysis/Z_8_0311/li2070_0311b0.bi")
+    z9_li_path = Path("firmware decode/z-series/analysis/Z_9_0532/li1990_053200.bi")
+
+    if z6_path.exists():
+        z6_data = z6_path.read_bytes()
+        z8_li = z8_li_path.read_bytes() if z8_li_path.exists() else None
+        z9_li = z9_li_path.read_bytes() if z9_li_path.exists() else None
+
+        sec4_decrypted, sec4_stats = decrypt_section_4_consensus(
+            zr_data, z6_data, z8_li, z9_li
+        )
+        print(f"\nSection 4 (li2100_011130.b) VR Bridge & Zero-Spans Cryptanalysis:")
+        print(f"  Recovered keystream: {sec4_stats['recovered_bytes']:,} / {sec4_stats['analyzed_bytes']:,} bytes ({sec4_stats['recovery_ratio']*100:.2f}%)")
+        print(f"    - Lead Bridge (VR 0xFF): {sec4_stats['lead_bridge_recovered_bytes']:,} bytes")
+        print(f"    - Kernel Zero Spans:     {sec4_stats['kernel_zero_spans_recovered_bytes']:,} bytes")
+        if sec4_stats.get("kernel_header", {}).get("valid_magic"):
+            print(f"    - Linux Kernel Header:   Magic={sec4_stats['kernel_header']['magic']}, ImageSize={sec4_stats['kernel_header']['image_size']:,} B")
+
+        if args.extract_sec4:
+            sec4_out = out_dir / "li2100_011130.partial.bi"
+            sec4_out.write_bytes(sec4_decrypted)
+            print(f"  Saved decrypted Section 4 to {sec4_out}")
+
+            # Also extract the pure NISI container and linux sub-images
+            if sec4_stats and sec4_stats.get("nisi_container", {}).get("magic") == "NISI":
+                nisi_dir = out_dir / "linux"
+                nisi_dir.mkdir(exist_ok=True, parents=True)
+                nisi_out = out_dir / "li2100_011130.nisi.partial.bi"
+                nisi_off = sec4_stats["nisi_file_offset"]
+                # Save NISI container binary (starts at 0x0559F810)
+                nisi_data = zr_data[nisi_off : nisi_off + 27377560]
+                nisi_lead = bytearray(len(nisi_data))
+                vr_len = min(0x056120D0 - nisi_off, len(nisi_data))
+                for i in range(vr_len):
+                    nisi_lead[i] = nisi_data[i] ^ z6_data[nisi_off + i] ^ 0xFF
+                nisi_out.write_bytes(nisi_lead)
+                print(f"  Saved NISI multi-image container to {nisi_out}")
+
+                # Extract verified Linux kernel lead (ARM64 Image)
+                k_lead = nisi_lead[0x800 : vr_len]
+                (nisi_dir / "Image.lead.bin").write_bytes(k_lead)
+                (nisi_dir / "subimages_inventory.json").write_text(
+                    json.dumps(sec4_stats["nisi_container"]["sub_images"], indent=2) + "\n"
+                )
+                print(f"  Extracted Linux subsystem components to {nisi_dir}")
+
     report = {
         "target": Path(args.zr_binary).name,
         "target_size": len(zr_data),
@@ -581,6 +722,7 @@ def main():
         "differential_comparison_110_vs_111": diff_report,
         "section_0_cryptanalysis": sec0_stats,
         "section_2_cross_offset_cryptanalysis": sec2_stats,
+        "section_4_consensus_cryptanalysis": sec4_stats,
     }
     report_file = out_dir / "manifest.json"
     with open(report_file, "w") as f:

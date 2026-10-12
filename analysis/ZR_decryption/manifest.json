@@ -140,5 +140,63 @@
     "recovered_zero_padding_bytes": 11887571,
     "file_offset": 786288,
     "peer_offset_delta": 203804
+  },
+  "section_4_consensus_cryptanalysis": {
+    "analyzed_bytes": 27377408,
+    "recovered_bytes": 1126214,
+    "recovery_ratio": 0.041136618923164676,
+    "lead_bridge_recovered_bytes": 468896,
+    "kernel_zero_spans_recovered_bytes": 657318,
+    "file_offset": 89782576,
+    "nisi_file_offset": 89782288,
+    "kernel_header": {
+      "valid_magic": true,
+      "magic": "ARM\\x64",
+      "image_size": 6455296,
+      "flags": "0xa",
+      "kernel_offset": 1760,
+      "stext_offset": 3808
+    },
+    "nisi_container": {
+      "magic": "NISI",
+      "sub_image_count": 4,
+      "version": "011100",
+      "header_size": 96,
+      "sector_size": 2048,
+      "sub_images": [
+        {
+          "index": 0,
+          "type": "linux_kernel_image",
+          "start_sector": 1,
+          "sector_count": 2980,
+          "offset": 2048,
+          "byte_size": 6101000
+        },
+        {
+          "index": 1,
+          "type": "initramfs_cpio_rootfs",
+          "start_sector": 2981,
+          "sector_count": 10383,
+          "offset": 6105088,
+          "byte_size": 21262611
+        },
+        {
+          "index": 2,
+          "type": "device_tree_blob_1",
+          "start_sector": 13364,
+          "sector_count": 2,
+          "offset": 27369472,
+          "byte_size": 3845
+        },
+        {
+          "index": 3,
+          "type": "device_tree_blob_2",
+          "start_sector": 13366,
+          "sector_count": 2,
+          "offset": 27373568,
+          "byte_size": 3168
+        }
+      ]
+    }
   }
 }

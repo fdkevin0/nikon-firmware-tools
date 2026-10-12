@@ -248,6 +248,50 @@ class TestDecryptZRStream(unittest.TestCase):
         # Verify ands x0, x0, #0xf (0xf2400c00)
         self.assertEqual(decrypted[4:8], bytes.fromhex("000c40f2"))
 
+    def test_decrypt_section_4_consensus(self):
+        from decrypt_zr_stream import decrypt_section_4_consensus
+
+        zr11_path = Path("firmware decode/z-series/ZR__0111.bin")
+        z6_path = Path("firmware decode/z-series/Z6_3_0200.bin")
+        z8_li_path = Path("firmware decode/z-series/analysis/Z_8_0311/li2070_0311b0.bi")
+        z9_li_path = Path("firmware decode/z-series/analysis/Z_9_0532/li1990_053200.bi")
+
+        if not (zr11_path.exists() and z6_path.exists() and z8_li_path.exists() and z9_li_path.exists()):
+            self.skipTest("Binaries for Section 4 test not available")
+
+        zr_data = zr11_path.read_bytes()
+        z6_data = z6_path.read_bytes()
+        z8_li = z8_li_path.read_bytes()
+        z9_li = z9_li_path.read_bytes()
+
+        decrypted, stats = decrypt_section_4_consensus(zr_data, z6_data, z8_li, z9_li)
+        self.assertGreater(stats["recovered_bytes"], 1000000)
+        self.assertTrue(stats["kernel_header"].get("valid_magic"))
+        self.assertEqual(stats["kernel_header"]["image_size"], 0x628000)
+        self.assertEqual(stats["kernel_header"]["magic"], "ARM\\x64")
+        self.assertEqual(stats["kernel_header"]["stext_offset"], 0xEE0)
+
+        # First instruction of stext at 0xEE0: stp x29, x30, [sp, #-0x40]!
+        self.assertEqual(decrypted[0xEE0 : 0xEE0 + 4], bytes.fromhex("fd7bbca9"))
+        # Second instruction: mov x29, sp
+        self.assertEqual(decrypted[0xEE0 + 4 : 0xEE0 + 8], bytes.fromhex("fd030091"))
+
+        # Verify NISI container metadata and 4 sub-images
+        self.assertIn("nisi_container", stats)
+        nisi = stats["nisi_container"]
+        self.assertEqual(nisi["magic"], "NISI")
+        self.assertEqual(nisi["version"], "011100")
+        self.assertEqual(nisi["sub_image_count"], 4)
+        self.assertEqual(len(nisi["sub_images"]), 4)
+        self.assertEqual(nisi["sub_images"][0]["type"], "linux_kernel_image")
+        self.assertEqual(nisi["sub_images"][0]["byte_size"], 6101000)
+        self.assertEqual(nisi["sub_images"][1]["type"], "initramfs_cpio_rootfs")
+        self.assertEqual(nisi["sub_images"][1]["byte_size"], 21262611)
+        self.assertEqual(nisi["sub_images"][2]["type"], "device_tree_blob_1")
+        self.assertEqual(nisi["sub_images"][2]["byte_size"], 3845)
+        self.assertEqual(nisi["sub_images"][3]["type"], "device_tree_blob_2")
+        self.assertEqual(nisi["sub_images"][3]["byte_size"], 3168)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,34 @@
+[
+  {
+    "index": 0,
+    "type": "linux_kernel_image",
+    "start_sector": 1,
+    "sector_count": 2980,
+    "offset": 2048,
+    "byte_size": 6101000
+  },
+  {
+    "index": 1,
+    "type": "initramfs_cpio_rootfs",
+    "start_sector": 2981,
+    "sector_count": 10383,
+    "offset": 6105088,
+    "byte_size": 21262611
+  },
+  {
+    "index": 2,
+    "type": "device_tree_blob_1",
+    "start_sector": 13364,
+    "sector_count": 2,
+    "offset": 27369472,
+    "byte_size": 3845
+  },
+  {
+    "index": 3,
+    "type": "device_tree_blob_2",
+    "start_sector": 13366,
+    "sector_count": 2,
+    "offset": 27373568,
+    "byte_size": 3168
+  }
+]
