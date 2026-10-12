@@ -347,8 +347,27 @@ class TestDecryptZRStream(unittest.TestCase):
         self.assertEqual(parsed_short["totalsize"], 3845)
         self.assertIn("/dts-v1/;", dts_short)
 
+    def test_extract_main_os_symbols(self):
+        from decrypt_zr_stream import extract_main_os_symbols
+
+        test_payload = (
+            b"IpcuDriver.c\x00\x00"
+            b"__ANAND_DEVICE_DRIVER_STORAGE\x00"
+            b"A_iTR_eLG_bt50\x00"
+            b"m_AfArea.m_AbsX\x00"
+            b".LBB10_20\x00"
+        )
+        symbols = extract_main_os_symbols(test_payload)
+        self.assertEqual(symbols["total_unique_symbols"], 4)
+        subs = symbols["subsystems"]
+        self.assertIn("IpcuDriver.c", subs["inter_processor_communication"])
+        self.assertIn("__ANAND_DEVICE_DRIVER_STORAGE", subs["flash_storage_drivers"])
+        self.assertIn("A_iTR_eLG_bt50", subs["color_pipeline_profiles"])
+        self.assertIn("m_AfArea.m_AbsX", subs["autofocus_tracking_engine"])
+
 
 if __name__ == "__main__":
     unittest.main()
+
 
 

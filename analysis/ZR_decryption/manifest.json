@@ -134,10 +134,10 @@
   },
   "section_2_cross_offset_cryptanalysis": {
     "analyzed_bytes": 81603907,
-    "recovered_bytes": 12472588,
-    "recovery_ratio": 0.15284302502820116,
-    "recovered_code_data_bytes": 585017,
-    "recovered_zero_padding_bytes": 11887571,
+    "recovered_bytes": 17316055,
+    "recovery_ratio": 0.21219639642989152,
+    "recovered_code_data_bytes": 1157200,
+    "recovered_zero_padding_bytes": 16158855,
     "file_offset": 786288,
     "peer_offset_delta": 203804
   },

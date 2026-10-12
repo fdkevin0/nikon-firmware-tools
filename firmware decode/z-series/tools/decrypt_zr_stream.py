@@ -410,6 +410,7 @@ def decrypt_section_2_cross_offset(
     z9_eg_data: bytes | None = None,
     z6_data: bytes | None = None,
     z5_data: bytes | None = None,
+    peer_ciphertexts: list[bytes] | None = None,
     max_bytes: int | None = None,
 ) -> tuple[bytes, dict]:
     """Decrypt Section 2 (eg2100_011130.b) via cross-offset multi-camera consensus.
@@ -419,6 +420,8 @@ def decrypt_section_2_cross_offset(
 
     Returns (decrypted_bytes, recovery_stats).
     """
+    from collections import Counter
+
     file_off = 0x000BFF70
     sec2_size = 88157708
     delta = 0x000BFF70 - 0x0008E354  # 0x31C1C
@@ -432,8 +435,19 @@ def decrypt_section_2_cross_offset(
     c_zf = zf_data[file_off : file_off + limit]
     p_z8 = z8_eg_data[delta : delta + limit]
     p_z9 = z9_eg_data[delta : delta + limit] if z9_eg_data else None
-    c_z6 = z6_data[file_off : file_off + limit] if z6_data else None
-    c_z5 = z5_data[file_off : file_off + limit] if z5_data else None
+
+    # Assemble peer samples aligned to Section 2 payload offset
+    if peer_ciphertexts:
+        peer_samples = [c_zf] + [
+            p[file_off : file_off + limit] if len(p) >= file_off + limit else p
+            for p in peer_ciphertexts
+        ]
+    else:
+        peer_samples = [c_zf]
+        if z6_data and len(z6_data) >= file_off + limit:
+            peer_samples.append(z6_data[file_off : file_off + limit])
+        if z5_data and len(z5_data) >= file_off + limit:
+            peer_samples.append(z5_data[file_off : file_off + limit])
 
     keystream = [None] * limit
     code_count = 0
@@ -444,16 +458,33 @@ def decrypt_section_2_cross_offset(
         if not is_ref_invariant:
             continue
 
-        peer_match = True
-        if c_z6 and c_z5:
-            peer_match = (c_zf[i] == c_z6[i]) or (c_zf[i] == c_z5[i]) or (c_z6[i] == c_z5[i])
-        elif c_z6:
-            peer_match = (c_zf[i] == c_z6[i])
+        p_ref = p_z8[i]
+        vals = [p[i] for p in peer_samples if len(p) > i]
+        if not vals:
+            continue
 
-        if peer_match:
-            ks_byte = c_zf[i] ^ p_z8[i]
+        if len(vals) >= 3:
+            counts = Counter(vals)
+            top_val, top_cnt = counts.most_common(1)[0]
+            if top_cnt >= 3:
+                ks_byte = top_val ^ p_ref
+                keystream[i] = ks_byte
+                if p_ref == 0:
+                    zero_count += 1
+                else:
+                    code_count += 1
+        elif len(vals) == 2:
+            if vals[0] == vals[1]:
+                ks_byte = vals[0] ^ p_ref
+                keystream[i] = ks_byte
+                if p_ref == 0:
+                    zero_count += 1
+                else:
+                    code_count += 1
+        elif len(vals) == 1:
+            ks_byte = vals[0] ^ p_ref
             keystream[i] = ks_byte
-            if p_z8[i] == 0:
+            if p_ref == 0:
                 zero_count += 1
             else:
                 code_count += 1
@@ -477,6 +508,27 @@ def decrypt_section_2_cross_offset(
         "peer_offset_delta": delta,
     }
     return bytes(decrypted), stats
+
+
+def extract_main_os_symbols(decrypted_data: bytes) -> dict:
+    """Extract verified hardware drivers, AF tracking structures, and color profiles from decrypted Main OS."""
+    import re
+
+    raw_tokens = re.findall(b"[a-zA-Z0-9_./-]{6,}", decrypted_data)
+    unique = set(s.decode("ascii", errors="ignore") for s in raw_tokens if not s.startswith(b".LBB"))
+
+    subsystems = {
+        "inter_processor_communication": sorted([s for s in unique if "ipcu" in s.lower()]),
+        "flash_storage_drivers": sorted([s for s in unique if any(k in s.lower() for k in ["nand", "anand", "timeout"])]),
+        "color_pipeline_profiles": sorted([s for s in unique if any(k in s.lower() for k in ["bt50", "elg", "itr"])]),
+        "autofocus_tracking_engine": sorted([s for s in unique if "afarea" in s.lower() or "areath" in s.lower()]),
+    }
+    return {
+        "total_unique_symbols": len(unique),
+        "subsystems": subsystems,
+        "sample_symbols": sorted(list(unique))[:60],
+    }
+
 
 
 def parse_fdt_resilient(data: bytes) -> tuple[dict, str]:
@@ -903,8 +955,19 @@ def main():
         z6_data = z6_path.read_bytes() if z6_path.exists() else None
         z5_data = z5_path.read_bytes() if z5_path.exists() else None
 
+        # Assemble contemporary fleet peers
+        peer_eg_samples = []
+        for peer_name in [
+            "Z_f_0301.bin", "Z_f_0300.bin", "Z_f_0202.bin",
+            "Z6_3_0111.bin", "Z6_3_0110.bin",
+            "Z5_2_0120.bin", "Z5_2_0111.bin", "Z5_2_0110.bin",
+        ]:
+            p_path = Path("firmware decode/z-series") / peer_name
+            if p_path.exists():
+                peer_eg_samples.append(p_path.read_bytes())
+
         sec2_decrypted, sec2_stats = decrypt_section_2_cross_offset(
-            zr_data, zf_data, z8_eg, z9_eg, z6_data, z5_data
+            zr_data, zf_data, z8_eg, z9_eg, z6_data, z5_data, peer_ciphertexts=peer_eg_samples
         )
         print(f"\nSection 2 (eg2100_011130.b) Cross-Offset Cryptanalysis:")
         print(f"  Recovered keystream: {sec2_stats['recovered_bytes']:,} / {sec2_stats['analyzed_bytes']:,} bytes ({sec2_stats['recovery_ratio']*100:.2f}%)")
@@ -915,6 +978,21 @@ def main():
             sec2_out = out_dir / "eg2100_011130.partial.bi"
             sec2_out.write_bytes(sec2_decrypted)
             print(f"  Saved decrypted Section 2 to {sec2_out}")
+
+            symbols_info = extract_main_os_symbols(sec2_decrypted)
+            symbols_out = out_dir / "main_os_symbols.json"
+            symbols_out.write_text(json.dumps(symbols_info, indent=2) + "\n")
+            print(f"  Extracted Main OS symbols to {symbols_out}")
+            subs = symbols_info["subsystems"]
+            if subs.get("inter_processor_communication"):
+                print(f"    - IPC: {subs['inter_processor_communication']}")
+            if subs.get("flash_storage_drivers"):
+                print(f"    - Flash Storage: {subs['flash_storage_drivers']}")
+            if subs.get("color_pipeline_profiles"):
+                print(f"    - Color LUTs: {subs['color_pipeline_profiles']}")
+            if subs.get("autofocus_tracking_engine"):
+                print(f"    - AF Tracking Engine: {subs['autofocus_tracking_engine'][:5]} (total {len(subs['autofocus_tracking_engine'])})")
+
 
     # Cryptanalysis of Section 4 (Linux li2100)
     sec4_stats = None
