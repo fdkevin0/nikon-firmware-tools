@@ -143,10 +143,13 @@
   },
   "section_4_consensus_cryptanalysis": {
     "analyzed_bytes": 27377408,
-    "recovered_bytes": 1126214,
-    "recovery_ratio": 0.041136618923164676,
+    "recovered_bytes": 1134420,
+    "recovery_ratio": 0.04143635511440674,
     "lead_bridge_recovered_bytes": 468896,
     "kernel_zero_spans_recovered_bytes": 657318,
+    "nisi_padding_recovered_bytes": 4988,
+    "rootfs_header_recovered_bytes": 6,
+    "dtb_recovered_bytes": 4391,
     "file_offset": 89782576,
     "nisi_file_offset": 89782288,
     "kernel_header": {
@@ -197,6 +200,33 @@
           "byte_size": 3168
         }
       ]
+    },
+    "rootfs_info": {
+      "offset": 6104800,
+      "byte_size": 21262611,
+      "format": "gzip_cpio_archive",
+      "compression_method": "deflate",
+      "os": "unix",
+      "zero_padding_bytes": 1773,
+      "header_magic": "1f8b0800"
+    },
+    "device_tree_blobs": {
+      "dtb1": {
+        "offset": 27369184,
+        "byte_size": 3845,
+        "zero_padding_bytes": 251,
+        "magic": "0xd00dfeed",
+        "totalsize": 3845
+      },
+      "dtb2": {
+        "offset": 27373280,
+        "byte_size": 3168,
+        "zero_padding_bytes": 928,
+        "magic": "0xd00dfeed",
+        "totalsize": 3168,
+        "fully_reconstructed": true
+      },
+      "total_dtb_recovered_bytes": 4391
     }
   }
 }

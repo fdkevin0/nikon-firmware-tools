@@ -479,18 +479,103 @@ def decrypt_section_2_cross_offset(
     return bytes(decrypted), stats
 
 
+def parse_fdt_resilient(data: bytes) -> tuple[dict, str]:
+    """Resiliently parse complete or partial Device Tree Blob into JSON metadata and DTS text."""
+    if len(data) < 40:
+        return {}, "// FDT data too short for v17 header\n"
+    magic, total, off_struct, off_strings, off_rsv, version, comp, cpu, nstrings, nstruct = struct.unpack_from(">10I", data[:40])
+    if magic != 0xD00DFEED:
+        return {}, "// Invalid FDT header magic\n"
+
+    structure = data[off_struct : off_struct + nstruct] if nstruct and off_struct + nstruct <= len(data) else data[off_struct:]
+    strings = data[off_strings : off_strings + nstrings] if nstrings and off_strings + nstrings <= len(data) else data[off_strings:] if off_strings < len(data) else b""
+
+    stack, nodes, lines, pos = [], {}, ["/dts-v1/;", "", f"// FDT v{version} (totalsize: {total} B)", "/ {"], 0
+    while pos + 4 <= len(structure):
+        token = struct.unpack(">I", structure[pos : pos + 4])[0]
+        pos += 4
+        if token == 1:  # OF_DT_BEGIN_NODE
+            try:
+                end = structure.index(0, pos)
+                name = structure[pos:end].decode("ascii", errors="replace")
+                pos = (end + 4) & ~3
+                indent = "    " * (len(stack) + 1)
+                lines.append(f"{indent}{name or '/'} {{")
+                stack.append(name)
+                path = "/" + "/".join(s for s in stack if s)
+                nodes[path] = {}
+            except Exception:
+                break
+        elif token == 2:  # OF_DT_END_NODE
+            if not stack:
+                break
+            stack.pop()
+            indent = "    " * (len(stack) + 1)
+            lines.append(f"{indent}}};")
+        elif token == 3:  # OF_DT_PROP
+            if pos + 8 > len(structure):
+                break
+            size, nameoff = struct.unpack(">2I", structure[pos : pos + 8])
+            pos += 8
+            raw = structure[pos : pos + size]
+            pos = (pos + size + 3) & ~3
+            name = f"prop_{nameoff}"
+            if strings and nameoff < len(strings):
+                try:
+                    end_str = strings.index(0, nameoff)
+                    name = strings[nameoff:end_str].decode("ascii", errors="replace")
+                except Exception:
+                    pass
+            prop = {"hex": raw.hex()}
+            if raw and raw[-1] == 0 and all(c == 0 or 32 <= c < 127 for c in raw):
+                val_str = raw[:-1].decode("ascii", errors="replace")
+                value = f'"{val_str}"'
+            elif raw and len(raw) % 4 == 0:
+                cells = [c[0] for c in struct.iter_unpack(">I", raw)]
+                value = "<" + " ".join(f"0x{c:x}" for c in cells) + ">"
+            else:
+                value = "[" + raw.hex(" ") + "]"
+            path = "/" + "/".join(s for s in stack if s)
+            if path in nodes:
+                nodes[path][name] = prop
+            indent = "    " * (len(stack) + 1)
+            lines.append(f"{indent}{name} = {value};")
+        elif token == 4:  # OF_DT_NOP
+            continue
+        elif token == 9:  # OF_DT_END
+            break
+        else:
+            indent = "    " * (len(stack) + 1)
+            lines.append(f"{indent}// [Encrypted payload continuation at structure offset +0x{pos:x}]")
+            break
+
+    while stack:
+        stack.pop()
+        indent = "    " * (len(stack) + 1)
+        lines.append(f"{indent}}};")
+    lines.append("};")
+
+    return {
+        "version": version,
+        "totalsize": total,
+        "nodes": nodes,
+    }, "\n".join(lines) + "\n"
+
+
 def decrypt_section_4_consensus(
     zr_data: bytes,
     z6_data: bytes | None = None,
     z8_li_data: bytes | None = None,
     z9_li_data: bytes | None = None,
+    dtb_reference: bytes | None = None,
     max_bytes: int | None = None,
 ) -> tuple[bytes, dict]:
     """Decrypt Section 4 (li2100_011130.b) via cross-camera VR padding bridge and kernel zero-spans.
 
     Exploits the 0xFF flash erase padding of Z 6 III Section 3 (VR MCU) spanning the first
     468,683 bytes (0x726CB) of Section 4 to recover 100% ground-truth Linux kernel code,
-    plus multi-peer zero-spans across the remainder of the container.
+    multi-peer zero-spans across the remainder of the container, inter-subimage zero padding,
+    and Device Tree Blob consensus.
 
     Also recovers the pure NISI multi-image container header at file offset 0x0559F810,
     mapping all 4 sub-images (kernel, CPIO rootfs, and 2 Device Tree Blobs).
@@ -502,6 +587,11 @@ def decrypt_section_4_consensus(
     sec4_size = min(27377560, len(zr_data) - file_off)
     if max_bytes:
         sec4_size = min(sec4_size, max_bytes)
+
+    if dtb_reference is None:
+        ref_path = Path("firmware decode/z-series/analysis/z8_history/versions/Z_8_0200/linux/device_tree_1.dtb")
+        if ref_path.exists():
+            dtb_reference = ref_path.read_bytes()
 
     decrypted = bytearray(sec4_size)
     keystream = [None] * sec4_size
@@ -531,11 +621,60 @@ def decrypt_section_4_consensus(
                     decrypted[idx] = 0x00
                     zero_spans_recovered += 1
 
-    recovered_total = sum(1 for k in keystream if k is not None)
+    # 3. NISI container inter-subimage zero padding spans
+    nisi_pad_recovered = 0
+    # Span 1: End of Kernel zero padding (2,040 bytes at NISI 6,103,048 .. 6,105,088)
+    k_pad_off = 6103048 - 288
+    if k_pad_off + 2040 <= sec4_size:
+        for i in range(2040):
+            idx = k_pad_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx]
+                decrypted[idx] = 0x00
+                nisi_pad_recovered += 1
+
+    # Span 2: End of Rootfs zero padding (1,773 bytes at NISI 27,367,699 .. 27,369,472)
+    r_pad_off = 27367699 - 288
+    if r_pad_off + 1773 <= sec4_size:
+        for i in range(1773):
+            idx = r_pad_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx]
+                decrypted[idx] = 0x00
+                nisi_pad_recovered += 1
+
+    # 4. Rootfs header recovery (Gzip RFC 1952 at sector 2981 / payload 6,104,800)
+    rootfs_dec_off = 6105088 - 288
+    rootfs_recovered = 0
+    rootfs_info = {}
+    if rootfs_dec_off + 10 <= sec4_size:
+        gz_lead = bytes.fromhex("1f8b0800")
+        for i in range(4):
+            idx = rootfs_dec_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx] ^ gz_lead[i]
+                decrypted[idx] = gz_lead[i]
+                rootfs_recovered += 1
+        for i, b in [(8, 0x02), (9, 0x03)]:
+            idx = rootfs_dec_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx] ^ b
+                decrypted[idx] = b
+                rootfs_recovered += 1
+
+        rootfs_info = {
+            "offset": rootfs_dec_off,
+            "byte_size": 21262611,
+            "format": "gzip_cpio_archive",
+            "compression_method": "deflate",
+            "os": "unix",
+            "zero_padding_bytes": 1773,
+            "header_magic": "1f8b0800",
+        }
 
     # Parse recovered kernel header at 0x6e0 if available
     kernel_info = {}
-    if recovered_total >= 0x720:
+    if sum(1 for k in keystream if k is not None) >= 0x720:
         raw_hdr = decrypted[0x6E0 : 0x6E0 + 64]
         magic = bytes(raw_hdr[0x38:0x3C])
         if magic == b"ARM\x64":
@@ -549,7 +688,7 @@ def decrypt_section_4_consensus(
                 "stext_offset": 0xEE0,
             }
 
-    # 3. Recover NISI container header at 0x0559F810
+    # Recover NISI container header at 0x0559F810
     nisi_info = {}
     if z6_data and len(z6_data) >= nisi_file_off + 96 and len(zr_data) >= nisi_file_off + 96:
         nisi_raw = bytes(zr_data[nisi_file_off + i] ^ z6_data[nisi_file_off + i] ^ 0xFF for i in range(96))
@@ -557,18 +696,130 @@ def decrypt_section_4_consensus(
             from reverse_expeed7_system import parse_nisi_container
             nisi_info = parse_nisi_container(nisi_raw)
 
+    # 5. Device Tree Blob (DTB) zero-padding spans and FDT headers
+    dtb_recovered = 0
+    dtb_info = {}
+
+    # DTB 1: 3,845 bytes at NISI offset 27,369,472 (decrypted offset 27,369,184)
+    dtb1_dec_off = 27369472 - 288
+    if dtb1_dec_off + 4096 <= sec4_size:
+        # Zero padding after DTB 1 (251 bytes: 3845..4096)
+        for i in range(3845, 4096):
+            idx = dtb1_dec_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx]
+                decrypted[idx] = 0x00
+                dtb_recovered += 1
+                nisi_pad_recovered += 1
+
+        # FDT header magic and totalsize (0xD00DFEED, 0x00000F05)
+        dtb1_hdr = bytes.fromhex("d00dfeed00000f05")
+        for i in range(len(dtb1_hdr)):
+            idx = dtb1_dec_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx] ^ dtb1_hdr[i]
+                decrypted[idx] = dtb1_hdr[i]
+                dtb_recovered += 1
+
+        # FDT structural constants: off_dt_struct=56, off_mem_rsvmap=40, version=17, comp=16, cpu=0
+        fdt_consts = struct.pack(">5I", 56, 40, 17, 16, 0)
+        # off_dt_struct at 0x08, off_mem_rsvmap at 0x10..0x20
+        for i, b in enumerate(struct.pack(">I", 56)):
+            idx = dtb1_dec_off + 8 + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx] ^ b
+                decrypted[idx] = b
+                dtb_recovered += 1
+        for i, b in enumerate(struct.pack(">4I", 40, 17, 16, 0)):
+            idx = dtb1_dec_off + 16 + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx] ^ b
+                decrypted[idx] = b
+                dtb_recovered += 1
+
+        # mem_rsvmap (16 bytes of zeros at 0x28..0x38)
+        for i in range(0x28, 0x38):
+            idx = dtb1_dec_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx]
+                decrypted[idx] = 0x00
+                dtb_recovered += 1
+
+    # DTB 2: 3,168 bytes at NISI offset 27,373,568 (decrypted offset 27,373,280)
+    dtb2_dec_off = 27373568 - 288
+    if dtb2_dec_off + 4096 <= sec4_size:
+        # Zero padding after DTB 2 (928 bytes: 3168..4096)
+        for i in range(3168, 4096):
+            idx = dtb2_dec_off + i
+            if keystream[idx] is None:
+                keystream[idx] = zr_data[file_off + idx]
+                decrypted[idx] = 0x00
+                dtb_recovered += 1
+                nisi_pad_recovered += 1
+
+        # If 3,168-byte DTB reference is available, recover complete DTB 2 payload
+        if dtb_reference and len(dtb_reference) == 3168:
+            for i in range(3168):
+                idx = dtb2_dec_off + i
+                if keystream[idx] is None:
+                    keystream[idx] = zr_data[file_off + idx] ^ dtb_reference[i]
+                    decrypted[idx] = dtb_reference[i]
+                    dtb_recovered += 1
+        else:
+            # Fallback to header and rsvmap
+            dtb2_hdr = bytes.fromhex("d00dfeed00000c60")
+            for i in range(len(dtb2_hdr)):
+                idx = dtb2_dec_off + i
+                if keystream[idx] is None:
+                    keystream[idx] = zr_data[file_off + idx] ^ dtb2_hdr[i]
+                    decrypted[idx] = dtb2_hdr[i]
+                    dtb_recovered += 1
+            for i in range(0x28, 0x38):
+                idx = dtb2_dec_off + i
+                if keystream[idx] is None:
+                    keystream[idx] = zr_data[file_off + idx]
+                    decrypted[idx] = 0x00
+                    dtb_recovered += 1
+
+    dtb_info = {
+        "dtb1": {
+            "offset": dtb1_dec_off,
+            "byte_size": 3845,
+            "zero_padding_bytes": 251,
+            "magic": "0xd00dfeed",
+            "totalsize": 3845,
+        },
+        "dtb2": {
+            "offset": dtb2_dec_off,
+            "byte_size": 3168,
+            "zero_padding_bytes": 928,
+            "magic": "0xd00dfeed",
+            "totalsize": 3168,
+            "fully_reconstructed": (dtb_reference is not None and len(dtb_reference) == 3168),
+        },
+        "total_dtb_recovered_bytes": dtb_recovered,
+    }
+
+    recovered_total = sum(1 for k in keystream if k is not None)
+
     stats = {
         "analyzed_bytes": sec4_size,
         "recovered_bytes": recovered_total,
         "recovery_ratio": recovered_total / sec4_size if sec4_size else 0.0,
         "lead_bridge_recovered_bytes": lead_recovered,
         "kernel_zero_spans_recovered_bytes": zero_spans_recovered,
+        "nisi_padding_recovered_bytes": nisi_pad_recovered,
+        "rootfs_header_recovered_bytes": rootfs_recovered,
+        "dtb_recovered_bytes": dtb_recovered,
         "file_offset": file_off,
         "nisi_file_offset": nisi_file_off,
         "kernel_header": kernel_info,
         "nisi_container": nisi_info,
+        "rootfs_info": rootfs_info,
+        "device_tree_blobs": dtb_info,
     }
     return bytes(decrypted), stats
+
 
 
 def main():
@@ -684,6 +935,8 @@ def main():
         print(f"    - Kernel Zero Spans:     {sec4_stats['kernel_zero_spans_recovered_bytes']:,} bytes")
         if sec4_stats.get("kernel_header", {}).get("valid_magic"):
             print(f"    - Linux Kernel Header:   Magic={sec4_stats['kernel_header']['magic']}, ImageSize={sec4_stats['kernel_header']['image_size']:,} B")
+        if sec4_stats and sec4_stats.get("dtb_recovered_bytes", 0) > 0:
+            print(f"    - DTB Padding & Headers: {sec4_stats['dtb_recovered_bytes']:,} bytes")
 
         if args.extract_sec4:
             sec4_out = out_dir / "li2100_011130.partial.bi"
@@ -711,7 +964,38 @@ def main():
                 (nisi_dir / "subimages_inventory.json").write_text(
                     json.dumps(sec4_stats["nisi_container"]["sub_images"], indent=2) + "\n"
                 )
+
+                # Extract Device Tree Blobs and decompile to DTS
+                dtb_map = sec4_stats.get("device_tree_blobs", {})
+                if dtb_map.get("dtb1"):
+                    d1_off = dtb_map["dtb1"]["offset"]
+                    d1_sz = dtb_map["dtb1"]["byte_size"]
+                    d1_raw = sec4_decrypted[d1_off : d1_off + d1_sz]
+                    (nisi_dir / "device_tree_0.dtb.partial").write_bytes(d1_raw)
+                    _, dts0 = parse_fdt_resilient(d1_raw)
+                    (nisi_dir / "device_tree_0.dts.partial").write_text(dts0)
+
+                if dtb_map.get("dtb2"):
+                    d2_off = dtb_map["dtb2"]["offset"]
+                    d2_sz = dtb_map["dtb2"]["byte_size"]
+                    d2_raw = sec4_decrypted[d2_off : d2_off + d2_sz]
+                    (nisi_dir / "device_tree_1.dtb").write_bytes(d2_raw)
+                    try:
+                        from analyze_z8 import parse_fdt
+                        _, dts1 = parse_fdt(d2_raw)
+                        (nisi_dir / "device_tree_1.dts").write_text(dts1)
+                    except Exception:
+                        _, dts1 = parse_fdt_resilient(d2_raw)
+                        (nisi_dir / "device_tree_1.dts").write_text(dts1)
+
+                # Save rootfs metadata if recovered
+                if sec4_stats.get("rootfs_info"):
+                    (nisi_dir / "rootfs_header.json").write_text(
+                        json.dumps(sec4_stats["rootfs_info"], indent=2) + "\n"
+                    )
+
                 print(f"  Extracted Linux subsystem components to {nisi_dir}")
+
 
     report = {
         "target": Path(args.zr_binary).name,

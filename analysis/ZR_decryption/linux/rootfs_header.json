@@ -1,0 +1,9 @@
+{
+  "offset": 6104800,
+  "byte_size": 21262611,
+  "format": "gzip_cpio_archive",
+  "compression_method": "deflate",
+  "os": "unix",
+  "zero_padding_bytes": 1773,
+  "header_magic": "1f8b0800"
+}

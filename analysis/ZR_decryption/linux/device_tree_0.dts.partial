@@ -1,0 +1,6 @@
+/dts-v1/;
+
+// FDT v17 (totalsize: 3845 B)
+/ {
+    // [Encrypted payload continuation at structure offset +0x4]
+};

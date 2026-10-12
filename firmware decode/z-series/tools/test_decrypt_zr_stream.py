@@ -292,7 +292,63 @@ class TestDecryptZRStream(unittest.TestCase):
         self.assertEqual(nisi["sub_images"][3]["type"], "device_tree_blob_2")
         self.assertEqual(nisi["sub_images"][3]["byte_size"], 3168)
 
+        # Verify NISI inter-subimage zero-padding and rootfs header recovery
+        self.assertGreaterEqual(stats.get("nisi_padding_recovered_bytes", 0), 4980)
+        self.assertIn("rootfs_info", stats)
+        r_info = stats["rootfs_info"]
+        self.assertEqual(r_info.get("header_magic"), "1f8b0800")
+        self.assertEqual(r_info.get("format"), "gzip_cpio_archive")
+        self.assertEqual(r_info.get("compression_method"), "deflate")
+        self.assertEqual(r_info.get("os"), "unix")
+        self.assertEqual(r_info.get("zero_padding_bytes"), 1773)
+
+        # Verify decrypted rootfs lead bytes in payload
+        r_off = r_info["offset"]
+        self.assertEqual(decrypted[r_off : r_off + 4], bytes.fromhex("1f8b0800"))
+        self.assertEqual(decrypted[r_off + 8], 0x02)
+        self.assertEqual(decrypted[r_off + 9], 0x03)
+
+        # Verify Device Tree Blob padding and FDT header recovery
+        self.assertGreaterEqual(stats.get("dtb_recovered_bytes", 0), 1179)
+        self.assertIn("device_tree_blobs", stats)
+        dtbs = stats["device_tree_blobs"]
+        self.assertEqual(dtbs["dtb1"]["magic"], "0xd00dfeed")
+        self.assertEqual(dtbs["dtb1"]["totalsize"], 3845)
+        self.assertEqual(dtbs["dtb1"]["zero_padding_bytes"], 251)
+        self.assertEqual(dtbs["dtb2"]["magic"], "0xd00dfeed")
+        self.assertEqual(dtbs["dtb2"]["totalsize"], 3168)
+        self.assertEqual(dtbs["dtb2"]["zero_padding_bytes"], 928)
+        self.assertTrue(dtbs["dtb2"]["fully_reconstructed"])
+
+        # Verify decrypted FDT magic in payload
+        d1_off = dtbs["dtb1"]["offset"]
+        self.assertEqual(decrypted[d1_off : d1_off + 4], bytes.fromhex("d00dfeed"))
+        self.assertEqual(decrypted[d1_off + 4 : d1_off + 8], bytes.fromhex("00000f05"))
+        d2_off = dtbs["dtb2"]["offset"]
+        self.assertEqual(decrypted[d2_off : d2_off + 4], bytes.fromhex("d00dfeed"))
+        self.assertEqual(decrypted[d2_off + 4 : d2_off + 8], bytes.fromhex("00000c60"))
+
+    def test_parse_fdt_resilient(self):
+        from decrypt_zr_stream import parse_fdt_resilient
+
+        ref_path = Path("firmware decode/z-series/analysis/z8_history/versions/Z_8_0200/linux/device_tree_1.dtb")
+        if ref_path.exists():
+            dtb_data = ref_path.read_bytes()
+            parsed, dts = parse_fdt_resilient(dtb_data)
+            self.assertEqual(parsed["version"], 17)
+            self.assertEqual(parsed["totalsize"], 3168)
+            self.assertIn("/chosen", parsed["nodes"])
+            self.assertIn("chosen", dts)
+            self.assertIn("console=ttyS0", dts)
+
+        # Test partial/truncated FDT
+        short_hdr = bytes.fromhex("d00dfeed00000f050000003800000abc000000280000001100000010000000000000019400000a94")
+        parsed_short, dts_short = parse_fdt_resilient(short_hdr)
+        self.assertEqual(parsed_short["totalsize"], 3845)
+        self.assertIn("/dts-v1/;", dts_short)
+
 
 if __name__ == "__main__":
     unittest.main()
+
 

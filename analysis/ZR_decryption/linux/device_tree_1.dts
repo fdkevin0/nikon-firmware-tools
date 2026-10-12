@@ -1,0 +1,145 @@
+/dts-v1/;
+
+/ {
+    model = "Nikon XXX";
+    compatible = "nikon,xxx";
+    #address-cells = <0x2>;
+    #size-cells = <0x2>;
+    chosen {
+        bootargs = "console=ttyS0,115200 rdinit=/sbin/init keepinitrd";
+        stdout-path = "/serial@f000000";
+    };
+    cpus {
+        #address-cells = <0x2>;
+        #size-cells = <0x0>;
+        cpu@3 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a53";
+            reg = <0x0 0x3>;
+            next-level-cache = <0x1>;
+        };
+        l2-cache0 {
+            compatible = "cache";
+            linux,phandle = <0x1>;
+            phandle = <0x1>;
+        };
+    };
+    memory@A07800000 {
+        device_type = "memory";
+        reg = <0xa 0x7800000 0x0 0x7800000>;
+    };
+    interrupt-controller@d000000 {
+        compatible = "arm,gic-v3";
+        interrupt-controller;
+        #interrupt-cells = <0x3>;
+        reg = <0x0 0xd000000 0x0 0x10000 0x0 0xd0e0000 0x0 0x20000>;
+        interrupts = <0x1 0x9 0x4>;
+        interrupt-parent = <0x2>;
+        linux,phandle = <0x2>;
+        phandle = <0x2>;
+    };
+    clocks {
+        #address-cells = <0x1>;
+        #size-cells = <0x0>;
+        clock@0 {
+            compatible = "fixed-clock";
+            reg = <0x0>;
+            #clock-cells = <0x0>;
+            clock-frequency = <0x7270e00>;
+            clock-output-names = "uarthclk";
+            linux,phandle = <0x3>;
+            phandle = <0x3>;
+        };
+        clock@1 {
+            compatible = "fixed-clock";
+            reg = <0x0>;
+            #clock-cells = <0x0>;
+            clock-frequency = <0x17d78400>;
+            clock-output-names = "aclk_usb0";
+        };
+    };
+    cgn@d152000 {
+        compatible = "nikon,xxx-cgn";
+        reg = <0x0 0xd152000 0x0 0x1000>;
+        #clock-cells = <0x1>;
+        linux,phandle = <0x4>;
+        phandle = <0x4>;
+    };
+    timer {
+        compatible = "arm,armv8-timer";
+        interrupts = <0x1 0xd 0x8 0x1 0xe 0x8 0x1 0xb 0x8 0x1 0xa 0x8>;
+        interrupt-parent = <0x2>;
+    };
+    serial@f000000 {
+        compatible = "nikon,nkj-uart";
+        console = "disabled";
+        reg = <0x0 0xf000000 0x0 0x10>;
+        interrupts = <0x0 0xad 0x4 0x0 0xb0 0x4>;
+        interrupt-parent = <0x2>;
+        #clock-cells = <0x1>;
+        clocks = <0x3>;
+        clock-names = "uart_clk";
+        status = "okay";
+    };
+    sdhci@0x17830000 {
+        compatible = "nikon,xxx-sdhci";
+        reg = <0x0 0x17830000 0x0 0x300>;
+        interrupts = <0x0 0x61 0x4 0x0 0x62 0x4 0x0 0x63 0x4>;
+        interrupt-parent = <0x2>;
+        bus-width = <0x4>;
+        clocks = <0x4 0x1>;
+        clock-names = "sdioclk";
+        fixed-3.3v;
+        non-removable;
+        pm-ignore-notify;
+        clock-limit = <0x2faf080>;
+        uhs-limit-sdr12;
+        dma-offset = <0xa 0x0 0x0 0x40000000 0x0 0x40000000 0x8 0x40000000 0x0 0x80000000 0x0 0x80000000>;
+        #address-cells = <0x1>;
+        #size-cells = <0x0>;
+        bcrmf@1 {
+            reg = <0x1>;
+            compatible = "brcm,bcm4329-fmac";
+        };
+    };
+    usb@0x17880000 {
+        compatible = "socionext,sc2007-xhci";
+        reg = <0x0 0x17880000 0x0 0x10000 0x0 0x17a20000 0x0 0x20000 0x0 0x17a40000 0x0 0x20000 0x0 0x17a00000 0x0 0x20000 0x0 0xd151000 0x0 0x500>;
+        interrupts = <0x0 0x6c 0x4 0x0 0x6d 0x4>;
+        interrupt-parent = <0x2>;
+        status = "okay";
+        mux_ctl_addr = <0x58>;
+        mux_ctl_bit = <0x7>;
+    };
+    peri_pmc@0x840000000 {
+        compatible = "nikon,uio";
+        reg = <0x8 0x40000000 0x0 0xb7fff000>;
+        status = "okay";
+    };
+    rtc0xA0f7ff000 {
+        compatible = "nikon,xxx-rtc";
+        reg = <0xa 0xf7ff000 0x0 0x100>;
+        status = "okay";
+    };
+    poweroff {
+        compatible = "nikon,xxx-poweroff";
+        reg = <0xa 0xf7ff100 0x0 0x4>;
+        halt-magic-no = <0x544c4148>;
+        status = "okay";
+    };
+    reserved-memory {
+        #address-cells = <0x2>;
+        #size-cells = <0x2>;
+        ranges;
+        OS_COM {
+            device_type = "memory";
+            no-map;
+            reg = <0xa 0xf000000 0x0 0x2000>;
+        };
+        share_mem {
+            device_type = "memory";
+            no-map;
+            reg = <0xa 0xf002000 0x0 0x7fd000>;
+        };
+    };
+};

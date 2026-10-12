@@ -26,5 +26,10 @@ __pycache__/
 *.partial.bi
 analysis/**/*.bin
 *.lead.bin
+*.dtb.partial
+*.dtb
+
+
+
 
 
